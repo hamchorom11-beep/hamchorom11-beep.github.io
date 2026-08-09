@@ -1,0 +1,3348 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>포물선 운동 시뮬레이션 | 온라인 물리학 탐구실</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --primary: #1e3a8a;
+      --primary2: #2563eb;
+      --primary-light: #dbeafe;
+      --text: #1f2937;
+      --subtext: #64748b;
+      --border: #e2e8f0;
+      --success: #0f766e;
+      --warning: #b45309;
+
+      --line1: #2563eb;
+      --line2: #dc2626;
+      --line3: #16a34a;
+      --line4: #9333ea;
+      --line5: #ea580c;
+
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+
+      font-family:
+        "Pretendard",
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        Arial,
+        sans-serif;
+
+      background:
+        linear-gradient(
+          180deg,
+          #edf4ff 0%,
+          #f8fbff 26%,
+          #f5f7fb 100%
+        );
+
+      color: var(--text);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(94%, 1400px);
+      margin: 0 auto;
+    }
+
+    /* =============================
+       HEADER
+    ============================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar {
+      min-height: 68px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 18px;
+    }
+
+    .title-box strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    .title-box span {
+      color: var(--subtext);
+      font-size: 0.84rem;
+    }
+
+    .home-button {
+      padding: 10px 15px;
+
+      border-radius: 10px;
+      border: 1px solid var(--border);
+
+      background: white;
+      color: var(--primary);
+
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .home-button:hover {
+      background: var(--primary-light);
+    }
+
+    /* =============================
+       INTRO
+    ============================= */
+
+    .intro {
+      padding: 38px 0 24px;
+    }
+
+    .intro h1 {
+      margin: 0 0 8px;
+
+      color: #0f172a;
+
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      letter-spacing: -0.03em;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--subtext);
+      line-height: 1.7;
+    }
+
+    .question {
+      margin-top: 18px;
+
+      padding: 16px 18px;
+
+      border-left: 5px solid var(--primary2);
+      border-radius: 12px;
+
+      background: #eff6ff;
+
+      color: #1e3a8a;
+
+      font-weight: 700;
+    }
+
+    /* =============================
+       MAIN GRID
+    ============================= */
+
+    .main-grid {
+      display: grid;
+
+      grid-template-columns:
+        minmax(280px, 340px)
+        minmax(0, 1fr);
+
+      gap: 22px;
+
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+
+      box-shadow: var(--shadow);
+
+      padding: 20px;
+    }
+
+    .panel h2 {
+      font-size: 1.15rem;
+
+      margin: 0 0 18px;
+
+      color: #0f172a;
+    }
+
+    /* =============================
+       CONTROLS
+    ============================= */
+
+    .control {
+      margin-bottom: 20px;
+    }
+
+    .control-head {
+      display: flex;
+      justify-content: space-between;
+
+      gap: 10px;
+
+      margin-bottom: 7px;
+
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .control-value {
+      color: var(--primary2);
+    }
+
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--primary2);
+      cursor: pointer;
+    }
+
+    .switch-row {
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 14px;
+
+      margin-bottom: 18px;
+
+      padding: 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 12px;
+
+      background: #f8fafc;
+    }
+
+    .switch-text strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .switch-text span {
+      color: var(--subtext);
+      font-size: 0.8rem;
+    }
+
+    .switch {
+      position: relative;
+
+      width: 52px;
+      height: 28px;
+
+      flex: 0 0 auto;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider-switch {
+      position: absolute;
+
+      inset: 0;
+
+      cursor: pointer;
+
+      border-radius: 999px;
+
+      background: #cbd5e1;
+
+      transition: 0.25s;
+    }
+
+    .slider-switch::before {
+      content: "";
+
+      position: absolute;
+
+      width: 22px;
+      height: 22px;
+
+      left: 3px;
+      top: 3px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      transition: 0.25s;
+    }
+
+    .switch input:checked + .slider-switch {
+      background: var(--primary2);
+    }
+
+    .switch input:checked + .slider-switch::before {
+      transform: translateX(24px);
+    }
+
+    .drag-settings {
+      padding-top: 6px;
+    }
+
+    .drag-settings.disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* =============================
+       BUTTONS
+    ============================= */
+
+    .buttons {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 10px;
+
+      margin-top: 8px;
+    }
+
+    button {
+      border: none;
+
+      border-radius: 11px;
+
+      padding: 12px 13px;
+
+      cursor: pointer;
+
+      font-weight: 700;
+
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .launch {
+      background: var(--primary2);
+      color: white;
+    }
+
+    .pause {
+      background: #e0e7ff;
+      color: #3730a3;
+    }
+
+    .reset {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .clear {
+      background: #fff7ed;
+      color: #9a3412;
+    }
+
+    /* =============================
+       CANVAS
+    ============================= */
+
+    .simulation-panel {
+      padding: 18px;
+    }
+
+    .simulation-toolbar {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 14px;
+
+      flex-wrap: wrap;
+
+      margin-bottom: 10px;
+    }
+
+    .simulation-toolbar h2 {
+      margin: 0;
+    }
+
+    .status {
+      font-size: 0.86rem;
+
+      background: #eef2ff;
+      color: #3730a3;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      font-weight: 700;
+    }
+
+    .canvas-box {
+      width: 100%;
+
+      border-radius: 14px;
+      overflow: hidden;
+
+      border: 1px solid var(--border);
+
+      background: white;
+
+      position: relative;
+    }
+
+    #simCanvas {
+      width: 100%;
+      height: 500px;
+
+      display: block;
+    }
+
+    /* =============================
+       METRICS
+    ============================= */
+
+    .metrics {
+      display: grid;
+
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+
+      gap: 12px;
+
+      margin-top: 18px;
+    }
+
+    .metric {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+
+      background: #f8fafc;
+
+      padding: 13px 14px;
+    }
+
+    .metric span {
+      display: block;
+
+      color: var(--subtext);
+
+      font-size: 0.8rem;
+
+      margin-bottom: 4px;
+    }
+
+    .metric strong {
+      font-size: 1.15rem;
+
+      color: #0f172a;
+    }
+
+    /* =============================
+       LIVE DATA
+    ============================= */
+
+    .data-section {
+      margin-top: 22px;
+    }
+
+    .data-grid {
+      display: grid;
+
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+
+      gap: 10px;
+    }
+
+    .data-item {
+      padding: 12px;
+
+      background: white;
+
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .data-item small {
+      display: block;
+
+      color: var(--subtext);
+
+      margin-bottom: 2px;
+    }
+
+    .data-item strong {
+      color: var(--primary);
+    }
+
+    /* =============================
+       ENERGY
+    ============================= */
+
+    .energy-wrap {
+      margin-top: 22px;
+
+      border-top: 1px solid var(--border);
+
+      padding-top: 20px;
+    }
+
+    .energy-bars {
+      display: grid;
+
+      gap: 11px;
+    }
+
+    .energy-row {
+      display: grid;
+
+      grid-template-columns: 125px 1fr 95px;
+
+      gap: 10px;
+
+      align-items: center;
+    }
+
+    .bar-track {
+      height: 14px;
+
+      background: #e2e8f0;
+
+      border-radius: 999px;
+
+      overflow: hidden;
+    }
+
+    .bar {
+      height: 100%;
+      width: 0%;
+
+      transition: width 0.1s linear;
+    }
+
+    .bar-ke {
+      background: #2563eb;
+    }
+
+    .bar-pe {
+      background: #16a34a;
+    }
+
+    .bar-me {
+      background: #9333ea;
+    }
+
+    .energy-value {
+      text-align: right;
+      font-size: 0.87rem;
+      font-weight: 700;
+    }
+
+    /* =============================
+       TRAJECTORIES
+    ============================= */
+
+    .history {
+      margin-top: 22px;
+
+      border-top: 1px solid var(--border);
+
+      padding-top: 18px;
+    }
+
+    .history-title {
+      font-weight: 800;
+
+      margin-bottom: 10px;
+    }
+
+    .history-list {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+
+      gap: 7px;
+
+      font-size: 0.8rem;
+
+      padding: 7px 10px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      background: #f8fafc;
+    }
+
+    .color-dot {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+    }
+
+    /* =============================
+       THEORY & QUESTIONS
+    ============================= */
+
+    .learning {
+      margin-top: 28px;
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 22px;
+    }
+
+    .learning h2 {
+      margin-top: 0;
+    }
+
+    .equation {
+      padding: 13px 15px;
+
+      margin: 10px 0;
+
+      border-radius: 10px;
+
+      background: #f8fafc;
+
+      font-family:
+        "Times New Roman",
+        serif;
+
+      font-size: 1.05rem;
+    }
+
+    .learning li {
+      margin-bottom: 9px;
+      line-height: 1.6;
+    }
+
+    .tip {
+      margin-top: 15px;
+
+      padding: 13px 15px;
+
+      background: #ecfdf5;
+
+      color: #065f46;
+
+      border-radius: 10px;
+
+      font-size: 0.9rem;
+    }
+
+    footer {
+      padding: 40px 0;
+
+      text-align: center;
+
+      color: var(--subtext);
+
+      font-size: 0.85rem;
+    }
+
+    /* =============================
+       RESPONSIVE
+    ============================= */
+
+    @media (max-width: 1000px) {
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .control-panel {
+        display: grid;
+
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+      }
+
+      .control-panel > h2,
+      .control-panel > .switch-row,
+      .control-panel > .drag-settings,
+      .control-panel > .buttons {
+        grid-column: 1 / -1;
+      }
+
+      .metrics,
+      .data-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+
+    }
+
+    @media (max-width: 700px) {
+
+      #simCanvas {
+        height: 390px;
+      }
+
+      .control-panel {
+        display: block;
+      }
+
+      .learning {
+        grid-template-columns: 1fr;
+      }
+
+      .energy-row {
+        grid-template-columns:
+          100px 1fr 80px;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .metrics,
+      .data-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .buttons {
+        grid-template-columns: 1fr;
+      }
+
+      #simCanvas {
+        height: 330px;
+      }
+
+      .energy-row {
+        grid-template-columns: 88px 1fr;
+      }
+
+      .energy-value {
+        display: none;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <div class="container topbar">
+
+    <div class="title-box">
+      <strong>온라인 물리학 탐구실</strong>
+      <span>Ⅰ. 시공간과 운동</span>
+    </div>
+
+    <a
+      class="home-button"
+      href="../index.html"
+    >
+      ← 메인으로
+    </a>
+
+  </div>
+
+</header>
+
+
+<main class="container">
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <h1>🚀 포물선 운동 시뮬레이션</h1>
+
+    <p>
+      발사각, 초기속력, 질량 및 공기저항을 변화시키면서
+      물체의 운동 궤적과 물리량이 어떻게 달라지는지 탐구해 보세요.
+    </p>
+
+    <div class="question">
+      탐구 질문 :
+      발사 조건과 공기저항은 포물선 운동의
+      사거리, 최고높이, 비행시간에 어떤 영향을 줄까?
+    </div>
+
+  </section>
+
+
+  <section class="main-grid">
+
+    <!-- CONTROLS -->
+
+    <aside class="panel control-panel">
+
+      <h2>실험 조건</h2>
+
+
+      <div class="control">
+
+        <div class="control-head">
+          <span>발사각 θ</span>
+          <span
+            class="control-value"
+            id="angleValue"
+          >
+            45°
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="angle"
+          min="5"
+          max="85"
+          value="45"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control">
+
+        <div class="control-head">
+          <span>초기속력 v₀</span>
+          <span
+            class="control-value"
+            id="speedValue"
+          >
+            20 m/s
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="speed"
+          min="5"
+          max="50"
+          value="20"
+          step="1"
+        >
+
+      </div>
+
+
+      <div class="control">
+
+        <div class="control-head">
+          <span>질량 m</span>
+          <span
+            class="control-value"
+            id="massValue"
+          >
+            1.00 kg
+          </span>
+        </div>
+
+        <input
+          type="range"
+          id="mass"
+          min="0.1"
+          max="5"
+          value="1"
+          step="0.1"
+        >
+
+      </div>
+
+
+      <div class="switch-row">
+
+        <div class="switch-text">
+
+          <strong>공기저항</strong>
+
+          <span>
+            속력의 제곱에 비례하는 항력
+          </span>
+
+        </div>
+
+        <label class="switch">
+
+          <input
+            type="checkbox"
+            id="dragToggle"
+          >
+
+          <span class="slider-switch"></span>
+
+        </label>
+
+      </div>
+
+
+      <div
+        class="drag-settings disabled"
+        id="dragSettings"
+      >
+
+        <div class="control">
+
+          <div class="control-head">
+            <span>항력계수 C<sub>d</sub></span>
+            <span
+              class="control-value"
+              id="cdValue"
+            >
+              0.47
+            </span>
+          </div>
+
+          <input
+            type="range"
+            id="cd"
+            min="0.05"
+            max="1.5"
+            value="0.47"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <div class="control">
+
+          <div class="control-head">
+            <span>물체 반지름</span>
+            <span
+              class="control-value"
+              id="radiusValue"
+            >
+              5.0 cm
+            </span>
+          </div>
+
+          <input
+            type="range"
+            id="radius"
+            min="1"
+            max="15"
+            value="5"
+            step="0.5"
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          class="launch"
+          id="launchButton"
+        >
+          ▶ 발사
+        </button>
+
+        <button
+          class="pause"
+          id="pauseButton"
+        >
+          Ⅱ 일시정지
+        </button>
+
+        <button
+          class="reset"
+          id="resetButton"
+        >
+          ↺ 현재 실험
+        </button>
+
+        <button
+          class="clear"
+          id="clearButton"
+        >
+          궤적 모두 지우기
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- SIMULATION -->
+
+    <section class="panel simulation-panel">
+
+      <div class="simulation-toolbar">
+
+        <h2>운동 관찰</h2>
+
+        <span
+          class="status"
+          id="status"
+        >
+          발사 준비
+        </span>
+
+      </div>
+
+
+      <div class="canvas-box">
+
+        <canvas id="simCanvas"></canvas>
+
+      </div>
+
+
+      <div class="metrics">
+
+        <div class="metric">
+
+          <span>비행시간</span>
+
+          <strong id="flightTime">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+          <span>최고높이</span>
+
+          <strong id="maxHeight">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+          <span>수평도달거리</span>
+
+          <strong id="range">
+            -
+          </strong>
+
+        </div>
+
+
+        <div class="metric">
+
+          <span>충돌속력</span>
+
+          <strong id="impactSpeed">
+            -
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="data-section">
+
+        <h2>실시간 물리량</h2>
+
+        <div class="data-grid">
+
+          <div class="data-item">
+            <small>시간 t</small>
+            <strong id="timeNow">
+              0.00 s
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>수평 위치 x</small>
+            <strong id="xNow">
+              0.00 m
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>수직 위치 y</small>
+            <strong id="yNow">
+              0.00 m
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>속력 v</small>
+            <strong id="vNow">
+              0.00 m/s
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>수평속도 vₓ</small>
+            <strong id="vxNow">
+              0.00 m/s
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>수직속도 vᵧ</small>
+            <strong id="vyNow">
+              0.00 m/s
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>운동에너지 KE</small>
+            <strong id="keNow">
+              0.0 J
+            </strong>
+          </div>
+
+          <div class="data-item">
+            <small>위치에너지 PE</small>
+            <strong id="peNow">
+              0.0 J
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="energy-wrap">
+
+        <h2>에너지 변화</h2>
+
+
+        <div class="energy-bars">
+
+          <div class="energy-row">
+
+            <span>운동에너지</span>
+
+            <div class="bar-track">
+              <div
+                class="bar bar-ke"
+                id="keBar"
+              ></div>
+            </div>
+
+            <span
+              class="energy-value"
+              id="keLabel"
+            >
+              0 J
+            </span>
+
+          </div>
+
+
+          <div class="energy-row">
+
+            <span>위치에너지</span>
+
+            <div class="bar-track">
+              <div
+                class="bar bar-pe"
+                id="peBar"
+              ></div>
+            </div>
+
+            <span
+              class="energy-value"
+              id="peLabel"
+            >
+              0 J
+            </span>
+
+          </div>
+
+
+          <div class="energy-row">
+
+            <span>역학적 에너지</span>
+
+            <div class="bar-track">
+              <div
+                class="bar bar-me"
+                id="meBar"
+              ></div>
+            </div>
+
+            <span
+              class="energy-value"
+              id="meLabel"
+            >
+              0 J
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="history">
+
+        <div class="history-title">
+          비교 중인 궤적
+        </div>
+
+        <div
+          class="history-list"
+          id="historyList"
+        >
+          아직 저장된 궤적이 없습니다.
+        </div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+
+  <!-- LEARNING -->
+
+  <section class="learning">
+
+    <article class="panel">
+
+      <h2>물리 모델</h2>
+
+      <p>
+        공기저항이 없을 때 포물선 운동은
+        수평방향 등속 운동과
+        수직방향 등가속도 운동으로 나누어 생각할 수 있습니다.
+      </p>
+
+      <div class="equation">
+        x = v₀ cosθ · t
+      </div>
+
+      <div class="equation">
+        y = v₀ sinθ · t − ½gt²
+      </div>
+
+      <p>
+        공기저항을 켜면 시뮬레이션은
+        다음 항력 모델을 사용합니다.
+      </p>
+
+      <div class="equation">
+        F<sub>D</sub>
+        =
+        ½ρC<sub>d</sub>Av²
+      </div>
+
+      <div class="tip">
+        공기저항이 없을 때는 질량을 변화시켜도
+        운동 궤적이 변하지 않습니다.
+        공기저항이 있을 때는 항력에 의한 가속도가
+        질량에 따라 달라집니다.
+      </div>
+
+    </article>
+
+
+    <article class="panel">
+
+      <h2>탐구 활동</h2>
+
+      <ol>
+
+        <li>
+          초기속력을 20 m/s로 고정하고
+          발사각을 30°, 45°, 60°로 변화시켜
+          궤적과 사거리를 비교해 보세요.
+        </li>
+
+        <li>
+          공기저항을 끈 상태에서
+          질량을 0.5 kg, 1 kg, 2 kg으로 바꾸어
+          결과를 비교해 보세요.
+        </li>
+
+        <li>
+          같은 조건에서 공기저항을 켜고
+          다시 질량을 변화시켜 보세요.
+          앞의 결과와 어떤 차이가 있나요?
+        </li>
+
+        <li>
+          공기저항이 없는 상태에서
+          30°와 60°의 사거리를 비교하고
+          그 이유를 설명해 보세요.
+        </li>
+
+        <li>
+          공기저항이 있을 때
+          운동에너지와 위치에너지의 합이
+          어떻게 변하는지 관찰해 보세요.
+        </li>
+
+      </ol>
+
+    </article>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    온라인 물리학 탐구실 ·
+    2022 개정 교육과정 「역학과 에너지」
+
+  </div>
+
+</footer>
+
+
+<script>
+
+  /*
+  ============================================================
+  기본 상수
+  ============================================================
+  */
+
+  const g = 9.81;
+
+  // 해수면 부근 공기 밀도
+  const airDensity = 1.225;
+
+  // 시뮬레이션 계산 시간 간격
+  const dt = 0.01;
+
+
+  /*
+  ============================================================
+  DOM
+  ============================================================
+  */
+
+  const canvas =
+    document.getElementById("simCanvas");
+
+  const ctx =
+    canvas.getContext("2d");
+
+
+  const angleInput =
+    document.getElementById("angle");
+
+  const speedInput =
+    document.getElementById("speed");
+
+  const massInput =
+    document.getElementById("mass");
+
+  const dragToggle =
+    document.getElementById("dragToggle");
+
+  const cdInput =
+    document.getElementById("cd");
+
+  const radiusInput =
+    document.getElementById("radius");
+
+
+  const angleValue =
+    document.getElementById("angleValue");
+
+  const speedValue =
+    document.getElementById("speedValue");
+
+  const massValue =
+    document.getElementById("massValue");
+
+  const cdValue =
+    document.getElementById("cdValue");
+
+  const radiusValue =
+    document.getElementById("radiusValue");
+
+
+  const dragSettings =
+    document.getElementById("dragSettings");
+
+
+  const launchButton =
+    document.getElementById("launchButton");
+
+  const pauseButton =
+    document.getElementById("pauseButton");
+
+  const resetButton =
+    document.getElementById("resetButton");
+
+  const clearButton =
+    document.getElementById("clearButton");
+
+
+  const statusText =
+    document.getElementById("status");
+
+
+  /*
+  ============================================================
+  상태 변수
+  ============================================================
+  */
+
+  let running = false;
+  let paused = false;
+
+  let animationId = null;
+
+  let currentTrajectory = [];
+  let savedTrajectories = [];
+
+  let simulation = null;
+
+  let lastTimestamp = 0;
+
+  const trajectoryColors = [
+    "#2563eb",
+    "#dc2626",
+    "#16a34a",
+    "#9333ea",
+    "#ea580c"
+  ];
+
+
+  /*
+  ============================================================
+  CANVAS 크기
+  ============================================================
+  */
+
+  function resizeCanvas() {
+
+    const rect =
+      canvas.getBoundingClientRect();
+
+    const ratio =
+      window.devicePixelRatio || 1;
+
+    canvas.width =
+      rect.width * ratio;
+
+    canvas.height =
+      rect.height * ratio;
+
+    ctx.setTransform(
+      ratio,
+      0,
+      0,
+      ratio,
+      0,
+      0
+    );
+
+    drawScene();
+
+  }
+
+
+  window.addEventListener(
+    "resize",
+    resizeCanvas
+  );
+
+
+  /*
+  ============================================================
+  입력값 표시
+  ============================================================
+  */
+
+  function updateControlLabels() {
+
+    angleValue.textContent =
+      `${angleInput.value}°`;
+
+    speedValue.textContent =
+      `${speedInput.value} m/s`;
+
+    massValue.textContent =
+      `${Number(massInput.value).toFixed(2)} kg`;
+
+    cdValue.textContent =
+      Number(cdInput.value).toFixed(2);
+
+    radiusValue.textContent =
+      `${Number(radiusInput.value).toFixed(1)} cm`;
+
+  }
+
+
+  [
+    angleInput,
+    speedInput,
+    massInput,
+    cdInput,
+    radiusInput
+  ].forEach(input => {
+
+    input.addEventListener(
+      "input",
+      () => {
+
+        updateControlLabels();
+
+        if (!running) {
+          previewTrajectory();
+        }
+
+      }
+    );
+
+  });
+
+
+  dragToggle.addEventListener(
+    "change",
+    () => {
+
+      dragSettings.classList.toggle(
+        "disabled",
+        !dragToggle.checked
+      );
+
+      if (!running) {
+        previewTrajectory();
+      }
+
+    }
+  );
+
+
+  /*
+  ============================================================
+  현재 실험 조건
+  ============================================================
+  */
+
+  function getParameters() {
+
+    return {
+
+      angle:
+        Number(angleInput.value),
+
+      speed:
+        Number(speedInput.value),
+
+      mass:
+        Number(massInput.value),
+
+      drag:
+        dragToggle.checked,
+
+      cd:
+        Number(cdInput.value),
+
+      radius:
+        Number(radiusInput.value) / 100
+
+    };
+
+  }
+
+
+  /*
+  ============================================================
+  물리 계산
+  ============================================================
+  */
+
+  function acceleration(
+    vx,
+    vy,
+    params
+  ) {
+
+    if (!params.drag) {
+
+      return {
+        ax: 0,
+        ay: -g
+      };
+
+    }
+
+
+    const speed =
+      Math.sqrt(
+        vx * vx +
+        vy * vy
+      );
+
+
+    if (speed === 0) {
+
+      return {
+        ax: 0,
+        ay: -g
+      };
+
+    }
+
+
+    const area =
+      Math.PI *
+      params.radius *
+      params.radius;
+
+
+    const dragForce =
+      0.5 *
+      airDensity *
+      params.cd *
+      area *
+      speed *
+      speed;
+
+
+    /*
+      항력은 속도 반대 방향
+    */
+
+    const ax =
+      -dragForce *
+      (vx / speed) /
+      params.mass;
+
+
+    const ay =
+      -g
+      -
+      dragForce *
+      (vy / speed) /
+      params.mass;
+
+
+    return {
+      ax,
+      ay
+    };
+
+  }
+
+
+  /*
+  ============================================================
+  RK4 적분
+  ============================================================
+  */
+
+  function derivative(
+    state,
+    params
+  ) {
+
+    const a =
+      acceleration(
+        state.vx,
+        state.vy,
+        params
+      );
+
+    return {
+
+      dx:
+        state.vx,
+
+      dy:
+        state.vy,
+
+      dvx:
+        a.ax,
+
+      dvy:
+        a.ay
+
+    };
+
+  }
+
+
+  function rk4Step(
+    state,
+    params,
+    h
+  ) {
+
+    const k1 =
+      derivative(
+        state,
+        params
+      );
+
+
+    const s2 = {
+
+      x:
+        state.x +
+        k1.dx * h / 2,
+
+      y:
+        state.y +
+        k1.dy * h / 2,
+
+      vx:
+        state.vx +
+        k1.dvx * h / 2,
+
+      vy:
+        state.vy +
+        k1.dvy * h / 2
+
+    };
+
+
+    const k2 =
+      derivative(
+        s2,
+        params
+      );
+
+
+    const s3 = {
+
+      x:
+        state.x +
+        k2.dx * h / 2,
+
+      y:
+        state.y +
+        k2.dy * h / 2,
+
+      vx:
+        state.vx +
+        k2.dvx * h / 2,
+
+      vy:
+        state.vy +
+        k2.dvy * h / 2
+
+    };
+
+
+    const k3 =
+      derivative(
+        s3,
+        params
+      );
+
+
+    const s4 = {
+
+      x:
+        state.x +
+        k3.dx * h,
+
+      y:
+        state.y +
+        k3.dy * h,
+
+      vx:
+        state.vx +
+        k3.dvx * h,
+
+      vy:
+        state.vy +
+        k3.dvy * h
+
+    };
+
+
+    const k4 =
+      derivative(
+        s4,
+        params
+      );
+
+
+    return {
+
+      x:
+        state.x +
+        h / 6 *
+        (
+          k1.dx +
+          2 * k2.dx +
+          2 * k3.dx +
+          k4.dx
+        ),
+
+      y:
+        state.y +
+        h / 6 *
+        (
+          k1.dy +
+          2 * k2.dy +
+          2 * k3.dy +
+          k4.dy
+        ),
+
+      vx:
+        state.vx +
+        h / 6 *
+        (
+          k1.dvx +
+          2 * k2.dvx +
+          2 * k3.dvx +
+          k4.dvx
+        ),
+
+      vy:
+        state.vy +
+        h / 6 *
+        (
+          k1.dvy +
+          2 * k2.dvy +
+          2 * k3.dvy +
+          k4.dvy
+        )
+
+    };
+
+  }
+
+
+  /*
+  ============================================================
+  전체 궤적 계산
+  ============================================================
+  */
+
+  function calculateTrajectory(
+    params
+  ) {
+
+    const theta =
+      params.angle *
+      Math.PI /
+      180;
+
+
+    let state = {
+
+      x: 0,
+      y: 0,
+
+      vx:
+        params.speed *
+        Math.cos(theta),
+
+      vy:
+        params.speed *
+        Math.sin(theta)
+
+    };
+
+
+    let t = 0;
+
+    const points = [];
+
+    let maxHeight = 0;
+
+
+    while (
+      t < 30
+    ) {
+
+      const speed =
+        Math.sqrt(
+          state.vx * state.vx +
+          state.vy * state.vy
+        );
+
+
+      const ke =
+        0.5 *
+        params.mass *
+        speed *
+        speed;
+
+
+      const pe =
+        params.mass *
+        g *
+        Math.max(
+          0,
+          state.y
+        );
+
+
+      points.push({
+
+        t,
+
+        x:
+          state.x,
+
+        y:
+          Math.max(
+            0,
+            state.y
+          ),
+
+        vx:
+          state.vx,
+
+        vy:
+          state.vy,
+
+        speed,
+
+        ke,
+
+        pe,
+
+        me:
+          ke + pe
+
+      });
+
+
+      maxHeight =
+        Math.max(
+          maxHeight,
+          state.y
+        );
+
+
+      const next =
+        rk4Step(
+          state,
+          params,
+          dt
+        );
+
+
+      t += dt;
+
+
+      /*
+      착지 판정
+      */
+
+      if (
+        t > 0.02 &&
+        next.y <= 0
+      ) {
+
+        /*
+        지면과의 교점을
+        선형 보간
+        */
+
+        const fraction =
+          state.y /
+          (
+            state.y -
+            next.y
+          );
+
+
+        const impactX =
+          state.x +
+          (
+            next.x -
+            state.x
+          ) *
+          fraction;
+
+
+        const impactVx =
+          state.vx +
+          (
+            next.vx -
+            state.vx
+          ) *
+          fraction;
+
+
+        const impactVy =
+          state.vy +
+          (
+            next.vy -
+            state.vy
+          ) *
+          fraction;
+
+
+        const impactSpeed =
+          Math.sqrt(
+            impactVx * impactVx +
+            impactVy * impactVy
+          );
+
+
+        const impactT =
+          t -
+          dt +
+          dt * fraction;
+
+
+        points.push({
+
+          t:
+            impactT,
+
+          x:
+            impactX,
+
+          y:
+            0,
+
+          vx:
+            impactVx,
+
+          vy:
+            impactVy,
+
+          speed:
+            impactSpeed,
+
+          ke:
+            0.5 *
+            params.mass *
+            impactSpeed *
+            impactSpeed,
+
+          pe:
+            0,
+
+          me:
+            0.5 *
+            params.mass *
+            impactSpeed *
+            impactSpeed
+
+        });
+
+
+        return {
+
+          params,
+
+          points,
+
+          flightTime:
+            impactT,
+
+          maxHeight,
+
+          range:
+            impactX,
+
+          impactSpeed
+
+        };
+
+      }
+
+
+      state = next;
+
+    }
+
+
+    return null;
+
+  }
+
+
+  /*
+  ============================================================
+  SCALE
+  ============================================================
+  */
+
+  function getScaleData() {
+
+    let maxX = 20;
+    let maxY = 10;
+
+
+    savedTrajectories.forEach(
+      trajectory => {
+
+        maxX =
+          Math.max(
+            maxX,
+            trajectory.range
+          );
+
+        maxY =
+          Math.max(
+            maxY,
+            trajectory.maxHeight
+          );
+
+      }
+    );
+
+
+    if (simulation) {
+
+      maxX =
+        Math.max(
+          maxX,
+          simulation.range
+        );
+
+      maxY =
+        Math.max(
+          maxY,
+          simulation.maxHeight
+        );
+
+    }
+
+
+    maxX *= 1.12;
+    maxY *= 1.25;
+
+
+    return {
+      maxX,
+      maxY
+    };
+
+  }
+
+
+  /*
+  ============================================================
+  DRAW
+  ============================================================
+  */
+
+  function drawScene() {
+
+    const width =
+      canvas.clientWidth;
+
+    const height =
+      canvas.clientHeight;
+
+
+    ctx.clearRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    /*
+    배경
+    */
+
+    const gradient =
+      ctx.createLinearGradient(
+        0,
+        0,
+        0,
+        height
+      );
+
+
+    gradient.addColorStop(
+      0,
+      "#eef6ff"
+    );
+
+    gradient.addColorStop(
+      0.75,
+      "#ffffff"
+    );
+
+
+    ctx.fillStyle =
+      gradient;
+
+    ctx.fillRect(
+      0,
+      0,
+      width,
+      height
+    );
+
+
+    const margin = {
+      left: 60,
+      right: 22,
+      top: 22,
+      bottom: 48
+    };
+
+
+    const plotWidth =
+      width -
+      margin.left -
+      margin.right;
+
+
+    const plotHeight =
+      height -
+      margin.top -
+      margin.bottom;
+
+
+    const {
+      maxX,
+      maxY
+    } =
+      getScaleData();
+
+
+    const sx =
+      plotWidth /
+      maxX;
+
+
+    const sy =
+      plotHeight /
+      maxY;
+
+
+    /*
+    GRID
+    */
+
+    ctx.strokeStyle =
+      "#e2e8f0";
+
+    ctx.lineWidth = 1;
+
+    ctx.font =
+      "12px Arial";
+
+    ctx.fillStyle =
+      "#64748b";
+
+
+    const gridCount = 5;
+
+
+    for (
+      let i = 0;
+      i <= gridCount;
+      i++
+    ) {
+
+      const x =
+        margin.left +
+        plotWidth *
+        i /
+        gridCount;
+
+
+      const y =
+        margin.top +
+        plotHeight *
+        i /
+        gridCount;
+
+
+      /*
+      세로선
+      */
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        x,
+        margin.top
+      );
+
+      ctx.lineTo(
+        x,
+        margin.top +
+        plotHeight
+      );
+
+      ctx.stroke();
+
+
+      /*
+      가로선
+      */
+
+      ctx.beginPath();
+
+      ctx.moveTo(
+        margin.left,
+        y
+      );
+
+      ctx.lineTo(
+        margin.left +
+        plotWidth,
+        y
+      );
+
+      ctx.stroke();
+
+
+      /*
+      x축 값
+      */
+
+      const xv =
+        maxX *
+        i /
+        gridCount;
+
+
+      ctx.fillText(
+        xv.toFixed(0),
+        x - 7,
+        height - 20
+      );
+
+
+      /*
+      y축 값
+      */
+
+      const yv =
+        maxY *
+        (
+          gridCount - i
+        ) /
+        gridCount;
+
+
+      ctx.fillText(
+        yv.toFixed(0),
+        20,
+        y + 4
+      );
+
+    }
+
+
+    /*
+    AXES
+    */
+
+    ctx.strokeStyle =
+      "#334155";
+
+    ctx.lineWidth = 1.5;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      margin.left,
+      margin.top
+    );
+
+    ctx.lineTo(
+      margin.left,
+      margin.top +
+      plotHeight
+    );
+
+    ctx.lineTo(
+      margin.left +
+      plotWidth,
+      margin.top +
+      plotHeight
+    );
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#334155";
+
+    ctx.fillText(
+      "y (m)",
+      12,
+      18
+    );
+
+    ctx.fillText(
+      "x (m)",
+      width - 45,
+      height - 8
+    );
+
+
+    /*
+    좌표 변환
+    */
+
+    function screenPoint(
+      point
+    ) {
+
+      return {
+
+        x:
+          margin.left +
+          point.x * sx,
+
+        y:
+          margin.top +
+          plotHeight -
+          point.y * sy
+
+      };
+
+    }
+
+
+    /*
+    저장된 궤적
+    */
+
+    savedTrajectories.forEach(
+      (
+        trajectory,
+        index
+      ) => {
+
+        drawTrajectory(
+          trajectory.points,
+          screenPoint,
+          trajectory.color,
+          0.65,
+          false
+        );
+
+      }
+    );
+
+
+    /*
+    현재 궤적
+    */
+
+    if (
+      currentTrajectory.length >
+      1
+    ) {
+
+      drawTrajectory(
+        currentTrajectory,
+        screenPoint,
+        "#0f172a",
+        1,
+        true
+      );
+
+
+      const last =
+        currentTrajectory[
+          currentTrajectory.length - 1
+        ];
+
+
+      const p =
+        screenPoint(
+          last
+        );
+
+
+      /*
+      공
+      */
+
+      ctx.beginPath();
+
+      ctx.arc(
+        p.x,
+        p.y,
+        7,
+        0,
+        Math.PI * 2
+      );
+
+      ctx.fillStyle =
+        "#f97316";
+
+      ctx.fill();
+
+      ctx.strokeStyle =
+        "#9a3412";
+
+      ctx.lineWidth = 2;
+
+      ctx.stroke();
+
+
+      /*
+      속도벡터
+      */
+
+      const vectorScale = 1.3;
+
+      drawArrow(
+        p.x,
+        p.y,
+        p.x +
+        last.vx *
+        vectorScale,
+        p.y -
+        last.vy *
+        vectorScale,
+        "#2563eb"
+      );
+
+    }
+
+  }
+
+
+  function drawTrajectory(
+    points,
+    transform,
+    color,
+    alpha,
+    bold
+  ) {
+
+    if (
+      points.length <
+      2
+    ) {
+      return;
+    }
+
+
+    ctx.save();
+
+    ctx.strokeStyle =
+      color;
+
+    ctx.globalAlpha =
+      alpha;
+
+    ctx.lineWidth =
+      bold ? 2.6 : 2;
+
+    ctx.beginPath();
+
+
+    points.forEach(
+      (
+        point,
+        index
+      ) => {
+
+        const p =
+          transform(
+            point
+          );
+
+
+        if (
+          index === 0
+        ) {
+
+          ctx.moveTo(
+            p.x,
+            p.y
+          );
+
+        } else {
+
+          ctx.lineTo(
+            p.x,
+            p.y
+          );
+
+        }
+
+      }
+    );
+
+
+    ctx.stroke();
+
+    ctx.restore();
+
+  }
+
+
+  function drawArrow(
+    x1,
+    y1,
+    x2,
+    y2,
+    color
+  ) {
+
+    const angle =
+      Math.atan2(
+        y2 - y1,
+        x2 - x1
+      );
+
+
+    const head = 8;
+
+
+    ctx.strokeStyle =
+      color;
+
+    ctx.fillStyle =
+      color;
+
+    ctx.lineWidth = 2;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x1,
+      y1
+    );
+
+    ctx.lineTo(
+      x2,
+      y2
+    );
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x2,
+      y2
+    );
+
+    ctx.lineTo(
+      x2 -
+      head *
+      Math.cos(
+        angle -
+        Math.PI / 6
+      ),
+
+      y2 -
+      head *
+      Math.sin(
+        angle -
+        Math.PI / 6
+      )
+    );
+
+
+    ctx.lineTo(
+      x2 -
+      head *
+      Math.cos(
+        angle +
+        Math.PI / 6
+      ),
+
+      y2 -
+      head *
+      Math.sin(
+        angle +
+        Math.PI / 6
+      )
+    );
+
+
+    ctx.closePath();
+
+    ctx.fill();
+
+  }
+
+
+  /*
+  ============================================================
+  PREVIEW
+  ============================================================
+  */
+
+  function previewTrajectory() {
+
+    simulation =
+      calculateTrajectory(
+        getParameters()
+      );
+
+
+    if (!simulation) {
+      return;
+    }
+
+
+    currentTrajectory =
+      simulation.points;
+
+
+    updateFinalMetrics(
+      simulation
+    );
+
+
+    updateLiveData(
+      simulation.points[0]
+    );
+
+
+    drawScene();
+
+  }
+
+
+  /*
+  ============================================================
+  ANIMATION
+  ============================================================
+  */
+
+  function startSimulation() {
+
+    simulation =
+      calculateTrajectory(
+        getParameters()
+      );
+
+
+    if (!simulation) {
+      return;
+    }
+
+
+    running = true;
+    paused = false;
+
+    currentTrajectory = [];
+
+    lastTimestamp = 0;
+
+    statusText.textContent =
+      "운동 중";
+
+    launchButton.textContent =
+      "▶ 다시 발사";
+
+
+    updateFinalMetrics(
+      simulation
+    );
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+
+
+  function animate(
+    timestamp
+  ) {
+
+    if (!running) {
+      return;
+    }
+
+
+    if (paused) {
+
+      animationId =
+        requestAnimationFrame(
+          animate
+        );
+
+      return;
+
+    }
+
+
+    if (!lastTimestamp) {
+
+      lastTimestamp =
+        timestamp;
+
+    }
+
+
+    /*
+    실제 애니메이션 배속
+    */
+
+    const elapsed =
+      (
+        timestamp -
+        lastTimestamp
+      ) /
+      1000;
+
+
+    const timeScale = 1;
+
+
+    const simulationTime =
+      (
+        currentTrajectory.length === 0
+      )
+      ?
+      0
+      :
+      currentTrajectory[
+        currentTrajectory.length - 1
+      ].t +
+      elapsed *
+      timeScale;
+
+
+    lastTimestamp =
+      timestamp;
+
+
+    /*
+    현재 시간에 해당하는 점
+    */
+
+    let index =
+      Math.floor(
+        simulationTime /
+        dt
+      );
+
+
+    index =
+      Math.min(
+        index,
+        simulation.points.length - 1
+      );
+
+
+    const currentPoint =
+      simulation.points[index];
+
+
+    currentTrajectory =
+      simulation.points.slice(
+        0,
+        index + 1
+      );
+
+
+    updateLiveData(
+      currentPoint
+    );
+
+
+    drawScene();
+
+
+    if (
+      index >=
+      simulation.points.length - 1
+    ) {
+
+      finishSimulation();
+
+      return;
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+
+
+  function finishSimulation() {
+
+    running = false;
+
+    statusText.textContent =
+      "착지 완료";
+
+
+    const color =
+      trajectoryColors[
+        savedTrajectories.length %
+        trajectoryColors.length
+      ];
+
+
+    savedTrajectories.push({
+
+      ...simulation,
+
+      color
+
+    });
+
+
+    /*
+    최대 5개 궤적 유지
+    */
+
+    if (
+      savedTrajectories.length >
+      5
+    ) {
+
+      savedTrajectories.shift();
+
+    }
+
+
+    updateHistory();
+
+    drawScene();
+
+  }
+
+
+  /*
+  ============================================================
+  METRICS
+  ============================================================
+  */
+
+  function updateFinalMetrics(
+    result
+  ) {
+
+    document.getElementById(
+      "flightTime"
+    ).textContent =
+      `${result.flightTime.toFixed(2)} s`;
+
+
+    document.getElementById(
+      "maxHeight"
+    ).textContent =
+      `${result.maxHeight.toFixed(2)} m`;
+
+
+    document.getElementById(
+      "range"
+    ).textContent =
+      `${result.range.toFixed(2)} m`;
+
+
+    document.getElementById(
+      "impactSpeed"
+    ).textContent =
+      `${result.impactSpeed.toFixed(2)} m/s`;
+
+  }
+
+
+  function updateLiveData(
+    p
+  ) {
+
+    document.getElementById(
+      "timeNow"
+    ).textContent =
+      `${p.t.toFixed(2)} s`;
+
+
+    document.getElementById(
+      "xNow"
+    ).textContent =
+      `${p.x.toFixed(2)} m`;
+
+
+    document.getElementById(
+      "yNow"
+    ).textContent =
+      `${p.y.toFixed(2)} m`;
+
+
+    document.getElementById(
+      "vNow"
+    ).textContent =
+      `${p.speed.toFixed(2)} m/s`;
+
+
+    document.getElementById(
+      "vxNow"
+    ).textContent =
+      `${p.vx.toFixed(2)} m/s`;
+
+
+    document.getElementById(
+      "vyNow"
+    ).textContent =
+      `${p.vy.toFixed(2)} m/s`;
+
+
+    document.getElementById(
+      "keNow"
+    ).textContent =
+      `${p.ke.toFixed(1)} J`;
+
+
+    document.getElementById(
+      "peNow"
+    ).textContent =
+      `${p.pe.toFixed(1)} J`;
+
+
+    updateEnergyBars(
+      p
+    );
+
+  }
+
+
+  function updateEnergyBars(
+    p
+  ) {
+
+    const maxEnergy =
+      Math.max(
+        p.me,
+        simulation
+          ?
+          simulation.points[0].me
+          :
+          1,
+        1
+      );
+
+
+    const kePercent =
+      Math.min(
+        100,
+        p.ke /
+        maxEnergy *
+        100
+      );
+
+
+    const pePercent =
+      Math.min(
+        100,
+        p.pe /
+        maxEnergy *
+        100
+      );
+
+
+    const mePercent =
+      Math.min(
+        100,
+        p.me /
+        maxEnergy *
+        100
+      );
+
+
+    document.getElementById(
+      "keBar"
+    ).style.width =
+      `${kePercent}%`;
+
+
+    document.getElementById(
+      "peBar"
+    ).style.width =
+      `${pePercent}%`;
+
+
+    document.getElementById(
+      "meBar"
+    ).style.width =
+      `${mePercent}%`;
+
+
+    document.getElementById(
+      "keLabel"
+    ).textContent =
+      `${p.ke.toFixed(1)} J`;
+
+
+    document.getElementById(
+      "peLabel"
+    ).textContent =
+      `${p.pe.toFixed(1)} J`;
+
+
+    document.getElementById(
+      "meLabel"
+    ).textContent =
+      `${p.me.toFixed(1)} J`;
+
+  }
+
+
+  /*
+  ============================================================
+  HISTORY
+  ============================================================
+  */
+
+  function updateHistory() {
+
+    const container =
+      document.getElementById(
+        "historyList"
+      );
+
+
+    if (
+      savedTrajectories.length === 0
+    ) {
+
+      container.innerHTML =
+        "아직 저장된 궤적이 없습니다.";
+
+      return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    savedTrajectories.forEach(
+      trajectory => {
+
+        const item =
+          document.createElement(
+            "div"
+          );
+
+
+        item.className =
+          "history-item";
+
+
+        const dragText =
+          trajectory.params.drag
+          ?
+          "저항 O"
+          :
+          "저항 X";
+
+
+        item.innerHTML =
+          `
+          <span
+            class="color-dot"
+            style="
+              background:
+              ${trajectory.color}
+            "
+          ></span>
+
+          θ
+          ${trajectory.params.angle}°
+
+          ·
+
+          ${trajectory.params.speed}
+          m/s
+
+          ·
+
+          ${trajectory.params.mass.toFixed(1)}
+          kg
+
+          ·
+
+          ${dragText}
+          `;
+
+
+        container.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+  ============================================================
+  BUTTON EVENTS
+  ============================================================
+  */
+
+  launchButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        animationId
+      ) {
+
+        cancelAnimationFrame(
+          animationId
+        );
+
+      }
+
+
+      startSimulation();
+
+    }
+  );
+
+
+  pauseButton.addEventListener(
+    "click",
+    () => {
+
+      if (!running) {
+        return;
+      }
+
+
+      paused =
+        !paused;
+
+
+      pauseButton.textContent =
+        paused
+        ?
+        "▶ 계속"
+        :
+        "Ⅱ 일시정지";
+
+
+      statusText.textContent =
+        paused
+        ?
+        "일시정지"
+        :
+        "운동 중";
+
+
+      lastTimestamp = 0;
+
+    }
+  );
+
+
+  resetButton.addEventListener(
+    "click",
+    () => {
+
+      running = false;
+      paused = false;
+
+
+      if (
+        animationId
+      ) {
+
+        cancelAnimationFrame(
+          animationId
+        );
+
+      }
+
+
+      statusText.textContent =
+        "발사 준비";
+
+
+      pauseButton.textContent =
+        "Ⅱ 일시정지";
+
+
+      previewTrajectory();
+
+    }
+  );
+
+
+  clearButton.addEventListener(
+    "click",
+    () => {
+
+      savedTrajectories = [];
+
+      updateHistory();
+
+      previewTrajectory();
+
+    }
+  );
+
+
+  /*
+  ============================================================
+  INIT
+  ============================================================
+  */
+
+  updateControlLabels();
+
+  resizeCanvas();
+
+  previewTrajectory();
+
+</script>
+
+</body>
+</html>
