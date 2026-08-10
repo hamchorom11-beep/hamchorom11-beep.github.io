@@ -1,0 +1,3896 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>열역학 제1법칙 시뮬레이션 | 온라인 물리학 탐구실</title>
+
+<style>
+
+:root{
+  --bg:#f5f7fb;
+  --panel:#ffffff;
+  --primary:#1e3a8a;
+  --primary2:#2563eb;
+  --primary-light:#dbeafe;
+
+  --text:#1f2937;
+  --subtext:#64748b;
+  --border:#e2e8f0;
+
+  --heat:#dc2626;
+  --work:#2563eb;
+  --internal:#7c3aed;
+  --positive:#059669;
+  --negative:#dc2626;
+  --zero:#64748b;
+
+  --shadow:0 8px 24px rgba(15,23,42,.08);
+  --radius:18px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+
+  font-family:
+  "Pretendard",
+  "Noto Sans KR",
+  "Apple SD Gothic Neo",
+  Arial,
+  sans-serif;
+
+  background:
+  linear-gradient(
+    180deg,
+    #edf4ff 0%,
+    #f8fbff 26%,
+    #f5f7fb 100%
+  );
+
+  color:var(--text);
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:min(94%,1400px);
+  margin:0 auto;
+}
+
+
+/* HEADER */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
+
+  border-bottom:1px solid var(--border);
+}
+
+.topbar{
+  min-height:68px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:18px;
+}
+
+.title-box strong{
+  display:block;
+  color:var(--primary);
+  font-size:1.1rem;
+}
+
+.title-box span{
+  color:var(--subtext);
+  font-size:.84rem;
+}
+
+.home-button{
+  padding:10px 15px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:white;
+  color:var(--primary);
+
+  font-size:.92rem;
+  font-weight:700;
+}
+
+.home-button:hover{
+  background:var(--primary-light);
+}
+
+
+/* INTRO */
+
+.intro{
+  padding:38px 0 24px;
+}
+
+.intro h1{
+  margin:0 0 8px;
+
+  color:#0f172a;
+
+  font-size:clamp(1.8rem,4vw,2.7rem);
+  letter-spacing:-.03em;
+}
+
+.intro p{
+  margin:0;
+  color:var(--subtext);
+  line-height:1.7;
+}
+
+.question{
+  margin-top:18px;
+
+  padding:16px 18px;
+
+  border-left:5px solid var(--primary2);
+  border-radius:12px;
+
+  background:#eff6ff;
+  color:#1e3a8a;
+
+  font-weight:700;
+}
+
+
+/* MAIN LAYOUT */
+
+.main-grid{
+  display:grid;
+
+  grid-template-columns:
+    minmax(280px,340px)
+    minmax(0,1fr);
+
+  gap:22px;
+
+  align-items:start;
+}
+
+.panel{
+  background:var(--panel);
+
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+
+  box-shadow:var(--shadow);
+
+  padding:20px;
+}
+
+.panel h2{
+  margin:0 0 18px;
+
+  color:#0f172a;
+
+  font-size:1.15rem;
+}
+
+
+/* CONTROLS */
+
+.control{
+  margin-bottom:21px;
+}
+
+.control-head{
+  display:flex;
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+
+  font-size:.94rem;
+  font-weight:700;
+}
+
+.control-value{
+  color:var(--primary2);
+}
+
+select{
+  width:100%;
+
+  padding:11px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:white;
+
+  color:var(--text);
+}
+
+input[type="range"]{
+  width:100%;
+  accent-color:var(--primary2);
+  cursor:pointer;
+}
+
+.direction-buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:8px;
+
+  margin-bottom:20px;
+}
+
+.direction-button{
+  padding:10px;
+
+  border:1px solid var(--border);
+  border-radius:10px;
+
+  background:#f8fafc;
+  color:#475569;
+
+  cursor:pointer;
+}
+
+.direction-button.active{
+  background:var(--primary);
+  color:white;
+  border-color:var(--primary);
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+button{
+  border:none;
+
+  border-radius:11px;
+
+  padding:12px 13px;
+
+  cursor:pointer;
+  font-weight:700;
+}
+
+.start{
+  background:var(--primary2);
+  color:white;
+}
+
+.pause{
+  background:#e0e7ff;
+  color:#3730a3;
+}
+
+.reset{
+  background:#f1f5f9;
+  color:#334155;
+}
+
+
+/* PROCESS INFO */
+
+.process-info{
+  padding:14px;
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  margin-top:18px;
+
+  border:1px solid var(--border);
+}
+
+.process-info strong{
+  display:block;
+
+  color:var(--primary);
+
+  margin-bottom:5px;
+}
+
+.process-info p{
+  margin:0;
+
+  color:var(--subtext);
+
+  line-height:1.55;
+  font-size:.88rem;
+}
+
+
+/* RIGHT SIDE */
+
+.simulation-panel{
+  padding:18px;
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:14px;
+}
+
+.toolbar h2{
+  margin:0;
+}
+
+.status{
+  padding:6px 10px;
+
+  border-radius:999px;
+
+  background:#eef2ff;
+  color:#3730a3;
+
+  font-size:.86rem;
+  font-weight:700;
+}
+
+
+/* PV GRAPH */
+
+.visual-grid{
+  display:grid;
+
+  grid-template-columns:
+    1.15fr .85fr;
+
+  gap:16px;
+
+  align-items:stretch;
+}
+
+.visual-box{
+  border:1px solid var(--border);
+
+  border-radius:14px;
+
+  background:white;
+
+  overflow:hidden;
+}
+
+.visual-title{
+  padding:11px 14px;
+
+  border-bottom:1px solid var(--border);
+
+  background:#f8fafc;
+
+  font-size:.9rem;
+  font-weight:700;
+}
+
+#pvCanvas{
+  width:100%;
+  height:370px;
+
+  display:block;
+}
+
+#pistonCanvas{
+  width:100%;
+  height:370px;
+
+  display:block;
+}
+
+
+/* STATE CARDS */
+
+.state-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  gap:10px;
+
+  margin-top:18px;
+}
+
+.state-card{
+  padding:13px;
+
+  border:1px solid var(--border);
+  border-radius:12px;
+
+  background:#f8fafc;
+}
+
+.state-card span{
+  display:block;
+
+  margin-bottom:4px;
+
+  color:var(--subtext);
+
+  font-size:.8rem;
+}
+
+.state-card strong{
+  color:#0f172a;
+
+  font-size:1.08rem;
+}
+
+
+/* FIRST LAW */
+
+.first-law{
+  margin-top:22px;
+
+  padding-top:18px;
+
+  border-top:1px solid var(--border);
+}
+
+.law-equation{
+  padding:16px;
+
+  margin-bottom:15px;
+
+  border-radius:13px;
+
+  background:#f5f3ff;
+
+  color:#5b21b6;
+
+  text-align:center;
+
+  font-family:"Times New Roman",serif;
+
+  font-size:1.35rem;
+  font-weight:700;
+}
+
+.energy-grid{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,minmax(0,1fr));
+
+  gap:12px;
+}
+
+.energy-card{
+  padding:16px;
+
+  border:1px solid var(--border);
+  border-radius:13px;
+
+  background:white;
+}
+
+.energy-card .energy-name{
+  color:var(--subtext);
+
+  font-size:.82rem;
+
+  margin-bottom:6px;
+}
+
+.energy-value{
+  font-size:1.25rem;
+
+  font-weight:800;
+
+  margin-bottom:4px;
+}
+
+.energy-sign{
+  font-size:.82rem;
+  font-weight:700;
+}
+
+.positive{
+  color:var(--positive);
+}
+
+.negative{
+  color:var(--negative);
+}
+
+.zero{
+  color:var(--zero);
+}
+
+
+/* FLOW DIAGRAM */
+
+.flow{
+  margin-top:20px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto 1fr auto 1fr;
+
+  gap:10px;
+
+  align-items:center;
+}
+
+.flow-box{
+  min-height:92px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  text-align:center;
+
+  padding:12px;
+
+  border-radius:13px;
+
+  border:1px solid var(--border);
+
+  background:#f8fafc;
+}
+
+.flow-box strong{
+  font-size:1.05rem;
+}
+
+.flow-box span{
+  margin-top:4px;
+
+  font-size:.8rem;
+  color:var(--subtext);
+}
+
+.flow-arrow{
+  font-size:1.5rem;
+
+  color:var(--primary2);
+
+  font-weight:800;
+}
+
+
+/* CASE */
+
+.example-box{
+  margin-top:22px;
+
+  padding:17px;
+
+  border:1px solid #fde68a;
+  border-radius:14px;
+
+  background:#fffbeb;
+}
+
+.example-box strong{
+  display:block;
+
+  color:#92400e;
+
+  margin-bottom:6px;
+}
+
+.example-box p{
+  margin:0;
+
+  line-height:1.65;
+
+  color:#78350f;
+}
+
+
+/* LOWER LEARNING */
+
+.learning{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:22px;
+
+  margin-top:28px;
+}
+
+.learning h2{
+  margin-top:0;
+}
+
+.equation{
+  margin:11px 0;
+
+  padding:13px 15px;
+
+  background:#f8fafc;
+
+  border-radius:10px;
+
+  font-family:"Times New Roman",serif;
+
+  font-size:1.06rem;
+}
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+
+  border-collapse:collapse;
+
+  margin-top:12px;
+
+  font-size:.9rem;
+}
+
+th,
+td{
+  padding:10px 8px;
+
+  border-bottom:1px solid var(--border);
+
+  text-align:center;
+}
+
+th{
+  background:#f8fafc;
+
+  color:#334155;
+}
+
+.learning li{
+  margin-bottom:10px;
+  line-height:1.6;
+}
+
+.tip{
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#ecfdf5;
+  color:#065f46;
+
+  line-height:1.6;
+  font-size:.9rem;
+}
+
+.warning{
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#fff7ed;
+  color:#9a3412;
+
+  line-height:1.6;
+  font-size:.9rem;
+}
+
+
+footer{
+  padding:40px 0;
+
+  color:var(--subtext);
+
+  text-align:center;
+
+  font-size:.85rem;
+}
+
+
+@media(max-width:1050px){
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:850px){
+
+  .visual-grid{
+    grid-template-columns:1fr;
+  }
+
+  .learning{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:650px){
+
+  .state-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .energy-grid{
+    grid-template-columns:1fr;
+  }
+
+  .flow{
+    grid-template-columns:1fr;
+  }
+
+  .flow-arrow{
+    transform:rotate(90deg);
+    text-align:center;
+  }
+
+  #pvCanvas,
+  #pistonCanvas{
+    height:330px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<div class="container topbar">
+
+  <div class="title-box">
+
+    <strong>
+      온라인 물리학 탐구실
+    </strong>
+
+    <span>
+      Ⅱ. 열과 에너지
+    </span>
+
+  </div>
+
+  <a
+    class="home-button"
+    href="../index.html"
+  >
+    ← 메인으로
+  </a>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+  <h1>
+    🌡️ 열역학 제1법칙 시뮬레이션
+  </h1>
+
+  <p>
+    이상기체의 등온, 등압, 등적, 단열 과정을 직접 변화시키며
+    압력-부피 관계와 열, 일, 내부에너지 변화 사이의 관계를 탐구합니다.
+  </p>
+
+  <div class="question">
+    탐구 질문 :
+    열역학 과정에 따라 기체가 받은 열 Q, 기체가 한 일 W,
+    내부에너지 변화 ΔU의 크기와 부호는 어떻게 달라질까?
+  </div>
+
+</section>
+
+
+
+<section class="main-grid">
+
+
+<!-- CONTROL -->
+
+<aside class="panel">
+
+  <h2>
+    열역학 과정 선택
+  </h2>
+
+
+  <div class="control">
+
+    <div class="control-head">
+      <span>과정</span>
+    </div>
+
+    <select id="process">
+
+      <option value="isothermal">
+        등온 과정
+      </option>
+
+      <option value="isobaric">
+        등압 과정
+      </option>
+
+      <option value="isochoric">
+        등적 과정
+      </option>
+
+      <option value="adiabatic">
+        단열 과정
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span id="changeLabel">
+        최종 부피
+      </span>
+
+      <span
+        id="changeValue"
+        class="control-value"
+      >
+        18.0 L
+      </span>
+
+    </div>
+
+    <input
+      id="changeSlider"
+      type="range"
+      min="5"
+      max="20"
+      value="18"
+      step=".1"
+    >
+
+  </div>
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        과정 진행
+      </span>
+
+      <span
+        id="progressValue"
+        class="control-value"
+      >
+        0 %
+      </span>
+
+    </div>
+
+    <input
+      id="progress"
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      step=".5"
+    >
+
+  </div>
+
+
+  <div class="direction-buttons">
+
+    <button
+      id="expansionButton"
+      class="direction-button active"
+    >
+      팽창
+    </button>
+
+    <button
+      id="compressionButton"
+      class="direction-button"
+    >
+      압축
+    </button>
+
+  </div>
+
+
+  <div class="buttons">
+
+    <button
+      id="startButton"
+      class="start"
+    >
+      ▶ 자동 진행
+    </button>
+
+    <button
+      id="pauseButton"
+      class="pause"
+    >
+      Ⅱ 일시정지
+    </button>
+
+    <button
+      id="resetButton"
+      class="reset"
+    >
+      ↺ 초기화
+    </button>
+
+  </div>
+
+
+  <div
+    id="processInfo"
+    class="process-info"
+  ></div>
+
+</aside>
+
+
+
+<!-- SIMULATION -->
+
+<section class="panel simulation-panel">
+
+
+  <div class="toolbar">
+
+    <h2>
+      과정 관찰
+    </h2>
+
+    <span
+      id="status"
+      class="status"
+    >
+      초기 상태
+    </span>
+
+  </div>
+
+
+  <div class="visual-grid">
+
+
+    <!-- PV GRAPH -->
+
+    <div class="visual-box">
+
+      <div class="visual-title">
+        압력-부피(P-V) 그래프
+      </div>
+
+      <canvas id="pvCanvas"></canvas>
+
+    </div>
+
+
+    <!-- PISTON -->
+
+    <div class="visual-box">
+
+      <div class="visual-title">
+        실린더-피스톤
+      </div>
+
+      <canvas id="pistonCanvas"></canvas>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- STATE -->
+
+  <div class="state-grid">
+
+    <div class="state-card">
+
+      <span>
+        부피 V
+      </span>
+
+      <strong id="volumeValue">
+        10.00 L
+      </strong>
+
+    </div>
+
+
+    <div class="state-card">
+
+      <span>
+        압력 P
+      </span>
+
+      <strong id="pressureValue">
+        -
+      </strong>
+
+    </div>
+
+
+    <div class="state-card">
+
+      <span>
+        온도 T
+      </span>
+
+      <strong id="temperatureValue">
+        300.0 K
+      </strong>
+
+    </div>
+
+
+    <div class="state-card">
+
+      <span>
+        상태
+      </span>
+
+      <strong id="stateValue">
+        초기 상태
+      </strong>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- FIRST LAW -->
+
+  <div class="first-law">
+
+    <h2>
+      열역학 제1법칙
+    </h2>
+
+
+    <div class="law-equation">
+
+      ΔU = Q − W
+
+    </div>
+
+
+    <div class="energy-grid">
+
+
+      <div class="energy-card">
+
+        <div class="energy-name">
+          기체가 받은 열 Q
+        </div>
+
+        <div
+          id="heatValue"
+          class="energy-value"
+        >
+          0.0 J
+        </div>
+
+        <div
+          id="heatSign"
+          class="energy-sign zero"
+        >
+          Q = 0
+        </div>
+
+      </div>
+
+
+      <div class="energy-card">
+
+        <div class="energy-name">
+          기체가 한 일 W
+        </div>
+
+        <div
+          id="workValue"
+          class="energy-value"
+        >
+          0.0 J
+        </div>
+
+        <div
+          id="workSign"
+          class="energy-sign zero"
+        >
+          W = 0
+        </div>
+
+      </div>
+
+
+      <div class="energy-card">
+
+        <div class="energy-name">
+          내부에너지 변화 ΔU
+        </div>
+
+        <div
+          id="internalValue"
+          class="energy-value"
+        >
+          0.0 J
+        </div>
+
+        <div
+          id="internalSign"
+          class="energy-sign zero"
+        >
+          ΔU = 0
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <div class="flow">
+
+      <div class="flow-box">
+
+        <strong id="heatFlowText">
+          Q = 0
+        </strong>
+
+        <span>
+          열의 출입
+        </span>
+
+      </div>
+
+
+      <div class="flow-arrow">
+        →
+      </div>
+
+
+      <div class="flow-box">
+
+        <strong>
+          기체
+        </strong>
+
+        <span id="internalFlowText">
+          ΔU = 0
+        </span>
+
+      </div>
+
+
+      <div class="flow-arrow">
+        →
+      </div>
+
+
+      <div class="flow-box">
+
+        <strong id="workFlowText">
+          W = 0
+        </strong>
+
+        <span>
+          기체가 한 일
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- REAL EXAMPLE -->
+
+  <div
+    id="exampleBox"
+    class="example-box"
+  ></div>
+
+
+</section>
+
+</section>
+
+
+
+<!-- LEARNING -->
+
+<section class="learning">
+
+
+<article class="panel">
+
+<h2>
+  네 가지 열역학 과정
+</h2>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+  <th>과정</th>
+  <th>일정한 물리량</th>
+  <th>ΔU</th>
+  <th>W</th>
+  <th>Q</th>
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+  <td>등온</td>
+  <td>T</td>
+  <td>0</td>
+  <td>≠ 0</td>
+  <td>Q = W</td>
+</tr>
+
+<tr>
+  <td>등압</td>
+  <td>P</td>
+  <td>≠ 0</td>
+  <td>PΔV</td>
+  <td>ΔU + W</td>
+</tr>
+
+<tr>
+  <td>등적</td>
+  <td>V</td>
+  <td>≠ 0</td>
+  <td>0</td>
+  <td>Q = ΔU</td>
+</tr>
+
+<tr>
+  <td>단열</td>
+  <td>Q = 0</td>
+  <td>≠ 0</td>
+  <td>≠ 0</td>
+  <td>0</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="equation">
+  ΔU = Q − W
+</div>
+
+<p>
+  이 시뮬레이션에서는
+  <strong>기체가 외부에 한 일을 양(+)의 일</strong>로 정의합니다.
+</p>
+
+
+<div class="tip">
+
+  팽창하면 일반적으로 기체가 외부에 일을 하므로 W &gt; 0이고,
+  압축하면 외부가 기체에 일을 하므로 기체가 한 일은 W &lt; 0입니다.
+
+</div>
+
+
+<div class="warning">
+
+  내부에너지는 상태량이므로 처음과 마지막 상태에 의해 결정되지만,
+  열과 일은 어떤 과정을 거쳤는지에 따라 달라집니다.
+
+</div>
+
+
+</article>
+
+
+
+<article class="panel">
+
+<h2>
+  탐구 활동
+</h2>
+
+<ol>
+
+<li>
+등온 팽창을 선택하고 부피를 증가시키세요.
+온도와 내부에너지 변화가 어떻게 되는지 확인하고,
+기체가 일을 하면서도 온도가 일정하게 유지되는 이유를 설명해 보세요.
+</li>
+
+<li>
+등적 과정을 선택하여 온도를 증가시키세요.
+P-V 그래프에서 경로는 어떤 모양이며,
+기체가 한 일이 0인 이유를 설명해 보세요.
+</li>
+
+<li>
+등압 팽창에서 기체가 받은 열에너지와
+내부에너지 증가량을 비교하세요.
+두 값의 차이는 어디에 사용되나요?
+</li>
+
+<li>
+등온 팽창과 단열 팽창을 같은 부피 변화로 비교하세요.
+어느 과정에서 압력이 더 빠르게 감소하나요?
+</li>
+
+<li>
+단열 팽창에서 Q = 0인데도
+온도와 내부에너지가 감소하는 이유를
+열역학 제1법칙을 이용해 설명하세요.
+</li>
+
+<li>
+팽창과 압축을 서로 바꾸어
+Q, W, ΔU의 부호가 어떻게 달라지는지 비교하세요.
+</li>
+
+</ol>
+
+</article>
+
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<div class="container">
+
+온라인 물리학 탐구실 ·
+2022 개정 교육과정 「역학과 에너지」
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+/*
+====================================================
+PHYSICAL CONSTANTS
+====================================================
+*/
+
+const R = 8.314;
+
+/*
+1 mol monatomic ideal gas
+Cv = 3/2 R
+Cp = 5/2 R
+gamma = 5/3
+*/
+
+const n = 1;
+
+const Cv = 1.5 * R;
+
+const Cp = 2.5 * R;
+
+const gamma = 5 / 3;
+
+
+/*
+Initial state
+*/
+
+const V1_L = 10;
+
+const V1 =
+  V1_L / 1000;
+
+const T1 = 300;
+
+const P1 =
+  n * R * T1 / V1;
+
+
+/*
+====================================================
+DOM
+====================================================
+*/
+
+const processSelect =
+  document.getElementById("process");
+
+const changeSlider =
+  document.getElementById("changeSlider");
+
+const progressSlider =
+  document.getElementById("progress");
+
+const changeLabel =
+  document.getElementById("changeLabel");
+
+const changeValue =
+  document.getElementById("changeValue");
+
+const progressValue =
+  document.getElementById("progressValue");
+
+const expansionButton =
+  document.getElementById("expansionButton");
+
+const compressionButton =
+  document.getElementById("compressionButton");
+
+const startButton =
+  document.getElementById("startButton");
+
+const pauseButton =
+  document.getElementById("pauseButton");
+
+const resetButton =
+  document.getElementById("resetButton");
+
+const processInfo =
+  document.getElementById("processInfo");
+
+const exampleBox =
+  document.getElementById("exampleBox");
+
+const status =
+  document.getElementById("status");
+
+
+const pvCanvas =
+  document.getElementById("pvCanvas");
+
+const pvCtx =
+  pvCanvas.getContext("2d");
+
+
+const pistonCanvas =
+  document.getElementById("pistonCanvas");
+
+const pistonCtx =
+  pistonCanvas.getContext("2d");
+
+
+/*
+====================================================
+STATE
+====================================================
+*/
+
+let direction = "expansion";
+
+let running = false;
+
+let paused = false;
+
+let animationId = null;
+
+let lastTimestamp = null;
+
+
+/*
+====================================================
+PROCESS DATA
+====================================================
+*/
+
+const info = {
+
+isothermal:{
+
+  title:"등온 과정",
+
+  description:
+  "온도가 일정하게 유지되는 과정입니다. 이상기체에서는 내부에너지가 온도에만 의존하므로 ΔU = 0입니다.",
+
+  example:
+  "실제 사례 예시: 온도가 일정한 큰 열원과 접촉한 기체를 매우 천천히 팽창·압축시키는 과정. 이상적인 스털링 기관의 일부 과정도 등온 과정으로 모델링합니다."
+
+},
+
+isobaric:{
+
+  title:"등압 과정",
+
+  description:
+  "압력이 일정하게 유지되는 과정입니다. 기체가 팽창하면 온도와 내부에너지가 증가하면서 동시에 외부에 일을 할 수 있습니다.",
+
+  example:
+  "실제 사례 예시: 자유롭게 움직이는 피스톤 위에 일정한 무게가 놓인 실린더 속 기체를 천천히 가열하는 상황을 등압 과정에 가깝게 생각할 수 있습니다."
+
+},
+
+isochoric:{
+
+  title:"등적 과정",
+
+  description:
+  "부피가 일정한 과정입니다. 피스톤이 움직이지 않으므로 기체가 하는 일은 W = 0이고, 전달된 열은 내부에너지 변화로 이어집니다.",
+
+  example:
+  "실제 사례 예시: 단단하게 밀폐된 금속 용기 속 기체를 가열하는 경우. 용기의 부피가 거의 변하지 않으므로 등적 과정으로 근사할 수 있습니다."
+
+},
+
+adiabatic:{
+
+  title:"단열 과정",
+
+  description:
+  "주변과 열교환이 없는 과정입니다. Q = 0이므로 기체가 외부에 일을 하면 그만큼 내부에너지가 감소하고 온도가 내려갑니다.",
+
+  example:
+  "실제 사례 예시: 자전거 펌프를 빠르게 압축할 때 내부 공기의 온도가 상승하는 현상이나, 대기 중 공기 덩어리가 빠르게 상승·팽창하며 냉각되는 현상을 단열 과정으로 근사할 수 있습니다."
+
+}
+
+};
+
+
+/*
+====================================================
+TARGET
+====================================================
+*/
+
+function configureControl(){
+
+  const type =
+    processSelect.value;
+
+
+  if(type === "isochoric"){
+
+    changeLabel.textContent =
+      "최종 온도";
+
+    changeSlider.min = 150;
+    changeSlider.max = 600;
+
+    changeSlider.step = 1;
+
+    if(direction === "expansion"){
+      changeSlider.value = 500;
+    }else{
+      changeSlider.value = 180;
+    }
+
+  }else{
+
+    changeLabel.textContent =
+      "최종 부피";
+
+    changeSlider.min = 5;
+    changeSlider.max = 20;
+
+    changeSlider.step = .1;
+
+    if(direction === "expansion"){
+      changeSlider.value = 18;
+    }else{
+      changeSlider.value = 6;
+    }
+
+  }
+
+
+  progressSlider.value = 0;
+
+  update();
+
+}
+
+
+function getTarget(){
+
+  const type =
+    processSelect.value;
+
+
+  if(type === "isochoric"){
+
+    return {
+      V2:V1,
+      T2:Number(changeSlider.value)
+    };
+
+  }
+
+
+  return {
+
+    V2:
+      Number(changeSlider.value) /
+      1000
+
+  };
+
+}
+
+
+/*
+====================================================
+THERMODYNAMIC STATE
+====================================================
+*/
+
+function calculate(){
+
+  const type =
+    processSelect.value;
+
+
+  const progress =
+    Number(progressSlider.value) /
+    100;
+
+
+  const target =
+    getTarget();
+
+
+  let V;
+  let P;
+  let T;
+
+  let W = 0;
+  let dU = 0;
+  let Q = 0;
+
+
+  /*
+  ISOTHERMAL
+  */
+
+  if(type === "isothermal"){
+
+    V =
+      V1 +
+      (
+        target.V2 -
+        V1
+      ) *
+      progress;
+
+
+    T = T1;
+
+
+    P =
+      n *
+      R *
+      T /
+      V;
+
+
+    W =
+      n *
+      R *
+      T1 *
+      Math.log(
+        V / V1
+      );
+
+
+    dU = 0;
+
+    Q = W;
+
+  }
+
+
+  /*
+  ISOBARIC
+  */
+
+  if(type === "isobaric"){
+
+    V =
+      V1 +
+      (
+        target.V2 -
+        V1
+      ) *
+      progress;
+
+
+    P = P1;
+
+
+    T =
+      P *
+      V /
+      (
+        n *
+        R
+      );
+
+
+    const dT =
+      T -
+      T1;
+
+
+    W =
+      P *
+      (
+        V -
+        V1
+      );
+
+
+    dU =
+      n *
+      Cv *
+      dT;
+
+
+    Q =
+      dU +
+      W;
+
+  }
+
+
+  /*
+  ISOCHORIC
+  */
+
+  if(type === "isochoric"){
+
+    V = V1;
+
+
+    T =
+      T1 +
+      (
+        target.T2 -
+        T1
+      ) *
+      progress;
+
+
+    P =
+      n *
+      R *
+      T /
+      V;
+
+
+    W = 0;
+
+
+    dU =
+      n *
+      Cv *
+      (
+        T -
+        T1
+      );
+
+
+    Q = dU;
+
+  }
+
+
+  /*
+  ADIABATIC
+  */
+
+  if(type === "adiabatic"){
+
+    V =
+      V1 +
+      (
+        target.V2 -
+        V1
+      ) *
+      progress;
+
+
+    P =
+      P1 *
+      Math.pow(
+        V1 /
+        V,
+        gamma
+      );
+
+
+    T =
+      T1 *
+      Math.pow(
+        V1 /
+        V,
+        gamma - 1
+      );
+
+
+    dU =
+      n *
+      Cv *
+      (
+        T -
+        T1
+      );
+
+
+    Q = 0;
+
+
+    W =
+      -dU;
+
+  }
+
+
+  return{
+
+    type,
+    V,
+    P,
+    T,
+    W,
+    dU,
+    Q,
+    progress
+
+  };
+
+}
+
+
+/*
+====================================================
+SIGN
+====================================================
+*/
+
+function signInfo(
+  value,
+  symbol
+){
+
+  const tolerance = .05;
+
+
+  if(
+    Math.abs(value) <
+    tolerance
+  ){
+
+    return{
+      text:
+        `${symbol} = 0`,
+      className:"zero"
+    };
+
+  }
+
+
+  if(value > 0){
+
+    return{
+      text:
+        `${symbol} > 0`,
+      className:"positive"
+    };
+
+  }
+
+
+  return{
+    text:
+      `${symbol} < 0`,
+    className:"negative"
+  };
+
+}
+
+
+/*
+====================================================
+TEXT UPDATE
+====================================================
+*/
+
+function updateText(
+  state
+){
+
+  const type =
+    processSelect.value;
+
+
+  const data =
+    info[type];
+
+
+  processInfo.innerHTML =
+    `
+    <strong>
+      ${data.title}
+    </strong>
+
+    <p>
+      ${data.description}
+    </p>
+    `;
+
+
+  exampleBox.innerHTML =
+    `
+    <strong>
+      🔎 ${data.title}의 실제 사례
+    </strong>
+
+    <p>
+      ${data.example}
+    </p>
+    `;
+
+
+  if(type === "isochoric"){
+
+    changeValue.textContent =
+      `${Number(changeSlider.value).toFixed(0)} K`;
+
+  }else{
+
+    changeValue.textContent =
+      `${Number(changeSlider.value).toFixed(1)} L`;
+
+  }
+
+
+  progressValue.textContent =
+    `${Number(progressSlider.value).toFixed(0)} %`;
+
+
+  document.getElementById(
+    "volumeValue"
+  ).textContent =
+    `${(
+      state.V *
+      1000
+    ).toFixed(2)} L`;
+
+
+  document.getElementById(
+    "pressureValue"
+  ).textContent =
+    `${(
+      state.P /
+      1000
+    ).toFixed(1)} kPa`;
+
+
+  document.getElementById(
+    "temperatureValue"
+  ).textContent =
+    `${state.T.toFixed(1)} K`;
+
+
+  if(state.progress === 0){
+
+    document.getElementById(
+      "stateValue"
+    ).textContent =
+      "초기 상태";
+
+  }else if(state.progress >= 1){
+
+    document.getElementById(
+      "stateValue"
+    ).textContent =
+      "최종 상태";
+
+  }else{
+
+    document.getElementById(
+      "stateValue"
+    ).textContent =
+      "과정 진행 중";
+
+  }
+
+
+  document.getElementById(
+    "heatValue"
+  ).textContent =
+    `${state.Q.toFixed(1)} J`;
+
+
+  document.getElementById(
+    "workValue"
+  ).textContent =
+    `${state.W.toFixed(1)} J`;
+
+
+  document.getElementById(
+    "internalValue"
+  ).textContent =
+    `${state.dU.toFixed(1)} J`;
+
+
+  const qSign =
+    signInfo(
+      state.Q,
+      "Q"
+    );
+
+
+  const wSign =
+    signInfo(
+      state.W,
+      "W"
+    );
+
+
+  const uSign =
+    signInfo(
+      state.dU,
+      "ΔU"
+    );
+
+
+  const heatSign =
+    document.getElementById(
+      "heatSign"
+    );
+
+
+  heatSign.textContent =
+    qSign.text;
+
+
+  heatSign.className =
+    `energy-sign ${qSign.className}`;
+
+
+  const workSign =
+    document.getElementById(
+      "workSign"
+    );
+
+
+  workSign.textContent =
+    wSign.text;
+
+
+  workSign.className =
+    `energy-sign ${wSign.className}`;
+
+
+  const internalSign =
+    document.getElementById(
+      "internalSign"
+    );
+
+
+  internalSign.textContent =
+    uSign.text;
+
+
+  internalSign.className =
+    `energy-sign ${uSign.className}`;
+
+
+  /*
+  FLOW TEXT
+  */
+
+  document.getElementById(
+    "heatFlowText"
+  ).textContent =
+    state.Q > .05
+      ?
+      "열 유입 →"
+      :
+      state.Q < -.05
+      ?
+      "← 열 방출"
+      :
+      "열교환 없음";
+
+
+  document.getElementById(
+    "workFlowText"
+  ).textContent =
+    state.W > .05
+      ?
+      "외부에 일함"
+      :
+      state.W < -.05
+      ?
+      "외부가 기체에 일함"
+      :
+      "일하지 않음";
+
+
+  document.getElementById(
+    "internalFlowText"
+  ).textContent =
+    state.dU > .05
+      ?
+      "내부에너지 증가"
+      :
+      state.dU < -.05
+      ?
+      "내부에너지 감소"
+      :
+      "내부에너지 일정";
+
+}
+
+
+/*
+====================================================
+CANVAS RESIZE
+====================================================
+*/
+
+function resizeCanvas(
+  canvas,
+  ctx
+){
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  const ratio =
+    window.devicePixelRatio ||
+    1;
+
+
+  canvas.width =
+    rect.width *
+    ratio;
+
+
+  canvas.height =
+    rect.height *
+    ratio;
+
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+}
+
+
+function resizeAll(){
+
+  resizeCanvas(
+    pvCanvas,
+    pvCtx
+  );
+
+
+  resizeCanvas(
+    pistonCanvas,
+    pistonCtx
+  );
+
+
+  draw();
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeAll
+);
+
+
+/*
+====================================================
+PV GRAPH
+====================================================
+*/
+
+function processStateAt(
+  fraction
+){
+
+  const old =
+    progressSlider.value;
+
+
+  progressSlider.value =
+    fraction *
+    100;
+
+
+  const state =
+    calculate();
+
+
+  progressSlider.value =
+    old;
+
+
+  return state;
+
+}
+
+
+function drawPV(
+  state
+){
+
+  const ctx =
+    pvCtx;
+
+
+  const width =
+    pvCanvas.clientWidth;
+
+
+  const height =
+    pvCanvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#ffffff";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const margin = {
+
+    left:58,
+    right:20,
+    top:22,
+    bottom:46
+
+  };
+
+
+  const plotW =
+    width -
+    margin.left -
+    margin.right;
+
+
+  const plotH =
+    height -
+    margin.top -
+    margin.bottom;
+
+
+  /*
+  Determine graph scale from
+  full process
+  */
+
+  let minV = Infinity;
+  let maxV = -Infinity;
+
+  let minP = Infinity;
+  let maxP = -Infinity;
+
+
+  const fullPoints = [];
+
+
+  for(
+    let i = 0;
+    i <= 100;
+    i++
+  ){
+
+    const s =
+      processStateAt(
+        i / 100
+      );
+
+
+    const vL =
+      s.V *
+      1000;
+
+
+    const pkPa =
+      s.P /
+      1000;
+
+
+    fullPoints.push({
+      v:vL,
+      p:pkPa
+    });
+
+
+    minV =
+      Math.min(
+        minV,
+        vL
+      );
+
+
+    maxV =
+      Math.max(
+        maxV,
+        vL
+      );
+
+
+    minP =
+      Math.min(
+        minP,
+        pkPa
+      );
+
+
+    maxP =
+      Math.max(
+        maxP,
+        pkPa
+      );
+
+  }
+
+
+  let vPadding =
+    Math.max(
+      2,
+      (
+        maxV -
+        minV
+      ) *
+      .25
+    );
+
+
+  let pPadding =
+    Math.max(
+      20,
+      (
+        maxP -
+        minP
+      ) *
+      .25
+    );
+
+
+  if(
+    maxV -
+    minV <
+    .1
+  ){
+
+    minV -= 4;
+    maxV += 4;
+
+  }else{
+
+    minV -= vPadding;
+    maxV += vPadding;
+
+  }
+
+
+  if(
+    maxP -
+    minP <
+    1
+  ){
+
+    minP -= 60;
+    maxP += 60;
+
+  }else{
+
+    minP =
+      Math.max(
+        0,
+        minP -
+        pPadding
+      );
+
+
+    maxP +=
+      pPadding;
+
+  }
+
+
+  function sx(v){
+
+    return (
+      margin.left +
+      (
+        v -
+        minV
+      ) /
+      (
+        maxV -
+        minV
+      ) *
+      plotW
+    );
+
+  }
+
+
+  function sy(p){
+
+    return (
+      margin.top +
+      plotH -
+      (
+        p -
+        minP
+      ) /
+      (
+        maxP -
+        minP
+      ) *
+      plotH
+    );
+
+  }
+
+
+  /*
+  GRID
+  */
+
+  ctx.strokeStyle =
+    "#e2e8f0";
+
+
+  ctx.lineWidth = 1;
+
+
+  ctx.font =
+    "11px Arial";
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+
+  const grid = 5;
+
+
+  for(
+    let i = 0;
+    i <= grid;
+    i++
+  ){
+
+    const x =
+      margin.left +
+      plotW *
+      i /
+      grid;
+
+
+    const y =
+      margin.top +
+      plotH *
+      i /
+      grid;
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      x,
+      margin.top
+    );
+
+
+    ctx.lineTo(
+      x,
+      margin.top +
+      plotH
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+      margin.left,
+      y
+    );
+
+
+    ctx.lineTo(
+      margin.left +
+      plotW,
+      y
+    );
+
+
+    ctx.stroke();
+
+
+    const vv =
+      minV +
+      (
+        maxV -
+        minV
+      ) *
+      i /
+      grid;
+
+
+    const pp =
+      maxP -
+      (
+        maxP -
+        minP
+      ) *
+      i /
+      grid;
+
+
+    ctx.fillText(
+      vv.toFixed(1),
+      x - 12,
+      height - 22
+    );
+
+
+    ctx.fillText(
+      pp.toFixed(0),
+      10,
+      y + 4
+    );
+
+  }
+
+
+  /*
+  AXES
+  */
+
+  ctx.strokeStyle =
+    "#334155";
+
+
+  ctx.lineWidth = 1.5;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    margin.left,
+    margin.top
+  );
+
+
+  ctx.lineTo(
+    margin.left,
+    margin.top +
+    plotH
+  );
+
+
+  ctx.lineTo(
+    margin.left +
+    plotW,
+    margin.top +
+    plotH
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.fillStyle =
+    "#334155";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    "P (kPa)",
+    8,
+    16
+  );
+
+
+  ctx.fillText(
+    "V (L)",
+    width - 45,
+    height - 7
+  );
+
+
+  /*
+  FULL PROCESS PATH
+  */
+
+  ctx.beginPath();
+
+
+  fullPoints.forEach(
+    (
+      point,
+      index
+    ) => {
+
+      const x =
+        sx(
+          point.v
+        );
+
+
+      const y =
+        sy(
+          point.p
+        );
+
+
+      if(index === 0){
+
+        ctx.moveTo(
+          x,
+          y
+        );
+
+      }else{
+
+        ctx.lineTo(
+          x,
+          y
+        );
+
+      }
+
+    }
+  );
+
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+
+  ctx.lineWidth = 3;
+
+
+  ctx.stroke();
+
+
+  /*
+  COMPLETED PATH
+  */
+
+  ctx.beginPath();
+
+
+  const completed =
+    Math.round(
+      state.progress *
+      100
+    );
+
+
+  for(
+    let i = 0;
+    i <= completed;
+    i++
+  ){
+
+    const point =
+      fullPoints[i];
+
+
+    const x =
+      sx(
+        point.v
+      );
+
+
+    const y =
+      sy(
+        point.p
+      );
+
+
+    if(i === 0){
+
+      ctx.moveTo(
+        x,
+        y
+      );
+
+    }else{
+
+      ctx.lineTo(
+        x,
+        y
+      );
+
+    }
+
+  }
+
+
+  ctx.strokeStyle =
+    "#2563eb";
+
+
+  ctx.lineWidth = 4;
+
+
+  ctx.stroke();
+
+
+  /*
+  Initial point
+  */
+
+  const initial =
+    fullPoints[0];
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    sx(initial.v),
+    sy(initial.p),
+    6,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.fillStyle =
+    "#059669";
+
+
+  ctx.fill();
+
+
+  ctx.fillStyle =
+    "#047857";
+
+
+  ctx.font =
+    "bold 12px Arial";
+
+
+  ctx.fillText(
+    "A",
+    sx(initial.v) - 17,
+    sy(initial.p) - 8
+  );
+
+
+  /*
+  CURRENT STATE
+  */
+
+  const currentV =
+    state.V *
+    1000;
+
+
+  const currentP =
+    state.P /
+    1000;
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    sx(currentV),
+    sy(currentP),
+    7,
+    0,
+    Math.PI * 2
+  );
+
+
+  ctx.fillStyle =
+    "#dc2626";
+
+
+  ctx.fill();
+
+
+  ctx.fillStyle =
+    "#991b1b";
+
+
+  ctx.fillText(
+    state.progress >= .99
+    ?
+    "B"
+    :
+    "현재",
+
+    sx(currentV) + 9,
+    sy(currentP) - 8
+  );
+
+}
+
+
+/*
+====================================================
+PISTON
+====================================================
+*/
+
+function drawArrow(
+  ctx,
+  x1,
+  y1,
+  x2,
+  y2,
+  color
+){
+
+  const angle =
+    Math.atan2(
+      y2 - y1,
+      x2 - x1
+    );
+
+
+  const head = 9;
+
+
+  ctx.strokeStyle =
+    color;
+
+
+  ctx.fillStyle =
+    color;
+
+
+  ctx.lineWidth = 3;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x1,
+    y1
+  );
+
+
+  ctx.lineTo(
+    x2,
+    y2
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x2,
+    y2
+  );
+
+
+  ctx.lineTo(
+    x2 -
+    head *
+    Math.cos(
+      angle -
+      Math.PI / 6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle -
+      Math.PI / 6
+    )
+  );
+
+
+  ctx.lineTo(
+    x2 -
+    head *
+    Math.cos(
+      angle +
+      Math.PI / 6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle +
+      Math.PI / 6
+    )
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fill();
+
+}
+
+
+function drawPiston(
+  state
+){
+
+  const ctx =
+    pistonCtx;
+
+
+  const width =
+    pistonCanvas.clientWidth;
+
+
+  const height =
+    pistonCanvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fbff";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const cylinderLeft =
+    width * .22;
+
+
+  const cylinderRight =
+    width * .78;
+
+
+  const cylinderBottom =
+    height * .83;
+
+
+  const topMin =
+    height * .22;
+
+
+  /*
+  volume maps to piston height
+  */
+
+  let V_L =
+    state.V *
+    1000;
+
+
+  let fraction =
+    (
+      V_L -
+      5
+    ) /
+    15;
+
+
+  fraction =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        fraction
+      )
+    );
+
+
+  const pistonY =
+    cylinderBottom -
+    (
+      .28 +
+      fraction *
+      .55
+    ) *
+    (
+      cylinderBottom -
+      topMin
+    );
+
+
+  /*
+  gas fill
+  */
+
+  const tempFraction =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        (
+          state.T -
+          150
+        ) /
+        450
+      )
+    );
+
+
+  const red =
+    Math.round(
+      230 +
+      20 *
+      tempFraction
+    );
+
+
+  const blue =
+    Math.round(
+      245 -
+      100 *
+      tempFraction
+    );
+
+
+  ctx.fillStyle =
+    `rgba(${red},190,${blue},0.45)`;
+
+
+  ctx.fillRect(
+    cylinderLeft,
+    pistonY + 9,
+    cylinderRight -
+    cylinderLeft,
+    cylinderBottom -
+    pistonY -
+    9
+  );
+
+
+  /*
+  CYLINDER
+  */
+
+  ctx.strokeStyle =
+    "#475569";
+
+
+  ctx.lineWidth = 4;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    cylinderLeft,
+    topMin
+  );
+
+
+  ctx.lineTo(
+    cylinderLeft,
+    cylinderBottom
+  );
+
+
+  ctx.lineTo(
+    cylinderRight,
+    cylinderBottom
+  );
+
+
+  ctx.lineTo(
+    cylinderRight,
+    topMin
+  );
+
+
+  ctx.stroke();
+
+
+  /*
+  PISTON
+  */
+
+  ctx.fillStyle =
+    "#94a3b8";
+
+
+  ctx.fillRect(
+    cylinderLeft - 7,
+    pistonY,
+    cylinderRight -
+    cylinderLeft +
+    14,
+    15
+  );
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+
+  ctx.fillRect(
+    width / 2 - 7,
+    pistonY - 70,
+    14,
+    70
+  );
+
+
+  /*
+  GAS PARTICLES
+  deterministic pattern
+  */
+
+  const particleCount = 22;
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  for(
+    let i = 0;
+    i < particleCount;
+    i++
+  ){
+
+    const fx =
+      (
+        (
+          i *
+          37
+        ) %
+        100
+      ) /
+      100;
+
+
+    const fy =
+      (
+        (
+          i *
+          61 +
+          state.progress *
+          250
+        ) %
+        100
+      ) /
+      100;
+
+
+    const x =
+      cylinderLeft +
+      12 +
+      fx *
+      (
+        cylinderRight -
+        cylinderLeft -
+        24
+      );
+
+
+    const y =
+      pistonY +
+      23 +
+      fy *
+      Math.max(
+        10,
+        cylinderBottom -
+        pistonY -
+        38
+      );
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      x,
+      y,
+      3,
+      0,
+      Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+  }
+
+
+  /*
+  LABELS
+  */
+
+  ctx.fillStyle =
+    "#334155";
+
+
+  ctx.font =
+    "bold 13px Arial";
+
+
+  ctx.fillText(
+    `V = ${V_L.toFixed(1)} L`,
+    15,
+    25
+  );
+
+
+  ctx.fillText(
+    `P = ${(state.P/1000).toFixed(0)} kPa`,
+    15,
+    46
+  );
+
+
+  ctx.fillText(
+    `T = ${state.T.toFixed(0)} K`,
+    15,
+    67
+  );
+
+
+  /*
+  WORK ARROW
+  */
+
+  if(
+    Math.abs(state.W) >
+    .5
+  ){
+
+    if(state.W > 0){
+
+      drawArrow(
+        ctx,
+        width * .84,
+        pistonY + 15,
+        width * .84,
+        pistonY - 55,
+        "#2563eb"
+      );
+
+
+      ctx.fillStyle =
+        "#1d4ed8";
+
+
+      ctx.fillText(
+        "기체가 일함",
+        width * .66,
+        pistonY - 62
+      );
+
+    }else{
+
+      drawArrow(
+        ctx,
+        width * .84,
+        pistonY - 55,
+        width * .84,
+        pistonY + 15,
+        "#2563eb"
+      );
+
+
+      ctx.fillStyle =
+        "#1d4ed8";
+
+
+      ctx.fillText(
+        "기체가 일을 받음",
+        width * .60,
+        pistonY - 62
+      );
+
+    }
+
+  }
+
+
+  /*
+  HEAT ARROWS
+  */
+
+  if(
+    Math.abs(state.Q) >
+    .5
+  ){
+
+    const y =
+      cylinderBottom -
+      50;
+
+
+    if(state.Q > 0){
+
+      drawArrow(
+        ctx,
+        20,
+        y,
+        cylinderLeft - 6,
+        y,
+        "#dc2626"
+      );
+
+
+      ctx.fillStyle =
+        "#b91c1c";
+
+
+      ctx.fillText(
+        "열 Q 유입",
+        20,
+        y - 12
+      );
+
+    }else{
+
+      drawArrow(
+        ctx,
+        cylinderLeft - 6,
+        y,
+        20,
+        y,
+        "#dc2626"
+      );
+
+
+      ctx.fillStyle =
+        "#b91c1c";
+
+
+      ctx.fillText(
+        "열 Q 방출",
+        20,
+        y - 12
+      );
+
+    }
+
+  }
+
+
+  /*
+  Adiabatic indicator
+  */
+
+  if(
+    state.type === "adiabatic"
+  ){
+
+    ctx.fillStyle =
+      "#7c3aed";
+
+
+    ctx.font =
+      "bold 13px Arial";
+
+
+    ctx.fillText(
+      "단열벽 : Q = 0",
+      width * .59,
+      height - 18
+    );
+
+  }
+
+}
+
+
+/*
+====================================================
+DRAW
+====================================================
+*/
+
+function draw(){
+
+  const state =
+    calculate();
+
+
+  drawPV(
+    state
+  );
+
+
+  drawPiston(
+    state
+  );
+
+}
+
+
+/*
+====================================================
+UPDATE
+====================================================
+*/
+
+function update(){
+
+  const state =
+    calculate();
+
+
+  updateText(
+    state
+  );
+
+
+  drawPV(
+    state
+  );
+
+
+  drawPiston(
+    state
+  );
+
+
+  if(
+    state.progress === 0
+  ){
+
+    status.textContent =
+      "초기 상태";
+
+  }else if(
+    state.progress >= 1
+  ){
+
+    status.textContent =
+      "과정 완료";
+
+  }else{
+
+    status.textContent =
+      "과정 진행 중";
+
+  }
+
+}
+
+
+/*
+====================================================
+ANIMATION
+====================================================
+*/
+
+function animate(
+  timestamp
+){
+
+  if(!running){
+    return;
+  }
+
+
+  if(paused){
+
+    lastTimestamp =
+      timestamp;
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+
+    return;
+
+  }
+
+
+  if(
+    lastTimestamp === null
+  ){
+
+    lastTimestamp =
+      timestamp;
+
+  }
+
+
+  const dt =
+    (
+      timestamp -
+      lastTimestamp
+    ) /
+    1000;
+
+
+  lastTimestamp =
+    timestamp;
+
+
+  let value =
+    Number(
+      progressSlider.value
+    );
+
+
+  value +=
+    dt *
+    22;
+
+
+  if(value >= 100){
+
+    value = 100;
+
+    progressSlider.value =
+      value;
+
+
+    update();
+
+
+    running = false;
+
+
+    status.textContent =
+      "과정 완료";
+
+
+    return;
+
+  }
+
+
+  progressSlider.value =
+    value;
+
+
+  update();
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
+}
+
+
+/*
+====================================================
+EVENTS
+====================================================
+*/
+
+processSelect.addEventListener(
+  "change",
+  configureControl
+);
+
+
+changeSlider.addEventListener(
+  "input",
+  update
+);
+
+
+progressSlider.addEventListener(
+  "input",
+  () => {
+
+    running = false;
+
+    if(animationId){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    update();
+
+  }
+);
+
+
+expansionButton.addEventListener(
+  "click",
+  () => {
+
+    direction =
+      "expansion";
+
+
+    expansionButton.classList.add(
+      "active"
+    );
+
+
+    compressionButton.classList.remove(
+      "active"
+    );
+
+
+    configureControl();
+
+  }
+);
+
+
+compressionButton.addEventListener(
+  "click",
+  () => {
+
+    direction =
+      "compression";
+
+
+    compressionButton.classList.add(
+      "active"
+    );
+
+
+    expansionButton.classList.remove(
+      "active"
+    );
+
+
+    configureControl();
+
+  }
+);
+
+
+startButton.addEventListener(
+  "click",
+  () => {
+
+    if(
+      Number(progressSlider.value) >=
+      100
+    ){
+
+      progressSlider.value =
+        0;
+
+    }
+
+
+    running = true;
+
+    paused = false;
+
+    lastTimestamp = null;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    status.textContent =
+      "과정 진행 중";
+
+
+    if(animationId){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+);
+
+
+pauseButton.addEventListener(
+  "click",
+  () => {
+
+    if(!running){
+      return;
+    }
+
+
+    paused =
+      !paused;
+
+
+    pauseButton.textContent =
+      paused
+      ?
+      "▶ 계속"
+      :
+      "Ⅱ 일시정지";
+
+
+    status.textContent =
+      paused
+      ?
+      "일시정지"
+      :
+      "과정 진행 중";
+
+
+    lastTimestamp = null;
+
+  }
+);
+
+
+resetButton.addEventListener(
+  "click",
+  () => {
+
+    running = false;
+
+    paused = false;
+
+
+    if(animationId){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    progressSlider.value =
+      0;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    update();
+
+  }
+);
+
+
+/*
+====================================================
+INIT
+====================================================
+*/
+
+configureControl();
+
+resizeAll();
+
+</script>
+
+</body>
+</html>
