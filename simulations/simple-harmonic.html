@@ -65,7 +65,6 @@ body{
     sans-serif;
 
   background:
-
     linear-gradient(
       180deg,
       #edf4ff 0%,
@@ -1144,10 +1143,6 @@ footer{
 <body>
 
 
-<!-- ========================================
-     HEADER
-======================================== -->
-
 <header>
 
 <div class="container topbar">
@@ -1183,10 +1178,6 @@ footer{
 <main class="container">
 
 
-<!-- ========================================
-     INTRO
-======================================== -->
-
 <section class="intro">
 
 
@@ -1220,10 +1211,6 @@ footer{
 <section class="main-grid">
 
 
-<!-- ========================================
-     CONTROL
-======================================== -->
-
 <aside class="panel">
 
 
@@ -1234,7 +1221,6 @@ footer{
 
 
   <div class="control">
-
 
     <div class="control-head">
 
@@ -1261,13 +1247,11 @@ footer{
       step="1"
     >
 
-
   </div>
 
 
 
   <div class="control">
-
 
     <div class="control-head">
 
@@ -1294,13 +1278,11 @@ footer{
       step=".1"
     >
 
-
   </div>
 
 
 
   <div class="control">
-
 
     <div class="control-head">
 
@@ -1327,13 +1309,11 @@ footer{
       step="1"
     >
 
-
   </div>
 
 
 
   <div class="control">
-
 
     <div class="control-head">
 
@@ -1360,13 +1340,11 @@ footer{
       step=".1"
     >
 
-
   </div>
 
 
 
   <div class="buttons">
-
 
     <button
       id="startButton"
@@ -1390,7 +1368,6 @@ footer{
     >
       ↺ 초기화
     </button>
-
 
   </div>
 
@@ -1459,10 +1436,6 @@ footer{
 
 
 
-<!-- ========================================
-     SIMULATION
-======================================== -->
-
 <section class="panel">
 
 
@@ -1489,50 +1462,35 @@ footer{
   <div class="visual-grid">
 
 
-    <!-- SPRING -->
-
-
     <div class="visual-box">
-
 
       <div class="visual-title">
         용수철에 매달린 물체
       </div>
 
-
       <canvas
         id="springCanvas"
       ></canvas>
-
 
     </div>
 
 
 
-    <!-- CIRCULAR PROJECTION -->
-
-
     <div class="visual-box">
-
 
       <div class="visual-title">
         등속 원운동과 그림자
       </div>
 
-
       <canvas
         id="circleCanvas"
       ></canvas>
-
 
     </div>
 
 
   </div>
 
-
-
-  <!-- LIVE VALUES -->
 
 
   <div class="value-grid">
@@ -1632,9 +1590,6 @@ footer{
 
 
 
-  <!-- EQUATIONS -->
-
-
   <div class="equation-section">
 
 
@@ -1710,9 +1665,6 @@ footer{
 
 
 
-  <!-- GRAPH -->
-
-
   <div class="graph-section">
 
 
@@ -1767,9 +1719,6 @@ footer{
 
   </div>
 
-
-
-  <!-- ENERGY -->
 
 
   <div
@@ -1838,10 +1787,6 @@ footer{
 
 
 
-<!-- ========================================
-     LEARNING
-======================================== -->
-
 <section class="learning">
 
 
@@ -1870,9 +1815,7 @@ F = −kx
 
 
 <p>
-
 뉴턴의 제2법칙을 적용하면
-
 </p>
 
 
@@ -1884,9 +1827,7 @@ ma = −kx
 
 
 <p>
-
 따라서
-
 </p>
 
 
@@ -1983,14 +1924,14 @@ a = −ω²x를 이용하여 설명하세요.
 <li>
 
 x-t 그래프와 v-t 그래프를 비교하여
-속도는 변위보다 몇 도의 위상 차이를 갖는지 생각해 보세요.
+속도는 변위와 몇 도의 위상 차이를 갖는지 생각해 보세요.
 
 </li>
 
 
 <li>
 
-질량을 2배로 바꾸고 주기의 변화를 확인하세요.
+질량을 4배로 바꾸고 주기의 변화를 확인하세요.
 T = 2π√(m/k)와 비교하세요.
 
 </li>
@@ -1998,8 +1939,8 @@ T = 2π√(m/k)와 비교하세요.
 
 <li>
 
-용수철 상수를 크게 변화시키고
-진동의 빠르기가 어떻게 변하는지 확인하세요.
+용수철 상수를 4배로 변화시키고
+주기가 어떻게 변하는지 확인하세요.
 
 </li>
 
@@ -2015,9 +1956,10 @@ T = 2π√(m/k)와 비교하세요.
 
 <li>
 
-등속 원운동하는 점과 그 그림자의 위치를 비교하세요.
-원운동의 각도 ωt와 단진동의 변위
-x = A cos(ωt)가 어떻게 연결되는지 설명하세요.
+등속 원운동하는 점과 오른쪽 그림자의 높이를 비교하세요.
+두 점이 항상 같은 높이에 위치하는 것을 확인하고,
+그림자의 변위가
+x = A cos(ωt)로 나타나는 이유를 설명하세요.
 
 </li>
 
@@ -2161,10 +2103,6 @@ const status =
   );
 
 
-/*
-CANVAS
-*/
-
 const springCanvas =
   document.getElementById(
     "springCanvas"
@@ -2281,10 +2219,6 @@ function getParameters(){
 }
 
 
-/*
-현재 물리 상태
-*/
-
 function getState(
   t
 ){
@@ -2299,20 +2233,12 @@ function getState(
     t;
 
 
-  /*
-  x = A cos(wt)
-  */
-
   const x =
     p.A *
     Math.cos(
       phase
     );
 
-
-  /*
-  v = -Aw sin(wt)
-  */
 
   const v =
     -p.A *
@@ -2321,10 +2247,6 @@ function getState(
       phase
     );
 
-
-  /*
-  a = -Aw^2 cos(wt)
-  */
 
   const a =
     -p.A *
@@ -2335,18 +2257,10 @@ function getState(
     );
 
 
-  /*
-  restoring force
-  */
-
   const F =
     -p.k *
     x;
 
-
-  /*
-  energy
-  */
 
   const KE =
     .5 *
@@ -2426,10 +2340,6 @@ function signed(
 }
 
 
-/*
-현재 위치의 특징
-*/
-
 function stateDescription(
   s
 ){
@@ -2447,7 +2357,16 @@ function stateDescription(
     .97
   ){
 
-    return "최대 변위";
+    if(
+      s.x >
+      0
+    ){
+
+      return "아래쪽 최대 변위";
+
+    }
+
+    return "위쪽 최대 변위";
 
   }
 
@@ -2656,7 +2575,7 @@ window.addEventListener(
 
 /*
 ========================================================
-DRAW ARROW
+ARROW
 ========================================================
 */
 
@@ -2794,7 +2713,7 @@ function drawArrow(
 
 /*
 ========================================================
-SPRING DRAWING
+SPRING
 ========================================================
 */
 
@@ -2835,10 +2754,6 @@ function drawSpring(
   );
 
 
-  /*
-  기준 위치
-  */
-
   const centerX =
     width *
     .5;
@@ -2852,10 +2767,6 @@ function drawSpring(
     height *
     .60;
 
-
-  /*
-  진폭을 화면에 나타내는 비율
-  */
 
   const maxPixelAmplitude =
     Math.min(
@@ -2871,7 +2782,7 @@ function drawSpring(
 
 
   /*
-  x > 0을 아래쪽으로 정의
+  +x 방향을 아래로 정의
   */
 
   const objectY =
@@ -2886,7 +2797,7 @@ function drawSpring(
 
 
   /*
-  천장
+  ceiling
   */
 
   ctx.strokeStyle =
@@ -2918,7 +2829,7 @@ function drawSpring(
 
 
   /*
-  최대 변위 표시
+  upper/lower amplitude
   */
 
   ctx.setLineDash(
@@ -2979,7 +2890,7 @@ function drawSpring(
 
 
   /*
-  평형 위치
+  equilibrium
   */
 
   ctx.strokeStyle =
@@ -3200,7 +3111,7 @@ function drawSpring(
 
 
   /*
-  displacement
+  displacement line
   */
 
   ctx.strokeStyle =
@@ -3255,11 +3166,6 @@ function drawSpring(
   ){
 
 
-    /*
-    velocity arrow
-    positive v = downward
-    */
-
     const vMax =
       s.A *
       s.omega;
@@ -3305,10 +3211,6 @@ function drawSpring(
 
     }
 
-
-    /*
-    acceleration
-    */
 
     const aMax =
       s.A *
@@ -3359,10 +3261,6 @@ function drawSpring(
   }
 
 
-  /*
-  plus direction
-  */
-
   ctx.fillStyle =
     "#64748b";
 
@@ -3383,7 +3281,7 @@ function drawSpring(
 
 /*
 ========================================================
-CIRCULAR MOTION + PROJECTION
+CIRCULAR MOTION + SHADOW
 ========================================================
 */
 
@@ -3563,12 +3461,25 @@ function drawCircle(
   ctx.stroke();
 
 
+
   /*
+  ======================================================
+  핵심 수정 부분
+
+  단진동:
   x = A cos(theta)
 
-  원운동의 수평 성분을 사용하되,
-  화면의 그림자 위치는 세로선으로 옮겨 표시.
+  화면에서 +x 방향을 아래쪽으로 잡았으므로
+  원운동 점의 수직 좌표 역시
+
+  y = centerY + R cos(theta)
+
+  로 설정한다.
+
+  따라서 원운동 점과 그림자는 항상 같은 높이에 있다.
+  ======================================================
   */
+
 
   const theta =
     s.phase;
@@ -3577,15 +3488,15 @@ function drawCircle(
   const pointX =
     centerX +
     radius *
-    Math.cos(
+    Math.sin(
       theta
     );
 
 
   const pointY =
-    centerY -
+    centerY +
     radius *
-    Math.sin(
+    Math.cos(
       theta
     );
 
@@ -3621,7 +3532,7 @@ function drawCircle(
 
 
   /*
-  circular particle
+  circular point
   */
 
   ctx.fillStyle =
@@ -3644,8 +3555,9 @@ function drawCircle(
   ctx.fill();
 
 
+
   /*
-  projection line
+  shadow axis
   */
 
   const shadowAxisX =
@@ -3653,22 +3565,17 @@ function drawCircle(
     .82;
 
 
-  const projection =
-    radius *
-    Math.cos(
-      theta
-    );
-
-
   /*
-  x positive is downward,
-  so map cos theta onto vertical position
+  그림자의 높이는 원운동 점과 정확히 동일
   */
 
   const shadowY =
-    centerY +
-    projection;
+    pointY;
 
+
+  /*
+  수평 투영선
+  */
 
   ctx.setLineDash(
     [5,5]
@@ -3677,6 +3584,10 @@ function drawCircle(
 
   ctx.strokeStyle =
     "#94a3b8";
+
+
+  ctx.lineWidth =
+    1.5;
 
 
   ctx.beginPath();
@@ -3703,7 +3614,7 @@ function drawCircle(
 
 
   /*
-  shadow axis
+  shadow vertical axis
   */
 
   ctx.strokeStyle =
@@ -3735,11 +3646,15 @@ function drawCircle(
 
 
   /*
-  equilibrium
+  shadow equilibrium position
   */
 
   ctx.strokeStyle =
     "#cbd5e1";
+
+
+  ctx.lineWidth =
+    1;
 
 
   ctx.beginPath();
@@ -3747,14 +3662,14 @@ function drawCircle(
 
   ctx.moveTo(
     shadowAxisX -
-    25,
+    26,
     centerY
   );
 
 
   ctx.lineTo(
     shadowAxisX +
-    25,
+    26,
     centerY
   );
 
@@ -3786,8 +3701,61 @@ function drawCircle(
   ctx.fill();
 
 
+
   /*
-  angular velocity arrow
+  displacement indication
+  */
+
+  ctx.strokeStyle =
+    "#2563eb";
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    shadowAxisX +
+    22,
+    centerY
+  );
+
+
+  ctx.lineTo(
+    shadowAxisX +
+    22,
+    shadowY
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  ctx.font =
+    "bold 11px Arial";
+
+
+  ctx.fillText(
+    "x",
+    shadowAxisX +
+    29,
+    (
+      centerY +
+      shadowY
+    ) /
+    2
+  );
+
+
+  /*
+  angular motion arrow
   */
 
   ctx.strokeStyle =
@@ -3806,30 +3774,62 @@ function drawCircle(
     centerY,
     radius +
     18,
-    -.8,
-    .2
+    -.2,
+    .85
   );
 
 
   ctx.stroke();
 
 
+  /*
+  arrow head for rotation
+  */
+
+  const arrowAngle =
+    .85;
+
+
+  const ax =
+    centerX +
+    (
+      radius +
+      18
+    ) *
+    Math.cos(
+      arrowAngle
+    );
+
+
+  const ay =
+    centerY +
+    (
+      radius +
+      18
+    ) *
+    Math.sin(
+      arrowAngle
+    );
+
+
   ctx.fillStyle =
     "#7c3aed";
 
 
-  ctx.font =
-    "bold 12px Arial";
+  ctx.beginPath();
 
 
-  ctx.fillText(
-    "ω",
-    centerX +
-    radius +
-    11,
-    centerY -
-    25
+  ctx.arc(
+    ax,
+    ay,
+    3,
+    0,
+    Math.PI *
+    2
   );
+
+
+  ctx.fill();
 
 
   /*
@@ -3865,6 +3865,86 @@ function drawCircle(
 
 
   ctx.fillStyle =
+    "#7c3aed";
+
+
+  ctx.font =
+    "bold 12px Arial";
+
+
+  ctx.fillText(
+    "ω",
+    centerX +
+    radius +
+    16,
+    centerY -
+    10
+  );
+
+
+  /*
+  formula relationship
+  */
+
+  ctx.fillStyle =
+    "#475569";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    "그림자의 변위",
+    shadowAxisX -
+    45,
+    height -
+    48
+  );
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  ctx.font =
+    "bold 12px Arial";
+
+
+  ctx.fillText(
+    "x = A cos(ωt)",
+    shadowAxisX -
+    47,
+    height -
+    28
+  );
+
+
+  /*
+  phase
+  */
+
+  let degree =
+    (
+      theta *
+      180 /
+      Math.PI
+    ) %
+    360;
+
+
+  if(
+    degree <
+    0
+  ){
+
+    degree +=
+      360;
+
+  }
+
+
+  ctx.fillStyle =
     "#64748b";
 
 
@@ -3873,14 +3953,7 @@ function drawCircle(
 
 
   ctx.fillText(
-    `θ = ωt = ${(
-      (
-        theta *
-        180 /
-        Math.PI
-      ) %
-      360
-    ).toFixed(0)}°`,
+    `θ = ωt = ${degree.toFixed(0)}°`,
     14,
     height -
     20
@@ -3971,17 +4044,13 @@ function drawGraph(
 
 
   /*
-  두 주기 표시
+  two periods
   */
 
   const maxTime =
     2 *
     s.T;
 
-
-  /*
-  current display time inside two-period graph
-  */
 
   const graphTime =
     s.t %
@@ -4041,10 +4110,6 @@ function drawGraph(
       2;
 
 
-    /*
-    horizontal center
-    */
-
     ctx.beginPath();
 
 
@@ -4063,10 +4128,6 @@ function drawGraph(
 
     ctx.stroke();
 
-
-    /*
-    vertical grid
-    */
 
     for(
       let i =
@@ -4108,10 +4169,6 @@ function drawGraph(
 
   }
 
-
-  /*
-  helper to draw one graph
-  */
 
   function drawSeries(
     index,
@@ -4227,10 +4284,6 @@ function drawGraph(
     ctx.stroke();
 
 
-    /*
-    label
-    */
-
     ctx.fillStyle =
       color;
 
@@ -4291,10 +4344,6 @@ function drawGraph(
     p.omega;
 
 
-  /*
-  x graph
-  */
-
   drawSeries(
 
     0,
@@ -4316,10 +4365,6 @@ function drawGraph(
 
   );
 
-
-  /*
-  v graph
-  */
 
   drawSeries(
 
@@ -4343,10 +4388,6 @@ function drawGraph(
 
   );
 
-
-  /*
-  a graph
-  */
 
   drawSeries(
 
@@ -4373,7 +4414,7 @@ function drawGraph(
 
 
   /*
-  current time line
+  current-time line
   */
 
   const currentX =
@@ -4420,7 +4461,94 @@ function drawGraph(
 
 
   /*
-  bottom time labels
+  current points
+  */
+
+  const currentValues = [
+
+    {
+      value:s.x,
+      max:p.A,
+      index:0,
+      color:"#2563eb"
+    },
+
+    {
+      value:s.v,
+      max:vmax,
+      index:1,
+      color:"#059669"
+    },
+
+    {
+      value:s.a,
+      max:amax,
+      index:2,
+      color:"#dc2626"
+    }
+
+  ];
+
+
+  currentValues.forEach(
+    item => {
+
+
+      const top =
+        margin.top +
+        item.index *
+        (
+          graphH +
+          gap
+        );
+
+
+      const center =
+        top +
+        graphH /
+        2;
+
+
+      const scale =
+        graphH *
+        .39 /
+        Math.max(
+          .0001,
+          item.max
+        );
+
+
+      const y =
+        center -
+        item.value *
+        scale;
+
+
+      ctx.beginPath();
+
+
+      ctx.arc(
+        currentX,
+        y,
+        5,
+        0,
+        Math.PI *
+        2
+      );
+
+
+      ctx.fillStyle =
+        item.color;
+
+
+      ctx.fill();
+
+    }
+  );
+
+
+  /*
+  time labels
   */
 
   ctx.fillStyle =
@@ -4512,11 +4640,6 @@ function update(){
       elapsedTime
     );
 
-
-  /*
-  slider uses 0~100%
-  over two periods
-  */
 
   const maxTime =
     2 *
@@ -4639,10 +4762,6 @@ function animate(
     dt;
 
 
-  /*
-  반복 재생
-  */
-
   const p =
     getParameters();
 
@@ -4721,7 +4840,7 @@ EVENTS
 
 
 /*
-TIME SLIDER
+time slider
 */
 
 timeSlider.addEventListener(
@@ -4771,7 +4890,7 @@ timeSlider.addEventListener(
 
 
 /*
-TOGGLES
+toggles
 */
 
 circleToggle.addEventListener(
@@ -4793,7 +4912,7 @@ energyToggle.addEventListener(
 
 
 /*
-START
+start
 */
 
 startButton.addEventListener(
@@ -4839,7 +4958,7 @@ startButton.addEventListener(
 
 
 /*
-PAUSE
+pause
 */
 
 pauseButton.addEventListener(
@@ -4881,7 +5000,7 @@ pauseButton.addEventListener(
 
 
 /*
-RESET
+reset
 */
 
 resetButton.addEventListener(
