@@ -1,0 +1,4521 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+탄성파의 성질과 활용 | 온라인 물리학 탐구실
+</title>
+
+
+<style>
+
+:root{
+
+  --panel:#ffffff;
+
+  --primary:#1e3a8a;
+  --primary2:#2563eb;
+
+  --text:#1f2937;
+  --subtext:#64748b;
+
+  --border:#e2e8f0;
+
+  --incident:#2563eb;
+  --reflected:#dc2626;
+  --result:#7c3aed;
+
+  --green:#059669;
+  --orange:#ea580c;
+
+  --shadow:
+    0 8px 24px
+    rgba(15,23,42,.08);
+
+  --radius:18px;
+
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+
+  margin:0;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    Arial,
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf4ff 0%,
+      #f8fbff 25%,
+      #f5f7fb 100%
+    );
+
+  color:var(--text);
+
+}
+
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+.container{
+
+  width:min(
+    94%,
+    1420px
+  );
+
+  margin:0 auto;
+
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .92
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.topbar{
+
+  min-height:68px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:18px;
+
+}
+
+
+.title-box strong{
+
+  display:block;
+
+  color:var(--primary);
+
+  font-size:1.1rem;
+
+}
+
+
+.title-box span{
+
+  color:var(--subtext);
+
+  font-size:.84rem;
+
+}
+
+
+.home-button{
+
+  padding:10px 15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:10px;
+
+  background:white;
+
+  color:var(--primary);
+
+  font-weight:700;
+
+}
+
+
+/* ========================================
+   INTRO
+======================================== */
+
+.intro{
+
+  padding:38px 0 24px;
+
+}
+
+
+.intro h1{
+
+  margin:0 0 8px;
+
+  color:#0f172a;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      2.7rem
+    );
+
+  letter-spacing:-.03em;
+
+}
+
+
+.intro p{
+
+  margin:0;
+
+  color:var(--subtext);
+
+  line-height:1.7;
+
+}
+
+
+.question{
+
+  margin-top:18px;
+
+  padding:16px 18px;
+
+  border-left:
+    5px solid
+    var(--primary2);
+
+  border-radius:12px;
+
+  background:#eff6ff;
+
+  color:#1e3a8a;
+
+  font-weight:700;
+
+  line-height:1.6;
+
+}
+
+
+/* ========================================
+   MODE
+======================================== */
+
+.mode-tabs{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:10px;
+
+  margin-bottom:22px;
+
+}
+
+
+.mode-button{
+
+  padding:13px 10px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:white;
+
+  color:#475569;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.mode-button.active{
+
+  background:var(--primary);
+
+  color:white;
+
+  border-color:var(--primary);
+
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.main-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(285px,340px)
+    minmax(0,1fr);
+
+  gap:22px;
+
+  align-items:start;
+
+}
+
+
+.panel{
+
+  padding:20px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius);
+
+  background:white;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+.panel h2{
+
+  margin:0 0 18px;
+
+  color:#0f172a;
+
+  font-size:1.15rem;
+
+}
+
+
+/* ========================================
+   CONTROL
+======================================== */
+
+.control{
+
+  margin-bottom:21px;
+
+}
+
+
+.control-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+
+  font-size:.92rem;
+
+  font-weight:700;
+
+}
+
+
+.control-value{
+
+  color:var(--primary2);
+
+}
+
+
+input[type="range"]{
+
+  width:100%;
+
+  accent-color:var(--primary2);
+
+  cursor:pointer;
+
+}
+
+
+select{
+
+  width:100%;
+
+  padding:10px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:10px;
+
+  background:white;
+
+}
+
+
+.buttons{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:20px;
+
+}
+
+
+button{
+
+  border:none;
+
+  border-radius:11px;
+
+  padding:12px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.start{
+
+  background:var(--primary2);
+
+  color:white;
+
+}
+
+
+.pause{
+
+  background:#e0e7ff;
+
+  color:#3730a3;
+
+}
+
+
+.reset{
+
+  background:#f1f5f9;
+
+  color:#334155;
+
+}
+
+
+.info-box{
+
+  margin-top:18px;
+
+  padding:14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  color:var(--subtext);
+
+  font-size:.87rem;
+
+  line-height:1.6;
+
+}
+
+
+.info-box strong{
+
+  display:block;
+
+  margin-bottom:5px;
+
+  color:var(--primary);
+
+}
+
+
+/* ========================================
+   SIMULATION
+======================================== */
+
+.toolbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:14px;
+
+}
+
+
+.toolbar h2{
+  margin:0;
+}
+
+
+.status{
+
+  padding:6px 10px;
+
+  border-radius:999px;
+
+  background:#eef2ff;
+
+  color:#3730a3;
+
+  font-size:.85rem;
+
+  font-weight:700;
+
+}
+
+
+.visual-box{
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+  background:white;
+
+}
+
+
+.visual-title{
+
+  padding:11px 14px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:#f8fafc;
+
+  font-size:.9rem;
+
+  font-weight:700;
+
+}
+
+
+#waveCanvas{
+
+  display:block;
+
+  width:100%;
+
+  height:470px;
+
+}
+
+
+.canvas-note{
+
+  padding:10px 14px 13px;
+
+  color:var(--subtext);
+
+  font-size:.8rem;
+
+  line-height:1.5;
+
+}
+
+
+/* ========================================
+   VALUES
+======================================== */
+
+.value-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(5,minmax(0,1fr));
+
+  gap:10px;
+
+  margin-top:18px;
+
+}
+
+
+.value-card{
+
+  padding:13px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:11px;
+
+  background:#f8fafc;
+
+}
+
+
+.value-card span{
+
+  display:block;
+
+  margin-bottom:4px;
+
+  color:var(--subtext);
+
+  font-size:.77rem;
+
+}
+
+
+.value-card strong{
+
+  font-size:1.02rem;
+
+}
+
+
+/* ========================================
+   EQUATIONS
+======================================== */
+
+.equation-section{
+
+  margin-top:22px;
+
+  padding-top:20px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+}
+
+
+.main-equation{
+
+  padding:17px;
+
+  border-radius:13px;
+
+  background:#f5f3ff;
+
+  color:#5b21b6;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.3rem;
+
+  font-weight:700;
+
+}
+
+
+.relation-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+
+.relation-card{
+
+  padding:14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+}
+
+
+.relation-card span{
+
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--subtext);
+
+  font-size:.77rem;
+
+}
+
+
+.relation-card strong{
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+}
+
+
+/* ========================================
+   REFLECTION LEGEND
+======================================== */
+
+.legend{
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:14px;
+
+  margin-top:15px;
+
+  font-size:.81rem;
+
+  font-weight:700;
+
+}
+
+
+.legend-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+}
+
+
+.legend-line{
+
+  width:24px;
+
+  height:3px;
+
+  border-radius:99px;
+
+}
+
+
+.incident-line{
+  background:var(--incident);
+}
+
+
+.reflected-line{
+  background:var(--reflected);
+}
+
+
+.result-line{
+  background:var(--result);
+}
+
+
+/* ========================================
+   LEARNING
+======================================== */
+
+.learning{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:22px;
+
+  margin-top:28px;
+
+}
+
+
+.learning p,
+.learning li{
+
+  line-height:1.65;
+
+}
+
+
+.learning li{
+
+  margin-bottom:10px;
+
+}
+
+
+.learning-equation{
+
+  margin:12px 0;
+
+  padding:14px;
+
+  border-radius:11px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.1rem;
+
+  font-weight:700;
+
+}
+
+
+.tip{
+
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#ecfdf5;
+
+  color:#065f46;
+
+  line-height:1.6;
+
+}
+
+
+.warning{
+
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#fff7ed;
+
+  color:#9a3412;
+
+  line-height:1.6;
+
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+
+table{
+
+  width:100%;
+
+  margin-top:14px;
+
+  border-collapse:collapse;
+
+  font-size:.88rem;
+
+}
+
+
+th,
+td{
+
+  padding:10px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  text-align:center;
+
+}
+
+
+th{
+  background:#f8fafc;
+}
+
+
+/* ========================================
+   FOOTER
+======================================== */
+
+footer{
+
+  padding:40px 0;
+
+  color:var(--subtext);
+
+  text-align:center;
+
+  font-size:.85rem;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media(max-width:1050px){
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:850px){
+
+  .mode-tabs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .learning{
+    grid-template-columns:1fr;
+  }
+
+  .value-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .mode-tabs{
+    grid-template-columns:1fr;
+  }
+
+  .relation-grid{
+    grid-template-columns:1fr;
+  }
+
+  #waveCanvas{
+    height:400px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<header>
+
+<div class="container topbar">
+
+
+  <div class="title-box">
+
+    <strong>
+      온라인 물리학 탐구실
+    </strong>
+
+    <span>
+      Ⅲ. 탄성파와 소리
+    </span>
+
+  </div>
+
+
+  <a
+    class="home-button"
+    href="../index.html"
+  >
+    ← 메인으로
+  </a>
+
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- ========================================
+     INTRO
+======================================== -->
+
+<section class="intro">
+
+
+  <h1>
+    🌊 탄성파의 성질과 활용
+  </h1>
+
+
+  <p>
+
+    용수철을 따라 전달되는 횡파와 종파를 관찰하고,
+    파동의 속력과 자유단·고정단에서의 반사,
+    입사파와 반사파의 중첩을 탐구합니다.
+
+  </p>
+
+
+  <div class="question">
+
+    탐구 질문 :
+    파동이 이동할 때 실제로 이동하는 것은 매질일까,
+    에너지일까? 또한 파동은 경계에서 어떻게 반사되고 중첩될까?
+
+  </div>
+
+
+</section>
+
+
+
+<!-- ========================================
+     MODES
+======================================== -->
+
+<div class="mode-tabs">
+
+
+  <button
+    id="transverseButton"
+    class="mode-button active"
+  >
+    ① 횡파
+  </button>
+
+
+  <button
+    id="longitudinalButton"
+    class="mode-button"
+  >
+    ② 종파
+  </button>
+
+
+  <button
+    id="reflectionButton"
+    class="mode-button"
+  >
+    ③ 자유단·고정단 반사
+  </button>
+
+
+  <button
+    id="superpositionButton"
+    class="mode-button"
+  >
+    ④ 반사파의 중첩
+  </button>
+
+
+</div>
+
+
+
+<section class="main-grid">
+
+
+<!-- ========================================
+     CONTROL
+======================================== -->
+
+<aside class="panel">
+
+
+  <h2 id="controlTitle">
+    횡파 조건
+  </h2>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        진폭 A
+      </span>
+
+      <span
+        id="amplitudeValue"
+        class="control-value"
+      >
+        30 cm
+      </span>
+
+    </div>
+
+
+    <input
+      id="amplitude"
+      type="range"
+      min="10"
+      max="50"
+      value="30"
+      step="1"
+    >
+
+  </div>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        진동수 f
+      </span>
+
+      <span
+        id="frequencyValue"
+        class="control-value"
+      >
+        2.0 Hz
+      </span>
+
+    </div>
+
+
+    <input
+      id="frequency"
+      type="range"
+      min=".5"
+      max="5"
+      value="2"
+      step=".1"
+    >
+
+  </div>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        파동의 속력 v
+      </span>
+
+      <span
+        id="speedValue"
+        class="control-value"
+      >
+        4.0 m/s
+      </span>
+
+    </div>
+
+
+    <input
+      id="speed"
+      type="range"
+      min="1"
+      max="10"
+      value="4"
+      step=".1"
+    >
+
+  </div>
+
+
+
+  <div
+    id="boundaryControl"
+    class="control"
+    style="display:none;"
+  >
+
+
+    <div class="control-head">
+
+      <span>
+        끝점 조건
+      </span>
+
+    </div>
+
+
+    <select id="boundary">
+
+      <option value="fixed">
+        고정단
+      </option>
+
+      <option value="free">
+        자유단
+      </option>
+
+    </select>
+
+
+  </div>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        시간
+      </span>
+
+      <span
+        id="timeValue"
+        class="control-value"
+      >
+        0.00 s
+      </span>
+
+    </div>
+
+
+    <input
+      id="timeSlider"
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      step=".1"
+    >
+
+  </div>
+
+
+
+  <div class="buttons">
+
+
+    <button
+      id="startButton"
+      class="start"
+    >
+      ▶ 시작
+    </button>
+
+
+    <button
+      id="pauseButton"
+      class="pause"
+    >
+      Ⅱ 일시정지
+    </button>
+
+
+    <button
+      id="resetButton"
+      class="reset"
+    >
+      ↺ 초기화
+    </button>
+
+
+  </div>
+
+
+
+  <div
+    id="infoBox"
+    class="info-box"
+  >
+
+    <strong>
+      횡파
+    </strong>
+
+    매질의 입자는 위아래로 진동하지만
+    파동은 수평 방향으로 진행합니다.
+    따라서 매질의 진동 방향과 파동의 진행 방향이 서로 수직입니다.
+
+  </div>
+
+
+</aside>
+
+
+
+<!-- ========================================
+     SIMULATION
+======================================== -->
+
+<section class="panel">
+
+
+  <div class="toolbar">
+
+
+    <h2 id="simulationTitle">
+      용수철에서의 횡파
+    </h2>
+
+
+    <span
+      id="status"
+      class="status"
+    >
+      진행 중
+    </span>
+
+
+  </div>
+
+
+
+  <div class="visual-box">
+
+
+    <div
+      id="visualTitle"
+      class="visual-title"
+    >
+      매질의 진동과 파동의 전파
+    </div>
+
+
+    <canvas id="waveCanvas"></canvas>
+
+
+    <div
+      id="canvasNote"
+      class="canvas-note"
+    >
+
+      파란 점은 용수철을 구성하는 매질의 입자입니다.
+      입자 자체는 파동과 함께 오른쪽으로 이동하지 않고
+      평형 위치 주변에서 진동합니다.
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- VALUES -->
+
+
+  <div class="value-grid">
+
+
+    <div class="value-card">
+
+      <span>
+        진폭 A
+      </span>
+
+      <strong id="liveAmplitude">
+        0.30 m
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        진동수 f
+      </span>
+
+      <strong id="liveFrequency">
+        2.00 Hz
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        파동 속력 v
+      </span>
+
+      <strong id="liveSpeed">
+        4.00 m/s
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        파장 λ
+      </span>
+
+      <strong id="liveWavelength">
+        2.00 m
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        주기 T
+      </span>
+
+      <strong id="livePeriod">
+        0.50 s
+      </strong>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- EQUATION -->
+
+
+  <div class="equation-section">
+
+
+    <h2>
+      파동의 속력
+    </h2>
+
+
+    <div class="main-equation">
+
+      v = fλ
+      &nbsp;&nbsp;&nbsp;
+      λ = v/f
+      &nbsp;&nbsp;&nbsp;
+      T = 1/f
+
+    </div>
+
+
+
+    <div class="relation-grid">
+
+
+      <div class="relation-card">
+
+        <span>
+          현재 파장
+        </span>
+
+        <strong id="lambdaCalculation">
+          λ = 4.0 / 2.0 = 2.0 m
+        </strong>
+
+      </div>
+
+
+      <div class="relation-card">
+
+        <span>
+          현재 주기
+        </span>
+
+        <strong id="periodCalculation">
+          T = 1 / 2.0 = 0.50 s
+        </strong>
+
+      </div>
+
+
+      <div class="relation-card">
+
+        <span>
+          파동의 진행
+        </span>
+
+        <strong id="directionDescription">
+          입자 ↑↓ · 파동 →
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="reflectionLegend"
+      class="legend"
+      style="display:none;"
+    >
+
+
+      <div class="legend-item">
+
+        <span
+          class="legend-line incident-line"
+        ></span>
+
+        입사파
+
+      </div>
+
+
+      <div class="legend-item">
+
+        <span
+          class="legend-line reflected-line"
+        ></span>
+
+        반사파
+
+      </div>
+
+
+      <div class="legend-item">
+
+        <span
+          class="legend-line result-line"
+        ></span>
+
+        중첩된 합성파
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+</section>
+
+
+
+<!-- ========================================
+     LEARNING
+======================================== -->
+
+<section class="learning">
+
+
+<article class="panel">
+
+
+<h2>
+  탄성파의 핵심 개념
+</h2>
+
+
+<p>
+
+탄성력을 통해 매질의 한 부분에서 발생한 진동이
+이웃한 부분으로 차례로 전달되는 파동을
+<strong>탄성파</strong>라고 합니다.
+
+</p>
+
+
+<div class="learning-equation">
+
+v = fλ
+
+</div>
+
+
+<p>
+
+파동이 진행할 때 매질의 입자는 평형 위치 근처에서 진동하고,
+<strong>에너지와 파동의 상태가 공간을 따라 전달</strong>됩니다.
+
+</p>
+
+
+<div class="table-wrap">
+
+<table>
+
+
+<thead>
+
+<tr>
+
+  <th>
+    구분
+  </th>
+
+  <th>
+    매질의 진동 방향
+  </th>
+
+  <th>
+    파동 진행 방향
+  </th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+  <td>
+    횡파
+  </td>
+
+  <td>
+    진행 방향에 수직
+  </td>
+
+  <td>
+    →
+  </td>
+
+</tr>
+
+
+<tr>
+
+  <td>
+    종파
+  </td>
+
+  <td>
+    진행 방향과 나란함
+  </td>
+
+  <td>
+    →
+  </td>
+
+</tr>
+
+</tbody>
+
+
+</table>
+
+</div>
+
+
+
+<h2 style="margin-top:26px;">
+  경계에서의 반사
+</h2>
+
+
+<div class="learning-equation">
+
+고정단 반사 → 위상 반전
+
+</div>
+
+
+<div class="learning-equation">
+
+자유단 반사 → 위상 반전 없음
+
+</div>
+
+
+<div class="tip">
+
+고정단에서는 끝점의 변위가 항상 0이어야 하므로
+반사파의 위상이 반전됩니다.
+
+반면 자유단에서는 끝점이 움직일 수 있기 때문에
+반사될 때 위상이 반전되지 않습니다.
+
+</div>
+
+
+<div class="warning">
+
+입사파와 반사파가 같은 공간에 동시에 존재하면
+한 파동이 다른 파동을 없애는 것이 아니라,
+각 파동의 순간 변위를 더한 값이
+실제 매질의 변위가 됩니다.
+
+</div>
+
+
+</article>
+
+
+
+<article class="panel">
+
+
+<h2>
+  탐구 활동
+</h2>
+
+
+<ol>
+
+
+<li>
+
+횡파 모드에서 한 개의 입자를 관찰하세요.
+파동은 오른쪽으로 이동하지만
+그 입자는 실제로 어느 방향으로 움직이는지 확인하세요.
+
+</li>
+
+
+<li>
+
+종파 모드로 변경하여
+입자의 움직임과 파동의 진행 방향을 비교하세요.
+압축 부분이 어떻게 이동하는지도 관찰하세요.
+
+</li>
+
+
+<li>
+
+진동수를 일정하게 유지하고
+파동의 속력을 증가시키세요.
+파장이 어떻게 변하는지
+v = fλ를 이용하여 설명하세요.
+
+</li>
+
+
+<li>
+
+파동의 속력을 일정하게 유지하고
+진동수를 증가시키세요.
+화면에서 파장의 변화를 확인하세요.
+
+</li>
+
+
+<li>
+
+고정단 반사를 선택하고
+마루가 끝점에서 반사된 후
+골로 돌아오는지 관찰하세요.
+
+</li>
+
+
+<li>
+
+자유단 반사를 선택하세요.
+고정단 반사와 비교하여
+반사파의 위상 차이를 설명하세요.
+
+</li>
+
+
+<li>
+
+반사파의 중첩 모드에서
+파란 입사파와 빨간 반사파가 겹칠 때
+보라색 합성파의 변위를 관찰하세요.
+
+</li>
+
+
+<li>
+
+입사파와 반사파의 변위가 같은 방향일 때와
+반대 방향일 때 합성파의 진폭을 비교하세요.
+
+</li>
+
+
+<li>
+
+같은 매질에서 진동수만 바꾸었을 때
+파동의 속력은 바뀌지 않는다고 가정하면
+파장과 진동수 사이에는 어떤 관계가 있는지 설명하세요.
+
+</li>
+
+
+</ol>
+
+
+</article>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<div class="container">
+
+온라인 물리학 탐구실 ·
+2022 개정 교육과정 「역학과 에너지」
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+/*
+========================================================
+DOM
+========================================================
+*/
+
+const transverseButton =
+  document.getElementById(
+    "transverseButton"
+  );
+
+
+const longitudinalButton =
+  document.getElementById(
+    "longitudinalButton"
+  );
+
+
+const reflectionButton =
+  document.getElementById(
+    "reflectionButton"
+  );
+
+
+const superpositionButton =
+  document.getElementById(
+    "superpositionButton"
+  );
+
+
+const amplitudeSlider =
+  document.getElementById(
+    "amplitude"
+  );
+
+
+const frequencySlider =
+  document.getElementById(
+    "frequency"
+  );
+
+
+const speedSlider =
+  document.getElementById(
+    "speed"
+  );
+
+
+const timeSlider =
+  document.getElementById(
+    "timeSlider"
+  );
+
+
+const boundaryControl =
+  document.getElementById(
+    "boundaryControl"
+  );
+
+
+const boundarySelect =
+  document.getElementById(
+    "boundary"
+  );
+
+
+const amplitudeValue =
+  document.getElementById(
+    "amplitudeValue"
+  );
+
+
+const frequencyValue =
+  document.getElementById(
+    "frequencyValue"
+  );
+
+
+const speedValue =
+  document.getElementById(
+    "speedValue"
+  );
+
+
+const timeValue =
+  document.getElementById(
+    "timeValue"
+  );
+
+
+const startButton =
+  document.getElementById(
+    "startButton"
+  );
+
+
+const pauseButton =
+  document.getElementById(
+    "pauseButton"
+  );
+
+
+const resetButton =
+  document.getElementById(
+    "resetButton"
+  );
+
+
+const controlTitle =
+  document.getElementById(
+    "controlTitle"
+  );
+
+
+const simulationTitle =
+  document.getElementById(
+    "simulationTitle"
+  );
+
+
+const visualTitle =
+  document.getElementById(
+    "visualTitle"
+  );
+
+
+const canvasNote =
+  document.getElementById(
+    "canvasNote"
+  );
+
+
+const infoBox =
+  document.getElementById(
+    "infoBox"
+  );
+
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+const reflectionLegend =
+  document.getElementById(
+    "reflectionLegend"
+  );
+
+
+const directionDescription =
+  document.getElementById(
+    "directionDescription"
+  );
+
+
+const canvas =
+  document.getElementById(
+    "waveCanvas"
+  );
+
+
+const ctx =
+  canvas.getContext(
+    "2d"
+  );
+
+
+/*
+========================================================
+STATE
+========================================================
+*/
+
+let mode =
+  "transverse";
+
+
+let running =
+  false;
+
+
+let paused =
+  false;
+
+
+let elapsedTime =
+  0;
+
+
+let lastTimestamp =
+  null;
+
+
+let animationId =
+  null;
+
+
+/*
+========================================================
+PARAMETERS
+========================================================
+*/
+
+function getParameters(){
+
+
+  const amplitude =
+    Number(
+      amplitudeSlider.value
+    ) /
+    100;
+
+
+  const frequency =
+    Number(
+      frequencySlider.value
+    );
+
+
+  const speed =
+    Number(
+      speedSlider.value
+    );
+
+
+  const wavelength =
+    speed /
+    frequency;
+
+
+  const period =
+    1 /
+    frequency;
+
+
+  const omega =
+    2 *
+    Math.PI *
+    frequency;
+
+
+  const waveNumber =
+    2 *
+    Math.PI /
+    wavelength;
+
+
+  return{
+
+    amplitude,
+    frequency,
+    speed,
+    wavelength,
+    period,
+    omega,
+    waveNumber
+
+  };
+
+}
+
+
+/*
+========================================================
+MODE
+========================================================
+*/
+
+function setMode(
+  newMode
+){
+
+
+  mode =
+    newMode;
+
+
+  [
+    transverseButton,
+    longitudinalButton,
+    reflectionButton,
+    superpositionButton
+  ].forEach(
+    button =>
+      button.classList.remove(
+        "active"
+      )
+  );
+
+
+  boundaryControl.style.display =
+    "none";
+
+
+  reflectionLegend.style.display =
+    "none";
+
+
+  if(
+    mode ===
+    "transverse"
+  ){
+
+
+    transverseButton.classList.add(
+      "active"
+    );
+
+
+    controlTitle.textContent =
+      "횡파 조건";
+
+
+    simulationTitle.textContent =
+      "용수철에서의 횡파";
+
+
+    visualTitle.textContent =
+      "매질의 진동과 파동의 전파";
+
+
+    directionDescription.textContent =
+      "입자 ↑↓ · 파동 →";
+
+
+    canvasNote.textContent =
+      "파란 점은 매질의 입자입니다. 파동은 오른쪽으로 진행하지만 각 입자는 평형 위치를 중심으로 위아래로 진동합니다.";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>횡파</strong>
+      매질의 입자는 파동의 진행 방향에 수직으로 진동합니다.
+      화면의 한 점을 계속 관찰하면 그 입자가 파동과 함께
+      오른쪽으로 이동하지 않는 것을 확인할 수 있습니다.
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "longitudinal"
+  ){
+
+
+    longitudinalButton.classList.add(
+      "active"
+    );
+
+
+    controlTitle.textContent =
+      "종파 조건";
+
+
+    simulationTitle.textContent =
+      "용수철에서의 종파";
+
+
+    visualTitle.textContent =
+      "압축과 팽창의 전파";
+
+
+    directionDescription.textContent =
+      "입자 ↔ · 파동 →";
+
+
+    canvasNote.textContent =
+      "종파에서는 입자가 좌우로 진동합니다. 입자가 밀집된 압축 부분과 성긴 팽창 부분이 오른쪽으로 이동합니다.";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>종파</strong>
+      매질의 입자가 파동의 진행 방향과 나란하게 진동합니다.
+      압축과 팽창 영역이 이동하는 것과
+      개별 입자의 왕복 운동을 구별하여 관찰하세요.
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "reflection"
+  ){
+
+
+    reflectionButton.classList.add(
+      "active"
+    );
+
+
+    boundaryControl.style.display =
+      "block";
+
+
+    controlTitle.textContent =
+      "반사 조건";
+
+
+    simulationTitle.textContent =
+      "자유단·고정단에서의 반사";
+
+
+    visualTitle.textContent =
+      "펄스의 입사와 반사";
+
+
+    directionDescription.textContent =
+      "입사 → · 반사 ←";
+
+
+    canvasNote.textContent =
+      "오른쪽 경계에서 펄스가 반사됩니다. 고정단과 자유단을 바꾸어 반사된 펄스의 방향을 비교하세요.";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>파동의 반사</strong>
+      고정단에서는 반사파의 위상이 반전되고,
+      자유단에서는 위상이 반전되지 않습니다.
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "superposition"
+  ){
+
+
+    superpositionButton.classList.add(
+      "active"
+    );
+
+
+    boundaryControl.style.display =
+      "block";
+
+
+    reflectionLegend.style.display =
+      "flex";
+
+
+    controlTitle.textContent =
+      "중첩 조건";
+
+
+    simulationTitle.textContent =
+      "입사파와 반사파의 중첩";
+
+
+    visualTitle.textContent =
+      "입사파 + 반사파 = 합성파";
+
+
+    directionDescription.textContent =
+      "y = y입사 + y반사";
+
+
+    canvasNote.textContent =
+      "파란색은 입사파, 빨간색은 반사파, 보라색은 두 파동의 순간 변위를 더한 실제 합성파입니다.";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>중첩 원리</strong>
+      두 파동이 같은 공간을 지날 때
+      각 위치에서 실제 변위는 두 파동의 변위를
+      대수적으로 더한 값입니다.
+      `;
+
+  }
+
+
+  running =
+    false;
+
+
+  paused =
+    false;
+
+
+  elapsedTime =
+    0;
+
+
+  pauseButton.textContent =
+    "Ⅱ 일시정지";
+
+
+  update();
+
+}
+
+
+/*
+========================================================
+TEXT UPDATE
+========================================================
+*/
+
+function updateText(){
+
+
+  const p =
+    getParameters();
+
+
+  amplitudeValue.textContent =
+    `${(
+      p.amplitude *
+      100
+    ).toFixed(0)} cm`;
+
+
+  frequencyValue.textContent =
+    `${p.frequency.toFixed(1)} Hz`;
+
+
+  speedValue.textContent =
+    `${p.speed.toFixed(1)} m/s`;
+
+
+  timeValue.textContent =
+    `${elapsedTime.toFixed(2)} s`;
+
+
+  document.getElementById(
+    "liveAmplitude"
+  ).textContent =
+    `${p.amplitude.toFixed(2)} m`;
+
+
+  document.getElementById(
+    "liveFrequency"
+  ).textContent =
+    `${p.frequency.toFixed(2)} Hz`;
+
+
+  document.getElementById(
+    "liveSpeed"
+  ).textContent =
+    `${p.speed.toFixed(2)} m/s`;
+
+
+  document.getElementById(
+    "liveWavelength"
+  ).textContent =
+    `${p.wavelength.toFixed(2)} m`;
+
+
+  document.getElementById(
+    "livePeriod"
+  ).textContent =
+    `${p.period.toFixed(2)} s`;
+
+
+  document.getElementById(
+    "lambdaCalculation"
+  ).textContent =
+    `λ = ${p.speed.toFixed(1)} / ${p.frequency.toFixed(1)} = ${p.wavelength.toFixed(2)} m`;
+
+
+  document.getElementById(
+    "periodCalculation"
+  ).textContent =
+    `T = 1 / ${p.frequency.toFixed(1)} = ${p.period.toFixed(2)} s`;
+
+}
+
+
+/*
+========================================================
+CANVAS
+========================================================
+*/
+
+function resizeCanvas(){
+
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  const ratio =
+    window.devicePixelRatio ||
+    1;
+
+
+  canvas.width =
+    rect.width *
+    ratio;
+
+
+  canvas.height =
+    rect.height *
+    ratio;
+
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+
+  update();
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+/*
+========================================================
+ARROW
+========================================================
+*/
+
+function drawArrow(
+  x1,
+  y1,
+  x2,
+  y2,
+  color,
+  label
+){
+
+
+  const angle =
+    Math.atan2(
+      y2-y1,
+      x2-x1
+    );
+
+
+  const head =
+    9;
+
+
+  ctx.strokeStyle =
+    color;
+
+
+  ctx.fillStyle =
+    color;
+
+
+  ctx.lineWidth =
+    3;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x1,
+    y1
+  );
+
+
+  ctx.lineTo(
+    x2,
+    y2
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x2,
+    y2
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle -
+      Math.PI/6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle -
+      Math.PI/6
+    )
+
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle +
+      Math.PI/6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle +
+      Math.PI/6
+    )
+
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fill();
+
+
+  if(
+    label
+  ){
+
+
+    ctx.font =
+      "bold 12px Arial";
+
+
+    ctx.fillText(
+      label,
+      (
+        x1+x2
+      )/2,
+      (
+        y1+y2
+      )/2 -
+      10
+    );
+
+  }
+
+}
+
+
+/*
+========================================================
+BACKGROUND
+========================================================
+*/
+
+function clearCanvas(){
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fbff";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+}
+
+
+/*
+========================================================
+TRANSVERSE
+========================================================
+*/
+
+function drawTransverse(){
+
+
+  clearCanvas();
+
+
+  const p =
+    getParameters();
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  const left =
+    55;
+
+
+  const right =
+    width -
+    35;
+
+
+  const centerY =
+    height *
+    .54;
+
+
+  const physicalLength =
+    8;
+
+
+  const amplitudePixels =
+    Math.min(
+      85,
+      p.amplitude *
+      230
+    );
+
+
+  /*
+  equilibrium
+  */
+
+  ctx.setLineDash(
+    [5,5]
+  );
+
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+
+  ctx.lineWidth =
+    1.5;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    left,
+    centerY
+  );
+
+
+  ctx.lineTo(
+    right,
+    centerY
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.setLineDash(
+    []
+  );
+
+
+  /*
+  spring wave
+  */
+
+  const particles =
+    55;
+
+
+  let previousX =
+    null;
+
+
+  let previousY =
+    null;
+
+
+  for(
+    let i =
+      0;
+
+    i <
+      particles;
+
+    i++
+  ){
+
+
+    const xPhysical =
+      physicalLength *
+      i /
+      (
+        particles -
+        1
+      );
+
+
+    const displacement =
+      Math.sin(
+        p.waveNumber *
+        xPhysical -
+        p.omega *
+        elapsedTime
+      );
+
+
+    const x =
+      left +
+      (
+        right -
+        left
+      ) *
+      i /
+      (
+        particles -
+        1
+      );
+
+
+    const y =
+      centerY -
+      amplitudePixels *
+      displacement;
+
+
+    if(
+      i >
+      0
+    ){
+
+
+      ctx.strokeStyle =
+        "#64748b";
+
+
+      ctx.lineWidth =
+        2;
+
+
+      ctx.beginPath();
+
+
+      ctx.moveTo(
+        previousX,
+        previousY
+      );
+
+
+      ctx.lineTo(
+        x,
+        y
+      );
+
+
+      ctx.stroke();
+
+    }
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      x,
+      y,
+      4,
+      0,
+      Math.PI *
+      2
+    );
+
+
+    ctx.fillStyle =
+      i ===
+      Math.floor(
+        particles *
+        .38
+      )
+      ?
+      "#ea580c"
+      :
+      "#2563eb";
+
+
+    ctx.fill();
+
+
+    previousX =
+      x;
+
+
+    previousY =
+      y;
+
+  }
+
+
+  /*
+  propagation direction
+  */
+
+  drawArrow(
+    width *
+    .32,
+    55,
+    width *
+    .70,
+    55,
+    "#7c3aed",
+    "파동 진행 방향"
+  );
+
+
+  /*
+  particle vibration arrow
+  */
+
+  const markedX =
+    left +
+    (
+      right-left
+    ) *
+    .38;
+
+
+  drawArrow(
+    markedX,
+    centerY+45,
+    markedX,
+    centerY-45,
+    "#ea580c",
+    ""
+  );
+
+
+  ctx.fillStyle =
+    "#c2410c";
+
+
+  ctx.font =
+    "bold 12px Arial";
+
+
+  ctx.fillText(
+    "입자의 진동",
+    markedX+10,
+    centerY-48
+  );
+
+
+  /*
+  wavelength
+  */
+
+  const wavelengthPixels =
+    (
+      right-left
+    ) *
+    p.wavelength /
+    physicalLength;
+
+
+  const x0 =
+    left+20;
+
+
+  const x1 =
+    Math.min(
+      right-10,
+      x0+
+      wavelengthPixels
+    );
+
+
+  ctx.strokeStyle =
+    "#059669";
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x0,
+    height-70
+  );
+
+
+  ctx.lineTo(
+    x1,
+    height-70
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x0,
+    height-77
+  );
+
+
+  ctx.lineTo(
+    x0,
+    height-63
+  );
+
+
+  ctx.moveTo(
+    x1,
+    height-77
+  );
+
+
+  ctx.lineTo(
+    x1,
+    height-63
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.fillStyle =
+    "#047857";
+
+
+  ctx.font =
+    "bold 13px Arial";
+
+
+  ctx.fillText(
+    `λ = ${p.wavelength.toFixed(2)} m`,
+    (
+      x0+x1
+    )/2 -
+    40,
+    height-82
+  );
+
+}
+
+
+/*
+========================================================
+LONGITUDINAL
+========================================================
+*/
+
+function drawLongitudinal(){
+
+
+  clearCanvas();
+
+
+  const p =
+    getParameters();
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  const left =
+    55;
+
+
+  const right =
+    width-40;
+
+
+  const centerY =
+    height*.52;
+
+
+  const physicalLength =
+    8;
+
+
+  const particles =
+    60;
+
+
+  const particleAmplitude =
+    Math.min(
+      24,
+      p.amplitude *
+      70
+    );
+
+
+  /*
+  base line
+  */
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    left,
+    centerY
+  );
+
+
+  ctx.lineTo(
+    right,
+    centerY
+  );
+
+
+  ctx.stroke();
+
+
+  let positions =
+    [];
+
+
+  for(
+    let i =
+      0;
+
+    i <
+      particles;
+
+    i++
+  ){
+
+
+    const xPhysical =
+      physicalLength *
+      i /
+      (
+        particles -
+        1
+      );
+
+
+    const displacement =
+      particleAmplitude *
+      Math.sin(
+        p.waveNumber *
+        xPhysical -
+        p.omega *
+        elapsedTime
+      );
+
+
+    const equilibriumX =
+      left+
+      (
+        right-left
+      )*
+      i/
+      (
+        particles-1
+      );
+
+
+    positions.push(
+      equilibriumX+
+      displacement
+    );
+
+  }
+
+
+  /*
+  connecting spring
+  */
+
+  ctx.strokeStyle =
+    "#64748b";
+
+
+  ctx.lineWidth =
+    1.7;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    positions[0],
+    centerY
+  );
+
+
+  positions.forEach(
+    x =>
+      ctx.lineTo(
+        x,
+        centerY
+      )
+  );
+
+
+  ctx.stroke();
+
+
+  /*
+  particles
+  */
+
+  positions.forEach(
+    (
+      x,
+      i
+    ) => {
+
+
+      ctx.beginPath();
+
+
+      ctx.arc(
+        x,
+        centerY,
+        4,
+        0,
+        Math.PI*2
+      );
+
+
+      ctx.fillStyle =
+        i ===
+        22
+        ?
+        "#ea580c"
+        :
+        "#2563eb";
+
+
+      ctx.fill();
+
+    }
+  );
+
+
+  /*
+  compression highlighting
+  */
+
+  for(
+    let i =
+      1;
+
+    i <
+      positions.length;
+
+    i++
+  ){
+
+
+    const spacing =
+      positions[i]-
+      positions[i-1];
+
+
+    const normalSpacing =
+      (
+        right-left
+      )/
+      (
+        particles-1
+      );
+
+
+    if(
+      spacing <
+      normalSpacing*.68
+    ){
+
+
+      ctx.fillStyle =
+        "rgba(220,38,38,.10)";
+
+
+      ctx.fillRect(
+        positions[i-1]-4,
+        centerY-45,
+        Math.max(
+          8,
+          spacing+8
+        ),
+        90
+      );
+
+    }
+
+  }
+
+
+  /*
+  propagation
+  */
+
+  drawArrow(
+    width*.30,
+    55,
+    width*.70,
+    55,
+    "#7c3aed",
+    "압축·팽창의 진행"
+  );
+
+
+  /*
+  particle vibration
+  */
+
+  const marked =
+    positions[22];
+
+
+  drawArrow(
+    marked-40,
+    centerY+60,
+    marked+40,
+    centerY+60,
+    "#ea580c",
+    "입자의 진동"
+  );
+
+
+  ctx.fillStyle =
+    "#991b1b";
+
+
+  ctx.font =
+    "bold 12px Arial";
+
+
+  ctx.fillText(
+    "붉은 영역 = 압축",
+    25,
+    height-30
+  );
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+
+  ctx.fillText(
+    "입자는 좌우 왕복 운동 · 압축과 팽창은 오른쪽으로 전파",
+    width*.33,
+    height-30
+  );
+
+}
+
+
+/*
+========================================================
+GAUSSIAN PULSE
+========================================================
+*/
+
+function gaussian(
+  x,
+  center,
+  width
+){
+
+
+  return Math.exp(
+    -Math.pow(
+      (
+        x-center
+      )/
+      width,
+      2
+    )
+  );
+
+}
+
+
+/*
+========================================================
+REFLECTION
+========================================================
+*/
+
+function pulseValues(
+  x,
+  length,
+  time,
+  speed
+){
+
+
+  /*
+  pulse starts at 15% of length
+  */
+
+  const start =
+    length*.15;
+
+
+  const pulseWidth =
+    length*.065;
+
+
+  /*
+  incident center
+  */
+
+  const incidentCenter =
+    start+
+    speed*
+    time;
+
+
+  let incident =
+    0;
+
+
+  let reflected =
+    0;
+
+
+  /*
+  incident still represented mathematically
+  */
+
+  if(
+    incidentCenter <=
+    length+
+    pulseWidth*4
+  ){
+
+
+    incident =
+      gaussian(
+        x,
+        incidentCenter,
+        pulseWidth
+      );
+
+  }
+
+
+  /*
+  reflection begins after pulse reaches boundary
+  */
+
+  const arrivalTime =
+    (
+      length-start
+    )/
+    speed;
+
+
+  if(
+    time >
+    arrivalTime
+  ){
+
+
+    const reflectedCenter =
+      length-
+      speed*
+      (
+        time-arrivalTime
+      );
+
+
+    let sign =
+      boundarySelect.value ===
+      "fixed"
+      ?
+      -1
+      :
+      1;
+
+
+    reflected =
+      sign*
+      gaussian(
+        x,
+        reflectedCenter,
+        pulseWidth
+      );
+
+  }
+
+
+  return{
+
+    incident,
+    reflected,
+    total:
+      incident+
+      reflected
+
+  };
+
+}
+
+
+/*
+========================================================
+DRAW REFLECTION
+========================================================
+*/
+
+function drawReflection(
+  showComponents
+){
+
+
+  clearCanvas();
+
+
+  const p =
+    getParameters();
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  const left =
+    55;
+
+
+  const right =
+    width-60;
+
+
+  const centerY =
+    height*.54;
+
+
+  const physicalLength =
+    8;
+
+
+  /*
+  convert simulation time so pulse is visually useful
+  */
+
+  const effectiveSpeed =
+    1.8+
+    p.speed*.22;
+
+
+  /*
+  repeat cycle
+  */
+
+  const cycleDuration =
+    physicalLength/
+    effectiveSpeed*
+    2.05;
+
+
+  const t =
+    elapsedTime%
+    cycleDuration;
+
+
+  /*
+  equilibrium
+  */
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+
+  ctx.lineWidth =
+    1.5;
+
+
+  ctx.setLineDash(
+    [5,5]
+  );
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    left,
+    centerY
+  );
+
+
+  ctx.lineTo(
+    right,
+    centerY
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.setLineDash(
+    []
+  );
+
+
+  /*
+  boundary
+  */
+
+  if(
+    boundarySelect.value ===
+    "fixed"
+  ){
+
+
+    ctx.strokeStyle =
+      "#334155";
+
+
+    ctx.lineWidth =
+      6;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      right,
+      centerY-100
+    );
+
+
+    ctx.lineTo(
+      right,
+      centerY+100
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#334155";
+
+
+    ctx.font =
+      "bold 13px Arial";
+
+
+    ctx.fillText(
+      "고정단",
+      right-22,
+      centerY+128
+    );
+
+  }
+
+
+  else{
+
+
+    ctx.strokeStyle =
+      "#334155";
+
+
+    ctx.lineWidth =
+      3;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      right,
+      centerY-75
+    );
+
+
+    ctx.lineTo(
+      right,
+      centerY+75
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      right,
+      centerY,
+      9,
+      0,
+      Math.PI*2
+    );
+
+
+    ctx.fillStyle =
+      "#ffffff";
+
+
+    ctx.fill();
+
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#334155";
+
+
+    ctx.font =
+      "bold 13px Arial";
+
+
+    ctx.fillText(
+      "자유단",
+      right-22,
+      centerY+110
+    );
+
+  }
+
+
+  const samples =
+    350;
+
+
+  const scale =
+    Math.min(
+      90,
+      p.amplitude*
+      240
+    );
+
+
+  /*
+  helper
+  */
+
+  function drawComponent(
+    getter,
+    color,
+    lineWidth,
+    dash=[]
+  ){
+
+
+    ctx.save();
+
+
+    ctx.beginPath();
+
+
+    for(
+      let i =
+        0;
+
+      i <=
+        samples;
+
+      i++
+    ){
+
+
+      const xp =
+        physicalLength*
+        i/
+        samples;
+
+
+      const screenX =
+        left+
+        (
+          right-left
+        )*
+        i/
+        samples;
+
+
+      const values =
+        pulseValues(
+          xp,
+          physicalLength,
+          t,
+          effectiveSpeed
+        );
+
+
+      const value =
+        getter(
+          values
+        );
+
+
+      const screenY =
+        centerY-
+        scale*
+        value;
+
+
+      if(
+        i ===
+        0
+      ){
+
+
+        ctx.moveTo(
+          screenX,
+          screenY
+        );
+
+      }
+
+
+      else{
+
+
+        ctx.lineTo(
+          screenX,
+          screenY
+        );
+
+      }
+
+    }
+
+
+    ctx.strokeStyle =
+      color;
+
+
+    ctx.lineWidth =
+      lineWidth;
+
+
+    ctx.setLineDash(
+      dash
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.restore();
+
+  }
+
+
+  if(
+    showComponents
+  ){
+
+
+    drawComponent(
+      v=>v.incident,
+      "#2563eb",
+      2,
+      [6,4]
+    );
+
+
+    drawComponent(
+      v=>v.reflected,
+      "#dc2626",
+      2,
+      [6,4]
+    );
+
+
+    drawComponent(
+      v=>v.total,
+      "#7c3aed",
+      4
+    );
+
+  }
+
+
+  else{
+
+
+    drawComponent(
+      v=>v.total,
+      "#2563eb",
+      4
+    );
+
+  }
+
+
+  /*
+  arrows
+  */
+
+  drawArrow(
+    width*.20,
+    62,
+    width*.47,
+    62,
+    "#2563eb",
+    "입사파"
+  );
+
+
+  drawArrow(
+    width*.79,
+    95,
+    width*.55,
+    95,
+    "#dc2626",
+    "반사파"
+  );
+
+
+  /*
+  explanation
+  */
+
+  ctx.fillStyle =
+    boundarySelect.value ===
+    "fixed"
+    ?
+    "#991b1b"
+    :
+    "#047857";
+
+
+  ctx.font =
+    "bold 14px Arial";
+
+
+  ctx.fillText(
+
+    boundarySelect.value ===
+    "fixed"
+
+    ?
+
+    "고정단 → 반사파의 위상 반전"
+
+    :
+
+    "자유단 → 반사파의 위상 반전 없음",
+
+    25,
+    height-30
+
+  );
+
+}
+
+
+/*
+========================================================
+DRAW
+========================================================
+*/
+
+function draw(){
+
+
+  if(
+    mode ===
+    "transverse"
+  ){
+
+    drawTransverse();
+
+  }
+
+
+  if(
+    mode ===
+    "longitudinal"
+  ){
+
+    drawLongitudinal();
+
+  }
+
+
+  if(
+    mode ===
+    "reflection"
+  ){
+
+    drawReflection(
+      false
+    );
+
+  }
+
+
+  if(
+    mode ===
+    "superposition"
+  ){
+
+    drawReflection(
+      true
+    );
+
+  }
+
+}
+
+
+/*
+========================================================
+UPDATE
+========================================================
+*/
+
+function update(){
+
+
+  const p =
+    getParameters();
+
+
+  /*
+  time slider represents two basic periods
+  */
+
+  const displayDuration =
+    Math.max(
+      2*p.period,
+      2
+    );
+
+
+  const fraction =
+    (
+      elapsedTime%
+      displayDuration
+    )/
+    displayDuration;
+
+
+  if(
+    running
+  ){
+
+
+    timeSlider.value =
+      fraction*
+      100;
+
+  }
+
+
+  updateText();
+
+
+  draw();
+
+
+  status.textContent =
+    paused
+    ?
+    "일시정지"
+    :
+    running
+    ?
+    "진행 중"
+    :
+    "관찰 준비";
+
+}
+
+
+/*
+========================================================
+ANIMATION
+========================================================
+*/
+
+function animate(
+  timestamp
+){
+
+
+  if(
+    !running
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    paused
+  ){
+
+
+    lastTimestamp =
+      timestamp;
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+
+    return;
+
+  }
+
+
+  if(
+    lastTimestamp ===
+    null
+  ){
+
+
+    lastTimestamp =
+      timestamp;
+
+  }
+
+
+  const dt =
+    (
+      timestamp-
+      lastTimestamp
+    )/
+    1000;
+
+
+  lastTimestamp =
+    timestamp;
+
+
+  elapsedTime +=
+    dt;
+
+
+  update();
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
+}
+
+
+/*
+========================================================
+EVENTS
+========================================================
+*/
+
+transverseButton.addEventListener(
+  "click",
+  ()=>
+    setMode(
+      "transverse"
+    )
+);
+
+
+longitudinalButton.addEventListener(
+  "click",
+  ()=>
+    setMode(
+      "longitudinal"
+    )
+);
+
+
+reflectionButton.addEventListener(
+  "click",
+  ()=>
+    setMode(
+      "reflection"
+    )
+);
+
+
+superpositionButton.addEventListener(
+  "click",
+  ()=>
+    setMode(
+      "superposition"
+    )
+);
+
+
+/*
+parameter change
+*/
+
+[
+  amplitudeSlider,
+  frequencySlider,
+  speedSlider
+].forEach(
+  input=>{
+
+
+    input.addEventListener(
+      "input",
+      ()=>{
+
+
+        running =
+          false;
+
+
+        paused =
+          false;
+
+
+        elapsedTime =
+          0;
+
+
+        timeSlider.value =
+          0;
+
+
+        pauseButton.textContent =
+          "Ⅱ 일시정지";
+
+
+        update();
+
+      }
+    );
+
+  }
+);
+
+
+boundarySelect.addEventListener(
+  "change",
+  ()=>{
+
+
+    elapsedTime =
+      0;
+
+
+    update();
+
+  }
+);
+
+
+/*
+time slider
+*/
+
+timeSlider.addEventListener(
+  "input",
+  ()=>{
+
+
+    running =
+      false;
+
+
+    paused =
+      false;
+
+
+    if(
+      animationId
+    ){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    const p =
+      getParameters();
+
+
+    /*
+    Reflection modes need longer time
+    */
+
+    if(
+      mode ===
+      "reflection" ||
+      mode ===
+      "superposition"
+    ){
+
+
+      const effectiveSpeed =
+        1.8+
+        p.speed*.22;
+
+
+      const duration =
+        8/
+        effectiveSpeed*
+        2.05;
+
+
+      elapsedTime =
+        Number(
+          timeSlider.value
+        )/
+        100*
+        duration;
+
+    }
+
+
+    else{
+
+
+      const duration =
+        Math.max(
+          2*p.period,
+          2
+        );
+
+
+      elapsedTime =
+        Number(
+          timeSlider.value
+        )/
+        100*
+        duration;
+
+    }
+
+
+    update();
+
+  }
+);
+
+
+/*
+start
+*/
+
+startButton.addEventListener(
+  "click",
+  ()=>{
+
+
+    running =
+      true;
+
+
+    paused =
+      false;
+
+
+    lastTimestamp =
+      null;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    if(
+      animationId
+    ){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+);
+
+
+/*
+pause
+*/
+
+pauseButton.addEventListener(
+  "click",
+  ()=>{
+
+
+    if(
+      !running
+    ){
+
+      return;
+
+    }
+
+
+    paused =
+      !paused;
+
+
+    pauseButton.textContent =
+      paused
+      ?
+      "▶ 계속"
+      :
+      "Ⅱ 일시정지";
+
+
+    lastTimestamp =
+      null;
+
+
+    update();
+
+  }
+);
+
+
+/*
+reset
+*/
+
+resetButton.addEventListener(
+  "click",
+  ()=>{
+
+
+    running =
+      false;
+
+
+    paused =
+      false;
+
+
+    elapsedTime =
+      0;
+
+
+    lastTimestamp =
+      null;
+
+
+    timeSlider.value =
+      0;
+
+
+    if(
+      animationId
+    ){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    update();
+
+  }
+);
+
+
+/*
+========================================================
+INIT
+========================================================
+*/
+
+resizeCanvas();
+
+setMode(
+  "transverse"
+);
+
+</script>
+
+
+</body>
+
+</html>
