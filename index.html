@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>온라인 물리학 탐구실 | 역학과 에너지</title>
+
   <style>
     :root {
       --bg: #f4f7fb;
@@ -201,7 +202,7 @@
       background: rgba(255, 255, 255, 0.22);
     }
 
-    /* Summary strip */
+    /* Summary */
     .summary {
       margin-top: 28px;
       display: grid;
@@ -265,7 +266,7 @@
       max-width: 760px;
     }
 
-    /* Card grid */
+    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -344,6 +345,8 @@
       font-weight: 700;
       font-size: 0.95rem;
       transition: 0.2s ease;
+      border: none;
+      cursor: pointer;
     }
 
     .card-btn.primary {
@@ -387,7 +390,6 @@
       color: var(--primary);
     }
 
-    /* Responsive */
     @media (max-width: 980px) {
       .grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -435,286 +437,706 @@
     }
   </style>
 </head>
+
+
 <body>
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <div class="brand-title">온라인 물리학 탐구실</div>
-        <div class="brand-sub">2022 개정 교육과정 · 역학과 에너지</div>
+
+<header>
+  <div class="container nav">
+
+    <div class="brand">
+      <div class="brand-title">
+        온라인 물리학 탐구실
       </div>
 
-      <nav class="nav-links">
-        <a href="#space-motion">시공간과 운동</a>
-        <a href="#heat-energy">열과 에너지</a>
-        <a href="#waves-sound">탄성파와 소리</a>
-      </nav>
+      <div class="brand-sub">
+        2022 개정 교육과정 · 역학과 에너지
+      </div>
     </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <div class="hero-box">
-          <div class="hero-badge">고등학교 물리학 온라인 탐구 플랫폼</div>
-          <h1>역학과 에너지<br />온라인 물리학 탐구실</h1>
+    <nav class="nav-links">
+      <a href="#space-motion">시공간과 운동</a>
+      <a href="#heat-energy">열과 에너지</a>
+      <a href="#waves-sound">탄성파와 소리</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-box">
+
+        <div class="hero-badge">
+          고등학교 물리학 온라인 탐구 플랫폼
+        </div>
+
+        <h1>
+          역학과 에너지<br>
+          온라인 물리학 탐구실
+        </h1>
+
+        <p>
+          2022 개정 교육과정의 「역학과 에너지」 과목을 바탕으로,
+          학생들이 물리 현상을 직접 조작하고 관찰하며 탐구할 수 있도록 만든 학습 공간입니다.
+          각 단원의 시뮬레이션을 통해 개념 이해, 그래프 해석, 정량적 분석을 함께 수행할 수 있습니다.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            class="btn btn-primary"
+            href="#space-motion"
+          >
+            시뮬레이션 둘러보기
+          </a>
+
+          <a
+            class="btn btn-secondary"
+            href="simulations/projectile.html"
+          >
+            포물선 운동 바로가기
+          </a>
+
+        </div>
+
+
+        <div class="summary">
+
+          <div class="summary-card">
+            <strong>3개 대단원</strong>
+            <span>
+              시공간과 운동 · 열과 에너지 · 탄성파와 소리
+            </span>
+          </div>
+
+          <div class="summary-card">
+            <strong>탐구 중심 학습</strong>
+            <span>
+              변인을 조절하고 결과를 관찰하며 물리 개념을 이해합니다.
+            </span>
+          </div>
+
+          <div class="summary-card">
+            <strong>모바일 지원</strong>
+            <span>
+              PC, 태블릿, 스마트폰에서 모두 사용할 수 있습니다.
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =====================================
+       I. 시공간과 운동
+       ===================================== -->
+
+  <section
+    id="space-motion"
+    class="unit-section"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="section-label">
+            Ⅰ. 시공간과 운동
+          </div>
+
+          <h2>
+            운동을 관찰하고 분석하는 단원
+          </h2>
+
           <p>
-            2022 개정 교육과정의 「역학과 에너지」 과목을 바탕으로,
-            학생들이 물리 현상을 직접 조작하고 관찰하며 탐구할 수 있도록 만든 학습 공간입니다.
-            각 단원의 시뮬레이션을 통해 개념 이해, 그래프 해석, 정량적 분석을 함께 수행할 수 있습니다.
+            포물선 운동, 원운동, 진자 운동 등 다양한 운동 현상을 시각적으로 탐구하며
+            물체의 운동을 정성적·정량적으로 분석합니다.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#space-motion">시뮬레이션 둘러보기</a>
-            <a class="btn btn-secondary" href="simulations/projectile.html">포물선 운동 바로가기</a>
-          </div>
-
-          <div class="summary">
-            <div class="summary-card">
-              <strong>3개 대단원</strong>
-              <span>시공간과 운동 · 열과 에너지 · 탄성파와 소리</span>
-            </div>
-            <div class="summary-card">
-              <strong>탐구 중심 학습</strong>
-              <span>변인을 조절하고 결과를 관찰하며 물리 개념을 이해합니다.</span>
-            </div>
-            <div class="summary-card">
-              <strong>모바일 지원</strong>
-              <span>PC, 태블릿, 스마트폰에서 모두 사용할 수 있습니다.</span>
-            </div>
-          </div>
         </div>
+
       </div>
-    </section>
 
-    <!-- 1. 시공간과 운동 -->
-    <section id="space-motion" class="unit-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">Ⅰ. 시공간과 운동</div>
-            <h2>운동을 관찰하고 분석하는 단원</h2>
-            <p>
-              위치, 속도, 가속도, 궤적, 원운동 등 다양한 운동 현상을 시각적으로 탐구하며
-              물체의 운동을 정성적·정량적으로 분석합니다.
-            </p>
+
+      <div class="grid">
+
+        <!-- 포물선 운동 -->
+        <article class="card">
+
+          <div class="card-icon">
+            🚀
           </div>
-        </div>
 
-        <div class="grid">
-          <article class="card">
-            <div class="card-icon">🚀</div>
-            <h3>포물선 운동</h3>
-            <p>
-              발사각, 초기속력, 질량, 공기저항 유무를 조절하며
-              포물선 운동의 궤적과 사거리, 최고점, 비행시간을 비교합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">발사각</span>
-              <span class="tag">초기속력</span>
-              <span class="tag">질량</span>
-              <span class="tag">공기저항</span>
-            </div>
-            <div class="card-actions">
-              <a class="card-btn primary" href="simulations/projectile.html">시뮬레이션 시작</a>
-            </div>
-          </article>
+          <h3>
+            포물선 운동
+          </h3>
 
-          <article class="card coming">
-            <div class="card-icon">📈</div>
-            <h3>운동 분석</h3>
-            <p>
-              위치-시간, 속도-시간, 가속도-시간 그래프를 통해
-              물체의 운동 상태 변화를 해석하고 비교합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">x-t 그래프</span>
-              <span class="tag">v-t 그래프</span>
-              <span class="tag">a-t 그래프</span>
-            </div>
-<div class="card-actions">
-  <a
-    class="card-btn primary"
-    href="simulations/circular-motion.html"
-  >
-    시뮬레이션 시작
-  </a>
-</div>
-          </article>
+          <p>
+            발사각, 초기속력, 질량, 공기저항 유무를 조절하며
+            포물선 운동의 궤적과 사거리, 최고점, 비행시간을 비교합니다.
+          </p>
 
-          <article class="card coming">
-            <div class="card-icon">🌀</div>
-            <h3>원운동</h3>
-            <p>
-              반지름, 속력, 주기, 구심가속도의 관계를 탐구하며
-              등속 원운동의 물리량 변화를 이해합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">원운동</span>
-              <span class="tag">구심가속도</span>
-              <span class="tag">주기</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
+          <div class="tags">
 
-    <!-- 2. 열과 에너지 -->
-    <section id="heat-energy" class="unit-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">Ⅱ. 열과 에너지</div>
-            <h2>에너지의 전환과 보존을 이해하는 단원</h2>
-            <p>
-              운동에너지, 위치에너지, 열에너지 등 다양한 형태의 에너지를 살펴보고
-              에너지의 전환과 보존, 열 현상을 탐구합니다.
-            </p>
+            <span class="tag">
+              발사각
+            </span>
+
+            <span class="tag">
+              초기속력
+            </span>
+
+            <span class="tag">
+              질량
+            </span>
+
+            <span class="tag">
+              공기저항
+            </span>
+
           </div>
-        </div>
 
-        <div class="grid">
-          <article class="card coming">
-            <div class="card-icon">🎢</div>
-            <h3>역학적 에너지</h3>
-            <p>
-              운동에너지와 위치에너지의 전환을 확인하고,
-              역학적 에너지 보존과 비보존력의 영향을 탐구합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">운동에너지</span>
-              <span class="tag">위치에너지</span>
-              <span class="tag">에너지 보존</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
+          <div class="card-actions">
 
-          <article class="card coming">
-            <div class="card-icon">🌡️</div>
-            <h3>열과 에너지</h3>
-            <p>
-              열의 이동, 온도 변화, 비열, 내부에너지의 관계를 통해
-              열 현상과 에너지 전달을 이해합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">온도</span>
-              <span class="tag">열전달</span>
-              <span class="tag">비열</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
+            <a
+              class="card-btn primary"
+              href="simulations/projectile.html"
+            >
+              시뮬레이션 시작
+            </a>
 
-          <article class="card coming">
-            <div class="card-icon">⚙️</div>
-            <h3>에너지 전환</h3>
-            <p>
-              다양한 물리적 상황에서 에너지가 어떤 방식으로 이동하고 전환되는지
-              정성적·정량적으로 분석합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">에너지 이동</span>
-              <span class="tag">에너지 전환</span>
-              <span class="tag">일</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. 탄성파와 소리 -->
-    <section id="waves-sound" class="unit-section">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="section-label">Ⅲ. 탄성파와 소리</div>
-            <h2>파동의 전달과 소리의 성질을 탐구하는 단원</h2>
-            <p>
-              탄성파의 진행, 반사와 간섭, 공명, 정상파, 도플러 효과 등을 통해
-              파동과 소리의 성질을 이해합니다.
-            </p>
           </div>
-        </div>
 
-        <div class="grid">
-          <article class="card coming">
-            <div class="card-icon">〰️</div>
-            <h3>탄성파</h3>
-            <p>
-              진폭, 진동수, 파장, 파동의 속력을 조절하며
-              매질을 따라 전달되는 탄성파의 성질을 탐구합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">진폭</span>
-              <span class="tag">파장</span>
-              <span class="tag">진동수</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
+        </article>
 
-          <article class="card coming">
-            <div class="card-icon">🔊</div>
-            <h3>정상파와 공명</h3>
-            <p>
-              줄과 공기 기둥에서 형성되는 정상파를 관찰하고
-              진동수와 길이 변화에 따른 공명 조건을 탐구합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">정상파</span>
-              <span class="tag">공명</span>
-              <span class="tag">소리</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
 
-          <article class="card coming">
-            <div class="card-icon">🚑</div>
-            <h3>도플러 효과</h3>
-            <p>
-              음원과 관찰자의 운동에 따라 관측되는 진동수가 어떻게 달라지는지
-              시뮬레이션을 통해 탐구합니다.
-            </p>
-            <div class="tags">
-              <span class="tag">도플러 효과</span>
-              <span class="tag">진동수 변화</span>
-              <span class="tag">상대운동</span>
-            </div>
-            <div class="card-actions">
-              <button class="card-btn ghost" onclick="comingSoon()">준비 중</button>
-            </div>
-          </article>
-        </div>
+        <!-- 원운동 -->
+        <article class="card">
+
+          <div class="card-icon">
+            🌀
+          </div>
+
+          <h3>
+            원운동
+          </h3>
+
+          <p>
+            속력, 회전 반지름, 질량을 변화시키며
+            주기, 각속도, 구심가속도와 구심력의 관계를 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              원운동
+            </span>
+
+            <span class="tag">
+              구심가속도
+            </span>
+
+            <span class="tag">
+              구심력
+            </span>
+
+            <span class="tag">
+              주기
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <a
+              class="card-btn primary"
+              href="simulations/circular-motion.html"
+            >
+              시뮬레이션 시작
+            </a>
+
+          </div>
+
+        </article>
+
+
+        <!-- 진자 운동 -->
+        <article class="card coming">
+
+          <div class="card-icon">
+            🕰️
+          </div>
+
+          <h3>
+            진자 운동
+          </h3>
+
+          <p>
+            진자의 길이와 초기 각도 등을 변화시키며
+            진자의 주기와 운동 특성을 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              단진자
+            </span>
+
+            <span class="tag">
+              주기
+            </span>
+
+            <span class="tag">
+              진동
+            </span>
+
+            <span class="tag">
+              중력
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="container">
-      <p>
-        <strong>온라인 물리학 탐구실</strong> · 2022 개정 교육과정 「역학과 에너지」
-      </p>
-      <p>
-        학생들이 물리 현상을 직접 탐구하고 분석할 수 있도록 지속적으로 시뮬레이션을 추가할 예정입니다.
-      </p>
     </div>
-  </footer>
 
-  <script>
-    function comingSoon() {
-      alert("이 시뮬레이션은 현재 준비 중입니다.");
-    }
-  </script>
+  </section>
+
+
+
+  <!-- =====================================
+       II. 열과 에너지
+       ===================================== -->
+
+  <section
+    id="heat-energy"
+    class="unit-section"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="section-label">
+            Ⅱ. 열과 에너지
+          </div>
+
+          <h2>
+            열과 에너지의 이동 및 전환을 이해하는 단원
+          </h2>
+
+          <p>
+            열역학 제1법칙과 제2법칙을 바탕으로
+            열, 내부에너지, 일의 관계와 열기관의 작동 원리 및
+            에너지 전환의 방향성을 탐구합니다.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid">
+
+        <!-- 열역학 제1법칙 -->
+        <article class="card coming">
+
+          <div class="card-icon">
+            🌡️
+          </div>
+
+          <h3>
+            열역학 제1법칙
+          </h3>
+
+          <p>
+            계에 전달된 열과 계가 한 일에 따라
+            내부에너지가 어떻게 변화하는지 탐구하고,
+            에너지 보존 법칙을 열역학적 과정에 적용합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              내부에너지
+            </span>
+
+            <span class="tag">
+              열
+            </span>
+
+            <span class="tag">
+              일
+            </span>
+
+            <span class="tag">
+              에너지 보존
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- 열기관 -->
+        <article class="card coming">
+
+          <div class="card-icon">
+            ⚙️
+          </div>
+
+          <h3>
+            열기관
+          </h3>
+
+          <p>
+            고온부에서 받은 열의 일부를 일로 전환하고
+            나머지를 저온부로 방출하는 열기관의 작동 원리와
+            열효율을 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              열기관
+            </span>
+
+            <span class="tag">
+              열효율
+            </span>
+
+            <span class="tag">
+              고온부
+            </span>
+
+            <span class="tag">
+              저온부
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <!-- 열역학 제2법칙 -->
+        <article class="card coming">
+
+          <div class="card-icon">
+            ♨️
+          </div>
+
+          <h3>
+            열역학 제2법칙
+          </h3>
+
+          <p>
+            열의 자연스러운 이동 방향과 비가역 과정을 살펴보고,
+            모든 열에너지를 일로 전환할 수 없는 이유를 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              열의 이동
+            </span>
+
+            <span class="tag">
+              비가역 과정
+            </span>
+
+            <span class="tag">
+              엔트로피
+            </span>
+
+            <span class="tag">
+              에너지 전환
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =====================================
+       III. 탄성파와 소리
+       기존 내용 유지
+       ===================================== -->
+
+  <section
+    id="waves-sound"
+    class="unit-section"
+  >
+
+    <div class="container">
+
+      <div class="section-head">
+
+        <div>
+
+          <div class="section-label">
+            Ⅲ. 탄성파와 소리
+          </div>
+
+          <h2>
+            파동의 전달과 소리의 성질을 탐구하는 단원
+          </h2>
+
+          <p>
+            탄성파의 진행, 반사와 간섭, 공명, 정상파, 도플러 효과 등을 통해
+            파동과 소리의 성질을 이해합니다.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="grid">
+
+        <article class="card coming">
+
+          <div class="card-icon">
+            〰️
+          </div>
+
+          <h3>
+            탄성파
+          </h3>
+
+          <p>
+            진폭, 진동수, 파장, 파동의 속력을 조절하며
+            매질을 따라 전달되는 탄성파의 성질을 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              진폭
+            </span>
+
+            <span class="tag">
+              파장
+            </span>
+
+            <span class="tag">
+              진동수
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="card coming">
+
+          <div class="card-icon">
+            🔊
+          </div>
+
+          <h3>
+            정상파와 공명
+          </h3>
+
+          <p>
+            줄과 공기 기둥에서 형성되는 정상파를 관찰하고
+            진동수와 길이 변화에 따른 공명 조건을 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              정상파
+            </span>
+
+            <span class="tag">
+              공명
+            </span>
+
+            <span class="tag">
+              소리
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+
+        <article class="card coming">
+
+          <div class="card-icon">
+            🚑
+          </div>
+
+          <h3>
+            도플러 효과
+          </h3>
+
+          <p>
+            음원과 관찰자의 운동에 따라 관측되는 진동수가 어떻게 달라지는지
+            시뮬레이션을 통해 탐구합니다.
+          </p>
+
+          <div class="tags">
+
+            <span class="tag">
+              도플러 효과
+            </span>
+
+            <span class="tag">
+              진동수 변화
+            </span>
+
+            <span class="tag">
+              상대운동
+            </span>
+
+          </div>
+
+          <div class="card-actions">
+
+            <button
+              class="card-btn ghost"
+              onclick="comingSoon()"
+            >
+              준비 중
+            </button>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    <p>
+      <strong>
+        온라인 물리학 탐구실
+      </strong>
+      · 2022 개정 교육과정 「역학과 에너지」
+    </p>
+
+    <p>
+      학생들이 물리 현상을 직접 탐구하고 분석할 수 있도록
+      지속적으로 시뮬레이션을 추가할 예정입니다.
+    </p>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+  function comingSoon() {
+
+    alert(
+      "이 시뮬레이션은 현재 준비 중입니다."
+    );
+
+  }
+
+</script>
+
 </body>
 </html>
