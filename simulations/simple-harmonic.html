@@ -14,19 +14,15 @@
 단진동 시뮬레이션 | 온라인 물리학 탐구실
 </title>
 
-
 <style>
 
 :root{
 
   --panel:#ffffff;
-
   --primary:#1e3a8a;
   --primary2:#2563eb;
-
   --text:#1f2937;
   --subtext:#64748b;
-
   --border:#e2e8f0;
 
   --x:#2563eb;
@@ -35,23 +31,19 @@
   --force:#7c3aed;
 
   --shadow:
-    0 8px 24px
-    rgba(15,23,42,.08);
+    0 8px 24px rgba(15,23,42,.08);
 
   --radius:18px;
 
 }
 
-
 *{
   box-sizing:border-box;
 }
 
-
 html{
   scroll-behavior:smooth;
 }
-
 
 body{
 
@@ -76,18 +68,15 @@ body{
 
 }
 
-
 button,
 input{
   font:inherit;
 }
 
-
 a{
   color:inherit;
   text-decoration:none;
 }
-
 
 .container{
 
@@ -100,52 +89,36 @@ a{
 
 }
 
-
-
-/* ========================================
-   HEADER
-======================================== */
+/* HEADER */
 
 header{
 
   position:sticky;
-
   top:0;
-
   z-index:100;
 
   background:
-    rgba(
-      255,
-      255,
-      255,
-      .92
-    );
+    rgba(255,255,255,.92);
 
   backdrop-filter:
     blur(10px);
 
   border-bottom:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
 }
-
 
 .topbar{
 
   min-height:68px;
 
   display:flex;
-
   align-items:center;
-
   justify-content:space-between;
 
   gap:18px;
 
 }
-
 
 .title-box strong{
 
@@ -157,7 +130,6 @@ header{
 
 }
 
-
 .title-box span{
 
   color:var(--subtext);
@@ -166,15 +138,12 @@ header{
 
 }
 
-
 .home-button{
 
-  padding:
-    10px 15px;
+  padding:10px 15px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:10px;
 
@@ -186,24 +155,17 @@ header{
 
 }
 
-
-
-/* ========================================
-   INTRO
-======================================== */
+/* INTRO */
 
 .intro{
 
-  padding:
-    38px 0 24px;
+  padding:38px 0 24px;
 
 }
 
-
 .intro h1{
 
-  margin:
-    0 0 8px;
+  margin:0 0 8px;
 
   color:#0f172a;
 
@@ -218,7 +180,6 @@ header{
 
 }
 
-
 .intro p{
 
   margin:0;
@@ -229,17 +190,14 @@ header{
 
 }
 
-
 .question{
 
   margin-top:18px;
 
-  padding:
-    16px 18px;
+  padding:16px 18px;
 
   border-left:
-    5px solid
-    var(--primary2);
+    5px solid var(--primary2);
 
   border-radius:12px;
 
@@ -253,11 +211,7 @@ header{
 
 }
 
-
-
-/* ========================================
-   MAIN LAYOUT
-======================================== */
+/* MAIN */
 
 .main-grid{
 
@@ -273,14 +227,12 @@ header{
 
 }
 
-
 .panel{
 
   background:white;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:
     var(--radius);
@@ -292,11 +244,9 @@ header{
 
 }
 
-
 .panel h2{
 
-  margin:
-    0 0 18px;
+  margin:0 0 18px;
 
   color:#0f172a;
 
@@ -304,18 +254,13 @@ header{
 
 }
 
-
-
-/* ========================================
-   CONTROLS
-======================================== */
+/* CONTROLS */
 
 .control{
 
   margin-bottom:21px;
 
 }
-
 
 .control-head{
 
@@ -333,13 +278,11 @@ header{
 
 }
 
-
 .control-value{
 
   color:var(--primary2);
 
 }
-
 
 input[type="range"]{
 
@@ -350,7 +293,6 @@ input[type="range"]{
   cursor:pointer;
 
 }
-
 
 .buttons{
 
@@ -365,22 +307,19 @@ input[type="range"]{
 
 }
 
-
 button{
 
   border:none;
 
   border-radius:11px;
 
-  padding:
-    12px 13px;
+  padding:12px 13px;
 
   cursor:pointer;
 
   font-weight:700;
 
 }
-
 
 .start{
 
@@ -390,7 +329,6 @@ button{
 
 }
 
-
 .pause{
 
   background:#e0e7ff;
@@ -398,7 +336,6 @@ button{
   color:#3730a3;
 
 }
-
 
 .reset{
 
@@ -408,7 +345,6 @@ button{
 
 }
 
-
 .option-box{
 
   margin-top:18px;
@@ -416,15 +352,13 @@ button{
   padding:13px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:12px;
 
   background:#f8fafc;
 
 }
-
 
 .option-row{
 
@@ -440,13 +374,9 @@ button{
 
 }
 
-
 .option-row input{
-
   accent-color:var(--primary2);
-
 }
-
 
 .info-box{
 
@@ -455,8 +385,7 @@ button{
   padding:14px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:12px;
 
@@ -470,7 +399,6 @@ button{
 
 }
 
-
 .info-box strong{
 
   display:block;
@@ -481,18 +409,13 @@ button{
 
 }
 
-
-
-/* ========================================
-   TOOLBAR
-======================================== */
+/* TOOLBAR */
 
 .toolbar{
 
   display:flex;
 
   align-items:center;
-
   justify-content:space-between;
 
   gap:10px;
@@ -503,18 +426,13 @@ button{
 
 }
 
-
 .toolbar h2{
-
   margin:0;
-
 }
-
 
 .status{
 
-  padding:
-    6px 10px;
+  padding:6px 10px;
 
   border-radius:999px;
 
@@ -528,11 +446,7 @@ button{
 
 }
 
-
-
-/* ========================================
-   VISUALS
-======================================== */
+/* VISUALS */
 
 .visual-grid{
 
@@ -545,14 +459,12 @@ button{
 
 }
 
-
 .visual-box{
 
   overflow:hidden;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:14px;
 
@@ -560,15 +472,12 @@ button{
 
 }
 
-
 .visual-title{
 
-  padding:
-    11px 14px;
+  padding:11px 14px;
 
   border-bottom:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   background:#f8fafc;
 
@@ -578,23 +487,17 @@ button{
 
 }
 
-
 #springCanvas,
 #circleCanvas{
 
   display:block;
 
   width:100%;
-
   height:390px;
 
 }
 
-
-
-/* ========================================
-   LIVE VALUES
-======================================== */
+/* VALUES */
 
 .value-grid{
 
@@ -603,10 +506,7 @@ button{
   grid-template-columns:
     repeat(
       6,
-      minmax(
-        0,
-        1fr
-      )
+      minmax(0,1fr)
     );
 
   gap:9px;
@@ -615,21 +515,18 @@ button{
 
 }
 
-
 .value-card{
 
   padding:12px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:11px;
 
   background:#f8fafc;
 
 }
-
 
 .value-card span{
 
@@ -643,38 +540,29 @@ button{
 
 }
 
-
 .value-card strong{
 
   font-size:1rem;
 
 }
 
-
 .x-text{
   color:var(--x);
 }
-
 
 .v-text{
   color:var(--v);
 }
 
-
 .a-text{
   color:var(--a);
 }
-
 
 .force-text{
   color:var(--force);
 }
 
-
-
-/* ========================================
-   EQUATIONS
-======================================== */
+/* EQUATIONS */
 
 .equation-section{
 
@@ -683,34 +571,27 @@ button{
   padding-top:20px;
 
   border-top:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
 }
-
 
 .equation-grid{
 
   display:grid;
 
   grid-template-columns:
-    repeat(
-      3,
-      1fr
-    );
+    repeat(3,1fr);
 
   gap:10px;
 
 }
-
 
 .equation-card{
 
   padding:15px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:12px;
 
@@ -719,7 +600,6 @@ button{
   text-align:center;
 
 }
-
 
 .equation-card span{
 
@@ -733,7 +613,6 @@ button{
 
 }
 
-
 .equation{
 
   font-family:
@@ -745,7 +624,6 @@ button{
   font-weight:700;
 
 }
-
 
 .main-equation{
 
@@ -771,11 +649,7 @@ button{
 
 }
 
-
-
-/* ========================================
-   GRAPH
-======================================== */
+/* GRAPH */
 
 .graph-section{
 
@@ -784,11 +658,9 @@ button{
   padding-top:20px;
 
   border-top:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
 }
-
 
 .graph-legend{
 
@@ -806,7 +678,6 @@ button{
 
 }
 
-
 .legend-item{
 
   display:flex;
@@ -817,44 +688,36 @@ button{
 
 }
 
-
 .legend-line{
 
   width:22px;
-
   height:3px;
 
   border-radius:999px;
 
 }
 
-
 .legend-x{
   background:var(--x);
 }
-
 
 .legend-v{
   background:var(--v);
 }
 
-
 .legend-a{
   background:var(--a);
 }
-
 
 #graphCanvas{
 
   display:block;
 
   width:100%;
-
   height:500px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:14px;
 
@@ -862,48 +725,35 @@ button{
 
 }
 
-
-
-/* ========================================
-   ENERGY
-======================================== */
+/* ENERGY */
 
 .energy-section{
-
   margin-top:22px;
-
 }
-
 
 .energy-grid{
 
   display:grid;
 
   grid-template-columns:
-    repeat(
-      3,
-      1fr
-    );
+    repeat(3,1fr);
 
   gap:10px;
 
 }
-
 
 .energy-card{
 
   padding:14px;
 
   border:
-    1px solid
-    var(--border);
+    1px solid var(--border);
 
   border-radius:12px;
 
   background:#f8fafc;
 
 }
-
 
 .energy-card span{
 
@@ -917,18 +767,11 @@ button{
 
 }
 
-
 .energy-card strong{
-
   font-size:1.04rem;
-
 }
 
-
-
-/* ========================================
-   LEARNING
-======================================== */
+/* LEARNING */
 
 .learning{
 
@@ -943,7 +786,6 @@ button{
 
 }
 
-
 .learning p,
 .learning li{
 
@@ -951,13 +793,9 @@ button{
 
 }
 
-
 .learning li{
-
   margin-bottom:10px;
-
 }
-
 
 .learning-equation{
 
@@ -981,13 +819,11 @@ button{
 
 }
 
-
 .tip{
 
   margin-top:15px;
 
-  padding:
-    14px 15px;
+  padding:14px 15px;
 
   border-radius:11px;
 
@@ -999,13 +835,11 @@ button{
 
 }
 
-
 .warning{
 
   margin-top:15px;
 
-  padding:
-    14px 15px;
+  padding:14px 15px;
 
   border-radius:11px;
 
@@ -1017,16 +851,11 @@ button{
 
 }
 
-
-
-/* ========================================
-   FOOTER
-======================================== */
+/* FOOTER */
 
 footer{
 
-  padding:
-    40px 0;
+  padding:40px 0;
 
   color:var(--subtext);
 
@@ -1036,100 +865,58 @@ footer{
 
 }
 
+/* RESPONSIVE */
 
-
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media(
-  max-width:1150px
-){
+@media(max-width:1150px){
 
   .value-grid{
-
     grid-template-columns:
-      repeat(
-        3,
-        1fr
-      );
-
+      repeat(3,1fr);
   }
 
 }
 
-
-@media(
-  max-width:1000px
-){
+@media(max-width:1000px){
 
   .main-grid{
-
     grid-template-columns:1fr;
-
   }
 
 }
 
-
-@media(
-  max-width:800px
-){
+@media(max-width:800px){
 
   .visual-grid{
-
     grid-template-columns:1fr;
-
   }
-
 
   .learning{
-
     grid-template-columns:1fr;
-
   }
 
-
   .equation-grid{
-
     grid-template-columns:1fr;
-
   }
 
 }
 
-
-@media(
-  max-width:600px
-){
+@media(max-width:600px){
 
   #springCanvas,
   #circleCanvas{
-
     height:340px;
-
   }
-
 
   #graphCanvas{
-
     height:450px;
-
   }
-
 
   .value-grid{
-
-    grid-template-columns:
-      1fr 1fr;
-
+    grid-template-columns:1fr 1fr;
   }
 
-
   .energy-grid{
-
     grid-template-columns:1fr;
-
   }
 
 }
@@ -1146,7 +933,6 @@ footer{
 <header>
 
 <div class="container topbar">
-
 
   <div class="title-box">
 
@@ -1167,7 +953,6 @@ footer{
   >
     ← 메인으로
   </a>
-
 
 </div>
 
@@ -1219,7 +1004,6 @@ footer{
   </h2>
 
 
-
   <div class="control">
 
     <div class="control-head">
@@ -1237,7 +1021,6 @@ footer{
 
     </div>
 
-
     <input
       id="amplitude"
       type="range"
@@ -1248,7 +1031,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="control">
@@ -1268,7 +1050,6 @@ footer{
 
     </div>
 
-
     <input
       id="mass"
       type="range"
@@ -1279,7 +1060,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="control">
@@ -1299,7 +1079,6 @@ footer{
 
     </div>
 
-
     <input
       id="springConstant"
       type="range"
@@ -1310,7 +1089,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="control">
@@ -1330,7 +1108,6 @@ footer{
 
     </div>
 
-
     <input
       id="timeSlider"
       type="range"
@@ -1341,7 +1118,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="buttons">
@@ -1372,9 +1148,7 @@ footer{
   </div>
 
 
-
   <div class="option-box">
-
 
     <label class="option-row">
 
@@ -1414,9 +1188,7 @@ footer{
 
     </label>
 
-
   </div>
-
 
 
   <div class="info-box">
@@ -1427,10 +1199,9 @@ footer{
 
     마찰과 공기 저항이 없는 이상적인 용수철-질량 계입니다.
     변위 x는 물체의 <b>평형 위치를 기준</b>으로 측정합니다.
-    중력은 평형 위치만 변화시키고 진동의 주기에는 영향을 주지 않습니다.
+    화면에서는 아래쪽을 +x 방향으로 정했습니다.
 
   </div>
-
 
 </aside>
 
@@ -1441,22 +1212,18 @@ footer{
 
   <div class="toolbar">
 
-
     <h2>
       단진동 관찰
     </h2>
-
 
     <span
       id="status"
       class="status"
     >
-      최대 변위
+      아래쪽 최대 변위
     </span>
 
-
   </div>
-
 
 
   <div class="visual-grid">
@@ -1475,7 +1242,6 @@ footer{
     </div>
 
 
-
     <div class="visual-box">
 
       <div class="visual-title">
@@ -1490,7 +1256,6 @@ footer{
 
 
   </div>
-
 
 
   <div class="value-grid">
@@ -1551,7 +1316,7 @@ footer{
         id="liveA"
         class="a-text"
       >
-        -
+        -2.400 m/s²
       </strong>
 
     </div>
@@ -1567,7 +1332,7 @@ footer{
         id="liveF"
         class="force-text"
       >
-        -
+        -2.400 N
       </strong>
 
     </div>
@@ -1580,14 +1345,13 @@ footer{
       </span>
 
       <strong id="livePeriod">
-        -
+        1.405 s
       </strong>
 
     </div>
 
 
   </div>
-
 
 
   <div class="equation-section">
@@ -1607,14 +1371,11 @@ footer{
           변위
         </span>
 
-        <div
-          class="equation x-text"
-        >
+        <div class="equation x-text">
           x = A cos(ωt)
         </div>
 
       </div>
-
 
 
       <div class="equation-card">
@@ -1623,14 +1384,11 @@ footer{
           속도
         </span>
 
-        <div
-          class="equation v-text"
-        >
+        <div class="equation v-text">
           v = −Aω sin(ωt)
         </div>
 
       </div>
-
 
 
       <div class="equation-card">
@@ -1639,9 +1397,7 @@ footer{
           가속도
         </span>
 
-        <div
-          class="equation a-text"
-        >
+        <div class="equation a-text">
           a = −Aω² cos(ωt)
         </div>
 
@@ -1649,7 +1405,6 @@ footer{
 
 
     </div>
-
 
 
     <div class="main-equation">
@@ -1662,7 +1417,6 @@ footer{
 
 
   </div>
-
 
 
   <div class="graph-section">
@@ -1720,7 +1474,6 @@ footer{
   </div>
 
 
-
   <div
     id="energySection"
     class="energy-section"
@@ -1742,7 +1495,7 @@ footer{
         </span>
 
         <strong id="keValue">
-          -
+          0.000 J
         </strong>
 
       </div>
@@ -1755,7 +1508,7 @@ footer{
         </span>
 
         <strong id="peValue">
-          -
+          0.144 J
         </strong>
 
       </div>
@@ -1768,7 +1521,7 @@ footer{
         </span>
 
         <strong id="totalEnergyValue">
-          -
+          0.144 J
         </strong>
 
       </div>
@@ -1808,56 +1561,27 @@ footer{
 
 
 <div class="learning-equation">
-
 F = −kx
-
 </div>
 
 
-<p>
-뉴턴의 제2법칙을 적용하면
-</p>
-
-
 <div class="learning-equation">
-
 ma = −kx
-
 </div>
 
 
-<p>
-따라서
-</p>
-
-
 <div class="learning-equation">
-
 a = −(k/m)x = −ω²x
-
 </div>
 
 
-<p>
-
-가속도의 크기가 변위에 비례하고
-방향이 항상 평형 위치를 향하는 운동이
-단진동입니다.
-
-</p>
-
-
 <div class="learning-equation">
-
 ω = √(k/m)
-
 </div>
 
 
 <div class="learning-equation">
-
 T = 2π√(m/k)
-
 </div>
 
 
@@ -1865,16 +1589,16 @@ T = 2π√(m/k)
 
 질량 m을 증가시키면 주기가 길어지고,
 용수철 상수 k를 증가시키면 주기가 짧아집니다.
-이상적인 단진동에서는 진폭 A가 달라져도 주기는 변하지 않습니다.
+이상적인 단진동에서는 진폭 A가 변해도 주기는 변하지 않습니다.
 
 </div>
 
 
 <div class="warning">
 
-수직 용수철에서는 중력 때문에 용수철의 평형 길이가 늘어나지만,
-평형 위치에서부터의 변위 x를 사용하면
-단진동 방정식은 F = −kx의 형태로 나타낼 수 있습니다.
+이 화면에서는 아래쪽을 +x로 정했습니다.
+따라서 아래쪽 최대 변위에서 x = +A이고,
+복원력과 가속도는 위쪽 방향이므로 음수가 됩니다.
 
 </div>
 
@@ -1893,85 +1617,44 @@ T = 2π√(m/k)
 
 <ol>
 
-
 <li>
-
-물체가 가장 아래 또는 가장 위의
-<strong>최대 변위</strong>에 있을 때
-속도와 가속도의 값을 확인하세요.
-
+t = 0에서 용수철 물체, 원운동 점, 그림자의 위치를 비교하세요.
+세 위치가 모두 아래쪽 최대 변위에 있는지 확인하세요.
 </li>
 
-
 <li>
-
-물체가 <strong>평형 위치</strong>를 통과할 때
-변위, 속도, 가속도 중
-어떤 물리량이 최대이고 어떤 물리량이 0인지 확인하세요.
-
+t = T/4에서 그림자가 평형 위치를 통과하는지 확인하세요.
+이때 원운동 점은 원의 어느 위치에 있나요?
 </li>
 
-
 <li>
-
-x-t 그래프와 a-t 그래프를 비교하세요.
-두 그래프의 위상이 왜 반대인지
-a = −ω²x를 이용하여 설명하세요.
-
+t = T/2에서 용수철 물체와 그림자가 위쪽 최대 변위에 있는지 확인하세요.
 </li>
 
-
 <li>
-
-x-t 그래프와 v-t 그래프를 비교하여
-속도는 변위와 몇 도의 위상 차이를 갖는지 생각해 보세요.
-
+원운동 점과 그림자를 연결하는 점선이 항상 수평인지 관찰하세요.
 </li>
 
-
 <li>
-
-질량을 4배로 바꾸고 주기의 변화를 확인하세요.
-T = 2π√(m/k)와 비교하세요.
-
+x-t와 a-t 그래프가 정확히 반대 위상인 이유를
+a = −ω²x로 설명하세요.
 </li>
 
-
 <li>
-
-용수철 상수를 4배로 변화시키고
-주기가 어떻게 변하는지 확인하세요.
-
+평형 위치를 통과할 때 속도의 크기가 최대가 되는지 확인하세요.
 </li>
 
-
 <li>
-
-질량과 용수철 상수를 그대로 둔 채
-진폭만 변화시키세요.
-주기가 변하는지 확인하세요.
-
+질량을 4배로 변화시키고 주기를 비교하세요.
 </li>
 
-
 <li>
-
-등속 원운동하는 점과 오른쪽 그림자의 높이를 비교하세요.
-두 점이 항상 같은 높이에 위치하는 것을 확인하고,
-그림자의 변위가
-x = A cos(ωt)로 나타나는 이유를 설명하세요.
-
+용수철 상수를 4배로 변화시키고 주기를 비교하세요.
 </li>
 
-
 <li>
-
-극점과 평형 위치에서
-운동에너지와 탄성 퍼텐셜 에너지의 변화를 비교하고,
-역학적 에너지가 일정한지 확인하세요.
-
+진폭만 변화시켜 주기가 변하지 않는지 확인하세요.
 </li>
-
 
 </ol>
 
@@ -2001,237 +1684,145 @@ x = A cos(ωt)로 나타나는 이유를 설명하세요.
 
 <script>
 
-/*
-========================================================
-DOM
-========================================================
-*/
+/* ========================================
+   DOM
+======================================== */
 
 const amplitudeSlider =
-  document.getElementById(
-    "amplitude"
-  );
-
+  document.getElementById("amplitude");
 
 const massSlider =
-  document.getElementById(
-    "mass"
-  );
-
+  document.getElementById("mass");
 
 const springSlider =
-  document.getElementById(
-    "springConstant"
-  );
-
+  document.getElementById("springConstant");
 
 const timeSlider =
-  document.getElementById(
-    "timeSlider"
-  );
-
+  document.getElementById("timeSlider");
 
 const amplitudeValue =
-  document.getElementById(
-    "amplitudeValue"
-  );
-
+  document.getElementById("amplitudeValue");
 
 const massValue =
-  document.getElementById(
-    "massValue"
-  );
-
+  document.getElementById("massValue");
 
 const springValue =
-  document.getElementById(
-    "springValue"
-  );
-
+  document.getElementById("springValue");
 
 const timeValue =
-  document.getElementById(
-    "timeValue"
-  );
-
+  document.getElementById("timeValue");
 
 const startButton =
-  document.getElementById(
-    "startButton"
-  );
-
+  document.getElementById("startButton");
 
 const pauseButton =
-  document.getElementById(
-    "pauseButton"
-  );
-
+  document.getElementById("pauseButton");
 
 const resetButton =
-  document.getElementById(
-    "resetButton"
-  );
-
+  document.getElementById("resetButton");
 
 const circleToggle =
-  document.getElementById(
-    "circleToggle"
-  );
-
+  document.getElementById("circleToggle");
 
 const vectorToggle =
-  document.getElementById(
-    "vectorToggle"
-  );
-
+  document.getElementById("vectorToggle");
 
 const energyToggle =
-  document.getElementById(
-    "energyToggle"
-  );
-
+  document.getElementById("energyToggle");
 
 const energySection =
-  document.getElementById(
-    "energySection"
-  );
-
+  document.getElementById("energySection");
 
 const status =
-  document.getElementById(
-    "status"
-  );
+  document.getElementById("status");
 
 
 const springCanvas =
-  document.getElementById(
-    "springCanvas"
-  );
-
+  document.getElementById("springCanvas");
 
 const springCtx =
-  springCanvas.getContext(
-    "2d"
-  );
+  springCanvas.getContext("2d");
 
 
 const circleCanvas =
-  document.getElementById(
-    "circleCanvas"
-  );
-
+  document.getElementById("circleCanvas");
 
 const circleCtx =
-  circleCanvas.getContext(
-    "2d"
-  );
+  circleCanvas.getContext("2d");
 
 
 const graphCanvas =
-  document.getElementById(
-    "graphCanvas"
-  );
-
+  document.getElementById("graphCanvas");
 
 const graphCtx =
-  graphCanvas.getContext(
-    "2d"
-  );
+  graphCanvas.getContext("2d");
 
 
-/*
-========================================================
-ANIMATION STATE
-========================================================
-*/
+/* ========================================
+   STATE
+======================================== */
 
 let running =
   false;
 
-
 let paused =
   false;
-
 
 let elapsedTime =
   0;
 
-
 let lastTimestamp =
   null;
-
 
 let animationId =
   null;
 
 
-/*
-========================================================
-PHYSICS
-========================================================
-*/
+/* ========================================
+   PHYSICS
+======================================== */
 
 function getParameters(){
 
-
   const A =
-    Number(
-      amplitudeSlider.value
-    ) /
+    Number(amplitudeSlider.value) /
     100;
 
-
   const m =
-    Number(
-      massSlider.value
-    );
-
+    Number(massSlider.value);
 
   const k =
-    Number(
-      springSlider.value
-    );
-
+    Number(springSlider.value);
 
   const omega =
     Math.sqrt(
-      k /
-      m
+      k / m
     );
-
 
   const T =
     2 *
     Math.PI /
     omega;
 
-
   return{
-
     A,
     m,
     k,
     omega,
     T
-
   };
 
 }
 
 
-function getState(
-  t
-){
-
+function getState(t){
 
   const p =
     getParameters();
 
-
   const phase =
     p.omega *
     t;
-
 
   const x =
     p.A *
@@ -2239,14 +1830,12 @@ function getState(
       phase
     );
 
-
   const v =
     -p.A *
     p.omega *
     Math.sin(
       phase
     );
-
 
   const a =
     -p.A *
@@ -2256,11 +1845,9 @@ function getState(
       phase
     );
 
-
   const F =
     -p.k *
     x;
-
 
   const KE =
     .5 *
@@ -2268,70 +1855,54 @@ function getState(
     v *
     v;
 
-
   const PE =
     .5 *
     p.k *
     x *
     x;
 
-
   const E =
     KE +
     PE;
 
-
   return{
-
     ...p,
-
     t,
     phase,
-
     x,
     v,
     a,
     F,
-
     KE,
     PE,
     E
-
   };
 
 }
 
 
-/*
-========================================================
-TEXT
-========================================================
-*/
+/* ========================================
+   TEXT
+======================================== */
 
 function signed(
   value,
   digits = 3
 ){
 
-
   if(
-    Math.abs(
-      value
-    ) <
+    Math.abs(value) <
     Math.pow(
       10,
       -digits
     )
   ){
 
-    return (
-      0
-    ).toFixed(
+    return (0).toFixed(
       digits
     );
 
   }
-
 
   return value.toFixed(
     digits
@@ -2340,10 +1911,7 @@ function signed(
 }
 
 
-function stateDescription(
-  s
-){
-
+function stateDescription(s){
 
   const relativeX =
     Math.abs(
@@ -2351,25 +1919,16 @@ function stateDescription(
       s.A
     );
 
-
   if(
     relativeX >
     .97
   ){
 
-    if(
-      s.x >
-      0
-    ){
-
-      return "아래쪽 최대 변위";
-
-    }
-
-    return "위쪽 최대 변위";
+    return s.x > 0
+      ? "아래쪽 최대 변위"
+      : "위쪽 최대 변위";
 
   }
-
 
   if(
     relativeX <
@@ -2380,26 +1939,14 @@ function stateDescription(
 
   }
 
-
-  if(
-    s.x >
-    0
-  ){
-
-    return "평형 위치 아래쪽";
-
-  }
-
-
-  return "평형 위치 위쪽";
+  return s.x > 0
+    ? "평형 위치 아래쪽"
+    : "평형 위치 위쪽";
 
 }
 
 
-function updateText(
-  s
-){
-
+function updateText(s){
 
   amplitudeValue.textContent =
     `${(
@@ -2407,127 +1954,94 @@ function updateText(
       100
     ).toFixed(0)} cm`;
 
-
   massValue.textContent =
     `${s.m.toFixed(1)} kg`;
-
 
   springValue.textContent =
     `${s.k.toFixed(0)} N/m`;
 
-
   timeValue.textContent =
     `${s.t.toFixed(2)} s`;
-
 
   document.getElementById(
     "liveTime"
   ).textContent =
     `${s.t.toFixed(2)} s`;
 
-
   document.getElementById(
     "liveX"
   ).textContent =
-    `${signed(
-      s.x
-    )} m`;
-
+    `${signed(s.x)} m`;
 
   document.getElementById(
     "liveV"
   ).textContent =
-    `${signed(
-      s.v
-    )} m/s`;
-
+    `${signed(s.v)} m/s`;
 
   document.getElementById(
     "liveA"
   ).textContent =
-    `${signed(
-      s.a
-    )} m/s²`;
-
+    `${signed(s.a)} m/s²`;
 
   document.getElementById(
     "liveF"
   ).textContent =
-    `${signed(
-      s.F
-    )} N`;
-
+    `${signed(s.F)} N`;
 
   document.getElementById(
     "livePeriod"
   ).textContent =
     `${s.T.toFixed(3)} s`;
 
-
   document.getElementById(
     "keValue"
   ).textContent =
     `${s.KE.toFixed(3)} J`;
-
 
   document.getElementById(
     "peValue"
   ).textContent =
     `${s.PE.toFixed(3)} J`;
 
-
   document.getElementById(
     "totalEnergyValue"
   ).textContent =
     `${s.E.toFixed(3)} J`;
 
-
   status.textContent =
-    stateDescription(
-      s
-    );
-
+    stateDescription(s);
 
   energySection.style.display =
     energyToggle.checked
-    ?
-    "block"
-    :
-    "none";
+      ? "block"
+      : "none";
 
 }
 
 
-/*
-========================================================
-CANVAS RESIZE
-========================================================
-*/
+/* ========================================
+   CANVAS RESIZE
+======================================== */
 
 function resizeCanvas(
   canvas,
   ctx
 ){
 
-
   const rect =
     canvas.getBoundingClientRect();
-
 
   const ratio =
     window.devicePixelRatio ||
     1;
 
-
   canvas.width =
     rect.width *
     ratio;
 
-
   canvas.height =
     rect.height *
     ratio;
-
 
   ctx.setTransform(
     ratio,
@@ -2543,24 +2057,20 @@ function resizeCanvas(
 
 function resizeAll(){
 
-
   resizeCanvas(
     springCanvas,
     springCtx
   );
-
 
   resizeCanvas(
     circleCanvas,
     circleCtx
   );
 
-
   resizeCanvas(
     graphCanvas,
     graphCtx
   );
-
 
   update();
 
@@ -2573,11 +2083,9 @@ window.addEventListener(
 );
 
 
-/*
-========================================================
-ARROW
-========================================================
-*/
+/* ========================================
+   ARROW
+======================================== */
 
 function drawArrow(
   ctx,
@@ -2589,79 +2097,62 @@ function drawArrow(
   label
 ){
 
-
   const angle =
     Math.atan2(
-      y2 -
-      y1,
-      x2 -
-      x1
+      y2-y1,
+      x2-x1
     );
-
 
   const head =
     9;
 
-
   ctx.strokeStyle =
     color;
-
 
   ctx.fillStyle =
     color;
 
-
   ctx.lineWidth =
     3;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     x1,
     y1
   );
 
-
   ctx.lineTo(
     x2,
     y2
   );
 
-
   ctx.stroke();
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     x2,
     y2
   );
 
-
   ctx.lineTo(
 
     x2 -
     head *
     Math.cos(
       angle -
-      Math.PI /
-      6
+      Math.PI/6
     ),
 
     y2 -
     head *
     Math.sin(
       angle -
-      Math.PI /
-      6
+      Math.PI/6
     )
 
   );
-
 
   ctx.lineTo(
 
@@ -2669,40 +2160,30 @@ function drawArrow(
     head *
     Math.cos(
       angle +
-      Math.PI /
-      6
+      Math.PI/6
     ),
 
     y2 -
     head *
     Math.sin(
       angle +
-      Math.PI /
-      6
+      Math.PI/6
     )
 
   );
-
 
   ctx.closePath();
 
-
   ctx.fill();
 
-
-  if(
-    label
-  ){
-
+  if(label){
 
     ctx.font =
       "bold 12px Arial";
 
-
     ctx.fillText(
       label,
-      x2 +
-      7,
+      x2+7,
       y2
     );
 
@@ -2711,28 +2192,20 @@ function drawArrow(
 }
 
 
-/*
-========================================================
-SPRING
-========================================================
-*/
+/* ========================================
+   SPRING
+======================================== */
 
-function drawSpring(
-  s
-){
-
+function drawSpring(s){
 
   const ctx =
     springCtx;
 
-
   const width =
     springCanvas.clientWidth;
 
-
   const height =
     springCanvas.clientHeight;
-
 
   ctx.clearRect(
     0,
@@ -2741,10 +2214,8 @@ function drawSpring(
     height
   );
 
-
   ctx.fillStyle =
     "#f8fbff";
-
 
   ctx.fillRect(
     0,
@@ -2758,15 +2229,12 @@ function drawSpring(
     width *
     .5;
 
-
   const supportY =
     35;
-
 
   const equilibriumY =
     height *
     .60;
-
 
   const maxPixelAmplitude =
     Math.min(
@@ -2775,14 +2243,12 @@ function drawSpring(
       .23
     );
 
-
   const pixelScale =
     maxPixelAmplitude /
     .20;
 
-
   /*
-  +x 방향을 아래로 정의
+  +x direction = downward
   */
 
   const objectY =
@@ -2790,132 +2256,98 @@ function drawSpring(
     s.x *
     pixelScale;
 
-
   const amplitudePixel =
     s.A *
     pixelScale;
 
 
-  /*
-  ceiling
-  */
+  /* ceiling */
 
   ctx.strokeStyle =
     "#334155";
 
-
   ctx.lineWidth =
     5;
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    70,
+    centerX-70,
     supportY
   );
-
 
   ctx.lineTo(
-    centerX +
-    70,
+    centerX+70,
     supportY
   );
-
 
   ctx.stroke();
 
 
-  /*
-  upper/lower amplitude
-  */
+  /* amplitude lines */
 
   ctx.setLineDash(
     [5,5]
   );
 
-
   ctx.lineWidth =
     1.5;
-
 
   ctx.strokeStyle =
     "#cbd5e1";
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    100,
-    equilibriumY -
+    centerX-100,
+    equilibriumY-
     amplitudePixel
   );
-
 
   ctx.lineTo(
-    centerX +
-    100,
-    equilibriumY -
+    centerX+100,
+    equilibriumY-
     amplitudePixel
   );
-
 
   ctx.stroke();
 
 
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    100,
-    equilibriumY +
+    centerX-100,
+    equilibriumY+
     amplitudePixel
   );
-
 
   ctx.lineTo(
-    centerX +
-    100,
-    equilibriumY +
+    centerX+100,
+    equilibriumY+
     amplitudePixel
   );
-
 
   ctx.stroke();
 
 
-  /*
-  equilibrium
-  */
+  /* equilibrium */
 
   ctx.strokeStyle =
     "#64748b";
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    115,
+    centerX-115,
     equilibriumY
   );
-
 
   ctx.lineTo(
-    centerX +
-    115,
+    centerX+115,
     equilibriumY
   );
 
-
   ctx.stroke();
-
 
   ctx.setLineDash(
     []
@@ -2925,162 +2357,107 @@ function drawSpring(
   ctx.fillStyle =
     "#64748b";
 
-
   ctx.font =
     "12px Arial";
 
-
   ctx.fillText(
     "평형 위치 x = 0",
-    centerX +
-    75,
-    equilibriumY -
-    7
+    centerX+75,
+    equilibriumY-7
   );
 
 
-  /*
-  spring
-  */
+  /* spring */
 
   const springTop =
-    supportY +
-    6;
-
+    supportY+6;
 
   const springBottom =
-    objectY -
-    25;
-
+    objectY-25;
 
   const turns =
     15;
 
-
   const springWidth =
     28;
-
 
   ctx.strokeStyle =
     "#64748b";
 
-
   ctx.lineWidth =
     2.5;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     centerX,
     springTop
   );
 
-
   for(
-    let i =
-      1;
-
-    i <=
-      turns;
-
+    let i=1;
+    i<=turns;
     i++
   ){
-
 
     const fraction =
       i /
       turns;
 
-
     const y =
       springTop +
       (
-        springBottom -
+        springBottom-
         springTop
       ) *
       fraction;
 
-
     const xOffset =
-
       i === turns
-
-      ?
-
-      0
-
-      :
-
-      (
-        i %
-        2 ===
-        0
-
-        ?
-
-        -springWidth
-
-        :
-
-        springWidth
-      );
-
+        ? 0
+        : (
+            i%2 === 0
+              ? -springWidth
+              : springWidth
+          );
 
     ctx.lineTo(
-      centerX +
+      centerX+
       xOffset,
       y
     );
 
   }
 
-
   ctx.stroke();
 
 
-  /*
-  mass
-  */
+  /* mass */
 
   const size =
     42 +
     s.m *
     4;
 
-
   ctx.fillStyle =
     "#2563eb";
 
-
   ctx.fillRect(
-    centerX -
-    size /
-    2,
-    objectY -
-    size /
-    2,
+    centerX-size/2,
+    objectY-size/2,
     size,
     size
   );
 
-
   ctx.strokeStyle =
     "#1e3a8a";
-
 
   ctx.lineWidth =
     2;
 
-
   ctx.strokeRect(
-    centerX -
-    size /
-    2,
-    objectY -
-    size /
-    2,
+    centerX-size/2,
+    objectY-size/2,
     size,
     size
   );
@@ -3089,55 +2466,41 @@ function drawSpring(
   ctx.fillStyle =
     "#ffffff";
 
-
   ctx.font =
     "bold 12px Arial";
-
 
   ctx.textAlign =
     "center";
 
-
   ctx.fillText(
     "m",
     centerX,
-    objectY +
-    4
+    objectY+4
   );
-
 
   ctx.textAlign =
     "start";
 
 
-  /*
-  displacement line
-  */
+  /* displacement */
 
   ctx.strokeStyle =
     "#2563eb";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    75,
+    centerX-75,
     equilibriumY
   );
 
-
   ctx.lineTo(
-    centerX -
-    75,
+    centerX-75,
     objectY
   );
-
 
   ctx.stroke();
 
@@ -3145,10 +2508,8 @@ function drawSpring(
   ctx.fillStyle =
     "#2563eb";
 
-
   ctx.font =
     "bold 12px Arial";
-
 
   ctx.fillText(
     `x = ${s.x.toFixed(3)} m`,
@@ -3157,19 +2518,15 @@ function drawSpring(
   );
 
 
-  /*
-  vectors
-  */
+  /* vectors */
 
   if(
     vectorToggle.checked
   ){
 
-
     const vMax =
       s.A *
       s.omega;
-
 
     const vScale =
       55 /
@@ -3178,29 +2535,21 @@ function drawSpring(
         vMax
       );
 
-
     if(
-      Math.abs(
-        s.v
-      ) >
+      Math.abs(s.v) >
       .01
     ){
-
 
       drawArrow(
 
         ctx,
 
-        centerX +
-        55,
-
+        centerX+55,
         objectY,
 
-        centerX +
-        55,
-
-        objectY +
-        s.v *
+        centerX+55,
+        objectY+
+        s.v*
         vScale,
 
         "#059669",
@@ -3217,7 +2566,6 @@ function drawSpring(
       s.omega *
       s.omega;
 
-
     const aScale =
       55 /
       Math.max(
@@ -3225,29 +2573,21 @@ function drawSpring(
         aMax
       );
 
-
     if(
-      Math.abs(
-        s.a
-      ) >
+      Math.abs(s.a) >
       .02
     ){
-
 
       drawArrow(
 
         ctx,
 
-        centerX +
-        95,
-
+        centerX+95,
         objectY,
 
-        centerX +
-        95,
-
-        objectY +
-        s.a *
+        centerX+95,
+        objectY+
+        s.a*
         aScale,
 
         "#dc2626",
@@ -3264,43 +2604,32 @@ function drawSpring(
   ctx.fillStyle =
     "#64748b";
 
-
   ctx.font =
     "12px Arial";
-
 
   ctx.fillText(
     "+x 방향 ↓",
     12,
-    height -
-    18
+    height-18
   );
 
 }
 
 
-/*
-========================================================
-CIRCULAR MOTION + SHADOW
-========================================================
-*/
+/* ========================================
+   CIRCULAR MOTION
+======================================== */
 
-function drawCircle(
-  s
-){
-
+function drawCircle(s){
 
   const ctx =
     circleCtx;
 
-
   const width =
     circleCanvas.clientWidth;
 
-
   const height =
     circleCanvas.clientHeight;
-
 
   ctx.clearRect(
     0,
@@ -3309,10 +2638,8 @@ function drawCircle(
     height
   );
 
-
   ctx.fillStyle =
     "#f8fbff";
-
 
   ctx.fillRect(
     0,
@@ -3326,31 +2653,23 @@ function drawCircle(
     !circleToggle.checked
   ){
 
-
     ctx.fillStyle =
       "#64748b";
-
 
     ctx.font =
       "14px Arial";
 
-
     ctx.textAlign =
       "center";
 
-
     ctx.fillText(
       "등속 원운동 그림자 표시가 꺼져 있습니다.",
-      width /
-      2,
-      height /
-      2
+      width/2,
+      height/2
     );
-
 
     ctx.textAlign =
       "start";
-
 
     return;
 
@@ -3361,125 +2680,111 @@ function drawCircle(
     width *
     .38;
 
-
   const centerY =
     height *
-    .5;
-
+    .50;
 
   const radius =
     Math.min(
-      105,
+      95,
       width *
-      .25,
+      .23,
       height *
-      .30
+      .27
     );
 
 
-  /*
-  circle
-  */
+  /* circle */
 
   ctx.strokeStyle =
     "#94a3b8";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
-
 
   ctx.arc(
     centerX,
     centerY,
     radius,
     0,
-    Math.PI *
-    2
+    Math.PI*2
   );
-
 
   ctx.stroke();
 
 
-  /*
-  axes
-  */
+  /* axes */
 
   ctx.strokeStyle =
     "#cbd5e1";
 
-
   ctx.lineWidth =
     1;
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    centerX -
-    radius -
+    centerX-
+    radius-
     20,
     centerY
   );
-
 
   ctx.lineTo(
-    centerX +
-    radius +
+    centerX+
+    radius+
     20,
     centerY
   );
-
 
   ctx.stroke();
 
 
   ctx.beginPath();
 
-
   ctx.moveTo(
     centerX,
-    centerY -
-    radius -
+    centerY-
+    radius-
     20
   );
-
 
   ctx.lineTo(
     centerX,
-    centerY +
-    radius +
+    centerY+
+    radius+
     20
   );
 
-
   ctx.stroke();
-
 
 
   /*
-  ======================================================
-  핵심 수정 부분
+  ------------------------------------------------
+  핵심
 
-  단진동:
   x = A cos(theta)
 
-  화면에서 +x 방향을 아래쪽으로 잡았으므로
-  원운동 점의 수직 좌표 역시
+  화면에서 +x는 아래쪽.
 
-  y = centerY + R cos(theta)
+  원운동 점의 수직 성분도
+  +R cos(theta) 로 정함.
 
-  로 설정한다.
+  theta = 0:
+  point = bottom
 
-  따라서 원운동 점과 그림자는 항상 같은 높이에 있다.
-  ======================================================
+  theta = pi/2:
+  point = right
+
+  theta = pi:
+  point = top
+
+  theta = 3pi/2:
+  point = left
+  ------------------------------------------------
   */
-
 
   const theta =
     s.phase;
@@ -3501,64 +2806,48 @@ function drawCircle(
     );
 
 
-  /*
-  radius
-  */
+  /* radius */
 
   ctx.strokeStyle =
     "#64748b";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     centerX,
     centerY
   );
 
-
   ctx.lineTo(
     pointX,
     pointY
   );
 
-
   ctx.stroke();
 
 
-  /*
-  circular point
-  */
+  /* circular point */
 
   ctx.fillStyle =
     "#7c3aed";
 
-
   ctx.beginPath();
-
 
   ctx.arc(
     pointX,
     pointY,
     8,
     0,
-    Math.PI *
-    2
+    Math.PI*2
   );
-
 
   ctx.fill();
 
 
-
-  /*
-  shadow axis
-  */
+  /* shadow axis */
 
   const shadowAxisX =
     width *
@@ -3566,288 +2855,162 @@ function drawCircle(
 
 
   /*
-  그림자의 높이는 원운동 점과 정확히 동일
+  그림자 y 좌표를 별도로 계산하지 않음.
+  반드시 원운동 점의 y좌표를 그대로 사용.
   */
 
   const shadowY =
     pointY;
 
 
-  /*
-  수평 투영선
-  */
+  /* horizontal projection */
 
   ctx.setLineDash(
     [5,5]
   );
 
-
   ctx.strokeStyle =
     "#94a3b8";
-
 
   ctx.lineWidth =
     1.5;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     pointX,
     pointY
   );
 
-
   ctx.lineTo(
     shadowAxisX,
-    shadowY
+    pointY
   );
 
-
   ctx.stroke();
-
 
   ctx.setLineDash(
     []
   );
 
 
-  /*
-  shadow vertical axis
-  */
+  /* shadow axis */
 
   ctx.strokeStyle =
     "#334155";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     shadowAxisX,
-    centerY -
+    centerY-
     radius
   );
-
 
   ctx.lineTo(
     shadowAxisX,
-    centerY +
+    centerY+
     radius
   );
-
 
   ctx.stroke();
 
 
-  /*
-  shadow equilibrium position
-  */
+  /* equilibrium mark */
 
   ctx.strokeStyle =
     "#cbd5e1";
 
-
   ctx.lineWidth =
     1;
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    shadowAxisX -
-    26,
+    shadowAxisX-26,
     centerY
   );
-
 
   ctx.lineTo(
-    shadowAxisX +
-    26,
+    shadowAxisX+26,
     centerY
   );
-
 
   ctx.stroke();
 
 
-  /*
-  shadow
-  */
+  /* shadow */
 
   ctx.fillStyle =
     "#2563eb";
 
-
   ctx.beginPath();
-
 
   ctx.arc(
     shadowAxisX,
     shadowY,
     10,
     0,
-    Math.PI *
-    2
+    Math.PI*2
   );
-
 
   ctx.fill();
 
 
-
-  /*
-  displacement indication
-  */
+  /* displacement line */
 
   ctx.strokeStyle =
     "#2563eb";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
 
-
   ctx.moveTo(
-    shadowAxisX +
-    22,
+    shadowAxisX+23,
     centerY
   );
 
-
   ctx.lineTo(
-    shadowAxisX +
-    22,
+    shadowAxisX+23,
     shadowY
   );
-
 
   ctx.stroke();
 
 
   ctx.fillStyle =
     "#2563eb";
-
 
   ctx.font =
     "bold 11px Arial";
 
-
   ctx.fillText(
     "x",
-    shadowAxisX +
-    29,
+    shadowAxisX+30,
     (
-      centerY +
+      centerY+
       shadowY
-    ) /
+    )/
     2
   );
 
 
-  /*
-  angular motion arrow
-  */
-
-  ctx.strokeStyle =
-    "#7c3aed";
-
-
-  ctx.lineWidth =
-    2;
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    centerX,
-    centerY,
-    radius +
-    18,
-    -.2,
-    .85
-  );
-
-
-  ctx.stroke();
-
-
-  /*
-  arrow head for rotation
-  */
-
-  const arrowAngle =
-    .85;
-
-
-  const ax =
-    centerX +
-    (
-      radius +
-      18
-    ) *
-    Math.cos(
-      arrowAngle
-    );
-
-
-  const ay =
-    centerY +
-    (
-      radius +
-      18
-    ) *
-    Math.sin(
-      arrowAngle
-    );
-
-
-  ctx.fillStyle =
-    "#7c3aed";
-
-
-  ctx.beginPath();
-
-
-  ctx.arc(
-    ax,
-    ay,
-    3,
-    0,
-    Math.PI *
-    2
-  );
-
-
-  ctx.fill();
-
-
-  /*
-  labels
-  */
+  /* labels */
 
   ctx.fillStyle =
     "#334155";
 
-
   ctx.font =
     "bold 13px Arial";
 
-
   ctx.fillText(
     "등속 원운동",
-    centerX -
-    40,
+    centerX-40,
     28
   );
 
@@ -3855,68 +3018,57 @@ function drawCircle(
   ctx.fillStyle =
     "#2563eb";
 
-
   ctx.fillText(
     "그림자 = 단진동",
-    shadowAxisX -
-    52,
+    shadowAxisX-52,
     28
-  );
-
-
-  ctx.fillStyle =
-    "#7c3aed";
-
-
-  ctx.font =
-    "bold 12px Arial";
-
-
-  ctx.fillText(
-    "ω",
-    centerX +
-    radius +
-    16,
-    centerY -
-    10
   );
 
 
   /*
-  formula relationship
+  0° 기준선 표시
+  아래쪽을 theta = 0으로 설정
   */
 
-  ctx.fillStyle =
-    "#475569";
+  ctx.strokeStyle =
+    "#94a3b8";
 
+  ctx.setLineDash(
+    [3,4]
+  );
 
-  ctx.font =
-    "12px Arial";
+  ctx.beginPath();
 
+  ctx.moveTo(
+    centerX,
+    centerY
+  );
 
-  ctx.fillText(
-    "그림자의 변위",
-    shadowAxisX -
-    45,
-    height -
-    48
+  ctx.lineTo(
+    centerX,
+    centerY+
+    radius
+  );
+
+  ctx.stroke();
+
+  ctx.setLineDash(
+    []
   );
 
 
   ctx.fillStyle =
-    "#2563eb";
-
+    "#64748b";
 
   ctx.font =
-    "bold 12px Arial";
-
+    "11px Arial";
 
   ctx.fillText(
-    "x = A cos(ωt)",
-    shadowAxisX -
-    47,
-    height -
-    28
+    "θ = 0°",
+    centerX+8,
+    centerY+
+    radius-
+    8
   );
 
 
@@ -3932,7 +3084,6 @@ function drawCircle(
     ) %
     360;
 
-
   if(
     degree <
     0
@@ -3947,43 +3098,45 @@ function drawCircle(
   ctx.fillStyle =
     "#64748b";
 
-
   ctx.font =
     "12px Arial";
-
 
   ctx.fillText(
     `θ = ωt = ${degree.toFixed(0)}°`,
     14,
-    height -
-    20
+    height-20
+  );
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+  ctx.font =
+    "bold 12px Arial";
+
+  ctx.fillText(
+    "x = A cos(ωt)",
+    shadowAxisX-45,
+    height-20
   );
 
 }
 
 
-/*
-========================================================
-GRAPH
-========================================================
-*/
+/* ========================================
+   GRAPH
+======================================== */
 
-function drawGraph(
-  s
-){
-
+function drawGraph(s){
 
   const ctx =
     graphCtx;
 
-
   const width =
     graphCanvas.clientWidth;
 
-
   const height =
     graphCanvas.clientHeight;
-
 
   ctx.clearRect(
     0,
@@ -3992,10 +3145,8 @@ function drawGraph(
     height
   );
 
-
   ctx.fillStyle =
     "#ffffff";
-
 
   ctx.fillRect(
     0,
@@ -4006,27 +3157,22 @@ function drawGraph(
 
 
   const margin = {
-
     left:58,
-
     right:22,
-
     top:25,
-
     bottom:38
-
   };
 
 
   const plotW =
-    width -
-    margin.left -
+    width-
+    margin.left-
     margin.right;
 
 
   const totalPlotH =
-    height -
-    margin.top -
+    height-
+    margin.top-
     margin.bottom;
 
 
@@ -4036,16 +3182,11 @@ function drawGraph(
 
   const graphH =
     (
-      totalPlotH -
-      gap *
-      2
-    ) /
+      totalPlotH-
+      gap*2
+    )/
     3;
 
-
-  /*
-  two periods
-  */
 
   const maxTime =
     2 *
@@ -4057,111 +3198,85 @@ function drawGraph(
     maxTime;
 
 
-  function tx(
-    t
-  ){
-
+  function tx(t){
 
     return (
-      margin.left +
-      t /
-      maxTime *
+      margin.left+
+      t/
+      maxTime*
       plotW
     );
 
   }
 
 
-  /*
-  grid
-  */
-
   ctx.strokeStyle =
     "#e2e8f0";
-
 
   ctx.lineWidth =
     1;
 
 
   for(
-    let g =
-      0;
-
-    g <
-      3;
-
+    let g=0;
+    g<3;
     g++
   ){
 
-
     const top =
-      margin.top +
-      g *
+      margin.top+
+      g*
       (
-        graphH +
+        graphH+
         gap
       );
 
-
     const center =
-      top +
-      graphH /
+      top+
+      graphH/
       2;
 
 
     ctx.beginPath();
-
 
     ctx.moveTo(
       margin.left,
       center
     );
 
-
     ctx.lineTo(
-      margin.left +
+      margin.left+
       plotW,
       center
     );
-
 
     ctx.stroke();
 
 
     for(
-      let i =
-        0;
-
-      i <=
-        4;
-
+      let i=0;
+      i<=4;
       i++
     ){
 
-
       const x =
-        margin.left +
-        plotW *
-        i /
+        margin.left+
+        plotW*
+        i/
         4;
 
-
       ctx.beginPath();
-
 
       ctx.moveTo(
         x,
         top
       );
 
-
       ctx.lineTo(
         x,
-        top +
+        top+
         graphH
       );
-
 
       ctx.stroke();
 
@@ -4179,25 +3294,22 @@ function drawGraph(
     unit
   ){
 
-
     const top =
-      margin.top +
-      index *
+      margin.top+
+      index*
       (
-        graphH +
+        graphH+
         gap
       );
 
-
     const center =
-      top +
-      graphH /
+      top+
+      graphH/
       2;
 
-
     const scale =
-      graphH *
-      .39 /
+      graphH*
+      .39/
       Math.max(
         .0001,
         maxAbs
@@ -4206,43 +3318,30 @@ function drawGraph(
 
     ctx.beginPath();
 
-
     const samples =
       360;
 
 
     for(
-      let i =
-        0;
-
-      i <=
-        samples;
-
+      let i=0;
+      i<=samples;
       i++
     ){
 
-
       const t =
-        maxTime *
-        i /
+        maxTime*
+        i/
         samples;
 
-
       const value =
-        getter(
-          t
-        );
-
+        getter(t);
 
       const x =
-        tx(
-          t
-        );
-
+        tx(t);
 
       const y =
-        center -
-        value *
+        center-
+        value*
         scale;
 
 
@@ -4251,7 +3350,6 @@ function drawGraph(
         0
       ){
 
-
         ctx.moveTo(
           x,
           y
@@ -4259,9 +3357,7 @@ function drawGraph(
 
       }
 
-
       else{
-
 
         ctx.lineTo(
           x,
@@ -4276,10 +3372,8 @@ function drawGraph(
     ctx.strokeStyle =
       color;
 
-
     ctx.lineWidth =
       2.5;
-
 
     ctx.stroke();
 
@@ -4287,42 +3381,33 @@ function drawGraph(
     ctx.fillStyle =
       color;
 
-
     ctx.font =
       "bold 12px Arial";
-
 
     ctx.fillText(
       label,
       9,
-      top +
-      17
+      top+17
     );
 
 
     ctx.fillStyle =
       "#64748b";
 
-
     ctx.font =
       "10px Arial";
 
-
     ctx.fillText(
       `+${maxAbs.toFixed(2)} ${unit}`,
-      margin.left +
-      4,
-      top +
-      11
+      margin.left+4,
+      top+11
     );
-
 
     ctx.fillText(
       `−${maxAbs.toFixed(2)} ${unit}`,
-      margin.left +
-      4,
-      top +
-      graphH -
+      margin.left+4,
+      top+
+      graphH-
       4
     );
 
@@ -4345,77 +3430,49 @@ function drawGraph(
 
 
   drawSeries(
-
     0,
-
     "#2563eb",
-
     p.A,
-
     t =>
       p.A *
       Math.cos(
-        p.omega *
-        t
+        p.omega*t
       ),
-
     "x",
-
     "m"
-
   );
 
 
   drawSeries(
-
     1,
-
     "#059669",
-
     vmax,
-
     t =>
       -p.A *
       p.omega *
       Math.sin(
-        p.omega *
-        t
+        p.omega*t
       ),
-
     "v",
-
     "m/s"
-
   );
 
 
   drawSeries(
-
     2,
-
     "#dc2626",
-
     amax,
-
     t =>
       -p.A *
       p.omega *
       p.omega *
       Math.cos(
-        p.omega *
-        t
+        p.omega*t
       ),
-
     "a",
-
     "m/s²"
-
   );
 
-
-  /*
-  current-time line
-  */
 
   const currentX =
     tx(
@@ -4426,43 +3483,32 @@ function drawGraph(
   ctx.strokeStyle =
     "#0f172a";
 
-
   ctx.lineWidth =
     1.5;
-
 
   ctx.setLineDash(
     [5,4]
   );
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     currentX,
     margin.top
   );
 
-
   ctx.lineTo(
     currentX,
-    height -
+    height-
     margin.bottom
   );
 
-
   ctx.stroke();
-
 
   ctx.setLineDash(
     []
   );
 
-
-  /*
-  current points
-  */
 
   const currentValues = [
 
@@ -4493,70 +3539,50 @@ function drawGraph(
   currentValues.forEach(
     item => {
 
-
       const top =
-        margin.top +
-        item.index *
+        margin.top+
+        item.index*
         (
-          graphH +
+          graphH+
           gap
         );
 
-
       const center =
-        top +
-        graphH /
+        top+
+        graphH/
         2;
 
-
       const scale =
-        graphH *
-        .39 /
+        graphH*
+        .39/
         Math.max(
           .0001,
           item.max
         );
 
-
       const y =
-        center -
-        item.value *
+        center-
+        item.value*
         scale;
 
 
       ctx.beginPath();
-
 
       ctx.arc(
         currentX,
         y,
         5,
         0,
-        Math.PI *
-        2
+        Math.PI*2
       );
-
 
       ctx.fillStyle =
         item.color;
-
 
       ctx.fill();
 
     }
   );
-
-
-  /*
-  time labels
-  */
-
-  ctx.fillStyle =
-    "#64748b";
-
-
-  ctx.font =
-    "11px Arial";
 
 
   const labels = [
@@ -4567,8 +3593,18 @@ function drawGraph(
     },
 
     {
+      t:s.T/4,
+      label:"T/4"
+    },
+
+    {
       t:s.T/2,
       label:"T/2"
+    },
+
+    {
+      t:3*s.T/4,
+      label:"3T/4"
     },
 
     {
@@ -4589,18 +3625,20 @@ function drawGraph(
   ];
 
 
+  ctx.fillStyle =
+    "#64748b";
+
+  ctx.font =
+    "10px Arial";
+
+
   labels.forEach(
     item => {
 
-
       ctx.fillText(
         item.label,
-        tx(
-          item.t
-        ) -
-        8,
-        height -
-        12
+        tx(item.t)-8,
+        height-12
       );
 
     }
@@ -4610,30 +3648,23 @@ function drawGraph(
   ctx.fillStyle =
     "#334155";
 
-
   ctx.font =
     "12px Arial";
 
-
   ctx.fillText(
     "시간 t",
-    width -
-    52,
-    height -
-    12
+    width-52,
+    height-12
   );
 
 }
 
 
-/*
-========================================================
-UPDATE
-========================================================
-*/
+/* ========================================
+   UPDATE
+======================================== */
 
 function update(){
-
 
   const s =
     getState(
@@ -4646,7 +3677,7 @@ function update(){
     s.T;
 
 
-  let sliderFraction =
+  const sliderFraction =
     (
       elapsedTime %
       maxTime
@@ -4655,55 +3686,32 @@ function update(){
 
 
   if(
-    !running &&
-    elapsedTime ===
-    maxTime
+    running
   ){
 
-
-    sliderFraction =
-      1;
+    timeSlider.value =
+      sliderFraction *
+      100;
 
   }
 
 
-  timeSlider.value =
-    sliderFraction *
-    100;
+  updateText(s);
 
+  drawSpring(s);
 
-  updateText(
-    s
-  );
+  drawCircle(s);
 
-
-  drawSpring(
-    s
-  );
-
-
-  drawCircle(
-    s
-  );
-
-
-  drawGraph(
-    s
-  );
+  drawGraph(s);
 
 }
 
 
-/*
-========================================================
-ANIMATION
-========================================================
-*/
+/* ========================================
+   ANIMATION
+======================================== */
 
-function animate(
-  timestamp
-){
-
+function animate(timestamp){
 
   if(
     !running
@@ -4718,16 +3726,13 @@ function animate(
     paused
   ){
 
-
     lastTimestamp =
       timestamp;
-
 
     animationId =
       requestAnimationFrame(
         animate
       );
-
 
     return;
 
@@ -4739,7 +3744,6 @@ function animate(
     null
   ){
 
-
     lastTimestamp =
       timestamp;
 
@@ -4748,9 +3752,9 @@ function animate(
 
   const dt =
     (
-      timestamp -
+      timestamp-
       lastTimestamp
-    ) /
+    )/
     1000;
 
 
@@ -4776,7 +3780,6 @@ function animate(
     loopTime
   ){
 
-
     elapsedTime =
       elapsedTime %
       loopTime;
@@ -4795,11 +3798,9 @@ function animate(
 }
 
 
-/*
-========================================================
-EVENTS
-========================================================
-*/
+/* ========================================
+   EVENTS
+======================================== */
 
 [
   amplitudeSlider,
@@ -4808,27 +3809,24 @@ EVENTS
 ].forEach(
   input => {
 
-
     input.addEventListener(
       "input",
       () => {
 
-
         running =
           false;
-
 
         paused =
           false;
 
-
         elapsedTime =
           0;
 
+        timeSlider.value =
+          0;
 
         pauseButton.textContent =
           "Ⅱ 일시정지";
-
 
         update();
 
@@ -4839,18 +3837,12 @@ EVENTS
 );
 
 
-/*
-time slider
-*/
-
 timeSlider.addEventListener(
   "input",
   () => {
 
-
     running =
       false;
-
 
     paused =
       false;
@@ -4859,7 +3851,6 @@ timeSlider.addEventListener(
     if(
       animationId
     ){
-
 
       cancelAnimationFrame(
         animationId
@@ -4875,10 +3866,10 @@ timeSlider.addEventListener(
     elapsedTime =
       Number(
         timeSlider.value
-      ) /
-      100 *
+      )/
+      100*
       (
-        2 *
+        2*
         p.T
       );
 
@@ -4888,10 +3879,6 @@ timeSlider.addEventListener(
   }
 );
 
-
-/*
-toggles
-*/
 
 circleToggle.addEventListener(
   "change",
@@ -4911,26 +3898,18 @@ energyToggle.addEventListener(
 );
 
 
-/*
-start
-*/
-
 startButton.addEventListener(
   "click",
   () => {
 
-
     running =
       true;
-
 
     paused =
       false;
 
-
     lastTimestamp =
       null;
-
 
     pauseButton.textContent =
       "Ⅱ 일시정지";
@@ -4939,7 +3918,6 @@ startButton.addEventListener(
     if(
       animationId
     ){
-
 
       cancelAnimationFrame(
         animationId
@@ -4957,14 +3935,9 @@ startButton.addEventListener(
 );
 
 
-/*
-pause
-*/
-
 pauseButton.addEventListener(
   "click",
   () => {
-
 
     if(
       !running
@@ -4980,15 +3953,10 @@ pauseButton.addEventListener(
 
 
     pauseButton.textContent =
-
       paused
-
       ?
-
       "▶ 계속"
-
       :
-
       "Ⅱ 일시정지";
 
 
@@ -4999,35 +3967,29 @@ pauseButton.addEventListener(
 );
 
 
-/*
-reset
-*/
-
 resetButton.addEventListener(
   "click",
   () => {
 
-
     running =
       false;
-
 
     paused =
       false;
 
-
     elapsedTime =
       0;
 
-
     lastTimestamp =
       null;
+
+    timeSlider.value =
+      0;
 
 
     if(
       animationId
     ){
-
 
       cancelAnimationFrame(
         animationId
@@ -5046,11 +4008,9 @@ resetButton.addEventListener(
 );
 
 
-/*
-========================================================
-INIT
-========================================================
-*/
+/* ========================================
+   INIT
+======================================== */
 
 resizeAll();
 
@@ -5060,5 +4020,4 @@ update();
 
 
 </body>
-
 </html>
