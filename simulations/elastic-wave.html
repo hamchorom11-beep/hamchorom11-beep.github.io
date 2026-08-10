@@ -105,7 +105,7 @@ a{
 
 
 /* ========================================
-   HEADER
+HEADER
 ======================================== */
 
 header{
@@ -189,7 +189,7 @@ header{
 
 
 /* ========================================
-   INTRO
+INTRO
 ======================================== */
 
 .intro{
@@ -252,7 +252,7 @@ header{
 
 
 /* ========================================
-   MODE
+MODE
 ======================================== */
 
 .mode-tabs{
@@ -260,7 +260,10 @@ header{
   display:grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+    repeat(
+      4,
+      1fr
+    );
 
   gap:10px;
 
@@ -302,7 +305,7 @@ header{
 
 
 /* ========================================
-   MAIN
+MAIN
 ======================================== */
 
 .main-grid{
@@ -310,8 +313,14 @@ header{
   display:grid;
 
   grid-template-columns:
-    minmax(285px,340px)
-    minmax(0,1fr);
+    minmax(
+      285px,
+      340px
+    )
+    minmax(
+      0,
+      1fr
+    );
 
   gap:22px;
 
@@ -351,7 +360,7 @@ header{
 
 
 /* ========================================
-   CONTROL
+CONTROL
 ======================================== */
 
 .control{
@@ -504,7 +513,7 @@ button{
 
 
 /* ========================================
-   SIMULATION
+SIMULATION
 ======================================== */
 
 .toolbar{
@@ -597,13 +606,13 @@ button{
 
   font-size:.8rem;
 
-  line-height:1.5;
+  line-height:1.55;
 
 }
 
 
 /* ========================================
-   VALUES
+VALUES
 ======================================== */
 
 .value-grid{
@@ -611,7 +620,13 @@ button{
   display:grid;
 
   grid-template-columns:
-    repeat(5,minmax(0,1fr));
+    repeat(
+      5,
+      minmax(
+        0,
+        1fr
+      )
+    );
 
   gap:10px;
 
@@ -656,7 +671,7 @@ button{
 
 
 /* ========================================
-   EQUATIONS
+EQUATIONS
 ======================================== */
 
 .equation-section{
@@ -700,7 +715,10 @@ button{
   display:grid;
 
   grid-template-columns:
-    repeat(3,1fr);
+    repeat(
+      3,
+      1fr
+    );
 
   gap:10px;
 
@@ -749,7 +767,7 @@ button{
 
 
 /* ========================================
-   REFLECTION LEGEND
+LEGEND
 ======================================== */
 
 .legend{
@@ -807,7 +825,37 @@ button{
 
 
 /* ========================================
-   LEARNING
+SPECIAL SUPERPOSITION PANEL
+======================================== */
+
+.superposition-guide{
+
+  display:none;
+
+  margin-top:14px;
+
+  padding:13px 15px;
+
+  border-radius:12px;
+
+  background:#f5f3ff;
+
+  color:#5b21b6;
+
+  line-height:1.6;
+
+  font-size:.86rem;
+
+}
+
+
+.superposition-guide strong{
+  color:#4c1d95;
+}
+
+
+/* ========================================
+LEARNING
 ======================================== */
 
 .learning{
@@ -897,7 +945,7 @@ button{
 
 
 /* ========================================
-   TABLE
+TABLE
 ======================================== */
 
 .table-wrap{
@@ -938,7 +986,7 @@ th{
 
 
 /* ========================================
-   FOOTER
+FOOTER
 ======================================== */
 
 footer{
@@ -955,7 +1003,7 @@ footer{
 
 
 /* ========================================
-   RESPONSIVE
+RESPONSIVE
 ======================================== */
 
 @media(max-width:1050px){
@@ -970,7 +1018,8 @@ footer{
 @media(max-width:850px){
 
   .mode-tabs{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
   .learning{
@@ -978,7 +1027,8 @@ footer{
   }
 
   .value-grid{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:
+      1fr 1fr;
   }
 
 }
@@ -1013,7 +1063,6 @@ footer{
 
 <div class="container topbar">
 
-
   <div class="title-box">
 
     <strong>
@@ -1034,7 +1083,6 @@ footer{
     ← 메인으로
   </a>
 
-
 </div>
 
 </header>
@@ -1044,12 +1092,7 @@ footer{
 <main class="container">
 
 
-<!-- ========================================
-     INTRO
-======================================== -->
-
 <section class="intro">
-
 
   <h1>
     🌊 탄성파의 성질과 활용
@@ -1073,14 +1116,11 @@ footer{
 
   </div>
 
-
 </section>
 
 
 
-<!-- ========================================
-     MODES
-======================================== -->
+<!-- MODES -->
 
 <div class="mode-tabs">
 
@@ -1124,9 +1164,7 @@ footer{
 <section class="main-grid">
 
 
-<!-- ========================================
-     CONTROL
-======================================== -->
+<!-- CONTROL -->
 
 <aside class="panel">
 
@@ -1134,7 +1172,6 @@ footer{
   <h2 id="controlTitle">
     횡파 조건
   </h2>
-
 
 
   <div class="control">
@@ -1154,7 +1191,6 @@ footer{
 
     </div>
 
-
     <input
       id="amplitude"
       type="range"
@@ -1165,7 +1201,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="control">
@@ -1185,7 +1220,6 @@ footer{
 
     </div>
 
-
     <input
       id="frequency"
       type="range"
@@ -1196,7 +1230,6 @@ footer{
     >
 
   </div>
-
 
 
   <div class="control">
@@ -1216,7 +1249,6 @@ footer{
 
     </div>
 
-
     <input
       id="speed"
       type="range"
@@ -1229,13 +1261,11 @@ footer{
   </div>
 
 
-
   <div
     id="boundaryControl"
     class="control"
     style="display:none;"
   >
-
 
     <div class="control-head">
 
@@ -1258,9 +1288,7 @@ footer{
 
     </select>
 
-
   </div>
-
 
 
   <div class="control">
@@ -1280,7 +1308,6 @@ footer{
 
     </div>
 
-
     <input
       id="timeSlider"
       type="range"
@@ -1293,9 +1320,7 @@ footer{
   </div>
 
 
-
   <div class="buttons">
-
 
     <button
       id="startButton"
@@ -1320,9 +1345,7 @@ footer{
       ↺ 초기화
     </button>
 
-
   </div>
-
 
 
   <div
@@ -1336,40 +1359,32 @@ footer{
 
     매질의 입자는 위아래로 진동하지만
     파동은 수평 방향으로 진행합니다.
-    따라서 매질의 진동 방향과 파동의 진행 방향이 서로 수직입니다.
 
   </div>
-
 
 </aside>
 
 
 
-<!-- ========================================
-     SIMULATION
-======================================== -->
+<!-- SIMULATION -->
 
 <section class="panel">
 
 
   <div class="toolbar">
 
-
     <h2 id="simulationTitle">
       용수철에서의 횡파
     </h2>
-
 
     <span
       id="status"
       class="status"
     >
-      진행 중
+      관찰 준비
     </span>
 
-
   </div>
-
 
 
   <div class="visual-box">
@@ -1390,20 +1405,34 @@ footer{
       id="canvasNote"
       class="canvas-note"
     >
-
       파란 점은 용수철을 구성하는 매질의 입자입니다.
-      입자 자체는 파동과 함께 오른쪽으로 이동하지 않고
-      평형 위치 주변에서 진동합니다.
-
     </div>
 
 
   </div>
 
 
+  <div
+    id="superpositionGuide"
+    class="superposition-guide"
+  >
+
+    <strong>
+      ④ 반사파의 중첩 관찰 방법
+    </strong>
+
+    <br>
+
+    파란색 입사파가 왼쪽에서 오른쪽으로,
+    빨간색 반사파가 오른쪽에서 왼쪽으로 이동합니다.
+    두 파동은 화면 중앙에서 만나며,
+    보라색 곡선은 두 파동의 순간 변위를 더한 실제 합성파입니다.
+
+  </div>
+
+
 
   <!-- VALUES -->
-
 
   <div class="value-grid">
 
@@ -1477,8 +1506,7 @@ footer{
 
 
 
-  <!-- EQUATION -->
-
+  <!-- EQUATIONS -->
 
   <div class="equation-section">
 
@@ -1497,7 +1525,6 @@ footer{
       T = 1/f
 
     </div>
-
 
 
     <div class="relation-grid">
@@ -1545,7 +1572,6 @@ footer{
     </div>
 
 
-
     <div
       id="reflectionLegend"
       class="legend"
@@ -1559,7 +1585,7 @@ footer{
           class="legend-line incident-line"
         ></span>
 
-        입사파
+        입사파: 왼쪽 → 오른쪽
 
       </div>
 
@@ -1570,7 +1596,7 @@ footer{
           class="legend-line reflected-line"
         ></span>
 
-        반사파
+        반사파: 오른쪽 → 왼쪽
 
       </div>
 
@@ -1581,7 +1607,7 @@ footer{
           class="legend-line result-line"
         ></span>
 
-        중첩된 합성파
+        합성파 y = yᵢ + yᵣ
 
       </div>
 
@@ -1599,9 +1625,7 @@ footer{
 
 
 
-<!-- ========================================
-     LEARNING
-======================================== -->
+<!-- LEARNING -->
 
 <section class="learning">
 
@@ -1624,16 +1648,14 @@ footer{
 
 
 <div class="learning-equation">
-
 v = fλ
-
 </div>
 
 
 <p>
 
 파동이 진행할 때 매질의 입자는 평형 위치 근처에서 진동하고,
-<strong>에너지와 파동의 상태가 공간을 따라 전달</strong>됩니다.
+에너지가 공간을 따라 전달됩니다.
 
 </p>
 
@@ -1642,70 +1664,41 @@ v = fλ
 
 <table>
 
-
 <thead>
 
 <tr>
 
-  <th>
-    구분
-  </th>
-
-  <th>
-    매질의 진동 방향
-  </th>
-
-  <th>
-    파동 진행 방향
-  </th>
+  <th>구분</th>
+  <th>매질의 진동 방향</th>
+  <th>파동 진행 방향</th>
 
 </tr>
 
 </thead>
 
-
 <tbody>
 
 <tr>
 
-  <td>
-    횡파
-  </td>
-
-  <td>
-    진행 방향에 수직
-  </td>
-
-  <td>
-    →
-  </td>
+  <td>횡파</td>
+  <td>진행 방향에 수직</td>
+  <td>→</td>
 
 </tr>
 
-
 <tr>
 
-  <td>
-    종파
-  </td>
-
-  <td>
-    진행 방향과 나란함
-  </td>
-
-  <td>
-    →
-  </td>
+  <td>종파</td>
+  <td>진행 방향과 나란함</td>
+  <td>→</td>
 
 </tr>
 
 </tbody>
 
-
 </table>
 
 </div>
-
 
 
 <h2 style="margin-top:26px;">
@@ -1714,36 +1707,32 @@ v = fλ
 
 
 <div class="learning-equation">
-
 고정단 반사 → 위상 반전
-
 </div>
 
 
 <div class="learning-equation">
-
 자유단 반사 → 위상 반전 없음
-
 </div>
 
 
 <div class="tip">
 
 고정단에서는 끝점의 변위가 항상 0이어야 하므로
-반사파의 위상이 반전됩니다.
+반사파가 반전됩니다.
 
-반면 자유단에서는 끝점이 움직일 수 있기 때문에
-반사될 때 위상이 반전되지 않습니다.
+자유단에서는 끝점이 자유롭게 움직일 수 있으므로
+반사파의 위상이 반전되지 않습니다.
 
 </div>
 
 
 <div class="warning">
 
-입사파와 반사파가 같은 공간에 동시에 존재하면
-한 파동이 다른 파동을 없애는 것이 아니라,
-각 파동의 순간 변위를 더한 값이
-실제 매질의 변위가 됩니다.
+입사파와 반사파가 만나면
+각 파동은 서로를 통과하면서 계속 진행합니다.
+겹쳐 있는 동안 실제 매질의 변위는
+두 파동의 변위를 대수적으로 더한 값입니다.
 
 </div>
 
@@ -1762,87 +1751,48 @@ v = fλ
 
 <ol>
 
-
 <li>
-
-횡파 모드에서 한 개의 입자를 관찰하세요.
-파동은 오른쪽으로 이동하지만
-그 입자는 실제로 어느 방향으로 움직이는지 확인하세요.
-
+횡파에서 특정 입자는 위아래로 진동하지만
+파동은 오른쪽으로 이동하는지 관찰하세요.
 </li>
 
-
 <li>
-
-종파 모드로 변경하여
-입자의 움직임과 파동의 진행 방향을 비교하세요.
-압축 부분이 어떻게 이동하는지도 관찰하세요.
-
+종파에서 입자의 좌우 운동과
+압축·팽창 영역의 이동을 구별하세요.
 </li>
 
-
 <li>
-
-진동수를 일정하게 유지하고
-파동의 속력을 증가시키세요.
-파장이 어떻게 변하는지
-v = fλ를 이용하여 설명하세요.
-
+진동수를 일정하게 하고 속력을 증가시켜
+파장이 어떻게 변하는지 확인하세요.
 </li>
 
-
 <li>
-
-파동의 속력을 일정하게 유지하고
-진동수를 증가시키세요.
-화면에서 파장의 변화를 확인하세요.
-
+고정단 반사에서 마루가 골로 반사되는지 관찰하세요.
 </li>
 
-
 <li>
-
-고정단 반사를 선택하고
-마루가 끝점에서 반사된 후
-골로 돌아오는지 관찰하세요.
-
+자유단 반사에서는 마루가 마루로 반사되는지 관찰하세요.
 </li>
 
-
 <li>
-
-자유단 반사를 선택하세요.
-고정단 반사와 비교하여
-반사파의 위상 차이를 설명하세요.
-
+④ 반사파의 중첩에서 파란 입사파와 빨간 반사파가
+화면 중앙으로 접근하는 모습을 관찰하세요.
 </li>
 
-
 <li>
-
-반사파의 중첩 모드에서
-파란 입사파와 빨간 반사파가 겹칠 때
-보라색 합성파의 변위를 관찰하세요.
-
+두 파동이 화면 중앙에서 완전히 겹칠 때
+보라색 합성파의 진폭을 확인하세요.
 </li>
 
-
 <li>
-
-입사파와 반사파의 변위가 같은 방향일 때와
-반대 방향일 때 합성파의 진폭을 비교하세요.
-
+자유단과 고정단을 바꾸어
+중첩 순간의 합성파 모양을 비교하세요.
 </li>
 
-
 <li>
-
-같은 매질에서 진동수만 바꾸었을 때
-파동의 속력은 바뀌지 않는다고 가정하면
-파장과 진동수 사이에는 어떤 관계가 있는지 설명하세요.
-
+두 파동이 서로를 통과한 뒤에도
+각각의 파형이 다시 나타나는지 확인하세요.
 </li>
-
 
 </ol>
 
@@ -1872,29 +1822,24 @@ v = fλ를 이용하여 설명하세요.
 
 <script>
 
-/*
-========================================================
+/* ========================================
 DOM
-========================================================
-*/
+======================================== */
 
 const transverseButton =
   document.getElementById(
     "transverseButton"
   );
 
-
 const longitudinalButton =
   document.getElementById(
     "longitudinalButton"
   );
 
-
 const reflectionButton =
   document.getElementById(
     "reflectionButton"
   );
-
 
 const superpositionButton =
   document.getElementById(
@@ -1907,18 +1852,15 @@ const amplitudeSlider =
     "amplitude"
   );
 
-
 const frequencySlider =
   document.getElementById(
     "frequency"
   );
 
-
 const speedSlider =
   document.getElementById(
     "speed"
   );
-
 
 const timeSlider =
   document.getElementById(
@@ -1931,7 +1873,6 @@ const boundaryControl =
     "boundaryControl"
   );
 
-
 const boundarySelect =
   document.getElementById(
     "boundary"
@@ -1943,18 +1884,15 @@ const amplitudeValue =
     "amplitudeValue"
   );
 
-
 const frequencyValue =
   document.getElementById(
     "frequencyValue"
   );
 
-
 const speedValue =
   document.getElementById(
     "speedValue"
   );
-
 
 const timeValue =
   document.getElementById(
@@ -1967,12 +1905,10 @@ const startButton =
     "startButton"
   );
 
-
 const pauseButton =
   document.getElementById(
     "pauseButton"
   );
-
 
 const resetButton =
   document.getElementById(
@@ -1985,42 +1921,40 @@ const controlTitle =
     "controlTitle"
   );
 
-
 const simulationTitle =
   document.getElementById(
     "simulationTitle"
   );
-
 
 const visualTitle =
   document.getElementById(
     "visualTitle"
   );
 
-
 const canvasNote =
   document.getElementById(
     "canvasNote"
   );
-
 
 const infoBox =
   document.getElementById(
     "infoBox"
   );
 
-
 const status =
   document.getElementById(
     "status"
   );
-
 
 const reflectionLegend =
   document.getElementById(
     "reflectionLegend"
   );
 
+const superpositionGuide =
+  document.getElementById(
+    "superpositionGuide"
+  );
 
 const directionDescription =
   document.getElementById(
@@ -2033,51 +1967,40 @@ const canvas =
     "waveCanvas"
   );
 
-
 const ctx =
   canvas.getContext(
     "2d"
   );
 
 
-/*
-========================================================
+/* ========================================
 STATE
-========================================================
-*/
+======================================== */
 
 let mode =
   "transverse";
 
-
 let running =
   false;
-
 
 let paused =
   false;
 
-
 let elapsedTime =
   0;
 
-
 let lastTimestamp =
   null;
-
 
 let animationId =
   null;
 
 
-/*
-========================================================
+/* ========================================
 PARAMETERS
-========================================================
-*/
+======================================== */
 
 function getParameters(){
-
 
   const amplitude =
     Number(
@@ -2085,40 +2008,33 @@ function getParameters(){
     ) /
     100;
 
-
   const frequency =
     Number(
       frequencySlider.value
     );
-
 
   const speed =
     Number(
       speedSlider.value
     );
 
-
   const wavelength =
     speed /
     frequency;
 
-
   const period =
     1 /
     frequency;
-
 
   const omega =
     2 *
     Math.PI *
     frequency;
 
-
   const waveNumber =
     2 *
     Math.PI /
     wavelength;
-
 
   return{
 
@@ -2135,16 +2051,13 @@ function getParameters(){
 }
 
 
-/*
-========================================================
+/* ========================================
 MODE
-========================================================
-*/
+======================================== */
 
 function setMode(
   newMode
 ){
-
 
   mode =
     newMode;
@@ -2166,8 +2079,10 @@ function setMode(
   boundaryControl.style.display =
     "none";
 
-
   reflectionLegend.style.display =
+    "none";
+
+  superpositionGuide.style.display =
     "none";
 
 
@@ -2176,38 +2091,29 @@ function setMode(
     "transverse"
   ){
 
-
     transverseButton.classList.add(
       "active"
     );
 
-
     controlTitle.textContent =
       "횡파 조건";
-
 
     simulationTitle.textContent =
       "용수철에서의 횡파";
 
-
     visualTitle.textContent =
       "매질의 진동과 파동의 전파";
-
 
     directionDescription.textContent =
       "입자 ↑↓ · 파동 →";
 
-
     canvasNote.textContent =
       "파란 점은 매질의 입자입니다. 파동은 오른쪽으로 진행하지만 각 입자는 평형 위치를 중심으로 위아래로 진동합니다.";
-
 
     infoBox.innerHTML =
       `
       <strong>횡파</strong>
       매질의 입자는 파동의 진행 방향에 수직으로 진동합니다.
-      화면의 한 점을 계속 관찰하면 그 입자가 파동과 함께
-      오른쪽으로 이동하지 않는 것을 확인할 수 있습니다.
       `;
 
   }
@@ -2218,38 +2124,30 @@ function setMode(
     "longitudinal"
   ){
 
-
     longitudinalButton.classList.add(
       "active"
     );
 
-
     controlTitle.textContent =
       "종파 조건";
-
 
     simulationTitle.textContent =
       "용수철에서의 종파";
 
-
     visualTitle.textContent =
       "압축과 팽창의 전파";
-
 
     directionDescription.textContent =
       "입자 ↔ · 파동 →";
 
-
     canvasNote.textContent =
       "종파에서는 입자가 좌우로 진동합니다. 입자가 밀집된 압축 부분과 성긴 팽창 부분이 오른쪽으로 이동합니다.";
-
 
     infoBox.innerHTML =
       `
       <strong>종파</strong>
-      매질의 입자가 파동의 진행 방향과 나란하게 진동합니다.
-      압축과 팽창 영역이 이동하는 것과
-      개별 입자의 왕복 운동을 구별하여 관찰하세요.
+      매질 입자의 진동 방향과
+      파동의 진행 방향이 서로 나란합니다.
       `;
 
   }
@@ -2260,41 +2158,33 @@ function setMode(
     "reflection"
   ){
 
-
     reflectionButton.classList.add(
       "active"
     );
 
-
     boundaryControl.style.display =
       "block";
-
 
     controlTitle.textContent =
       "반사 조건";
 
-
     simulationTitle.textContent =
       "자유단·고정단에서의 반사";
-
 
     visualTitle.textContent =
       "펄스의 입사와 반사";
 
-
     directionDescription.textContent =
       "입사 → · 반사 ←";
 
-
     canvasNote.textContent =
-      "오른쪽 경계에서 펄스가 반사됩니다. 고정단과 자유단을 바꾸어 반사된 펄스의 방향을 비교하세요.";
-
+      "오른쪽 끝에 도달한 펄스가 반사됩니다. 고정단에서는 위상이 반전되고 자유단에서는 위상이 반전되지 않습니다.";
 
     infoBox.innerHTML =
       `
       <strong>파동의 반사</strong>
-      고정단에서는 반사파의 위상이 반전되고,
-      자유단에서는 위상이 반전되지 않습니다.
+      고정단에서는 반사파가 반전되고,
+      자유단에서는 반전되지 않습니다.
       `;
 
   }
@@ -2305,46 +2195,40 @@ function setMode(
     "superposition"
   ){
 
-
     superpositionButton.classList.add(
       "active"
     );
 
-
     boundaryControl.style.display =
       "block";
-
 
     reflectionLegend.style.display =
       "flex";
 
+    superpositionGuide.style.display =
+      "block";
 
     controlTitle.textContent =
-      "중첩 조건";
-
+      "반사파 중첩 조건";
 
     simulationTitle.textContent =
       "입사파와 반사파의 중첩";
 
-
     visualTitle.textContent =
-      "입사파 + 반사파 = 합성파";
-
+      "서로 마주 오는 입사파와 반사파";
 
     directionDescription.textContent =
-      "y = y입사 + y반사";
-
+      "y = yᵢ + yᵣ";
 
     canvasNote.textContent =
-      "파란색은 입사파, 빨간색은 반사파, 보라색은 두 파동의 순간 변위를 더한 실제 합성파입니다.";
-
+      "파란 입사파는 왼쪽→오른쪽, 빨간 반사파는 오른쪽→왼쪽으로 이동합니다. 두 파동이 화면 중앙에서 만나 중첩되는 모습을 관찰하세요.";
 
     infoBox.innerHTML =
       `
-      <strong>중첩 원리</strong>
-      두 파동이 같은 공간을 지날 때
-      각 위치에서 실제 변위는 두 파동의 변위를
-      대수적으로 더한 값입니다.
+      <strong>반사파의 중첩</strong>
+      오른쪽 경계에서 반사되어 되돌아오는 파동과
+      아직 오른쪽으로 진행 중인 입사파가 만나면
+      같은 공간에서 두 파동이 중첩됩니다.
       `;
 
   }
@@ -2353,32 +2237,28 @@ function setMode(
   running =
     false;
 
-
   paused =
     false;
-
 
   elapsedTime =
     0;
 
+  timeSlider.value =
+    0;
 
   pauseButton.textContent =
     "Ⅱ 일시정지";
-
 
   update();
 
 }
 
 
-/*
-========================================================
-TEXT UPDATE
-========================================================
-*/
+/* ========================================
+TEXT
+======================================== */
 
 function updateText(){
-
 
   const p =
     getParameters();
@@ -2447,33 +2327,26 @@ function updateText(){
 }
 
 
-/*
-========================================================
+/* ========================================
 CANVAS
-========================================================
-*/
+======================================== */
 
 function resizeCanvas(){
 
-
   const rect =
     canvas.getBoundingClientRect();
-
 
   const ratio =
     window.devicePixelRatio ||
     1;
 
-
   canvas.width =
     rect.width *
     ratio;
 
-
   canvas.height =
     rect.height *
     ratio;
-
 
   ctx.setTransform(
     ratio,
@@ -2483,7 +2356,6 @@ function resizeCanvas(){
     0,
     0
   );
-
 
   update();
 
@@ -2496,11 +2368,9 @@ window.addEventListener(
 );
 
 
-/*
-========================================================
+/* ========================================
 ARROW
-========================================================
-*/
+======================================== */
 
 function drawArrow(
   x1,
@@ -2511,13 +2381,11 @@ function drawArrow(
   label
 ){
 
-
   const angle =
     Math.atan2(
       y2-y1,
       x2-x1
     );
-
 
   const head =
     9;
@@ -2526,10 +2394,8 @@ function drawArrow(
   ctx.strokeStyle =
     color;
 
-
   ctx.fillStyle =
     color;
-
 
   ctx.lineWidth =
     3;
@@ -2537,24 +2403,20 @@ function drawArrow(
 
   ctx.beginPath();
 
-
   ctx.moveTo(
     x1,
     y1
   );
-
 
   ctx.lineTo(
     x2,
     y2
   );
 
-
   ctx.stroke();
 
 
   ctx.beginPath();
-
 
   ctx.moveTo(
     x2,
@@ -2602,7 +2464,6 @@ function drawArrow(
 
   ctx.closePath();
 
-
   ctx.fill();
 
 
@@ -2610,20 +2471,19 @@ function drawArrow(
     label
   ){
 
-
     ctx.font =
       "bold 12px Arial";
-
 
     ctx.fillText(
       label,
       (
         x1+x2
-      )/2,
+      )/2 -
+      25,
       (
         y1+y2
       )/2 -
-      10
+      12
     );
 
   }
@@ -2631,18 +2491,14 @@ function drawArrow(
 }
 
 
-/*
-========================================================
+/* ========================================
 BACKGROUND
-========================================================
-*/
+======================================== */
 
 function clearCanvas(){
 
-
   const width =
     canvas.clientWidth;
-
 
   const height =
     canvas.clientHeight;
@@ -2670,14 +2526,11 @@ function clearCanvas(){
 }
 
 
-/*
-========================================================
+/* ========================================
 TRANSVERSE
-========================================================
-*/
+======================================== */
 
 function drawTransverse(){
-
 
   clearCanvas();
 
@@ -2685,10 +2538,8 @@ function drawTransverse(){
   const p =
     getParameters();
 
-
   const width =
     canvas.clientWidth;
-
 
   const height =
     canvas.clientHeight;
@@ -2697,16 +2548,11 @@ function drawTransverse(){
   const left =
     55;
 
-
   const right =
-    width -
-    35;
-
+    width-35;
 
   const centerY =
-    height *
-    .54;
-
+    height*.54;
 
   const physicalLength =
     8;
@@ -2715,54 +2561,39 @@ function drawTransverse(){
   const amplitudePixels =
     Math.min(
       85,
-      p.amplitude *
+      p.amplitude*
       230
     );
 
-
-  /*
-  equilibrium
-  */
 
   ctx.setLineDash(
     [5,5]
   );
 
-
   ctx.strokeStyle =
     "#cbd5e1";
-
 
   ctx.lineWidth =
     1.5;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     left,
     centerY
   );
 
-
   ctx.lineTo(
     right,
     centerY
   );
 
-
   ctx.stroke();
-
 
   ctx.setLineDash(
     []
   );
 
-
-  /*
-  spring wave
-  */
 
   const particles =
     55;
@@ -2771,87 +2602,71 @@ function drawTransverse(){
   let previousX =
     null;
 
-
   let previousY =
     null;
 
 
   for(
-    let i =
-      0;
-
-    i <
-      particles;
-
+    let i=0;
+    i<particles;
     i++
   ){
 
-
     const xPhysical =
-      physicalLength *
-      i /
+      physicalLength*
+      i/
       (
-        particles -
-        1
+        particles-1
       );
 
 
     const displacement =
       Math.sin(
-        p.waveNumber *
+        p.waveNumber*
         xPhysical -
-        p.omega *
+        p.omega*
         elapsedTime
       );
 
 
     const x =
-      left +
+      left+
       (
-        right -
-        left
-      ) *
-      i /
+        right-left
+      )*
+      i/
       (
-        particles -
-        1
+        particles-1
       );
 
 
     const y =
-      centerY -
-      amplitudePixels *
+      centerY-
+      amplitudePixels*
       displacement;
 
 
     if(
-      i >
-      0
+      i > 0
     ){
-
 
       ctx.strokeStyle =
         "#64748b";
 
-
       ctx.lineWidth =
         2;
 
-
       ctx.beginPath();
-
 
       ctx.moveTo(
         previousX,
         previousY
       );
 
-
       ctx.lineTo(
         x,
         y
       );
-
 
       ctx.stroke();
 
@@ -2860,22 +2675,19 @@ function drawTransverse(){
 
     ctx.beginPath();
 
-
     ctx.arc(
       x,
       y,
       4,
       0,
-      Math.PI *
-      2
+      Math.PI*2
     );
 
 
     ctx.fillStyle =
       i ===
       Math.floor(
-        particles *
-        .38
+        particles*.38
       )
       ?
       "#ea580c"
@@ -2889,38 +2701,27 @@ function drawTransverse(){
     previousX =
       x;
 
-
     previousY =
       y;
 
   }
 
 
-  /*
-  propagation direction
-  */
-
   drawArrow(
-    width *
-    .32,
+    width*.32,
     55,
-    width *
-    .70,
+    width*.70,
     55,
     "#7c3aed",
     "파동 진행 방향"
   );
 
 
-  /*
-  particle vibration arrow
-  */
-
   const markedX =
-    left +
+    left+
     (
       right-left
-    ) *
+    )*
     .38;
 
 
@@ -2937,10 +2738,8 @@ function drawTransverse(){
   ctx.fillStyle =
     "#c2410c";
 
-
   ctx.font =
     "bold 12px Arial";
-
 
   ctx.fillText(
     "입자의 진동",
@@ -2949,21 +2748,16 @@ function drawTransverse(){
   );
 
 
-  /*
-  wavelength
-  */
-
   const wavelengthPixels =
     (
       right-left
-    ) *
-    p.wavelength /
+    )*
+    p.wavelength/
     physicalLength;
 
 
   const x0 =
     left+20;
-
 
   const x1 =
     Math.min(
@@ -2976,55 +2770,45 @@ function drawTransverse(){
   ctx.strokeStyle =
     "#059669";
 
-
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     x0,
     height-70
   );
 
-
   ctx.lineTo(
     x1,
     height-70
   );
-
 
   ctx.stroke();
 
 
   ctx.beginPath();
 
-
   ctx.moveTo(
     x0,
     height-77
   );
-
 
   ctx.lineTo(
     x0,
     height-63
   );
 
-
   ctx.moveTo(
     x1,
     height-77
   );
 
-
   ctx.lineTo(
     x1,
     height-63
   );
-
 
   ctx.stroke();
 
@@ -3032,10 +2816,8 @@ function drawTransverse(){
   ctx.fillStyle =
     "#047857";
 
-
   ctx.font =
     "bold 13px Arial";
-
 
   ctx.fillText(
     `λ = ${p.wavelength.toFixed(2)} m`,
@@ -3049,14 +2831,11 @@ function drawTransverse(){
 }
 
 
-/*
-========================================================
+/* ========================================
 LONGITUDINAL
-========================================================
-*/
+======================================== */
 
 function drawLongitudinal(){
-
 
   clearCanvas();
 
@@ -3064,10 +2843,8 @@ function drawLongitudinal(){
   const p =
     getParameters();
 
-
   const width =
     canvas.clientWidth;
-
 
   const height =
     canvas.clientHeight;
@@ -3076,18 +2853,14 @@ function drawLongitudinal(){
   const left =
     55;
 
-
   const right =
     width-40;
-
 
   const centerY =
     height*.52;
 
-
   const physicalLength =
     8;
-
 
   const particles =
     60;
@@ -3096,37 +2869,28 @@ function drawLongitudinal(){
   const particleAmplitude =
     Math.min(
       24,
-      p.amplitude *
+      p.amplitude*
       70
     );
 
 
-  /*
-  base line
-  */
-
   ctx.strokeStyle =
     "#cbd5e1";
-
 
   ctx.lineWidth =
     2;
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     left,
     centerY
   );
 
-
   ctx.lineTo(
     right,
     centerY
   );
-
 
   ctx.stroke();
 
@@ -3136,31 +2900,25 @@ function drawLongitudinal(){
 
 
   for(
-    let i =
-      0;
-
-    i <
-      particles;
-
+    let i=0;
+    i<particles;
     i++
   ){
 
-
     const xPhysical =
-      physicalLength *
-      i /
+      physicalLength*
+      i/
       (
-        particles -
-        1
+        particles-1
       );
 
 
     const displacement =
-      particleAmplitude *
+      particleAmplitude*
       Math.sin(
-        p.waveNumber *
+        p.waveNumber*
         xPhysical -
-        p.omega *
+        p.omega*
         elapsedTime
       );
 
@@ -3184,20 +2942,14 @@ function drawLongitudinal(){
   }
 
 
-  /*
-  connecting spring
-  */
-
   ctx.strokeStyle =
     "#64748b";
-
 
   ctx.lineWidth =
     1.7;
 
 
   ctx.beginPath();
-
 
   ctx.moveTo(
     positions[0],
@@ -3217,19 +2969,13 @@ function drawLongitudinal(){
   ctx.stroke();
 
 
-  /*
-  particles
-  */
-
   positions.forEach(
     (
       x,
       i
     ) => {
 
-
       ctx.beginPath();
-
 
       ctx.arc(
         x,
@@ -3255,20 +3001,11 @@ function drawLongitudinal(){
   );
 
 
-  /*
-  compression highlighting
-  */
-
   for(
-    let i =
-      1;
-
-    i <
-      positions.length;
-
+    let i=1;
+    i<positions.length;
     i++
   ){
-
 
     const spacing =
       positions[i]-
@@ -3289,7 +3026,6 @@ function drawLongitudinal(){
       normalSpacing*.68
     ){
 
-
       ctx.fillStyle =
         "rgba(220,38,38,.10)";
 
@@ -3309,10 +3045,6 @@ function drawLongitudinal(){
   }
 
 
-  /*
-  propagation
-  */
-
   drawArrow(
     width*.30,
     55,
@@ -3322,10 +3054,6 @@ function drawLongitudinal(){
     "압축·팽창의 진행"
   );
 
-
-  /*
-  particle vibration
-  */
 
   const marked =
     positions[22];
@@ -3344,10 +3072,8 @@ function drawLongitudinal(){
   ctx.fillStyle =
     "#991b1b";
 
-
   ctx.font =
     "bold 12px Arial";
-
 
   ctx.fillText(
     "붉은 영역 = 압축",
@@ -3355,32 +3081,18 @@ function drawLongitudinal(){
     height-30
   );
 
-
-  ctx.fillStyle =
-    "#64748b";
-
-
-  ctx.fillText(
-    "입자는 좌우 왕복 운동 · 압축과 팽창은 오른쪽으로 전파",
-    width*.33,
-    height-30
-  );
-
 }
 
 
-/*
-========================================================
-GAUSSIAN PULSE
-========================================================
-*/
+/* ========================================
+GAUSSIAN
+======================================== */
 
 function gaussian(
   x,
   center,
   width
 ){
-
 
   return Math.exp(
     -Math.pow(
@@ -3395,11 +3107,9 @@ function gaussian(
 }
 
 
-/*
-========================================================
-REFLECTION
-========================================================
-*/
+/* ========================================
+REFLECTION MODE
+======================================== */
 
 function pulseValues(
   x,
@@ -3408,22 +3118,12 @@ function pulseValues(
   speed
 ){
 
-
-  /*
-  pulse starts at 15% of length
-  */
-
   const start =
     length*.15;
-
 
   const pulseWidth =
     length*.065;
 
-
-  /*
-  incident center
-  */
 
   const incidentCenter =
     start+
@@ -3434,21 +3134,15 @@ function pulseValues(
   let incident =
     0;
 
-
   let reflected =
     0;
 
-
-  /*
-  incident still represented mathematically
-  */
 
   if(
     incidentCenter <=
     length+
     pulseWidth*4
   ){
-
 
     incident =
       gaussian(
@@ -3459,10 +3153,6 @@ function pulseValues(
 
   }
 
-
-  /*
-  reflection begins after pulse reaches boundary
-  */
 
   const arrivalTime =
     (
@@ -3476,16 +3166,16 @@ function pulseValues(
     arrivalTime
   ){
 
-
     const reflectedCenter =
       length-
       speed*
       (
-        time-arrivalTime
+        time-
+        arrivalTime
       );
 
 
-    let sign =
+    const sign =
       boundarySelect.value ===
       "fixed"
       ?
@@ -3518,16 +3208,11 @@ function pulseValues(
 }
 
 
-/*
-========================================================
+/* ========================================
 DRAW REFLECTION
-========================================================
-*/
+======================================== */
 
-function drawReflection(
-  showComponents
-){
-
+function drawReflection(){
 
   clearCanvas();
 
@@ -3535,10 +3220,8 @@ function drawReflection(
   const p =
     getParameters();
 
-
   const width =
     canvas.clientWidth;
-
 
   const height =
     canvas.clientHeight;
@@ -3547,31 +3230,20 @@ function drawReflection(
   const left =
     55;
 
-
   const right =
     width-60;
 
-
   const centerY =
     height*.54;
-
 
   const physicalLength =
     8;
 
 
-  /*
-  convert simulation time so pulse is visually useful
-  */
-
   const effectiveSpeed =
     1.8+
     p.speed*.22;
 
-
-  /*
-  repeat cycle
-  */
 
   const cycleDuration =
     physicalLength/
@@ -3584,78 +3256,59 @@ function drawReflection(
     cycleDuration;
 
 
-  /*
-  equilibrium
-  */
-
   ctx.strokeStyle =
     "#cbd5e1";
 
-
   ctx.lineWidth =
     1.5;
-
 
   ctx.setLineDash(
     [5,5]
   );
 
-
   ctx.beginPath();
-
 
   ctx.moveTo(
     left,
     centerY
   );
 
-
   ctx.lineTo(
     right,
     centerY
   );
 
-
   ctx.stroke();
-
 
   ctx.setLineDash(
     []
   );
 
 
-  /*
-  boundary
-  */
+  /* boundary */
 
   if(
     boundarySelect.value ===
     "fixed"
   ){
 
-
     ctx.strokeStyle =
       "#334155";
-
 
     ctx.lineWidth =
       6;
 
-
     ctx.beginPath();
-
 
     ctx.moveTo(
       right,
       centerY-100
     );
 
-
     ctx.lineTo(
       right,
       centerY+100
     );
-
 
     ctx.stroke();
 
@@ -3663,10 +3316,8 @@ function drawReflection(
     ctx.fillStyle =
       "#334155";
 
-
     ctx.font =
       "bold 13px Arial";
-
 
     ctx.fillText(
       "고정단",
@@ -3676,38 +3327,30 @@ function drawReflection(
 
   }
 
-
   else{
-
 
     ctx.strokeStyle =
       "#334155";
 
-
     ctx.lineWidth =
       3;
 
-
     ctx.beginPath();
-
 
     ctx.moveTo(
       right,
       centerY-75
     );
 
-
     ctx.lineTo(
       right,
       centerY+75
     );
 
-
     ctx.stroke();
 
 
     ctx.beginPath();
-
 
     ctx.arc(
       right,
@@ -3717,13 +3360,10 @@ function drawReflection(
       Math.PI*2
     );
 
-
     ctx.fillStyle =
       "#ffffff";
 
-
     ctx.fill();
-
 
     ctx.stroke();
 
@@ -3731,10 +3371,8 @@ function drawReflection(
     ctx.fillStyle =
       "#334155";
 
-
     ctx.font =
       "bold 13px Arial";
-
 
     ctx.fillText(
       "자유단",
@@ -3757,164 +3395,77 @@ function drawReflection(
     );
 
 
-  /*
-  helper
-  */
+  ctx.beginPath();
 
-  function drawComponent(
-    getter,
-    color,
-    lineWidth,
-    dash=[]
+
+  for(
+    let i=0;
+    i<=samples;
+    i++
   ){
 
+    const xp =
+      physicalLength*
+      i/
+      samples;
 
-    ctx.save();
+
+    const screenX =
+      left+
+      (
+        right-left
+      )*
+      i/
+      samples;
 
 
-    ctx.beginPath();
+    const values =
+      pulseValues(
+        xp,
+        physicalLength,
+        t,
+        effectiveSpeed
+      );
 
 
-    for(
-      let i =
-        0;
+    const screenY =
+      centerY-
+      scale*
+      values.total;
 
-      i <=
-        samples;
 
-      i++
+    if(
+      i ===
+      0
     ){
 
-
-      const xp =
-        physicalLength*
-        i/
-        samples;
-
-
-      const screenX =
-        left+
-        (
-          right-left
-        )*
-        i/
-        samples;
-
-
-      const values =
-        pulseValues(
-          xp,
-          physicalLength,
-          t,
-          effectiveSpeed
-        );
-
-
-      const value =
-        getter(
-          values
-        );
-
-
-      const screenY =
-        centerY-
-        scale*
-        value;
-
-
-      if(
-        i ===
-        0
-      ){
-
-
-        ctx.moveTo(
-          screenX,
-          screenY
-        );
-
-      }
-
-
-      else{
-
-
-        ctx.lineTo(
-          screenX,
-          screenY
-        );
-
-      }
+      ctx.moveTo(
+        screenX,
+        screenY
+      );
 
     }
 
+    else{
 
-    ctx.strokeStyle =
-      color;
+      ctx.lineTo(
+        screenX,
+        screenY
+      );
 
-
-    ctx.lineWidth =
-      lineWidth;
-
-
-    ctx.setLineDash(
-      dash
-    );
-
-
-    ctx.stroke();
-
-
-    ctx.restore();
+    }
 
   }
 
 
-  if(
-    showComponents
-  ){
+  ctx.strokeStyle =
+    "#2563eb";
 
+  ctx.lineWidth =
+    4;
 
-    drawComponent(
-      v=>v.incident,
-      "#2563eb",
-      2,
-      [6,4]
-    );
+  ctx.stroke();
 
-
-    drawComponent(
-      v=>v.reflected,
-      "#dc2626",
-      2,
-      [6,4]
-    );
-
-
-    drawComponent(
-      v=>v.total,
-      "#7c3aed",
-      4
-    );
-
-  }
-
-
-  else{
-
-
-    drawComponent(
-      v=>v.total,
-      "#2563eb",
-      4
-    );
-
-  }
-
-
-  /*
-  arrows
-  */
 
   drawArrow(
     width*.20,
@@ -3935,10 +3486,6 @@ function drawReflection(
     "반사파"
   );
 
-
-  /*
-  explanation
-  */
 
   ctx.fillStyle =
     boundarySelect.value ===
@@ -3974,14 +3521,782 @@ function drawReflection(
 }
 
 
-/*
-========================================================
+/* ========================================
+SUPERPOSITION
+
+새로 설계한 핵심 부분
+
+입사파:
+왼쪽 → 오른쪽
+
+반사파:
+오른쪽 → 왼쪽
+
+두 파동의 중심이 화면 중앙에서 만남.
+======================================== */
+
+function drawSuperposition(){
+
+  clearCanvas();
+
+
+  const p =
+    getParameters();
+
+  const width =
+    canvas.clientWidth;
+
+  const height =
+    canvas.clientHeight;
+
+
+  const left =
+    60;
+
+  const right =
+    width-60;
+
+  const centerX =
+    (
+      left+
+      right
+    )/
+    2;
+
+
+  const centerY =
+    height*.56;
+
+
+  const usableWidth =
+    right-left;
+
+
+  /*
+  한 번의 실험을 0~1의 진행률로 표현.
+
+  시작:
+  입사파 = 20% 위치
+  반사파 = 80% 위치
+
+  중간:
+  둘 다 50% 위치
+
+  끝:
+  서로 통과하여 반대쪽으로 이동
+  */
+
+  const duration =
+    getSuperpositionDuration();
+
+
+  let phase =
+    elapsedTime /
+    duration;
+
+
+  if(
+    running
+  ){
+
+    phase =
+      phase %
+      1;
+
+  }
+
+  else{
+
+    phase =
+      Math.max(
+        0,
+        Math.min(
+          1,
+          phase
+        )
+      );
+
+  }
+
+
+  /*
+  화면상의 두 파동 중심
+  */
+
+  const incidentCenterX =
+    left+
+    usableWidth*
+    (
+      .18+
+      .64*
+      phase
+    );
+
+
+  const reflectedCenterX =
+    left+
+    usableWidth*
+    (
+      .82-
+      .64*
+      phase
+    );
+
+
+  /*
+  파동 묶음 폭
+
+  진동수가 클수록 내부 파형이 조밀,
+  envelope 자체는 충분히 넓게 하여
+  중앙에서 중첩이 눈에 잘 보이게 한다.
+  */
+
+  const envelopeWidth =
+    usableWidth*.105;
+
+
+  /*
+  파장 화면 환산.
+
+  실제 λ값의 변화를 시각적으로 반영하되
+  너무 극단적이지 않도록 제한.
+  */
+
+  const physicalViewLength =
+    8;
+
+
+  let wavelengthPx =
+    usableWidth*
+    p.wavelength/
+    physicalViewLength;
+
+
+  wavelengthPx =
+    Math.max(
+      32,
+      Math.min(
+        usableWidth*.34,
+        wavelengthPx
+      )
+    );
+
+
+  const kScreen =
+    2*
+    Math.PI/
+    wavelengthPx;
+
+
+  /*
+  진폭
+  */
+
+  const amplitudePx =
+    Math.min(
+      62,
+      p.amplitude*
+      175
+    );
+
+
+  /*
+  고정단:
+  반사파 위상 반전 → -1
+
+  자유단:
+  위상 반전 없음 → +1
+  */
+
+  const reflectionSign =
+    boundarySelect.value ===
+    "fixed"
+    ?
+    -1
+    :
+    1;
+
+
+  /*
+  오른쪽에서 반사되어 온 파동임을
+  시각적으로 알려주는 경계
+  */
+
+  ctx.strokeStyle =
+    "#475569";
+
+  ctx.lineWidth =
+    boundarySelect.value ===
+    "fixed"
+    ?
+    5
+    :
+    2.5;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    right,
+    centerY-115
+  );
+
+  ctx.lineTo(
+    right,
+    centerY+115
+  );
+
+  ctx.stroke();
+
+
+  if(
+    boundarySelect.value ===
+    "free"
+  ){
+
+    ctx.beginPath();
+
+    ctx.arc(
+      right,
+      centerY,
+      8,
+      0,
+      Math.PI*2
+    );
+
+    ctx.fillStyle =
+      "#ffffff";
+
+    ctx.fill();
+
+    ctx.stroke();
+
+  }
+
+
+  ctx.fillStyle =
+    "#475569";
+
+  ctx.font =
+    "bold 12px Arial";
+
+  ctx.fillText(
+    boundarySelect.value ===
+    "fixed"
+    ?
+    "고정단"
+    :
+    "자유단",
+    right-24,
+    centerY+140
+  );
+
+
+  /*
+  평형선
+  */
+
+  ctx.setLineDash(
+    [5,5]
+  );
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+  ctx.lineWidth =
+    1.5;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    left,
+    centerY
+  );
+
+  ctx.lineTo(
+    right,
+    centerY
+  );
+
+  ctx.stroke();
+
+
+  /*
+  화면 중앙선
+  */
+
+  ctx.strokeStyle =
+    "#94a3b8";
+
+  ctx.setLineDash(
+    [3,5]
+  );
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    centerX,
+    78
+  );
+
+  ctx.lineTo(
+    centerX,
+    height-55
+  );
+
+  ctx.stroke();
+
+
+  ctx.setLineDash(
+    []
+  );
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+  ctx.font =
+    "bold 11px Arial";
+
+  ctx.fillText(
+    "중첩 중심",
+    centerX-25,
+    height-38
+  );
+
+
+  /*
+  파동의 순간 값 계산 함수
+
+  Gaussian envelope × cosine carrier
+  */
+
+  function incidentWave(x){
+
+    const envelope =
+      Math.exp(
+        -Math.pow(
+          (
+            x-
+            incidentCenterX
+          )/
+          envelopeWidth,
+          2
+        )
+      );
+
+
+    /*
+    오른쪽 진행파
+    */
+
+    return (
+      amplitudePx*
+      envelope*
+      Math.cos(
+        kScreen*
+        (
+          x-
+          incidentCenterX
+        )
+      )
+    );
+
+  }
+
+
+  function reflectedWave(x){
+
+    const envelope =
+      Math.exp(
+        -Math.pow(
+          (
+            x-
+            reflectedCenterX
+          )/
+          envelopeWidth,
+          2
+        )
+      );
+
+
+    /*
+    왼쪽 진행파.
+
+    반사 조건에 따라 부호 적용.
+    */
+
+    return (
+      reflectionSign*
+      amplitudePx*
+      envelope*
+      Math.cos(
+        kScreen*
+        (
+          x-
+          reflectedCenterX
+        )
+      )
+    );
+
+  }
+
+
+  /*
+  파형 그리기 helper
+  */
+
+  function drawWave(
+    getter,
+    color,
+    lineWidth,
+    dash=[]
+  ){
+
+    ctx.save();
+
+    ctx.beginPath();
+
+
+    const samples =
+      520;
+
+
+    for(
+      let i=0;
+      i<=samples;
+      i++
+    ){
+
+      const x =
+        left+
+        usableWidth*
+        i/
+        samples;
+
+
+      const y =
+        centerY-
+        getter(x);
+
+
+      if(
+        i ===
+        0
+      ){
+
+        ctx.moveTo(
+          x,
+          y
+        );
+
+      }
+
+      else{
+
+        ctx.lineTo(
+          x,
+          y
+        );
+
+      }
+
+    }
+
+
+    ctx.strokeStyle =
+      color;
+
+    ctx.lineWidth =
+      lineWidth;
+
+    ctx.setLineDash(
+      dash
+    );
+
+    ctx.stroke();
+
+    ctx.restore();
+
+  }
+
+
+  /*
+  합성파를 먼저 굵게 연하게 그리고
+  구성 파동을 위에 표시하면
+  세 파형 모두 구별하기 쉽다.
+  */
+
+  drawWave(
+    x =>
+      incidentWave(x)+
+      reflectedWave(x),
+    "#7c3aed",
+    4
+  );
+
+
+  drawWave(
+    incidentWave,
+    "#2563eb",
+    2.2,
+    [7,4]
+  );
+
+
+  drawWave(
+    reflectedWave,
+    "#dc2626",
+    2.2,
+    [7,4]
+  );
+
+
+  /*
+  파동 중심 표시
+  */
+
+  ctx.beginPath();
+
+  ctx.arc(
+    incidentCenterX,
+    centerY,
+    5,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fillStyle =
+    "#2563eb";
+
+  ctx.fill();
+
+
+  ctx.beginPath();
+
+  ctx.arc(
+    reflectedCenterX,
+    centerY,
+    5,
+    0,
+    Math.PI*2
+  );
+
+  ctx.fillStyle =
+    "#dc2626";
+
+  ctx.fill();
+
+
+  /*
+  진행 방향 화살표
+  */
+
+  drawArrow(
+    left+35,
+    52,
+    centerX-45,
+    52,
+    "#2563eb",
+    "입사파 →"
+  );
+
+
+  drawArrow(
+    right-35,
+    82,
+    centerX+45,
+    82,
+    "#dc2626",
+    "← 반사파"
+  );
+
+
+  /*
+  중첩 상태 판정
+  */
+
+  const separation =
+    Math.abs(
+      reflectedCenterX-
+      incidentCenterX
+    );
+
+
+  const overlapRatio =
+    Math.max(
+      0,
+      1-
+      separation/
+      (
+        envelopeWidth*
+        2
+      )
+    );
+
+
+  if(
+    overlapRatio >
+    .75
+  ){
+
+    ctx.fillStyle =
+      "rgba(124,58,237,.10)";
+
+
+    ctx.fillRect(
+      centerX-
+      envelopeWidth,
+      115,
+      envelopeWidth*2,
+      height-190
+    );
+
+
+    ctx.fillStyle =
+      "#6d28d9";
+
+    ctx.font =
+      "bold 15px Arial";
+
+
+    ctx.fillText(
+      "입사파와 반사파가 중첩 중",
+      centerX-84,
+      113
+    );
+
+  }
+
+
+  /*
+  하단 설명
+  */
+
+  ctx.fillStyle =
+    boundarySelect.value ===
+    "fixed"
+    ?
+    "#991b1b"
+    :
+    "#047857";
+
+
+  ctx.font =
+    "bold 13px Arial";
+
+
+  ctx.fillText(
+
+    boundarySelect.value ===
+    "fixed"
+
+    ?
+
+    "고정단 반사: 반사파의 위상 반전"
+
+    :
+
+    "자유단 반사: 반사파의 위상 반전 없음",
+
+    25,
+    height-20
+
+  );
+
+
+  /*
+  상단 진행률
+  */
+
+  ctx.fillStyle =
+    "#475569";
+
+  ctx.font =
+    "12px Arial";
+
+
+  if(
+    phase <
+    .40
+  ){
+
+    ctx.fillText(
+      "두 파동이 서로 접근하고 있습니다.",
+      width*.36,
+      28
+    );
+
+  }
+
+  else if(
+    phase <=
+    .60
+  ){
+
+    ctx.fillStyle =
+      "#6d28d9";
+
+    ctx.font =
+      "bold 12px Arial";
+
+    ctx.fillText(
+      "화면 중앙에서 중첩",
+      width*.42,
+      28
+    );
+
+  }
+
+  else{
+
+    ctx.fillText(
+      "중첩 후 두 파동이 서로 통과합니다.",
+      width*.36,
+      28
+    );
+
+  }
+
+}
+
+
+/* ========================================
+SUPERPOSITION DURATION
+======================================== */
+
+function getSuperpositionDuration(){
+
+  const p =
+    getParameters();
+
+
+  /*
+  속력이 클수록 화면상 실험 시간도 짧게.
+  다만 너무 빠르지 않게 제한.
+  */
+
+  return Math.max(
+    3.6,
+    Math.min(
+      8,
+      13/
+      Math.sqrt(
+        p.speed
+      )
+    )
+  );
+
+}
+
+
+/* ========================================
 DRAW
-========================================================
-*/
+======================================== */
 
 function draw(){
-
 
   if(
     mode ===
@@ -4008,8 +4323,47 @@ function draw(){
     "reflection"
   ){
 
-    drawReflection(
-      false
+    drawReflection();
+
+  }
+
+
+  if(
+    mode ===
+    "superposition"
+  ){
+
+    drawSuperposition();
+
+  }
+
+}
+
+
+/* ========================================
+DISPLAY DURATION
+======================================== */
+
+function getCurrentDuration(){
+
+  const p =
+    getParameters();
+
+
+  if(
+    mode ===
+    "reflection"
+  ){
+
+    const effectiveSpeed =
+      1.8+
+      p.speed*.22;
+
+
+    return (
+      8/
+      effectiveSpeed*
+      2.05
     );
 
   }
@@ -4020,50 +4374,40 @@ function draw(){
     "superposition"
   ){
 
-    drawReflection(
-      true
-    );
+    return getSuperpositionDuration();
 
   }
+
+
+  return Math.max(
+    2*
+    p.period,
+    2
+  );
 
 }
 
 
-/*
-========================================================
+/* ========================================
 UPDATE
-========================================================
-*/
+======================================== */
 
 function update(){
 
-
-  const p =
-    getParameters();
-
-
-  /*
-  time slider represents two basic periods
-  */
-
-  const displayDuration =
-    Math.max(
-      2*p.period,
-      2
-    );
-
-
-  const fraction =
-    (
-      elapsedTime%
-      displayDuration
-    )/
-    displayDuration;
+  const duration =
+    getCurrentDuration();
 
 
   if(
     running
   ){
+
+    const fraction =
+      (
+        elapsedTime %
+        duration
+      )/
+      duration;
 
 
     timeSlider.value =
@@ -4075,34 +4419,92 @@ function update(){
 
   updateText();
 
-
   draw();
 
 
-  status.textContent =
+  if(
     paused
-    ?
-    "일시정지"
-    :
+  ){
+
+    status.textContent =
+      "일시정지";
+
+  }
+
+  else if(
     running
-    ?
-    "진행 중"
-    :
-    "관찰 준비";
+  ){
+
+    if(
+      mode ===
+      "superposition"
+    ){
+
+      const phase =
+        (
+          elapsedTime %
+          duration
+        )/
+        duration;
+
+
+      if(
+        phase >=
+        .40 &&
+        phase <=
+        .60
+      ){
+
+        status.textContent =
+          "중첩 중";
+
+      }
+
+      else if(
+        phase <
+        .40
+      ){
+
+        status.textContent =
+          "서로 접근 중";
+
+      }
+
+      else{
+
+        status.textContent =
+          "서로 통과 중";
+
+      }
+
+    }
+
+    else{
+
+      status.textContent =
+        "진행 중";
+
+    }
+
+  }
+
+  else{
+
+    status.textContent =
+      "관찰 준비";
+
+  }
 
 }
 
 
-/*
-========================================================
+/* ========================================
 ANIMATION
-========================================================
-*/
+======================================== */
 
 function animate(
   timestamp
 ){
-
 
   if(
     !running
@@ -4116,7 +4518,6 @@ function animate(
   if(
     paused
   ){
-
 
     lastTimestamp =
       timestamp;
@@ -4137,7 +4538,6 @@ function animate(
     lastTimestamp ===
     null
   ){
-
 
     lastTimestamp =
       timestamp;
@@ -4161,6 +4561,27 @@ function animate(
     dt;
 
 
+  /*
+  4번은 한 실험을 끝까지 진행한 뒤
+  다시 반복.
+  */
+
+  const duration =
+    getCurrentDuration();
+
+
+  if(
+    elapsedTime >=
+    duration
+  ){
+
+    elapsedTime =
+      elapsedTime %
+      duration;
+
+  }
+
+
   update();
 
 
@@ -4172,15 +4593,13 @@ function animate(
 }
 
 
-/*
-========================================================
-EVENTS
-========================================================
-*/
+/* ========================================
+MODE EVENTS
+======================================== */
 
 transverseButton.addEventListener(
   "click",
-  ()=>
+  () =>
     setMode(
       "transverse"
     )
@@ -4189,7 +4608,7 @@ transverseButton.addEventListener(
 
 longitudinalButton.addEventListener(
   "click",
-  ()=>
+  () =>
     setMode(
       "longitudinal"
     )
@@ -4198,7 +4617,7 @@ longitudinalButton.addEventListener(
 
 reflectionButton.addEventListener(
   "click",
-  ()=>
+  () =>
     setMode(
       "reflection"
     )
@@ -4207,49 +4626,42 @@ reflectionButton.addEventListener(
 
 superpositionButton.addEventListener(
   "click",
-  ()=>
+  () =>
     setMode(
       "superposition"
     )
 );
 
 
-/*
-parameter change
-*/
+/* ========================================
+PARAMETER EVENTS
+======================================== */
 
 [
   amplitudeSlider,
   frequencySlider,
   speedSlider
 ].forEach(
-  input=>{
-
+  input => {
 
     input.addEventListener(
       "input",
-      ()=>{
-
+      () => {
 
         running =
           false;
 
-
         paused =
           false;
-
 
         elapsedTime =
           0;
 
-
         timeSlider.value =
           0;
 
-
         pauseButton.textContent =
           "Ⅱ 일시정지";
-
 
         update();
 
@@ -4260,14 +4672,25 @@ parameter change
 );
 
 
+/* ========================================
+BOUNDARY
+======================================== */
+
 boundarySelect.addEventListener(
   "change",
-  ()=>{
-
+  () => {
 
     elapsedTime =
       0;
 
+    running =
+      false;
+
+    paused =
+      false;
+
+    timeSlider.value =
+      0;
 
     update();
 
@@ -4275,18 +4698,16 @@ boundarySelect.addEventListener(
 );
 
 
-/*
-time slider
-*/
+/* ========================================
+TIME SLIDER
+======================================== */
 
 timeSlider.addEventListener(
   "input",
-  ()=>{
-
+  () => {
 
     running =
       false;
-
 
     paused =
       false;
@@ -4303,61 +4724,16 @@ timeSlider.addEventListener(
     }
 
 
-    const p =
-      getParameters();
+    const duration =
+      getCurrentDuration();
 
 
-    /*
-    Reflection modes need longer time
-    */
-
-    if(
-      mode ===
-      "reflection" ||
-      mode ===
-      "superposition"
-    ){
-
-
-      const effectiveSpeed =
-        1.8+
-        p.speed*.22;
-
-
-      const duration =
-        8/
-        effectiveSpeed*
-        2.05;
-
-
-      elapsedTime =
-        Number(
-          timeSlider.value
-        )/
-        100*
-        duration;
-
-    }
-
-
-    else{
-
-
-      const duration =
-        Math.max(
-          2*p.period,
-          2
-        );
-
-
-      elapsedTime =
-        Number(
-          timeSlider.value
-        )/
-        100*
-        duration;
-
-    }
+    elapsedTime =
+      Number(
+        timeSlider.value
+      )/
+      100*
+      duration;
 
 
     update();
@@ -4366,29 +4742,40 @@ timeSlider.addEventListener(
 );
 
 
-/*
-start
-*/
+/* ========================================
+START
+======================================== */
 
 startButton.addEventListener(
   "click",
-  ()=>{
-
+  () => {
 
     running =
       true;
 
-
     paused =
       false;
-
 
     lastTimestamp =
       null;
 
-
     pauseButton.textContent =
       "Ⅱ 일시정지";
+
+
+    const duration =
+      getCurrentDuration();
+
+
+    if(
+      elapsedTime >=
+      duration
+    ){
+
+      elapsedTime =
+        0;
+
+    }
 
 
     if(
@@ -4411,14 +4798,13 @@ startButton.addEventListener(
 );
 
 
-/*
-pause
-*/
+/* ========================================
+PAUSE
+======================================== */
 
 pauseButton.addEventListener(
   "click",
-  ()=>{
-
+  () => {
 
     if(
       !running
@@ -4451,30 +4837,25 @@ pauseButton.addEventListener(
 );
 
 
-/*
-reset
-*/
+/* ========================================
+RESET
+======================================== */
 
 resetButton.addEventListener(
   "click",
-  ()=>{
-
+  () => {
 
     running =
       false;
 
-
     paused =
       false;
-
 
     elapsedTime =
       0;
 
-
     lastTimestamp =
       null;
-
 
     timeSlider.value =
       0;
@@ -4501,11 +4882,9 @@ resetButton.addEventListener(
 );
 
 
-/*
-========================================================
+/* ========================================
 INIT
-========================================================
-*/
+======================================== */
 
 resizeCanvas();
 
