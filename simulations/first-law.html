@@ -7,7 +7,6 @@
 <title>열역학 제1법칙 시뮬레이션 | 온라인 물리학 탐구실</title>
 
 <style>
-
 :root{
   --bg:#f5f7fb;
   --panel:#ffffff;
@@ -19,9 +18,6 @@
   --subtext:#64748b;
   --border:#e2e8f0;
 
-  --heat:#dc2626;
-  --work:#2563eb;
-  --internal:#7c3aed;
   --positive:#059669;
   --negative:#dc2626;
   --zero:#64748b;
@@ -42,19 +38,19 @@ body{
   margin:0;
 
   font-family:
-  "Pretendard",
-  "Noto Sans KR",
-  "Apple SD Gothic Neo",
-  Arial,
-  sans-serif;
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    Arial,
+    sans-serif;
 
   background:
-  linear-gradient(
-    180deg,
-    #edf4ff 0%,
-    #f8fbff 26%,
-    #f5f7fb 100%
-  );
+    linear-gradient(
+      180deg,
+      #edf4ff 0%,
+      #f8fbff 26%,
+      #f5f7fb 100%
+    );
 
   color:var(--text);
 }
@@ -76,7 +72,9 @@ a{
 }
 
 
-/* HEADER */
+/* ================================
+   HEADER
+================================ */
 
 header{
   position:sticky;
@@ -101,12 +99,15 @@ header{
 
 .title-box strong{
   display:block;
+
   color:var(--primary);
+
   font-size:1.1rem;
 }
 
 .title-box span{
   color:var(--subtext);
+
   font-size:.84rem;
 }
 
@@ -128,7 +129,9 @@ header{
 }
 
 
-/* INTRO */
+/* ================================
+   INTRO
+================================ */
 
 .intro{
   padding:38px 0 24px;
@@ -140,12 +143,15 @@ header{
   color:#0f172a;
 
   font-size:clamp(1.8rem,4vw,2.7rem);
+
   letter-spacing:-.03em;
 }
 
 .intro p{
   margin:0;
+
   color:var(--subtext);
+
   line-height:1.7;
 }
 
@@ -158,13 +164,16 @@ header{
   border-radius:12px;
 
   background:#eff6ff;
+
   color:#1e3a8a;
 
   font-weight:700;
 }
 
 
-/* MAIN LAYOUT */
+/* ================================
+   MAIN
+================================ */
 
 .main-grid{
   display:grid;
@@ -198,7 +207,9 @@ header{
 }
 
 
-/* CONTROLS */
+/* ================================
+   CONTROLS
+================================ */
 
 .control{
   margin-bottom:21px;
@@ -206,6 +217,7 @@ header{
 
 .control-head{
   display:flex;
+
   justify-content:space-between;
 
   gap:10px;
@@ -213,6 +225,7 @@ header{
   margin-bottom:7px;
 
   font-size:.94rem;
+
   font-weight:700;
 }
 
@@ -226,6 +239,7 @@ select{
   padding:11px;
 
   border:1px solid var(--border);
+
   border-radius:10px;
 
   background:white;
@@ -235,12 +249,15 @@ select{
 
 input[type="range"]{
   width:100%;
+
   accent-color:var(--primary2);
+
   cursor:pointer;
 }
 
 .direction-buttons{
   display:grid;
+
   grid-template-columns:1fr 1fr;
 
   gap:8px;
@@ -252,9 +269,11 @@ input[type="range"]{
   padding:10px;
 
   border:1px solid var(--border);
+
   border-radius:10px;
 
   background:#f8fafc;
+
   color:#475569;
 
   cursor:pointer;
@@ -262,12 +281,15 @@ input[type="range"]{
 
 .direction-button.active{
   background:var(--primary);
+
   color:white;
+
   border-color:var(--primary);
 }
 
 .buttons{
   display:grid;
+
   grid-template-columns:1fr 1fr;
 
   gap:10px;
@@ -283,6 +305,7 @@ button{
   padding:12px 13px;
 
   cursor:pointer;
+
   font-weight:700;
 }
 
@@ -300,9 +323,6 @@ button{
   background:#f1f5f9;
   color:#334155;
 }
-
-
-/* PROCESS INFO */
 
 .process-info{
   padding:14px;
@@ -330,11 +350,14 @@ button{
   color:var(--subtext);
 
   line-height:1.55;
+
   font-size:.88rem;
 }
 
 
-/* RIGHT SIDE */
+/* ================================
+   VISUAL
+================================ */
 
 .simulation-panel{
   padding:18px;
@@ -342,6 +365,7 @@ button{
 
 .toolbar{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
 
@@ -362,14 +386,13 @@ button{
   border-radius:999px;
 
   background:#eef2ff;
+
   color:#3730a3;
 
   font-size:.86rem;
+
   font-weight:700;
 }
-
-
-/* PV GRAPH */
 
 .visual-grid{
   display:grid;
@@ -378,8 +401,6 @@ button{
     1.15fr .85fr;
 
   gap:16px;
-
-  align-items:stretch;
 }
 
 .visual-box{
@@ -400,25 +421,31 @@ button{
   background:#f8fafc;
 
   font-size:.9rem;
+
   font-weight:700;
 }
 
-#pvCanvas{
-  width:100%;
-  height:370px;
-
-  display:block;
-}
-
+#pvCanvas,
 #pistonCanvas{
-  width:100%;
-  height:370px;
-
   display:block;
+
+  width:100%;
+
+  height:390px;
+}
+
+.graph-note{
+  padding:8px 14px 12px;
+
+  color:var(--subtext);
+
+  font-size:.78rem;
 }
 
 
-/* STATE CARDS */
+/* ================================
+   STATE
+================================ */
 
 .state-grid{
   display:grid;
@@ -435,6 +462,7 @@ button{
   padding:13px;
 
   border:1px solid var(--border);
+
   border-radius:12px;
 
   background:#f8fafc;
@@ -457,7 +485,9 @@ button{
 }
 
 
-/* FIRST LAW */
+/* ================================
+   FIRST LAW
+================================ */
 
 .first-law{
   margin-top:22px;
@@ -468,9 +498,9 @@ button{
 }
 
 .law-equation{
-  padding:16px;
+  padding:17px;
 
-  margin-bottom:15px;
+  margin-bottom:10px;
 
   border-radius:13px;
 
@@ -480,10 +510,31 @@ button{
 
   text-align:center;
 
-  font-family:"Times New Roman",serif;
+  font-family:
+    "Times New Roman",
+    serif;
 
-  font-size:1.35rem;
+  font-size:1.45rem;
+
   font-weight:700;
+}
+
+.sign-convention{
+  margin-bottom:15px;
+
+  padding:11px 13px;
+
+  border-radius:10px;
+
+  background:#fff7ed;
+
+  color:#9a3412;
+
+  text-align:center;
+
+  font-size:.85rem;
+
+  line-height:1.55;
 }
 
 .energy-grid{
@@ -499,12 +550,13 @@ button{
   padding:16px;
 
   border:1px solid var(--border);
+
   border-radius:13px;
 
   background:white;
 }
 
-.energy-card .energy-name{
+.energy-name{
   color:var(--subtext);
 
   font-size:.82rem;
@@ -522,6 +574,7 @@ button{
 
 .energy-sign{
   font-size:.82rem;
+
   font-weight:700;
 }
 
@@ -538,7 +591,9 @@ button{
 }
 
 
-/* FLOW DIAGRAM */
+/* ================================
+   FLOW
+================================ */
 
 .flow{
   margin-top:20px;
@@ -557,7 +612,9 @@ button{
   min-height:92px;
 
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
   align-items:center;
 
@@ -580,6 +637,7 @@ button{
   margin-top:4px;
 
   font-size:.8rem;
+
   color:var(--subtext);
 }
 
@@ -592,7 +650,9 @@ button{
 }
 
 
-/* CASE */
+/* ================================
+   EXAMPLE
+================================ */
 
 .example-box{
   margin-top:22px;
@@ -600,6 +660,7 @@ button{
   padding:17px;
 
   border:1px solid #fde68a;
+
   border-radius:14px;
 
   background:#fffbeb;
@@ -622,7 +683,9 @@ button{
 }
 
 
-/* LOWER LEARNING */
+/* ================================
+   LEARNING
+================================ */
 
 .learning{
   display:grid;
@@ -647,7 +710,9 @@ button{
 
   border-radius:10px;
 
-  font-family:"Times New Roman",serif;
+  font-family:
+    "Times New Roman",
+    serif;
 
   font-size:1.06rem;
 }
@@ -683,6 +748,7 @@ th{
 
 .learning li{
   margin-bottom:10px;
+
   line-height:1.6;
 }
 
@@ -694,9 +760,11 @@ th{
   border-radius:11px;
 
   background:#ecfdf5;
+
   color:#065f46;
 
   line-height:1.6;
+
   font-size:.9rem;
 }
 
@@ -708,9 +776,11 @@ th{
   border-radius:11px;
 
   background:#fff7ed;
+
   color:#9a3412;
 
   line-height:1.6;
+
   font-size:.9rem;
 }
 
@@ -734,6 +804,7 @@ footer{
 
 }
 
+
 @media(max-width:850px){
 
   .visual-grid{
@@ -745,6 +816,7 @@ footer{
   }
 
 }
+
 
 @media(max-width:650px){
 
@@ -762,12 +834,13 @@ footer{
 
   .flow-arrow{
     transform:rotate(90deg);
+
     text-align:center;
   }
 
   #pvCanvas,
   #pistonCanvas{
-    height:330px;
+    height:340px;
   }
 
 }
@@ -777,6 +850,7 @@ footer{
 
 
 <body>
+
 
 <header>
 
@@ -794,6 +868,7 @@ footer{
 
   </div>
 
+
   <a
     class="home-button"
     href="../index.html"
@@ -804,6 +879,7 @@ footer{
 </div>
 
 </header>
+
 
 
 <main class="container">
@@ -817,15 +893,20 @@ footer{
     🌡️ 열역학 제1법칙 시뮬레이션
   </h1>
 
+
   <p>
     이상기체의 등온, 등압, 등적, 단열 과정을 직접 변화시키며
     압력-부피 관계와 열, 일, 내부에너지 변화 사이의 관계를 탐구합니다.
   </p>
 
+
   <div class="question">
+
     탐구 질문 :
-    열역학 과정에 따라 기체가 받은 열 Q, 기체가 한 일 W,
+    열역학 과정에 따라 기체가 받은 열 Q,
+    기체가 외부에 한 일 W,
     내부에너지 변화 ΔU의 크기와 부호는 어떻게 달라질까?
+
   </div>
 
 </section>
@@ -850,6 +931,7 @@ footer{
       <span>과정</span>
     </div>
 
+
     <select id="process">
 
       <option value="isothermal">
@@ -873,6 +955,7 @@ footer{
   </div>
 
 
+
   <div class="control">
 
     <div class="control-head">
@@ -890,6 +973,7 @@ footer{
 
     </div>
 
+
     <input
       id="changeSlider"
       type="range"
@@ -900,6 +984,7 @@ footer{
     >
 
   </div>
+
 
 
   <div class="control">
@@ -919,6 +1004,7 @@ footer{
 
     </div>
 
+
     <input
       id="progress"
       type="range"
@@ -931,6 +1017,7 @@ footer{
   </div>
 
 
+
   <div class="direction-buttons">
 
     <button
@@ -939,6 +1026,7 @@ footer{
     >
       팽창
     </button>
+
 
     <button
       id="compressionButton"
@@ -950,6 +1038,7 @@ footer{
   </div>
 
 
+
   <div class="buttons">
 
     <button
@@ -959,12 +1048,14 @@ footer{
       ▶ 자동 진행
     </button>
 
+
     <button
       id="pauseButton"
       class="pause"
     >
       Ⅱ 일시정지
     </button>
+
 
     <button
       id="resetButton"
@@ -979,7 +1070,8 @@ footer{
   <div
     id="processInfo"
     class="process-info"
-  ></div>
+  >
+  </div>
 
 </aside>
 
@@ -1006,10 +1098,11 @@ footer{
   </div>
 
 
+
   <div class="visual-grid">
 
 
-    <!-- PV GRAPH -->
+    <!-- P-V GRAPH -->
 
     <div class="visual-box">
 
@@ -1017,9 +1110,25 @@ footer{
         압력-부피(P-V) 그래프
       </div>
 
+
       <canvas id="pvCanvas"></canvas>
 
+
+      <div class="graph-note">
+
+        회색 점선:
+        초기 상태를 지나는
+        T = 300 K 등온선
+
+        ·
+
+        파란 음영:
+        현재까지의 P-V 그래프 아래 넓이
+
+      </div>
+
     </div>
+
 
 
     <!-- PISTON -->
@@ -1029,6 +1138,7 @@ footer{
       <div class="visual-title">
         실린더-피스톤
       </div>
+
 
       <canvas id="pistonCanvas"></canvas>
 
@@ -1042,6 +1152,7 @@ footer{
 
   <div class="state-grid">
 
+
     <div class="state-card">
 
       <span>
@@ -1053,6 +1164,7 @@ footer{
       </strong>
 
     </div>
+
 
 
     <div class="state-card">
@@ -1068,6 +1180,7 @@ footer{
     </div>
 
 
+
     <div class="state-card">
 
       <span>
@@ -1079,6 +1192,7 @@ footer{
       </strong>
 
     </div>
+
 
 
     <div class="state-card">
@@ -1093,6 +1207,7 @@ footer{
 
     </div>
 
+
   </div>
 
 
@@ -1101,6 +1216,7 @@ footer{
 
   <div class="first-law">
 
+
     <h2>
       열역학 제1법칙
     </h2>
@@ -1108,9 +1224,26 @@ footer{
 
     <div class="law-equation">
 
-      ΔU = Q − W
+      Q = ΔU + W
 
     </div>
+
+
+    <div class="sign-convention">
+
+      이 시뮬레이션에서
+      <strong>W는 기체가 외부에 한 일</strong>입니다.
+
+      <br>
+
+      팽창하여 기체가 외부에 일을 하면
+      <strong>W &gt; 0</strong>,
+
+      압축되어 기체가 외부로부터 일을 받으면
+      <strong>W &lt; 0</strong>입니다.
+
+    </div>
+
 
 
     <div class="energy-grid">
@@ -1139,10 +1272,11 @@ footer{
       </div>
 
 
+
       <div class="energy-card">
 
         <div class="energy-name">
-          기체가 한 일 W
+          기체가 외부에 한 일 W
         </div>
 
         <div
@@ -1160,6 +1294,7 @@ footer{
         </div>
 
       </div>
+
 
 
       <div class="energy-card">
@@ -1184,11 +1319,13 @@ footer{
 
       </div>
 
+
     </div>
 
 
 
     <div class="flow">
+
 
       <div class="flow-box">
 
@@ -1238,7 +1375,9 @@ footer{
 
       </div>
 
+
     </div>
+
 
   </div>
 
@@ -1249,10 +1388,12 @@ footer{
   <div
     id="exampleBox"
     class="example-box"
-  ></div>
+  >
+  </div>
 
 
 </section>
+
 
 </section>
 
@@ -1261,6 +1402,7 @@ footer{
 <!-- LEARNING -->
 
 <section class="learning">
+
 
 
 <article class="panel">
@@ -1277,11 +1419,27 @@ footer{
 <thead>
 
 <tr>
-  <th>과정</th>
-  <th>일정한 물리량</th>
-  <th>ΔU</th>
-  <th>W</th>
-  <th>Q</th>
+
+  <th>
+    과정
+  </th>
+
+  <th>
+    일정한 조건
+  </th>
+
+  <th>
+    ΔU
+  </th>
+
+  <th>
+    W
+  </th>
+
+  <th>
+    Q
+  </th>
+
 </tr>
 
 </thead>
@@ -1289,37 +1447,109 @@ footer{
 
 <tbody>
 
-<tr>
-  <td>등온</td>
-  <td>T</td>
-  <td>0</td>
-  <td>≠ 0</td>
-  <td>Q = W</td>
-</tr>
 
 <tr>
-  <td>등압</td>
-  <td>P</td>
-  <td>≠ 0</td>
-  <td>PΔV</td>
-  <td>ΔU + W</td>
+
+  <td>
+    등온
+  </td>
+
+  <td>
+    T 일정
+  </td>
+
+  <td>
+    0
+  </td>
+
+  <td>
+    ≠ 0
+  </td>
+
+  <td>
+    Q = W
+  </td>
+
 </tr>
 
-<tr>
-  <td>등적</td>
-  <td>V</td>
-  <td>≠ 0</td>
-  <td>0</td>
-  <td>Q = ΔU</td>
-</tr>
+
 
 <tr>
-  <td>단열</td>
-  <td>Q = 0</td>
-  <td>≠ 0</td>
-  <td>≠ 0</td>
-  <td>0</td>
+
+  <td>
+    등압
+  </td>
+
+  <td>
+    P 일정
+  </td>
+
+  <td>
+    ≠ 0
+  </td>
+
+  <td>
+    PΔV
+  </td>
+
+  <td>
+    Q = ΔU + W
+  </td>
+
 </tr>
+
+
+
+<tr>
+
+  <td>
+    등적
+  </td>
+
+  <td>
+    V 일정
+  </td>
+
+  <td>
+    ≠ 0
+  </td>
+
+  <td>
+    0
+  </td>
+
+  <td>
+    Q = ΔU
+  </td>
+
+</tr>
+
+
+
+<tr>
+
+  <td>
+    단열
+  </td>
+
+  <td>
+    Q = 0
+  </td>
+
+  <td>
+    ≠ 0
+  </td>
+
+  <td>
+    ≠ 0
+  </td>
+
+  <td>
+    ΔU = −W
+  </td>
+
+</tr>
+
 
 </tbody>
 
@@ -1328,33 +1558,54 @@ footer{
 </div>
 
 
+
 <div class="equation">
-  ΔU = Q − W
+
+  Q = ΔU + W
+
 </div>
 
+
+
 <p>
-  이 시뮬레이션에서는
-  <strong>기체가 외부에 한 일을 양(+)의 일</strong>로 정의합니다.
+
+  여기서
+  <strong>
+    W는 기체가 외부에 한 일
+  </strong>
+  입니다.
+
 </p>
+
 
 
 <div class="tip">
 
-  팽창하면 일반적으로 기체가 외부에 일을 하므로 W &gt; 0이고,
-  압축하면 외부가 기체에 일을 하므로 기체가 한 일은 W &lt; 0입니다.
+  기체가 팽창하면 외부에 일을 하므로
+  W &gt; 0입니다.
+
+  반대로 기체가 압축되면
+  외부로부터 일을 받으므로
+  기체가 외부에 한 일은
+  W &lt; 0입니다.
 
 </div>
 
 
+
 <div class="warning">
 
-  내부에너지는 상태량이므로 처음과 마지막 상태에 의해 결정되지만,
-  열과 일은 어떤 과정을 거쳤는지에 따라 달라집니다.
+  P-V 그래프에서 과정 곡선 아래의 넓이는
+  기체가 외부에 한 일 W와 대응합니다.
+
+  팽창 과정에서는 W가 양수,
+  압축 과정에서는 W가 음수입니다.
 
 </div>
 
 
 </article>
+
 
 
 
@@ -1364,43 +1615,90 @@ footer{
   탐구 활동
 </h2>
 
+
 <ol>
 
-<li>
-등온 팽창을 선택하고 부피를 증가시키세요.
-온도와 내부에너지 변화가 어떻게 되는지 확인하고,
-기체가 일을 하면서도 온도가 일정하게 유지되는 이유를 설명해 보세요.
-</li>
 
 <li>
-등적 과정을 선택하여 온도를 증가시키세요.
-P-V 그래프에서 경로는 어떤 모양이며,
-기체가 한 일이 0인 이유를 설명해 보세요.
+
+등온 팽창을 선택하세요.
+
+온도가 일정한 상태에서
+기체가 외부에 일을 하는데도
+내부에너지가 변하지 않는 이유를
+Q = ΔU + W를 이용하여 설명하세요.
+
 </li>
 
-<li>
-등압 팽창에서 기체가 받은 열에너지와
-내부에너지 증가량을 비교하세요.
-두 값의 차이는 어디에 사용되나요?
-</li>
+
 
 <li>
-등온 팽창과 단열 팽창을 같은 부피 변화로 비교하세요.
-어느 과정에서 압력이 더 빠르게 감소하나요?
+
+등압 팽창을 진행하면서
+P-V 그래프 아래의 음영 넓이가
+증가하는 모습을 관찰하세요.
+
+이 넓이는 어떤 물리량에 해당하나요?
+
 </li>
 
-<li>
-단열 팽창에서 Q = 0인데도
-온도와 내부에너지가 감소하는 이유를
-열역학 제1법칙을 이용해 설명하세요.
-</li>
+
 
 <li>
-팽창과 압축을 서로 바꾸어
-Q, W, ΔU의 부호가 어떻게 달라지는지 비교하세요.
+
+등적 과정을 선택하세요.
+
+P-V 그래프의 과정이 수직선으로 나타나고
+W = 0이 되는 이유를
+부피 변화와 연결하여 설명하세요.
+
 </li>
+
+
+
+<li>
+
+같은 최종 부피까지
+등온 팽창과 단열 팽창을 진행하세요.
+
+단열 과정에서 압력과 온도가
+더 크게 감소하는 이유를 설명하세요.
+
+</li>
+
+
+
+<li>
+
+단열 팽창에서
+
+Q = 0,
+W &gt; 0,
+ΔU &lt; 0
+
+이 되는 것을 확인하고
+
+Q = ΔU + W
+
+에 대입하여 관계가 성립하는지 확인하세요.
+
+</li>
+
+
+
+<li>
+
+압축 과정을 선택하세요.
+
+기체가 외부로부터 일을 받을 때
+W가 음수가 되는 것을 확인하고
+팽창 과정과 비교하세요.
+
+</li>
+
 
 </ol>
+
 
 </article>
 
@@ -1409,6 +1707,7 @@ Q, W, ΔU의 부호가 어떻게 달라지는지 비교하세요.
 
 
 </main>
+
 
 
 <footer>
@@ -1427,257 +1726,420 @@ Q, W, ΔU의 부호가 어떻게 달라지는지 비교하세요.
 <script>
 
 /*
-====================================================
-PHYSICAL CONSTANTS
-====================================================
+========================================================
+물리 상수
+========================================================
 */
 
 const R = 8.314;
 
-/*
-1 mol monatomic ideal gas
-Cv = 3/2 R
-Cp = 5/2 R
-gamma = 5/3
-*/
-
 const n = 1;
 
-const Cv = 1.5 * R;
-
-const Cp = 2.5 * R;
-
-const gamma = 5 / 3;
-
 
 /*
-Initial state
+단원자 이상기체
+
+Cv = 3/2 R
+γ = 5/3
 */
 
-const V1_L = 10;
+const Cv =
+  1.5 *
+  R;
 
-const V1 =
-  V1_L / 1000;
 
-const T1 = 300;
+const gamma =
+  5 /
+  3;
 
-const P1 =
-  n * R * T1 / V1;
 
 
 /*
-====================================================
+초기 상태
+
+V1 = 10 L
+T1 = 300 K
+*/
+
+const V1_L =
+  10;
+
+
+const V1 =
+  V1_L /
+  1000;
+
+
+const T1 =
+  300;
+
+
+const P1 =
+  n *
+  R *
+  T1 /
+  V1;
+
+
+
+/*
+========================================================
 DOM
-====================================================
+========================================================
 */
 
 const processSelect =
-  document.getElementById("process");
+  document.getElementById(
+    "process"
+  );
+
 
 const changeSlider =
-  document.getElementById("changeSlider");
+  document.getElementById(
+    "changeSlider"
+  );
+
 
 const progressSlider =
-  document.getElementById("progress");
+  document.getElementById(
+    "progress"
+  );
+
 
 const changeLabel =
-  document.getElementById("changeLabel");
+  document.getElementById(
+    "changeLabel"
+  );
+
 
 const changeValue =
-  document.getElementById("changeValue");
+  document.getElementById(
+    "changeValue"
+  );
+
 
 const progressValue =
-  document.getElementById("progressValue");
+  document.getElementById(
+    "progressValue"
+  );
+
 
 const expansionButton =
-  document.getElementById("expansionButton");
+  document.getElementById(
+    "expansionButton"
+  );
+
 
 const compressionButton =
-  document.getElementById("compressionButton");
+  document.getElementById(
+    "compressionButton"
+  );
+
 
 const startButton =
-  document.getElementById("startButton");
+  document.getElementById(
+    "startButton"
+  );
+
 
 const pauseButton =
-  document.getElementById("pauseButton");
+  document.getElementById(
+    "pauseButton"
+  );
+
 
 const resetButton =
-  document.getElementById("resetButton");
+  document.getElementById(
+    "resetButton"
+  );
+
 
 const processInfo =
-  document.getElementById("processInfo");
+  document.getElementById(
+    "processInfo"
+  );
+
 
 const exampleBox =
-  document.getElementById("exampleBox");
+  document.getElementById(
+    "exampleBox"
+  );
+
 
 const status =
-  document.getElementById("status");
+  document.getElementById(
+    "status"
+  );
+
 
 
 const pvCanvas =
-  document.getElementById("pvCanvas");
+  document.getElementById(
+    "pvCanvas"
+  );
+
 
 const pvCtx =
-  pvCanvas.getContext("2d");
+  pvCanvas.getContext(
+    "2d"
+  );
+
 
 
 const pistonCanvas =
-  document.getElementById("pistonCanvas");
+  document.getElementById(
+    "pistonCanvas"
+  );
+
 
 const pistonCtx =
-  pistonCanvas.getContext("2d");
+  pistonCanvas.getContext(
+    "2d"
+  );
+
 
 
 /*
-====================================================
-STATE
-====================================================
+========================================================
+상태
+========================================================
 */
 
-let direction = "expansion";
+let direction =
+  "expansion";
 
-let running = false;
 
-let paused = false;
+let running =
+  false;
 
-let animationId = null;
 
-let lastTimestamp = null;
+let paused =
+  false;
+
+
+let animationId =
+  null;
+
+
+let lastTimestamp =
+  null;
+
 
 
 /*
-====================================================
-PROCESS DATA
-====================================================
+========================================================
+학습 정보
+========================================================
 */
 
 const info = {
 
-isothermal:{
 
-  title:"등온 과정",
+  isothermal:{
 
-  description:
-  "온도가 일정하게 유지되는 과정입니다. 이상기체에서는 내부에너지가 온도에만 의존하므로 ΔU = 0입니다.",
+    title:
+      "등온 과정",
 
-  example:
-  "실제 사례 예시: 온도가 일정한 큰 열원과 접촉한 기체를 매우 천천히 팽창·압축시키는 과정. 이상적인 스털링 기관의 일부 과정도 등온 과정으로 모델링합니다."
+    description:
+      "온도가 일정하게 유지되는 과정입니다. 이상기체의 내부에너지는 온도에만 의존하므로 ΔU = 0입니다. 따라서 Q = W가 됩니다.",
 
-},
+    example:
+      "큰 열원과 접촉한 기체를 매우 천천히 팽창시키거나 압축시키는 경우를 등온 과정으로 근사할 수 있습니다. 이상적인 스털링 기관의 일부 과정도 등온 과정으로 모델링합니다."
 
-isobaric:{
+  },
 
-  title:"등압 과정",
 
-  description:
-  "압력이 일정하게 유지되는 과정입니다. 기체가 팽창하면 온도와 내부에너지가 증가하면서 동시에 외부에 일을 할 수 있습니다.",
+  isobaric:{
 
-  example:
-  "실제 사례 예시: 자유롭게 움직이는 피스톤 위에 일정한 무게가 놓인 실린더 속 기체를 천천히 가열하는 상황을 등압 과정에 가깝게 생각할 수 있습니다."
+    title:
+      "등압 과정",
 
-},
+    description:
+      "압력이 일정한 과정입니다. 기체가 가열되어 팽창하면 내부에너지가 증가하고 동시에 외부에 일을 합니다.",
 
-isochoric:{
+    example:
+      "자유롭게 움직이는 피스톤 위에 일정한 무게가 놓인 실린더 속 기체를 천천히 가열하는 경우를 등압 과정에 가깝게 생각할 수 있습니다."
 
-  title:"등적 과정",
+  },
 
-  description:
-  "부피가 일정한 과정입니다. 피스톤이 움직이지 않으므로 기체가 하는 일은 W = 0이고, 전달된 열은 내부에너지 변화로 이어집니다.",
 
-  example:
-  "실제 사례 예시: 단단하게 밀폐된 금속 용기 속 기체를 가열하는 경우. 용기의 부피가 거의 변하지 않으므로 등적 과정으로 근사할 수 있습니다."
+  isochoric:{
 
-},
+    title:
+      "등적 과정",
 
-adiabatic:{
+    description:
+      "부피가 일정한 과정입니다. 부피가 변하지 않으므로 기체가 외부에 하는 일은 W = 0이고 Q = ΔU가 됩니다.",
 
-  title:"단열 과정",
+    example:
+      "단단하게 밀폐된 금속 용기 안의 기체를 가열하는 경우, 용기의 부피 변화를 무시할 수 있다면 등적 과정으로 근사할 수 있습니다."
 
-  description:
-  "주변과 열교환이 없는 과정입니다. Q = 0이므로 기체가 외부에 일을 하면 그만큼 내부에너지가 감소하고 온도가 내려갑니다.",
+  },
 
-  example:
-  "실제 사례 예시: 자전거 펌프를 빠르게 압축할 때 내부 공기의 온도가 상승하는 현상이나, 대기 중 공기 덩어리가 빠르게 상승·팽창하며 냉각되는 현상을 단열 과정으로 근사할 수 있습니다."
 
-}
+  adiabatic:{
+
+    title:
+      "단열 과정",
+
+    description:
+      "주변과 열교환이 없는 과정입니다. Q = 0이므로 팽창하면서 기체가 외부에 일을 하면 내부에너지가 감소합니다.",
+
+    example:
+      "자전거 펌프를 빠르게 압축할 때 공기가 뜨거워지는 현상이나 대기 중 공기 덩어리가 빠르게 상승하여 팽창하고 냉각되는 현상을 단열 과정으로 근사할 수 있습니다."
+
+  }
 
 };
 
 
+
 /*
-====================================================
-TARGET
-====================================================
+========================================================
+조작부 설정
+========================================================
 */
 
 function configureControl(){
+
 
   const type =
     processSelect.value;
 
 
-  if(type === "isochoric"){
+
+  if(
+    type ===
+    "isochoric"
+  ){
+
 
     changeLabel.textContent =
       "최종 온도";
 
-    changeSlider.min = 150;
-    changeSlider.max = 600;
 
-    changeSlider.step = 1;
+    changeSlider.min =
+      150;
 
-    if(direction === "expansion"){
-      changeSlider.value = 500;
-    }else{
-      changeSlider.value = 180;
+
+    changeSlider.max =
+      600;
+
+
+    changeSlider.step =
+      1;
+
+
+    if(
+      direction ===
+      "expansion"
+    ){
+
+      changeSlider.value =
+        500;
+
     }
+    else{
 
-  }else{
+      changeSlider.value =
+        180;
 
-    changeLabel.textContent =
-      "최종 부피";
-
-    changeSlider.min = 5;
-    changeSlider.max = 20;
-
-    changeSlider.step = .1;
-
-    if(direction === "expansion"){
-      changeSlider.value = 18;
-    }else{
-      changeSlider.value = 6;
     }
 
   }
 
 
-  progressSlider.value = 0;
+  else{
+
+
+    changeLabel.textContent =
+      "최종 부피";
+
+
+    changeSlider.min =
+      5;
+
+
+    changeSlider.max =
+      20;
+
+
+    changeSlider.step =
+      .1;
+
+
+    if(
+      direction ===
+      "expansion"
+    ){
+
+      changeSlider.value =
+        18;
+
+    }
+    else{
+
+      changeSlider.value =
+        6;
+
+    }
+
+  }
+
+
+
+  progressSlider.value =
+    0;
+
 
   update();
 
 }
 
 
+
+/*
+========================================================
+최종 상태
+========================================================
+*/
+
 function getTarget(){
+
 
   const type =
     processSelect.value;
 
 
-  if(type === "isochoric"){
 
-    return {
-      V2:V1,
-      T2:Number(changeSlider.value)
+  if(
+    type ===
+    "isochoric"
+  ){
+
+
+    return{
+
+      V2:
+        V1,
+
+      T2:
+        Number(
+          changeSlider.value
+        )
+
     };
 
   }
 
 
-  return {
+
+  return{
 
     V2:
-      Number(changeSlider.value) /
+      Number(
+        changeSlider.value
+      ) /
       1000
 
   };
@@ -1685,41 +2147,68 @@ function getTarget(){
 }
 
 
+
 /*
-====================================================
-THERMODYNAMIC STATE
-====================================================
+========================================================
+열역학 계산
+
+부호 규약
+
+Q = ΔU + W
+
+W > 0
+: 기체가 외부에 일을 함
+
+W < 0
+: 외부가 기체에 일을 함
+========================================================
 */
 
-function calculate(){
+function calculateAtProgress(
+  progress
+){
+
 
   const type =
     processSelect.value;
-
-
-  const progress =
-    Number(progressSlider.value) /
-    100;
 
 
   const target =
     getTarget();
 
 
+
   let V;
+
   let P;
+
   let T;
 
-  let W = 0;
-  let dU = 0;
-  let Q = 0;
+
+  let W =
+    0;
+
+
+  let dU =
+    0;
+
+
+  let Q =
+    0;
+
 
 
   /*
-  ISOTHERMAL
+  ======================
+  등온
+  ======================
   */
 
-  if(type === "isothermal"){
+  if(
+    type ===
+    "isothermal"
+  ){
+
 
     V =
       V1 +
@@ -1730,7 +2219,8 @@ function calculate(){
       progress;
 
 
-    T = T1;
+    T =
+      T1;
 
 
     P =
@@ -1740,27 +2230,62 @@ function calculate(){
       V;
 
 
+    /*
+    기체가 외부에 한 일
+
+    W = nRT ln(V/V1)
+
+    팽창:
+    V > V1
+    W > 0
+
+    압축:
+    V < V1
+    W < 0
+    */
+
     W =
       n *
       R *
       T1 *
       Math.log(
-        V / V1
+        V /
+        V1
       );
 
 
-    dU = 0;
+    /*
+    등온 이상기체
+    ΔU = 0
+    */
 
-    Q = W;
+    dU =
+      0;
+
+
+    /*
+    Q = ΔU + W
+    */
+
+    Q =
+      dU +
+      W;
 
   }
 
 
+
   /*
-  ISOBARIC
+  ======================
+  등압
+  ======================
   */
 
-  if(type === "isobaric"){
+  if(
+    type ===
+    "isobaric"
+  ){
+
 
     V =
       V1 +
@@ -1771,7 +2296,8 @@ function calculate(){
       progress;
 
 
-    P = P1;
+    P =
+      P1;
 
 
     T =
@@ -1788,6 +2314,12 @@ function calculate(){
       T1;
 
 
+    /*
+    기체가 외부에 한 일
+
+    W = P ΔV
+    */
+
     W =
       P *
       (
@@ -1796,11 +2328,19 @@ function calculate(){
       );
 
 
+    /*
+    내부에너지 변화
+    */
+
     dU =
       n *
       Cv *
       dT;
 
+
+    /*
+    열역학 제1법칙
+    */
 
     Q =
       dU +
@@ -1809,13 +2349,21 @@ function calculate(){
   }
 
 
+
   /*
-  ISOCHORIC
+  ======================
+  등적
+  ======================
   */
 
-  if(type === "isochoric"){
+  if(
+    type ===
+    "isochoric"
+  ){
 
-    V = V1;
+
+    V =
+      V1;
 
 
     T =
@@ -1834,7 +2382,12 @@ function calculate(){
       V;
 
 
-    W = 0;
+    /*
+    ΔV = 0
+    */
+
+    W =
+      0;
 
 
     dU =
@@ -1846,16 +2399,24 @@ function calculate(){
       );
 
 
-    Q = dU;
+    Q =
+      dU;
 
   }
 
 
+
   /*
-  ADIABATIC
+  ======================
+  단열
+  ======================
   */
 
-  if(type === "adiabatic"){
+  if(
+    type ===
+    "adiabatic"
+  ){
+
 
     V =
       V1 +
@@ -1880,7 +2441,8 @@ function calculate(){
       Math.pow(
         V1 /
         V,
-        gamma - 1
+        gamma -
+        1
       );
 
 
@@ -1893,8 +2455,22 @@ function calculate(){
       );
 
 
-    Q = 0;
+    /*
+    단열
+    Q = 0
+    */
 
+    Q =
+      0;
+
+
+    /*
+    Q = ΔU + W
+
+    0 = ΔU + W
+
+    W = -ΔU
+    */
 
     W =
       -dU;
@@ -1902,15 +2478,23 @@ function calculate(){
   }
 
 
+
   return{
 
     type,
+
     V,
+
     P,
+
     T,
+
     W,
+
     dU,
+
     Q,
+
     progress
 
   };
@@ -1918,10 +2502,35 @@ function calculate(){
 }
 
 
+
 /*
-====================================================
-SIGN
-====================================================
+========================================================
+현재 상태 계산
+========================================================
+*/
+
+function calculate(){
+
+
+  const progress =
+    Number(
+      progressSlider.value
+    ) /
+    100;
+
+
+  return calculateAtProgress(
+    progress
+  );
+
+}
+
+
+
+/*
+========================================================
+부호 표시
+========================================================
 */
 
 function signInfo(
@@ -1929,63 +2538,93 @@ function signInfo(
   symbol
 ){
 
-  const tolerance = .05;
+
+  const tolerance =
+    .05;
+
 
 
   if(
-    Math.abs(value) <
+    Math.abs(
+      value
+    ) <
     tolerance
   ){
 
+
     return{
+
       text:
         `${symbol} = 0`,
-      className:"zero"
+
+      className:
+        "zero"
+
     };
 
   }
 
 
-  if(value > 0){
+
+  if(
+    value >
+    0
+  ){
+
 
     return{
+
       text:
         `${symbol} > 0`,
-      className:"positive"
+
+      className:
+        "positive"
+
     };
 
   }
+
 
 
   return{
+
     text:
       `${symbol} < 0`,
-    className:"negative"
+
+    className:
+      "negative"
+
   };
 
 }
 
 
+
 /*
-====================================================
-TEXT UPDATE
-====================================================
+========================================================
+텍스트
+========================================================
 */
 
 function updateText(
   state
 ){
 
+
   const type =
     processSelect.value;
 
 
   const data =
-    info[type];
+    info[
+      type
+    ];
+
 
 
   processInfo.innerHTML =
     `
+
     <strong>
       ${data.title}
     </strong>
@@ -1993,11 +2632,14 @@ function updateText(
     <p>
       ${data.description}
     </p>
+
     `;
+
 
 
   exampleBox.innerHTML =
     `
+
     <strong>
       🔎 ${data.title}의 실제 사례
     </strong>
@@ -2005,24 +2647,42 @@ function updateText(
     <p>
       ${data.example}
     </p>
+
     `;
 
 
-  if(type === "isochoric"){
+
+  if(
+    type ===
+    "isochoric"
+  ){
+
 
     changeValue.textContent =
-      `${Number(changeSlider.value).toFixed(0)} K`;
-
-  }else{
-
-    changeValue.textContent =
-      `${Number(changeSlider.value).toFixed(1)} L`;
+      `${Number(
+        changeSlider.value
+      ).toFixed(0)} K`;
 
   }
 
 
+  else{
+
+
+    changeValue.textContent =
+      `${Number(
+        changeSlider.value
+      ).toFixed(1)} L`;
+
+  }
+
+
+
   progressValue.textContent =
-    `${Number(progressSlider.value).toFixed(0)} %`;
+    `${Number(
+      progressSlider.value
+    ).toFixed(0)} %`;
+
 
 
   document.getElementById(
@@ -2034,6 +2694,7 @@ function updateText(
     ).toFixed(2)} L`;
 
 
+
   document.getElementById(
     "pressureValue"
   ).textContent =
@@ -2043,27 +2704,44 @@ function updateText(
     ).toFixed(1)} kPa`;
 
 
+
   document.getElementById(
     "temperatureValue"
   ).textContent =
     `${state.T.toFixed(1)} K`;
 
 
-  if(state.progress === 0){
+
+  if(
+    state.progress ===
+    0
+  ){
+
 
     document.getElementById(
       "stateValue"
     ).textContent =
       "초기 상태";
 
-  }else if(state.progress >= 1){
+  }
+
+
+  else if(
+    state.progress >=
+    1
+  ){
+
 
     document.getElementById(
       "stateValue"
     ).textContent =
       "최종 상태";
 
-  }else{
+  }
+
+
+  else{
+
 
     document.getElementById(
       "stateValue"
@@ -2073,10 +2751,12 @@ function updateText(
   }
 
 
+
   document.getElementById(
     "heatValue"
   ).textContent =
     `${state.Q.toFixed(1)} J`;
+
 
 
   document.getElementById(
@@ -2085,10 +2765,12 @@ function updateText(
     `${state.W.toFixed(1)} J`;
 
 
+
   document.getElementById(
     "internalValue"
   ).textContent =
     `${state.dU.toFixed(1)} J`;
+
 
 
   const qSign =
@@ -2112,6 +2794,7 @@ function updateText(
     );
 
 
+
   const heatSign =
     document.getElementById(
       "heatSign"
@@ -2124,6 +2807,7 @@ function updateText(
 
   heatSign.className =
     `energy-sign ${qSign.className}`;
+
 
 
   const workSign =
@@ -2140,6 +2824,7 @@ function updateText(
     `energy-sign ${wSign.className}`;
 
 
+
   const internalSign =
     document.getElementById(
       "internalSign"
@@ -2154,64 +2839,110 @@ function updateText(
     `energy-sign ${uSign.className}`;
 
 
+
   /*
-  FLOW TEXT
+  열의 방향
   */
 
   document.getElementById(
     "heatFlowText"
   ).textContent =
-    state.Q > .05
-      ?
-      "열 유입 →"
-      :
-      state.Q < -.05
-      ?
-      "← 열 방출"
-      :
-      "열교환 없음";
 
+    state.Q >
+    .05
+
+    ?
+
+    "열 유입"
+
+    :
+
+    state.Q <
+    -.05
+
+    ?
+
+    "열 방출"
+
+    :
+
+    "열교환 없음";
+
+
+
+  /*
+  일의 방향
+  */
 
   document.getElementById(
     "workFlowText"
   ).textContent =
-    state.W > .05
-      ?
-      "외부에 일함"
-      :
-      state.W < -.05
-      ?
-      "외부가 기체에 일함"
-      :
-      "일하지 않음";
 
+    state.W >
+    .05
+
+    ?
+
+    "기체 → 외부"
+
+    :
+
+    state.W <
+    -.05
+
+    ?
+
+    "외부 → 기체"
+
+    :
+
+    "일 없음";
+
+
+
+  /*
+  내부에너지
+  */
 
   document.getElementById(
     "internalFlowText"
   ).textContent =
-    state.dU > .05
-      ?
-      "내부에너지 증가"
-      :
-      state.dU < -.05
-      ?
-      "내부에너지 감소"
-      :
-      "내부에너지 일정";
+
+    state.dU >
+    .05
+
+    ?
+
+    "내부에너지 증가"
+
+    :
+
+    state.dU <
+    -.05
+
+    ?
+
+    "내부에너지 감소"
+
+    :
+
+    "내부에너지 일정";
 
 }
 
 
+
 /*
-====================================================
-CANVAS RESIZE
-====================================================
+========================================================
+CANVAS
+========================================================
 */
 
 function resizeCanvas(
   canvas,
   ctx
 ){
+
 
   const rect =
     canvas.getBoundingClientRect();
@@ -2244,7 +2975,9 @@ function resizeCanvas(
 }
 
 
+
 function resizeAll(){
+
 
   resizeCanvas(
     pvCanvas,
@@ -2263,47 +2996,24 @@ function resizeAll(){
 }
 
 
+
 window.addEventListener(
   "resize",
   resizeAll
 );
 
 
+
 /*
-====================================================
-PV GRAPH
-====================================================
+========================================================
+P-V GRAPH
+========================================================
 */
-
-function processStateAt(
-  fraction
-){
-
-  const old =
-    progressSlider.value;
-
-
-  progressSlider.value =
-    fraction *
-    100;
-
-
-  const state =
-    calculate();
-
-
-  progressSlider.value =
-    old;
-
-
-  return state;
-
-}
-
 
 function drawPV(
   state
 ){
+
 
   const ctx =
     pvCtx;
@@ -2315,6 +3025,7 @@ function drawPV(
 
   const height =
     pvCanvas.clientHeight;
+
 
 
   ctx.clearRect(
@@ -2337,14 +3048,19 @@ function drawPV(
   );
 
 
+
   const margin = {
 
-    left:58,
-    right:20,
-    top:22,
-    bottom:46
+    left:60,
+
+    right:22,
+
+    top:25,
+
+    bottom:48
 
   };
+
 
 
   const plotW =
@@ -2359,30 +3075,43 @@ function drawPV(
     margin.bottom;
 
 
+
   /*
-  Determine graph scale from
-  full process
+  전체 과정
   */
 
-  let minV = Infinity;
-  let maxV = -Infinity;
-
-  let minP = Infinity;
-  let maxP = -Infinity;
+  const fullPoints =
+    [];
 
 
-  const fullPoints = [];
+  let minV =
+    Infinity;
+
+
+  let maxV =
+    -Infinity;
+
+
+  let maxP =
+    0;
+
 
 
   for(
-    let i = 0;
-    i <= 100;
+    let i =
+      0;
+
+    i <=
+      120;
+
     i++
   ){
 
+
     const s =
-      processStateAt(
-        i / 100
+      calculateAtProgress(
+        i /
+        120
       );
 
 
@@ -2391,15 +3120,22 @@ function drawPV(
       1000;
 
 
-    const pkPa =
+    const pK =
       s.P /
       1000;
 
 
+
     fullPoints.push({
-      v:vL,
-      p:pkPa
+
+      v:
+        vL,
+
+      p:
+        pK
+
     });
+
 
 
     minV =
@@ -2416,121 +3152,155 @@ function drawPV(
       );
 
 
-    minP =
-      Math.min(
-        minP,
-        pkPa
+    maxP =
+      Math.max(
+        maxP,
+        pK
       );
+
+  }
+
+
+
+  /*
+  항상 300 K 등온선 표시
+  */
+
+  minV =
+    Math.min(
+      minV,
+      5
+    );
+
+
+  maxV =
+    Math.max(
+      maxV,
+      20
+    );
+
+
+
+  for(
+    let i =
+      0;
+
+    i <=
+      100;
+
+    i++
+  ){
+
+
+    const vL =
+      minV +
+      (
+        maxV -
+        minV
+      ) *
+      i /
+      100;
+
+
+    const V =
+      vL /
+      1000;
+
+
+    const P =
+      n *
+      R *
+      T1 /
+      V /
+      1000;
 
 
     maxP =
       Math.max(
         maxP,
-        pkPa
+        P
       );
 
   }
 
 
-  let vPadding =
+
+  /*
+  그래프 여백
+  */
+
+  const vPadding =
+    (
+      maxV -
+      minV
+    ) *
+    .08;
+
+
+  minV =
     Math.max(
-      2,
-      (
-        maxV -
-        minV
-      ) *
-      .25
+      0,
+      minV -
+      vPadding
     );
 
 
-  let pPadding =
-    Math.max(
-      20,
-      (
-        maxP -
-        minP
-      ) *
-      .25
-    );
+  maxV +=
+    vPadding;
 
 
-  if(
-    maxV -
-    minV <
-    .1
+  maxP *=
+    1.12;
+
+
+
+  function sx(
+    v
   ){
 
-    minV -= 4;
-    maxV += 4;
-
-  }else{
-
-    minV -= vPadding;
-    maxV += vPadding;
-
-  }
-
-
-  if(
-    maxP -
-    minP <
-    1
-  ){
-
-    minP -= 60;
-    maxP += 60;
-
-  }else{
-
-    minP =
-      Math.max(
-        0,
-        minP -
-        pPadding
-      );
-
-
-    maxP +=
-      pPadding;
-
-  }
-
-
-  function sx(v){
 
     return (
+
       margin.left +
+
       (
         v -
         minV
       ) /
+
       (
         maxV -
         minV
       ) *
+
       plotW
+
     );
 
   }
 
 
-  function sy(p){
+
+  function sy(
+    p
+  ){
+
 
     return (
+
       margin.top +
+
       plotH -
-      (
-        p -
-        minP
-      ) /
-      (
-        maxP -
-        minP
-      ) *
+
+      p /
+      maxP *
+
       plotH
+
     );
 
   }
+
 
 
   /*
@@ -2541,7 +3311,8 @@ function drawPV(
     "#e2e8f0";
 
 
-  ctx.lineWidth = 1;
+  ctx.lineWidth =
+    1;
 
 
   ctx.font =
@@ -2552,14 +3323,22 @@ function drawPV(
     "#64748b";
 
 
-  const grid = 5;
+
+  const grid =
+    5;
+
 
 
   for(
-    let i = 0;
-    i <= grid;
+    let i =
+      0;
+
+    i <=
+      grid;
+
     i++
   ){
+
 
     const x =
       margin.left +
@@ -2575,7 +3354,9 @@ function drawPV(
       grid;
 
 
+
     ctx.beginPath();
+
 
     ctx.moveTo(
       x,
@@ -2593,7 +3374,9 @@ function drawPV(
     ctx.stroke();
 
 
+
     ctx.beginPath();
+
 
     ctx.moveTo(
       margin.left,
@@ -2611,6 +3394,7 @@ function drawPV(
     ctx.stroke();
 
 
+
     const vv =
       minV +
       (
@@ -2621,30 +3405,33 @@ function drawPV(
       grid;
 
 
+
     const pp =
       maxP -
-      (
-        maxP -
-        minP
-      ) *
+      maxP *
       i /
       grid;
 
 
+
     ctx.fillText(
       vv.toFixed(1),
-      x - 12,
-      height - 22
+      x -
+      12,
+      height -
+      22
     );
 
 
     ctx.fillText(
       pp.toFixed(0),
-      10,
-      y + 4
+      12,
+      y +
+      4
     );
 
   }
+
 
 
   /*
@@ -2655,7 +3442,9 @@ function drawPV(
     "#334155";
 
 
-  ctx.lineWidth = 1.5;
+  ctx.lineWidth =
+    1.5;
+
 
 
   ctx.beginPath();
@@ -2685,6 +3474,7 @@ function drawPV(
   ctx.stroke();
 
 
+
   ctx.fillStyle =
     "#334155";
 
@@ -2693,25 +3483,186 @@ function drawPV(
     "12px Arial";
 
 
+
   ctx.fillText(
     "P (kPa)",
     8,
-    16
+    17
   );
 
 
   ctx.fillText(
     "V (L)",
-    width - 45,
-    height - 7
+    width -
+    45,
+    height -
+    7
   );
 
 
+
   /*
-  FULL PROCESS PATH
+  ================================
+  300 K 등온선
+  ================================
+  */
+
+  ctx.save();
+
+
+  ctx.beginPath();
+
+
+  let started =
+    false;
+
+
+
+  for(
+    let i =
+      0;
+
+    i <=
+      180;
+
+    i++
+  ){
+
+
+    const vL =
+      minV +
+      (
+        maxV -
+        minV
+      ) *
+      i /
+      180;
+
+
+    if(
+      vL <=
+      0
+    ){
+
+      continue;
+
+    }
+
+
+
+    const V =
+      vL /
+      1000;
+
+
+    const P =
+      n *
+      R *
+      T1 /
+      V /
+      1000;
+
+
+
+    if(
+      P >
+      maxP
+    ){
+
+      continue;
+
+    }
+
+
+
+    if(
+      !started
+    ){
+
+
+      ctx.moveTo(
+        sx(
+          vL
+        ),
+        sy(
+          P
+        )
+      );
+
+
+      started =
+        true;
+
+    }
+
+
+    else{
+
+
+      ctx.lineTo(
+        sx(
+          vL
+        ),
+        sy(
+          P
+        )
+      );
+
+    }
+
+  }
+
+
+
+  ctx.strokeStyle =
+    "#64748b";
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.setLineDash(
+    [7,6]
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.setLineDash(
+    []
+  );
+
+
+
+  ctx.fillStyle =
+    "#475569";
+
+
+  ctx.font =
+    "bold 11px Arial";
+
+
+  ctx.fillText(
+    "T = 300 K 등온선",
+    margin.left +
+    12,
+    margin.top +
+    16
+  );
+
+
+  ctx.restore();
+
+
+
+  /*
+  전체 선택 과정
   */
 
   ctx.beginPath();
+
 
 
   fullPoints.forEach(
@@ -2720,30 +3671,35 @@ function drawPV(
       index
     ) => {
 
-      const x =
-        sx(
-          point.v
-        );
 
+      if(
+        index ===
+        0
+      ){
 
-      const y =
-        sy(
-          point.p
-        );
-
-
-      if(index === 0){
 
         ctx.moveTo(
-          x,
-          y
+          sx(
+            point.v
+          ),
+          sy(
+            point.p
+          )
         );
 
-      }else{
+      }
+
+
+      else{
+
 
         ctx.lineTo(
-          x,
-          y
+          sx(
+            point.v
+          ),
+          sy(
+            point.p
+          )
         );
 
       }
@@ -2752,98 +3708,255 @@ function drawPV(
   );
 
 
+
   ctx.strokeStyle =
     "#cbd5e1";
 
 
-  ctx.lineWidth = 3;
+  ctx.lineWidth =
+    3;
 
 
   ctx.stroke();
 
 
+
   /*
-  COMPLETED PATH
+  현재까지 진행된 과정
   */
-
-  ctx.beginPath();
-
 
   const completed =
     Math.round(
+
       state.progress *
-      100
+
+      (
+        fullPoints.length -
+        1
+      )
+
     );
 
 
-  for(
-    let i = 0;
-    i <= completed;
-    i++
+
+  const completedPoints =
+    fullPoints.slice(
+      0,
+      completed +
+      1
+    );
+
+
+
+  /*
+  ================================
+  P-V 그래프 아래 넓이
+  ================================
+  */
+
+  if(
+    completedPoints.length >
+    1
   ){
 
-    const point =
-      fullPoints[i];
+
+    const first =
+      completedPoints[
+        0
+      ];
 
 
-    const x =
-      sx(
-        point.v
-      );
+    const last =
+      completedPoints[
+        completedPoints.length -
+        1
+      ];
 
 
-    const y =
-      sy(
-        point.p
-      );
+
+    if(
+      Math.abs(
+        last.v -
+        first.v
+      ) >
+      .001
+    ){
 
 
-    if(i === 0){
+      ctx.save();
+
+
+      ctx.beginPath();
+
+
 
       ctx.moveTo(
-        x,
-        y
+        sx(
+          first.v
+        ),
+        sy(
+          0
+        )
       );
 
-    }else{
+
 
       ctx.lineTo(
-        x,
-        y
+        sx(
+          first.v
+        ),
+        sy(
+          first.p
+        )
       );
+
+
+
+      completedPoints.forEach(
+        point => {
+
+
+          ctx.lineTo(
+            sx(
+              point.v
+            ),
+            sy(
+              point.p
+            )
+          );
+
+        }
+      );
+
+
+
+      ctx.lineTo(
+        sx(
+          last.v
+        ),
+        sy(
+          0
+        )
+      );
+
+
+
+      ctx.closePath();
+
+
+
+      ctx.fillStyle =
+        "rgba(37,99,235,0.18)";
+
+
+      ctx.fill();
+
+
+      ctx.restore();
 
     }
 
   }
 
 
-  ctx.strokeStyle =
-    "#2563eb";
+
+  /*
+  현재까지의 파란 경로
+  */
+
+  if(
+    completedPoints.length >
+    1
+  ){
 
 
-  ctx.lineWidth = 4;
+    ctx.beginPath();
 
 
-  ctx.stroke();
+
+    completedPoints.forEach(
+      (
+        point,
+        index
+      ) => {
+
+
+        if(
+          index ===
+          0
+        ){
+
+
+          ctx.moveTo(
+            sx(
+              point.v
+            ),
+            sy(
+              point.p
+            )
+          );
+
+        }
+
+
+        else{
+
+
+          ctx.lineTo(
+            sx(
+              point.v
+            ),
+            sy(
+              point.p
+            )
+          );
+
+        }
+
+      }
+    );
+
+
+
+    ctx.strokeStyle =
+      "#2563eb";
+
+
+    ctx.lineWidth =
+      4;
+
+
+    ctx.stroke();
+
+  }
+
 
 
   /*
-  Initial point
+  초기 상태 A
   */
 
   const initial =
-    fullPoints[0];
+    fullPoints[
+      0
+    ];
+
 
 
   ctx.beginPath();
 
 
   ctx.arc(
-    sx(initial.v),
-    sy(initial.p),
+    sx(
+      initial.v
+    ),
+    sy(
+      initial.p
+    ),
     6,
     0,
-    Math.PI * 2
+    Math.PI *
+    2
   );
 
 
@@ -2852,6 +3965,7 @@ function drawPV(
 
 
   ctx.fill();
+
 
 
   ctx.fillStyle =
@@ -2864,13 +3978,20 @@ function drawPV(
 
   ctx.fillText(
     "A",
-    sx(initial.v) - 17,
-    sy(initial.p) - 8
+    sx(
+      initial.v
+    ) -
+    17,
+    sy(
+      initial.p
+    ) -
+    8
   );
 
 
+
   /*
-  CURRENT STATE
+  현재 상태
   */
 
   const currentV =
@@ -2883,15 +4004,21 @@ function drawPV(
     1000;
 
 
+
   ctx.beginPath();
 
 
   ctx.arc(
-    sx(currentV),
-    sy(currentP),
+    sx(
+      currentV
+    ),
+    sy(
+      currentP
+    ),
     7,
     0,
-    Math.PI * 2
+    Math.PI *
+    2
   );
 
 
@@ -2902,28 +4029,76 @@ function drawPV(
   ctx.fill();
 
 
+
   ctx.fillStyle =
     "#991b1b";
 
 
   ctx.fillText(
-    state.progress >= .99
+
+    state.progress >=
+    .99
+
     ?
+
     "B"
+
     :
+
     "현재",
 
-    sx(currentV) + 9,
-    sy(currentP) - 8
+    sx(
+      currentV
+    ) +
+    9,
+
+    sy(
+      currentP
+    ) -
+    8
+
   );
+
+
+
+  /*
+  면적 표시
+  */
+
+  if(
+    processSelect.value !==
+    "isochoric" &&
+    state.progress >
+    .03
+  ){
+
+
+    ctx.fillStyle =
+      "#1e40af";
+
+
+    ctx.font =
+      "bold 11px Arial";
+
+
+    ctx.fillText(
+      "아래 넓이 = 기체가 한 일 |W|",
+      margin.left +
+      12,
+      height -
+      58
+    );
+
+  }
 
 }
 
 
+
 /*
-====================================================
-PISTON
-====================================================
+========================================================
+ARROW
+========================================================
 */
 
 function drawArrow(
@@ -2935,14 +4110,19 @@ function drawArrow(
   color
 ){
 
+
   const angle =
     Math.atan2(
-      y2 - y1,
-      x2 - x1
+      y2 -
+      y1,
+      x2 -
+      x1
     );
 
 
-  const head = 9;
+  const head =
+    9;
+
 
 
   ctx.strokeStyle =
@@ -2953,7 +4133,9 @@ function drawArrow(
     color;
 
 
-  ctx.lineWidth = 3;
+  ctx.lineWidth =
+    3;
+
 
 
   ctx.beginPath();
@@ -2974,6 +4156,7 @@ function drawArrow(
   ctx.stroke();
 
 
+
   ctx.beginPath();
 
 
@@ -2983,38 +4166,57 @@ function drawArrow(
   );
 
 
+
   ctx.lineTo(
+
     x2 -
+
     head *
+
     Math.cos(
       angle -
-      Math.PI / 6
+      Math.PI /
+      6
     ),
 
     y2 -
+
     head *
+
     Math.sin(
       angle -
-      Math.PI / 6
+      Math.PI /
+      6
     )
+
   );
+
 
 
   ctx.lineTo(
+
     x2 -
+
     head *
+
     Math.cos(
       angle +
-      Math.PI / 6
+      Math.PI /
+      6
     ),
 
     y2 -
+
     head *
+
     Math.sin(
       angle +
-      Math.PI / 6
+      Math.PI /
+      6
     )
+
   );
+
 
 
   ctx.closePath();
@@ -3025,9 +4227,17 @@ function drawArrow(
 }
 
 
+
+/*
+========================================================
+PISTON
+========================================================
+*/
+
 function drawPiston(
   state
 ){
+
 
   const ctx =
     pistonCtx;
@@ -3041,12 +4251,14 @@ function drawPiston(
     pistonCanvas.clientHeight;
 
 
+
   ctx.clearRect(
     0,
     0,
     width,
     height
   );
+
 
 
   ctx.fillStyle =
@@ -3061,29 +4273,32 @@ function drawPiston(
   );
 
 
+
   const cylinderLeft =
-    width * .22;
+    width *
+    .22;
 
 
   const cylinderRight =
-    width * .78;
+    width *
+    .78;
 
 
   const cylinderBottom =
-    height * .83;
+    height *
+    .83;
 
 
   const topMin =
-    height * .22;
+    height *
+    .22;
 
 
-  /*
-  volume maps to piston height
-  */
 
-  let V_L =
+  const V_L =
     state.V *
     1000;
+
 
 
   let fraction =
@@ -3092,6 +4307,7 @@ function drawPiston(
       5
     ) /
     15;
+
 
 
   fraction =
@@ -3104,21 +4320,25 @@ function drawPiston(
     );
 
 
+
   const pistonY =
     cylinderBottom -
+
     (
       .28 +
       fraction *
       .55
     ) *
+
     (
       cylinderBottom -
       topMin
     );
 
 
+
   /*
-  gas fill
+  기체 온도 색
   */
 
   const tempFraction =
@@ -3126,13 +4346,16 @@ function drawPiston(
       0,
       Math.min(
         1,
+
         (
           state.T -
           150
         ) /
         450
+
       )
     );
+
 
 
   const red =
@@ -3151,13 +4374,16 @@ function drawPiston(
     );
 
 
+
   ctx.fillStyle =
     `rgba(${red},190,${blue},0.45)`;
 
 
+
   ctx.fillRect(
     cylinderLeft,
-    pistonY + 9,
+    pistonY +
+    9,
     cylinderRight -
     cylinderLeft,
     cylinderBottom -
@@ -3166,15 +4392,18 @@ function drawPiston(
   );
 
 
+
   /*
-  CYLINDER
+  실린더
   */
 
   ctx.strokeStyle =
     "#475569";
 
 
-  ctx.lineWidth = 4;
+  ctx.lineWidth =
+    4;
+
 
 
   ctx.beginPath();
@@ -3207,8 +4436,9 @@ function drawPiston(
   ctx.stroke();
 
 
+
   /*
-  PISTON
+  피스톤
   */
 
   ctx.fillStyle =
@@ -3216,7 +4446,8 @@ function drawPiston(
 
 
   ctx.fillRect(
-    cylinderLeft - 7,
+    cylinderLeft -
+    7,
     pistonY,
     cylinderRight -
     cylinderLeft +
@@ -3225,35 +4456,46 @@ function drawPiston(
   );
 
 
+
   ctx.fillStyle =
     "#64748b";
 
 
   ctx.fillRect(
-    width / 2 - 7,
-    pistonY - 70,
+    width /
+    2 -
+    7,
+    pistonY -
+    70,
     14,
     70
   );
 
 
+
   /*
-  GAS PARTICLES
-  deterministic pattern
+  기체 입자
   */
 
-  const particleCount = 22;
+  const particleCount =
+    22;
 
 
   ctx.fillStyle =
     "#2563eb";
 
 
+
   for(
-    let i = 0;
-    i < particleCount;
+    let i =
+      0;
+
+    i <
+      particleCount;
+
     i++
   ){
+
 
     const fx =
       (
@@ -3266,23 +4508,30 @@ function drawPiston(
       100;
 
 
+
     const fy =
       (
         (
           i *
           61 +
+
           state.progress *
           250
+
         ) %
         100
+
       ) /
       100;
+
 
 
     const x =
       cylinderLeft +
       12 +
+
       fx *
+
       (
         cylinderRight -
         cylinderLeft -
@@ -3290,16 +4539,21 @@ function drawPiston(
       );
 
 
+
     const y =
       pistonY +
       23 +
+
       fy *
+
       Math.max(
         10,
+
         cylinderBottom -
         pistonY -
         38
       );
+
 
 
     ctx.beginPath();
@@ -3310,7 +4564,8 @@ function drawPiston(
       y,
       3,
       0,
-      Math.PI * 2
+      Math.PI *
+      2
     );
 
 
@@ -3319,8 +4574,9 @@ function drawPiston(
   }
 
 
+
   /*
-  LABELS
+  상태값
   */
 
   ctx.fillStyle =
@@ -3331,11 +4587,13 @@ function drawPiston(
     "bold 13px Arial";
 
 
+
   ctx.fillText(
     `V = ${V_L.toFixed(1)} L`,
     15,
     25
   );
+
 
 
   ctx.fillText(
@@ -3345,6 +4603,7 @@ function drawPiston(
   );
 
 
+
   ctx.fillText(
     `T = ${state.T.toFixed(0)} K`,
     15,
@@ -3352,25 +4611,50 @@ function drawPiston(
   );
 
 
+
   /*
-  WORK ARROW
+  ================================
+  일 표시
+
+  W > 0:
+  기체가 외부에 일
+
+  W < 0:
+  외부가 기체에 일
+  ================================
   */
 
   if(
-    Math.abs(state.W) >
+    Math.abs(
+      state.W
+    ) >
     .5
   ){
 
-    if(state.W > 0){
+
+    /*
+    팽창
+    */
+
+    if(
+      state.W >
+      0
+    ){
+
 
       drawArrow(
         ctx,
-        width * .84,
-        pistonY + 15,
-        width * .84,
-        pistonY - 55,
+        width *
+        .84,
+        pistonY +
+        15,
+        width *
+        .84,
+        pistonY -
+        55,
         "#2563eb"
       );
+
 
 
       ctx.fillStyle =
@@ -3378,21 +4662,36 @@ function drawPiston(
 
 
       ctx.fillText(
-        "기체가 일함",
-        width * .66,
-        pistonY - 62
+        "기체 → 외부",
+        width *
+        .64,
+        pistonY -
+        62
       );
 
-    }else{
+    }
+
+
+    /*
+    압축
+    */
+
+    else{
+
 
       drawArrow(
         ctx,
-        width * .84,
-        pistonY - 55,
-        width * .84,
-        pistonY + 15,
+        width *
+        .84,
+        pistonY -
+        55,
+        width *
+        .84,
+        pistonY +
+        15,
         "#2563eb"
       );
+
 
 
       ctx.fillStyle =
@@ -3400,9 +4699,11 @@ function drawPiston(
 
 
       ctx.fillText(
-        "기체가 일을 받음",
-        width * .60,
-        pistonY - 62
+        "외부 → 기체",
+        width *
+        .64,
+        pistonY -
+        62
       );
 
     }
@@ -3410,30 +4711,47 @@ function drawPiston(
   }
 
 
+
   /*
-  HEAT ARROWS
+  ================================
+  열 표시
+  ================================
   */
 
   if(
-    Math.abs(state.Q) >
+    Math.abs(
+      state.Q
+    ) >
     .5
   ){
+
 
     const y =
       cylinderBottom -
       50;
 
 
-    if(state.Q > 0){
+
+    /*
+    열 흡수
+    */
+
+    if(
+      state.Q >
+      0
+    ){
+
 
       drawArrow(
         ctx,
         20,
         y,
-        cylinderLeft - 6,
+        cylinderLeft -
+        6,
         y,
         "#dc2626"
       );
+
 
 
       ctx.fillStyle =
@@ -3443,19 +4761,30 @@ function drawPiston(
       ctx.fillText(
         "열 Q 유입",
         20,
-        y - 12
+        y -
+        12
       );
 
-    }else{
+    }
+
+
+    /*
+    열 방출
+    */
+
+    else{
+
 
       drawArrow(
         ctx,
-        cylinderLeft - 6,
+        cylinderLeft -
+        6,
         y,
         20,
         y,
         "#dc2626"
       );
+
 
 
       ctx.fillStyle =
@@ -3465,7 +4794,8 @@ function drawPiston(
       ctx.fillText(
         "열 Q 방출",
         20,
-        y - 12
+        y -
+        12
       );
 
     }
@@ -3473,13 +4803,16 @@ function drawPiston(
   }
 
 
+
   /*
-  Adiabatic indicator
+  단열 표시
   */
 
   if(
-    state.type === "adiabatic"
+    state.type ===
+    "adiabatic"
   ){
+
 
     ctx.fillStyle =
       "#7c3aed";
@@ -3491,8 +4824,10 @@ function drawPiston(
 
     ctx.fillText(
       "단열벽 : Q = 0",
-      width * .59,
-      height - 18
+      width *
+      .59,
+      height -
+      18
     );
 
   }
@@ -3500,13 +4835,15 @@ function drawPiston(
 }
 
 
+
 /*
-====================================================
+========================================================
 DRAW
-====================================================
+========================================================
 */
 
 function draw(){
+
 
   const state =
     calculate();
@@ -3524,13 +4861,15 @@ function draw(){
 }
 
 
+
 /*
-====================================================
+========================================================
 UPDATE
-====================================================
+========================================================
 */
 
 function update(){
+
 
   const state =
     calculate();
@@ -3551,21 +4890,33 @@ function update(){
   );
 
 
+
   if(
-    state.progress === 0
+    state.progress ===
+    0
   ){
+
 
     status.textContent =
       "초기 상태";
 
-  }else if(
-    state.progress >= 1
+  }
+
+
+  else if(
+    state.progress >=
+    1
   ){
+
 
     status.textContent =
       "과정 완료";
 
-  }else{
+  }
+
+
+  else{
+
 
     status.textContent =
       "과정 진행 중";
@@ -3575,22 +4926,32 @@ function update(){
 }
 
 
+
 /*
-====================================================
+========================================================
 ANIMATION
-====================================================
+========================================================
 */
 
 function animate(
   timestamp
 ){
 
-  if(!running){
+
+  if(
+    !running
+  ){
+
     return;
+
   }
 
 
-  if(paused){
+
+  if(
+    paused
+  ){
+
 
     lastTimestamp =
       timestamp;
@@ -3607,14 +4968,18 @@ function animate(
   }
 
 
+
   if(
-    lastTimestamp === null
+    lastTimestamp ===
+    null
   ){
+
 
     lastTimestamp =
       timestamp;
 
   }
+
 
 
   const dt =
@@ -3625,8 +4990,10 @@ function animate(
     1000;
 
 
+
   lastTimestamp =
     timestamp;
+
 
 
   let value =
@@ -3635,14 +5002,22 @@ function animate(
     );
 
 
+
   value +=
     dt *
     22;
 
 
-  if(value >= 100){
 
-    value = 100;
+  if(
+    value >=
+    100
+  ){
+
+
+    value =
+      100;
+
 
     progressSlider.value =
       value;
@@ -3651,7 +5026,8 @@ function animate(
     update();
 
 
-    running = false;
+    running =
+      false;
 
 
     status.textContent =
@@ -3663,11 +5039,13 @@ function animate(
   }
 
 
+
   progressSlider.value =
     value;
 
 
   update();
+
 
 
   animationId =
@@ -3678,10 +5056,11 @@ function animate(
 }
 
 
+
 /*
-====================================================
+========================================================
 EVENTS
-====================================================
+========================================================
 */
 
 processSelect.addEventListener(
@@ -3690,19 +5069,27 @@ processSelect.addEventListener(
 );
 
 
+
 changeSlider.addEventListener(
   "input",
   update
 );
 
 
+
 progressSlider.addEventListener(
   "input",
   () => {
 
-    running = false;
 
-    if(animationId){
+    running =
+      false;
+
+
+    if(
+      animationId
+    ){
+
 
       cancelAnimationFrame(
         animationId
@@ -3717,9 +5104,11 @@ progressSlider.addEventListener(
 );
 
 
+
 expansionButton.addEventListener(
   "click",
   () => {
+
 
     direction =
       "expansion";
@@ -3741,9 +5130,11 @@ expansionButton.addEventListener(
 );
 
 
+
 compressionButton.addEventListener(
   "click",
   () => {
+
 
     direction =
       "compression";
@@ -3765,14 +5156,19 @@ compressionButton.addEventListener(
 );
 
 
+
 startButton.addEventListener(
   "click",
   () => {
 
+
     if(
-      Number(progressSlider.value) >=
+      Number(
+        progressSlider.value
+      ) >=
       100
     ){
+
 
       progressSlider.value =
         0;
@@ -3780,11 +5176,18 @@ startButton.addEventListener(
     }
 
 
-    running = true;
 
-    paused = false;
+    running =
+      true;
 
-    lastTimestamp = null;
+
+    paused =
+      false;
+
+
+    lastTimestamp =
+      null;
+
 
 
     pauseButton.textContent =
@@ -3795,13 +5198,18 @@ startButton.addEventListener(
       "과정 진행 중";
 
 
-    if(animationId){
+
+    if(
+      animationId
+    ){
+
 
       cancelAnimationFrame(
         animationId
       );
 
     }
+
 
 
     animationId =
@@ -3813,51 +5221,81 @@ startButton.addEventListener(
 );
 
 
+
 pauseButton.addEventListener(
   "click",
   () => {
 
-    if(!running){
+
+    if(
+      !running
+    ){
+
       return;
+
     }
+
 
 
     paused =
       !paused;
 
 
+
     pauseButton.textContent =
+
       paused
+
       ?
+
       "▶ 계속"
+
       :
+
       "Ⅱ 일시정지";
 
 
+
     status.textContent =
+
       paused
+
       ?
+
       "일시정지"
+
       :
+
       "과정 진행 중";
 
 
-    lastTimestamp = null;
+
+    lastTimestamp =
+      null;
 
   }
 );
+
 
 
 resetButton.addEventListener(
   "click",
   () => {
 
-    running = false;
 
-    paused = false;
+    running =
+      false;
 
 
-    if(animationId){
+    paused =
+      false;
+
+
+
+    if(
+      animationId
+    ){
+
 
       cancelAnimationFrame(
         animationId
@@ -3866,8 +5304,10 @@ resetButton.addEventListener(
     }
 
 
+
     progressSlider.value =
       0;
+
 
 
     pauseButton.textContent =
@@ -3880,10 +5320,11 @@ resetButton.addEventListener(
 );
 
 
+
 /*
-====================================================
+========================================================
 INIT
-====================================================
+========================================================
 */
 
 configureControl();
