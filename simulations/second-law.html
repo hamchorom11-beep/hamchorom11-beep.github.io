@@ -1,0 +1,4902 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>열역학 제2법칙 시뮬레이션 | 온라인 물리학 탐구실</title>
+
+<style>
+
+:root{
+
+  --primary:#1e3a8a;
+  --primary2:#2563eb;
+
+  --text:#1f2937;
+  --subtext:#64748b;
+  --border:#e2e8f0;
+
+  --hot:#dc2626;
+  --cold:#2563eb;
+
+  --entropy:#7c3aed;
+  --green:#059669;
+
+  --panel:#ffffff;
+
+  --shadow:
+    0 8px 24px
+    rgba(15,23,42,.08);
+
+  --radius:18px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  margin:0;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    Arial,
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf4ff 0%,
+      #f8fbff 25%,
+      #f5f7fb 100%
+    );
+
+  color:var(--text);
+}
+
+button,
+input,
+select{
+  font:inherit;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+
+  width:min(
+    94%,
+    1400px
+  );
+
+  margin:0 auto;
+}
+
+
+/* =========================
+HEADER
+========================= */
+
+header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .92
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  border-bottom:
+    1px solid
+    var(--border);
+}
+
+.topbar{
+
+  min-height:68px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+    space-between;
+
+  gap:18px;
+}
+
+.title-box strong{
+
+  display:block;
+
+  color:
+    var(--primary);
+
+  font-size:
+    1.1rem;
+}
+
+.title-box span{
+
+  color:
+    var(--subtext);
+
+  font-size:
+    .84rem;
+}
+
+.home-button{
+
+  padding:
+    10px 15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    10px;
+
+  background:white;
+
+  color:
+    var(--primary);
+
+  font-weight:700;
+}
+
+
+/* =========================
+INTRO
+========================= */
+
+.intro{
+
+  padding:
+    38px 0 24px;
+}
+
+.intro h1{
+
+  margin:
+    0 0 8px;
+
+  color:#0f172a;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      2.7rem
+    );
+
+  letter-spacing:
+    -.03em;
+}
+
+.intro p{
+
+  margin:0;
+
+  color:
+    var(--subtext);
+
+  line-height:
+    1.7;
+}
+
+.question{
+
+  margin-top:
+    18px;
+
+  padding:
+    16px 18px;
+
+  border-left:
+    5px solid
+    var(--primary2);
+
+  border-radius:
+    12px;
+
+  background:#eff6ff;
+
+  color:#1e3a8a;
+
+  font-weight:700;
+
+  line-height:1.6;
+}
+
+
+/* =========================
+MODE BUTTON
+========================= */
+
+.mode-tabs{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap:10px;
+
+  margin-bottom:
+    22px;
+}
+
+.mode-button{
+
+  padding:
+    13px 10px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    12px;
+
+  background:white;
+
+  color:#475569;
+
+  cursor:pointer;
+
+  font-weight:700;
+}
+
+.mode-button.active{
+
+  background:
+    var(--primary);
+
+  color:white;
+
+  border-color:
+    var(--primary);
+}
+
+
+/* =========================
+LAYOUT
+========================= */
+
+.main-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(
+      280px,
+      340px
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:22px;
+
+  align-items:start;
+}
+
+.panel{
+
+  background:
+    var(--panel);
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius);
+
+  box-shadow:
+    var(--shadow);
+
+  padding:20px;
+}
+
+.panel h2{
+
+  margin:
+    0 0 18px;
+
+  color:#0f172a;
+
+  font-size:
+    1.15rem;
+}
+
+
+/* =========================
+CONTROL
+========================= */
+
+.control{
+
+  margin-bottom:
+    21px;
+}
+
+.control-head{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+
+  font-size:.93rem;
+
+  font-weight:700;
+}
+
+.control-value{
+
+  color:
+    var(--primary2);
+}
+
+input[type="range"]{
+
+  width:100%;
+
+  accent-color:
+    var(--primary2);
+
+  cursor:pointer;
+}
+
+.buttons{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+button{
+
+  border:none;
+
+  border-radius:11px;
+
+  padding:
+    12px 13px;
+
+  cursor:pointer;
+
+  font-weight:700;
+}
+
+.start{
+
+  background:
+    var(--primary2);
+
+  color:white;
+}
+
+.pause{
+
+  background:#e0e7ff;
+
+  color:#3730a3;
+}
+
+.reset{
+
+  background:#f1f5f9;
+
+  color:#334155;
+}
+
+.info-box{
+
+  margin-top:18px;
+
+  padding:14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+}
+
+.info-box strong{
+
+  display:block;
+
+  margin-bottom:6px;
+
+  color:
+    var(--primary);
+}
+
+.info-box p{
+
+  margin:0;
+
+  color:
+    var(--subtext);
+
+  font-size:.88rem;
+
+  line-height:1.6;
+}
+
+
+/* =========================
+SIMULATION
+========================= */
+
+.toolbar{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:
+    space-between;
+
+  flex-wrap:wrap;
+
+  gap:10px;
+
+  margin-bottom:14px;
+}
+
+.toolbar h2{
+
+  margin:0;
+}
+
+.status{
+
+  padding:
+    6px 11px;
+
+  border-radius:
+    999px;
+
+  background:#eef2ff;
+
+  color:#3730a3;
+
+  font-size:.85rem;
+
+  font-weight:700;
+}
+
+.visual-box{
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+  background:white;
+}
+
+.visual-title{
+
+  padding:
+    11px 14px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:#f8fafc;
+
+  font-size:.9rem;
+
+  font-weight:700;
+}
+
+#simulationCanvas{
+
+  display:block;
+
+  width:100%;
+
+  height:430px;
+}
+
+
+/* =========================
+METRICS
+========================= */
+
+.metric-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:10px;
+
+  margin-top:18px;
+}
+
+.metric-card{
+
+  padding:13px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+}
+
+.metric-card span{
+
+  display:block;
+
+  margin-bottom:5px;
+
+  color:
+    var(--subtext);
+
+  font-size:.78rem;
+}
+
+.metric-card strong{
+
+  font-size:1.07rem;
+}
+
+.hot-text{
+  color:var(--hot);
+}
+
+.cold-text{
+  color:var(--cold);
+}
+
+.entropy-text{
+  color:var(--entropy);
+}
+
+.green-text{
+  color:var(--green);
+}
+
+
+/* =========================
+ENTROPY
+========================= */
+
+.entropy-section{
+
+  margin-top:22px;
+
+  padding-top:20px;
+
+  border-top:
+    1px solid
+    var(--border);
+}
+
+.entropy-equation{
+
+  padding:17px;
+
+  border-radius:13px;
+
+  background:#f5f3ff;
+
+  color:#5b21b6;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.3rem;
+
+  font-weight:700;
+}
+
+.entropy-bar-wrap{
+
+  margin-top:17px;
+}
+
+.entropy-bar-head{
+
+  display:flex;
+
+  justify-content:
+    space-between;
+
+  margin-bottom:7px;
+
+  font-size:.84rem;
+
+  font-weight:700;
+}
+
+.entropy-track{
+
+  width:100%;
+
+  height:18px;
+
+  border-radius:
+    999px;
+
+  background:#e2e8f0;
+
+  overflow:hidden;
+}
+
+.entropy-fill{
+
+  height:100%;
+
+  width:0%;
+
+  border-radius:
+    999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8b5cf6,
+      #6d28d9
+    );
+
+  transition:
+    width .1s;
+}
+
+
+/* =========================
+ARROW FLOW
+========================= */
+
+.flow{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto 1fr;
+
+  align-items:center;
+
+  gap:12px;
+
+  margin-top:20px;
+}
+
+.flow-box{
+
+  min-height:93px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:12px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:13px;
+
+  text-align:center;
+}
+
+.flow-box strong{
+
+  font-size:1rem;
+}
+
+.flow-box span{
+
+  margin-top:5px;
+
+  color:
+    var(--subtext);
+
+  font-size:.8rem;
+}
+
+.flow-arrow{
+
+  color:
+    var(--hot);
+
+  font-size:
+    1.6rem;
+
+  font-weight:800;
+}
+
+
+/* =========================
+COMPARISON
+========================= */
+
+.comparison{
+
+  margin-top:22px;
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:12px;
+}
+
+.compare-card{
+
+  padding:16px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:13px;
+}
+
+.compare-card h3{
+
+  margin:
+    0 0 10px;
+
+  font-size:1rem;
+}
+
+.reversible{
+
+  background:#ecfdf5;
+}
+
+.irreversible{
+
+  background:#fff7ed;
+}
+
+
+/* =========================
+LOWER
+========================= */
+
+.learning{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:22px;
+
+  margin-top:28px;
+}
+
+.learning p,
+.learning li{
+
+  line-height:1.65;
+}
+
+.learning li{
+
+  margin-bottom:10px;
+}
+
+.equation{
+
+  margin:13px 0;
+
+  padding:14px;
+
+  border-radius:11px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.08rem;
+
+  font-weight:700;
+}
+
+.tip{
+
+  margin-top:15px;
+
+  padding:
+    14px 15px;
+
+  border-radius:11px;
+
+  background:#ecfdf5;
+
+  color:#065f46;
+
+  line-height:1.6;
+}
+
+.warning{
+
+  margin-top:15px;
+
+  padding:
+    14px 15px;
+
+  border-radius:11px;
+
+  background:#fff7ed;
+
+  color:#9a3412;
+
+  line-height:1.6;
+}
+
+.example{
+
+  margin-top:14px;
+
+  padding:
+    14px 15px;
+
+  border-radius:11px;
+
+  background:#eff6ff;
+
+  color:#1e3a8a;
+
+  line-height:1.6;
+}
+
+footer{
+
+  padding:40px 0;
+
+  color:
+    var(--subtext);
+
+  text-align:center;
+
+  font-size:.85rem;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(
+  max-width:1050px
+){
+
+  .main-grid{
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+@media(
+  max-width:800px
+){
+
+  .learning{
+    grid-template-columns:
+      1fr;
+  }
+
+  .metric-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+}
+
+@media(
+  max-width:650px
+){
+
+  .mode-tabs{
+    grid-template-columns:
+      1fr;
+  }
+
+  #simulationCanvas{
+    height:380px;
+  }
+
+  .flow{
+    grid-template-columns:
+      1fr;
+  }
+
+  .flow-arrow{
+    transform:
+      rotate(90deg);
+  }
+
+  .comparison{
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="container topbar">
+
+  <div class="title-box">
+
+    <strong>
+      온라인 물리학 탐구실
+    </strong>
+
+    <span>
+      Ⅱ. 열과 에너지
+    </span>
+
+  </div>
+
+  <a
+    class="home-button"
+    href="../index.html"
+  >
+    ← 메인으로
+  </a>
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =========================
+INTRO
+========================= -->
+
+<section class="intro">
+
+  <h1>
+    🔄 열역학 제2법칙과 엔트로피
+  </h1>
+
+  <p>
+
+    열이 이동하는 방향,
+    가역·비가역 과정,
+    기체의 확산과 엔트로피 변화를 관찰하여
+    열역학 제2법칙의 의미를 탐구합니다.
+
+  </p>
+
+
+  <div class="question">
+
+    탐구 질문 :
+    에너지는 보존되는데도 왜 실제 자연 현상에는
+    특정한 진행 방향이 존재할까?
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================
+MODE
+========================= -->
+
+<div class="mode-tabs">
+
+  <button
+    id="heatMode"
+    class="mode-button active"
+  >
+    🌡️ 열의 자발적 이동
+  </button>
+
+
+  <button
+    id="expansionMode"
+    class="mode-button"
+  >
+    💨 자유 팽창
+  </button>
+
+
+  <button
+    id="compareMode"
+    class="mode-button"
+  >
+    ↔ 가역·비가역 비교
+  </button>
+
+</div>
+
+
+
+<section class="main-grid">
+
+
+<!-- =========================
+CONTROL
+========================= -->
+
+<aside class="panel">
+
+  <h2 id="controlTitle">
+    두 물체의 온도
+  </h2>
+
+
+  <!-- HOT TEMPERATURE -->
+
+  <div
+    id="hotControl"
+    class="control"
+  >
+
+    <div class="control-head">
+
+      <span>
+        고온 물체 T<sub>H</sub>
+      </span>
+
+      <span
+        id="hotValue"
+        class="control-value"
+      >
+        600 K
+      </span>
+
+    </div>
+
+
+    <input
+      id="hotTemp"
+      type="range"
+      min="350"
+      max="800"
+      value="600"
+      step="10"
+    >
+
+  </div>
+
+
+
+  <!-- COLD TEMPERATURE -->
+
+  <div
+    id="coldControl"
+    class="control"
+  >
+
+    <div class="control-head">
+
+      <span>
+        저온 물체 T<sub>C</sub>
+      </span>
+
+      <span
+        id="coldValue"
+        class="control-value"
+      >
+        300 K
+      </span>
+
+    </div>
+
+
+    <input
+      id="coldTemp"
+      type="range"
+      min="200"
+      max="550"
+      value="300"
+      step="10"
+    >
+
+  </div>
+
+
+
+  <!-- VOLUME RATIO -->
+
+  <div
+    id="volumeControl"
+    class="control"
+    style="display:none;"
+  >
+
+    <div class="control-head">
+
+      <span>
+        최종 부피 / 초기 부피
+      </span>
+
+      <span
+        id="volumeValue"
+        class="control-value"
+      >
+        2.0
+      </span>
+
+    </div>
+
+
+    <input
+      id="volumeRatio"
+      type="range"
+      min="1.2"
+      max="4"
+      value="2"
+      step=".1"
+    >
+
+  </div>
+
+
+
+  <!-- PROCESS SPEED -->
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        과정 진행
+      </span>
+
+      <span
+        id="progressValue"
+        class="control-value"
+      >
+        0 %
+      </span>
+
+    </div>
+
+
+    <input
+      id="progress"
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      step=".2"
+    >
+
+  </div>
+
+
+
+  <div class="buttons">
+
+
+    <button
+      id="startButton"
+      class="start"
+    >
+      ▶ 과정 시작
+    </button>
+
+
+    <button
+      id="pauseButton"
+      class="pause"
+    >
+      Ⅱ 일시정지
+    </button>
+
+
+    <button
+      id="resetButton"
+      class="reset"
+    >
+      ↺ 초기화
+    </button>
+
+
+  </div>
+
+
+
+  <div
+    id="infoBox"
+    class="info-box"
+  >
+  </div>
+
+</aside>
+
+
+
+<!-- =========================
+SIMULATION
+========================= -->
+
+<section class="panel">
+
+
+  <div class="toolbar">
+
+    <h2 id="simulationTitle">
+      고온 물체와 저온 물체 사이의 열전달
+    </h2>
+
+
+    <span
+      id="status"
+      class="status"
+    >
+      초기 상태
+    </span>
+
+  </div>
+
+
+
+  <div class="visual-box">
+
+    <div class="visual-title">
+      미시적 과정 관찰
+    </div>
+
+
+    <canvas
+      id="simulationCanvas"
+    ></canvas>
+
+  </div>
+
+
+
+  <!-- METRICS -->
+
+  <div class="metric-grid">
+
+
+    <div class="metric-card">
+
+      <span id="metricLabel1">
+        고온 물체 온도
+      </span>
+
+      <strong
+        id="metric1"
+        class="hot-text"
+      >
+        600 K
+      </strong>
+
+    </div>
+
+
+
+    <div class="metric-card">
+
+      <span id="metricLabel2">
+        저온 물체 온도
+      </span>
+
+      <strong
+        id="metric2"
+        class="cold-text"
+      >
+        300 K
+      </strong>
+
+    </div>
+
+
+
+    <div class="metric-card">
+
+      <span>
+        계의 엔트로피 변화
+      </span>
+
+      <strong
+        id="systemEntropy"
+        class="entropy-text"
+      >
+        0 J/K
+      </strong>
+
+    </div>
+
+
+
+    <div class="metric-card">
+
+      <span>
+        전체 엔트로피 변화
+      </span>
+
+      <strong
+        id="totalEntropy"
+        class="green-text"
+      >
+        0 J/K
+      </strong>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- ENTROPY -->
+
+  <div class="entropy-section">
+
+
+    <h2>
+      엔트로피 변화
+    </h2>
+
+
+    <div
+      id="entropyEquation"
+      class="entropy-equation"
+    >
+      ΔS전체 ≥ 0
+    </div>
+
+
+
+    <div class="entropy-bar-wrap">
+
+
+      <div class="entropy-bar-head">
+
+        <span>
+          비가역성의 정도
+        </span>
+
+        <span id="irreversibilityValue">
+          0 %
+        </span>
+
+      </div>
+
+
+      <div class="entropy-track">
+
+        <div
+          id="entropyFill"
+          class="entropy-fill"
+        >
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="flow"
+      class="flow"
+    >
+
+
+      <div class="flow-box">
+
+        <strong id="flowLeftTitle">
+          🔥 고온 물체
+        </strong>
+
+        <span id="flowLeftText">
+          에너지 공급
+        </span>
+
+      </div>
+
+
+      <div
+        id="flowArrow"
+        class="flow-arrow"
+      >
+        →
+      </div>
+
+
+      <div class="flow-box">
+
+        <strong id="flowRightTitle">
+          ❄️ 저온 물체
+        </strong>
+
+        <span id="flowRightText">
+          에너지 흡수
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div
+      id="comparison"
+      class="comparison"
+    >
+
+
+      <div class="compare-card reversible">
+
+        <h3>
+          가역 과정
+        </h3>
+
+        <div id="reversibleText">
+
+          아주 작은 온도차를 유지하며
+          무한히 천천히 열을 전달하면
+          이상적으로 ΔS전체 = 0에 접근합니다.
+
+        </div>
+
+      </div>
+
+
+      <div class="compare-card irreversible">
+
+        <h3>
+          비가역 과정
+        </h3>
+
+        <div id="irreversibleText">
+
+          유한한 온도차에서 열이 직접 이동하면
+          ΔS전체 &gt; 0이 됩니다.
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+</section>
+
+
+
+<!-- =========================
+LEARNING
+========================= -->
+
+<section class="learning">
+
+
+<article class="panel">
+
+
+<h2>
+  열역학 제2법칙
+</h2>
+
+
+<p>
+
+열역학 제1법칙은 에너지 보존을 설명하지만,
+<strong>어떤 변화가 실제로 일어날 수 있는지의 방향</strong>까지
+결정하지는 못합니다.
+
+</p>
+
+
+<div class="equation">
+
+  ΔS<sub>전체</sub>
+  =
+  ΔS<sub>계</sub>
+  +
+  ΔS<sub>주위</sub>
+  ≥ 0
+
+</div>
+
+
+<p>
+
+고립계에서 자연적으로 일어나는 비가역 과정에서는
+전체 엔트로피가 증가합니다.
+
+이상적인 가역 과정에서는
+
+<strong>
+ΔS<sub>전체</sub> = 0
+</strong>
+
+입니다.
+
+</p>
+
+
+<div class="tip">
+
+<strong>가역 과정</strong>은 실제로 완벽하게 구현되는 과정이라기보다,
+평형 상태에서 아주 조금씩 벗어나며
+무한히 천천히 진행되는 이상적인 과정입니다.
+
+</div>
+
+
+<div class="warning">
+
+엔트로피가 증가한다는 것은
+단순히 “무질서해진다”라고만 해석하기보다,
+에너지가 더 많은 미시적 상태에 분산되어
+원래 상태로 자연스럽게 되돌아갈 가능성이 매우 작아진다고
+생각하는 것이 좋습니다.
+
+</div>
+
+
+<h2 style="margin-top:25px;">
+  실제 사례
+</h2>
+
+
+<div class="example">
+
+<strong>뜨거운 커피의 냉각</strong><br>
+
+뜨거운 커피의 열이 주변 공기로 이동하는 과정은
+자연스럽게 일어나지만,
+주변의 열이 스스로 모여 차가워진 커피를 다시 뜨겁게 만드는
+과정은 관찰되지 않습니다.
+
+</div>
+
+
+<div class="example">
+
+<strong>향수의 확산</strong><br>
+
+한쪽에 모여 있던 향수 분자는 방 전체로 퍼지지만,
+퍼진 분자가 스스로 한곳으로 다시 모이는 현상은
+사실상 관찰되지 않습니다.
+
+</div>
+
+
+<div class="example">
+
+<strong>마찰</strong><br>
+
+운동에너지는 마찰을 통해 내부에너지로 쉽게 전환되지만,
+주변의 무작위 열운동이 스스로 모여
+물체의 거시적 운동에너지로 바뀌는 과정은
+자연적으로 일어나지 않습니다.
+
+</div>
+
+
+</article>
+
+
+
+<article class="panel">
+
+
+<h2>
+  탐구 활동
+</h2>
+
+
+<ol>
+
+
+<li>
+
+「열의 자발적 이동」 모드를 실행하세요.
+
+처음에는 고온 물체와 저온 물체의 온도차가 크지만
+시간이 지나면서 두 온도가 가까워지는 모습을 관찰하세요.
+
+</li>
+
+
+<li>
+
+열평형에 도달하면
+더 이상 거시적인 순열 흐름이 없는 이유를 설명하세요.
+
+</li>
+
+
+<li>
+
+고온 물체의 초기 온도를 높여 보세요.
+
+초기 온도차가 커질수록
+전체 엔트로피 증가량은 어떻게 달라지는지 관찰하세요.
+
+</li>
+
+
+<li>
+
+「자유 팽창」을 선택하세요.
+
+칸막이를 제거한 뒤
+기체 입자가 더 넓은 공간으로 퍼지는 모습을 관찰하세요.
+
+</li>
+
+
+<li>
+
+이상기체의 자유 팽창에서
+기체가 진공에 하는 일이 0이고 열교환도 없다면
+내부에너지는 어떻게 되는지 생각해 보세요.
+
+그런데 엔트로피는 왜 증가할까요?
+
+</li>
+
+
+<li>
+
+「가역·비가역 비교」를 선택하세요.
+
+두 과정이 같은 처음 상태와 마지막 상태를 갖더라도
+왜 전체 엔트로피 변화가 달라질 수 있는지 설명하세요.
+
+</li>
+
+
+<li>
+
+가역 과정에서
+ΔS전체 = 0이라는 것이
+기체 자체의 엔트로피가 항상 일정하다는 뜻인지 판단해 보세요.
+
+</li>
+
+
+<li>
+
+열기관 시뮬레이션에서 배운 카르노 기관과 연결하여,
+모든 실제 열기관의 효율이 카르노 효율보다 작을 수밖에 없는 이유를
+비가역성과 엔트로피 생성의 관점에서 설명해 보세요.
+
+</li>
+
+
+</ol>
+
+
+</article>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<div class="container">
+
+온라인 물리학 탐구실 ·
+2022 개정 교육과정 「역학과 에너지」
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+/*
+========================================================
+CONSTANTS
+========================================================
+*/
+
+const heatCapacity =
+  20;
+
+
+/*
+자유 팽창에 사용하는 기체
+
+1 mol ideal gas
+*/
+
+const R =
+  8.314;
+
+const n =
+  1;
+
+
+/*
+========================================================
+DOM
+========================================================
+*/
+
+const heatMode =
+  document.getElementById(
+    "heatMode"
+  );
+
+
+const expansionMode =
+  document.getElementById(
+    "expansionMode"
+  );
+
+
+const compareMode =
+  document.getElementById(
+    "compareMode"
+  );
+
+
+const hotTemp =
+  document.getElementById(
+    "hotTemp"
+  );
+
+
+const coldTemp =
+  document.getElementById(
+    "coldTemp"
+  );
+
+
+const volumeRatio =
+  document.getElementById(
+    "volumeRatio"
+  );
+
+
+const progressSlider =
+  document.getElementById(
+    "progress"
+  );
+
+
+const hotValue =
+  document.getElementById(
+    "hotValue"
+  );
+
+
+const coldValue =
+  document.getElementById(
+    "coldValue"
+  );
+
+
+const volumeValue =
+  document.getElementById(
+    "volumeValue"
+  );
+
+
+const progressValue =
+  document.getElementById(
+    "progressValue"
+  );
+
+
+const hotControl =
+  document.getElementById(
+    "hotControl"
+  );
+
+
+const coldControl =
+  document.getElementById(
+    "coldControl"
+  );
+
+
+const volumeControl =
+  document.getElementById(
+    "volumeControl"
+  );
+
+
+const controlTitle =
+  document.getElementById(
+    "controlTitle"
+  );
+
+
+const simulationTitle =
+  document.getElementById(
+    "simulationTitle"
+  );
+
+
+const startButton =
+  document.getElementById(
+    "startButton"
+  );
+
+
+const pauseButton =
+  document.getElementById(
+    "pauseButton"
+  );
+
+
+const resetButton =
+  document.getElementById(
+    "resetButton"
+  );
+
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+const infoBox =
+  document.getElementById(
+    "infoBox"
+  );
+
+
+const canvas =
+  document.getElementById(
+    "simulationCanvas"
+  );
+
+
+const ctx =
+  canvas.getContext(
+    "2d"
+  );
+
+
+const metricLabel1 =
+  document.getElementById(
+    "metricLabel1"
+  );
+
+
+const metricLabel2 =
+  document.getElementById(
+    "metricLabel2"
+  );
+
+
+const metric1 =
+  document.getElementById(
+    "metric1"
+  );
+
+
+const metric2 =
+  document.getElementById(
+    "metric2"
+  );
+
+
+const systemEntropy =
+  document.getElementById(
+    "systemEntropy"
+  );
+
+
+const totalEntropy =
+  document.getElementById(
+    "totalEntropy"
+  );
+
+
+const entropyEquation =
+  document.getElementById(
+    "entropyEquation"
+  );
+
+
+const entropyFill =
+  document.getElementById(
+    "entropyFill"
+  );
+
+
+const irreversibilityValue =
+  document.getElementById(
+    "irreversibilityValue"
+  );
+
+
+const flow =
+  document.getElementById(
+    "flow"
+  );
+
+
+const flowLeftTitle =
+  document.getElementById(
+    "flowLeftTitle"
+  );
+
+
+const flowLeftText =
+  document.getElementById(
+    "flowLeftText"
+  );
+
+
+const flowArrow =
+  document.getElementById(
+    "flowArrow"
+  );
+
+
+const flowRightTitle =
+  document.getElementById(
+    "flowRightTitle"
+  );
+
+
+const flowRightText =
+  document.getElementById(
+    "flowRightText"
+  );
+
+
+const comparison =
+  document.getElementById(
+    "comparison"
+  );
+
+
+const reversibleText =
+  document.getElementById(
+    "reversibleText"
+  );
+
+
+const irreversibleText =
+  document.getElementById(
+    "irreversibleText"
+  );
+
+
+/*
+========================================================
+STATE
+========================================================
+*/
+
+let mode =
+  "heat";
+
+
+let running =
+  false;
+
+
+let paused =
+  false;
+
+
+let lastTimestamp =
+  null;
+
+
+let animationId =
+  null;
+
+
+/*
+========================================================
+MODE CHANGE
+========================================================
+*/
+
+function setMode(
+  newMode
+){
+
+
+  mode =
+    newMode;
+
+
+  [
+    heatMode,
+    expansionMode,
+    compareMode
+  ].forEach(
+    button =>
+      button.classList.remove(
+        "active"
+      )
+  );
+
+
+  if(
+    mode ===
+    "heat"
+  ){
+
+
+    heatMode.classList.add(
+      "active"
+    );
+
+
+    controlTitle.textContent =
+      "두 물체의 온도";
+
+
+    simulationTitle.textContent =
+      "고온 물체와 저온 물체 사이의 열전달";
+
+
+    hotControl.style.display =
+      "block";
+
+
+    coldControl.style.display =
+      "block";
+
+
+    volumeControl.style.display =
+      "none";
+
+
+    metricLabel1.textContent =
+      "고온 물체 온도";
+
+
+    metricLabel2.textContent =
+      "저온 물체 온도";
+
+
+    flow.style.display =
+      "grid";
+
+
+    comparison.style.display =
+      "grid";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        열의 자발적 이동
+      </strong>
+
+      <p>
+        온도가 서로 다른 두 물체를 접촉시키면
+        열은 고온 물체에서 저온 물체로 이동합니다.
+        열평형에 가까워질수록 온도차가 감소합니다.
+      </p>
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "expansion"
+  ){
+
+
+    expansionMode.classList.add(
+      "active"
+    );
+
+
+    controlTitle.textContent =
+      "자유 팽창 조건";
+
+
+    simulationTitle.textContent =
+      "진공으로의 자유 팽창";
+
+
+    hotControl.style.display =
+      "none";
+
+
+    coldControl.style.display =
+      "none";
+
+
+    volumeControl.style.display =
+      "block";
+
+
+    metricLabel1.textContent =
+      "초기 부피 V₁";
+
+
+    metricLabel2.textContent =
+      "현재 이용 가능 부피";
+
+
+    flow.style.display =
+      "none";
+
+
+    comparison.style.display =
+      "grid";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        자유 팽창
+      </strong>
+
+      <p>
+        한쪽에 모여 있던 이상기체가
+        칸막이를 제거한 뒤 진공으로 퍼집니다.
+        Q = 0, W = 0인 이상적인 자유 팽창에서도
+        기체의 엔트로피는 증가합니다.
+      </p>
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "compare"
+  ){
+
+
+    compareMode.classList.add(
+      "active"
+    );
+
+
+    controlTitle.textContent =
+      "가역·비가역 비교";
+
+
+    simulationTitle.textContent =
+      "같은 상태 변화, 다른 과정";
+
+
+    hotControl.style.display =
+      "block";
+
+
+    coldControl.style.display =
+      "block";
+
+
+    volumeControl.style.display =
+      "none";
+
+
+    metricLabel1.textContent =
+      "가역 과정";
+
+
+    metricLabel2.textContent =
+      "비가역 과정";
+
+
+    flow.style.display =
+      "grid";
+
+
+    comparison.style.display =
+      "grid";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        가역 과정과 비가역 과정
+      </strong>
+
+      <p>
+        가역 과정은 이상적으로 아주 작은 온도차를 유지하며
+        평형 상태에 매우 가깝게 진행됩니다.
+        실제의 유한한 온도차에서 일어나는 열전달은
+        비가역 과정입니다.
+      </p>
+      `;
+
+  }
+
+
+  progressSlider.value =
+    0;
+
+
+  running =
+    false;
+
+
+  paused =
+    false;
+
+
+  update();
+
+}
+
+
+
+/*
+========================================================
+HEAT TRANSFER CALCULATION
+========================================================
+*/
+
+function heatState(
+  progress
+){
+
+
+  let TH0 =
+    Number(
+      hotTemp.value
+    );
+
+
+  let TC0 =
+    Number(
+      coldTemp.value
+    );
+
+
+  if(
+    TC0 >=
+    TH0
+  ){
+
+
+    TC0 =
+      TH0 -
+      10;
+
+
+    coldTemp.value =
+      TC0;
+
+  }
+
+
+  /*
+  두 물체의 열용량이 같다고 가정
+  */
+
+  const Tf =
+    (
+      TH0 +
+      TC0
+    ) /
+    2;
+
+
+  /*
+  점차 열평형으로 접근
+  */
+
+  const smooth =
+    1 -
+    Math.pow(
+      1 -
+      progress,
+      1.6
+    );
+
+
+  const TH =
+    TH0 +
+    (
+      Tf -
+      TH0
+    ) *
+    smooth;
+
+
+  const TC =
+    TC0 +
+    (
+      Tf -
+      TC0
+    ) *
+    smooth;
+
+
+  /*
+  엔트로피 변화
+
+  ΔS = C ln(Tf/Ti)
+  현재 상태까지 계산
+  */
+
+  const dSH =
+    heatCapacity *
+    Math.log(
+      TH /
+      TH0
+    );
+
+
+  const dSC =
+    heatCapacity *
+    Math.log(
+      TC /
+      TC0
+    );
+
+
+  const total =
+    dSH +
+    dSC;
+
+
+  return{
+
+    TH0,
+    TC0,
+    Tf,
+
+    TH,
+    TC,
+
+    dSH,
+    dSC,
+
+    total,
+
+    progress
+
+  };
+
+}
+
+
+/*
+========================================================
+FREE EXPANSION
+========================================================
+*/
+
+function expansionState(
+  progress
+){
+
+
+  const ratio =
+    Number(
+      volumeRatio.value
+    );
+
+
+  const V1 =
+    10;
+
+
+  const V2 =
+    V1 *
+    ratio;
+
+
+  /*
+  칸막이가 제거된 뒤
+  실제 사용 가능한 부피가 증가한다고 시각화
+  */
+
+  const V =
+    V1 +
+    (
+      V2 -
+      V1
+    ) *
+    progress;
+
+
+  /*
+  이상기체 자유 팽창
+
+  ΔS = nR ln(V2/V1)
+  */
+
+  const dS =
+    n *
+    R *
+    Math.log(
+      V /
+      V1
+    );
+
+
+  const finalDS =
+    n *
+    R *
+    Math.log(
+      V2 /
+      V1
+    );
+
+
+  return{
+
+    V1,
+    V2,
+    V,
+
+    ratio,
+
+    dS,
+    finalDS,
+
+    progress
+
+  };
+
+}
+
+
+/*
+========================================================
+COMPARE
+========================================================
+*/
+
+function compareState(
+  progress
+){
+
+
+  let TH =
+    Number(
+      hotTemp.value
+    );
+
+
+  let TC =
+    Number(
+      coldTemp.value
+    );
+
+
+  if(
+    TC >=
+    TH
+  ){
+
+
+    TC =
+      TH -
+      10;
+
+
+    coldTemp.value =
+      TC;
+
+  }
+
+
+  /*
+  임의의 일정한 열 Q를 고온에서 저온으로 전달
+
+  비교 교육용 모델
+  */
+
+  const maxQ =
+    1000;
+
+
+  const Q =
+    maxQ *
+    progress;
+
+
+  /*
+  실제 유한 온도차 열전달의 엔트로피 생성
+
+  ΔS전체 =
+  -Q/TH + Q/TC
+  */
+
+  const irreversibleS =
+    Q *
+    (
+      1 /
+      TC -
+      1 /
+      TH
+    );
+
+
+  /*
+  이상적 가역 전달:
+  전체 엔트로피 생성 0
+  */
+
+  const reversibleS =
+    0;
+
+
+  return{
+
+    TH,
+    TC,
+    Q,
+
+    reversibleS,
+    irreversibleS,
+
+    progress
+
+  };
+
+}
+
+
+/*
+========================================================
+TEXT
+========================================================
+*/
+
+function updateHeatText(
+  s
+){
+
+
+  metric1.textContent =
+    `${s.TH.toFixed(1)} K`;
+
+
+  metric2.textContent =
+    `${s.TC.toFixed(1)} K`;
+
+
+  systemEntropy.textContent =
+    `${s.dSH.toFixed(2)} J/K`;
+
+
+  totalEntropy.textContent =
+    `+${Math.max(
+      0,
+      s.total
+    ).toFixed(2)} J/K`;
+
+
+  entropyEquation.innerHTML =
+    `
+    ΔS<sub>전체</sub>
+    =
+    ΔS<sub>고온</sub>
+    +
+    ΔS<sub>저온</sub>
+    ≥ 0
+    `;
+
+
+  /*
+  비가역성 표시
+  */
+
+  const maxEntropy =
+    heatCapacity *
+    Math.log(
+      (
+        (
+          s.TH0 +
+          s.TC0
+        ) /
+        2
+      ) /
+      s.TH0
+    )
+
+    +
+
+    heatCapacity *
+    Math.log(
+      (
+        (
+          s.TH0 +
+          s.TC0
+        ) /
+        2
+      ) /
+      s.TC0
+    );
+
+
+  let f =
+    maxEntropy >
+    0
+
+    ?
+
+    s.total /
+    maxEntropy
+
+    :
+
+    0;
+
+
+  f =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        f
+      )
+    );
+
+
+  entropyFill.style.width =
+    `${f * 100}%`;
+
+
+  irreversibilityValue.textContent =
+    `${(
+      f *
+      100
+    ).toFixed(0)} %`;
+
+
+  flowLeftTitle.innerHTML =
+    "🔥 고온 물체";
+
+
+  flowLeftText.textContent =
+    `${s.TH.toFixed(0)} K`;
+
+
+  flowRightTitle.innerHTML =
+    "❄️ 저온 물체";
+
+
+  flowRightText.textContent =
+    `${s.TC.toFixed(0)} K`;
+
+
+  flowArrow.textContent =
+    s.progress <
+    .98
+
+    ?
+
+    "열 →"
+
+    :
+
+    "열평형";
+
+
+  reversibleText.innerHTML =
+    `
+    매우 작은 온도차를 유지하면서 열을 전달하면
+    이상적인 극한에서
+    <strong>ΔS전체 = 0</strong>에 접근합니다.
+    `;
+
+
+  irreversibleText.innerHTML =
+    `
+    ${s.TH0.toFixed(0)} K와
+    ${s.TC0.toFixed(0)} K처럼
+    유한한 온도차에서 열이 직접 이동하면
+    <strong>ΔS전체 &gt; 0</strong>입니다.
+    `;
+
+}
+
+
+/*
+========================================================
+EXPANSION TEXT
+========================================================
+*/
+
+function updateExpansionText(
+  s
+){
+
+
+  metric1.textContent =
+    `${s.V1.toFixed(1)} L`;
+
+
+  metric2.textContent =
+    `${s.V.toFixed(1)} L`;
+
+
+  systemEntropy.textContent =
+    `+${s.dS.toFixed(2)} J/K`;
+
+
+  totalEntropy.textContent =
+    `+${s.dS.toFixed(2)} J/K`;
+
+
+  entropyEquation.innerHTML =
+    `
+    ΔS
+    =
+    nR ln(V₂/V₁)
+    &gt; 0
+    `;
+
+
+  let f =
+    s.finalDS >
+    0
+
+    ?
+
+    s.dS /
+    s.finalDS
+
+    :
+
+    0;
+
+
+  f =
+    Math.max(
+      0,
+      Math.min(
+        1,
+        f
+      )
+    );
+
+
+  entropyFill.style.width =
+    `${f * 100}%`;
+
+
+  irreversibilityValue.textContent =
+    `${(
+      f *
+      100
+    ).toFixed(0)} %`;
+
+
+  reversibleText.innerHTML =
+    `
+    같은 두 부피 사이를
+    준정적으로 가역 팽창시킬 경우에는
+    필요한 조건을 적절히 조절하여
+    과정 전체를 반대로 되돌릴 수 있습니다.
+    `;
+
+
+  irreversibleText.innerHTML =
+    `
+    자유 팽창은 기체가 진공으로 갑자기 퍼지는 과정으로,
+    단순히 외부 조건을 조금 바꾸는 것만으로
+    원래 상태로 되돌릴 수 없는
+    대표적인 <strong>비가역 과정</strong>입니다.
+    `;
+
+}
+
+
+/*
+========================================================
+COMPARE TEXT
+========================================================
+*/
+
+function updateCompareText(
+  s
+){
+
+
+  metric1.textContent =
+    "ΔS생성 = 0";
+
+
+  metric2.textContent =
+    `+${s.irreversibleS.toFixed(2)} J/K`;
+
+
+  systemEntropy.textContent =
+    "상태 변화에 따라 결정";
+
+
+  totalEntropy.textContent =
+    `+${s.irreversibleS.toFixed(2)} J/K`;
+
+
+  entropyEquation.innerHTML =
+    `
+    가역:
+    ΔS<sub>전체</sub> = 0
+    &nbsp;&nbsp;&nbsp;
+    비가역:
+    ΔS<sub>전체</sub> &gt; 0
+    `;
+
+
+  const maxS =
+    1000 *
+    (
+      1 /
+      s.TC -
+      1 /
+      s.TH
+    );
+
+
+  const f =
+    maxS >
+    0
+
+    ?
+
+    s.irreversibleS /
+    maxS
+
+    :
+
+    0;
+
+
+  entropyFill.style.width =
+    `${Math.min(
+      100,
+      f *
+      100
+    )}%`;
+
+
+  irreversibilityValue.textContent =
+    `${(
+      f *
+      100
+    ).toFixed(0)} %`;
+
+
+  flowLeftTitle.innerHTML =
+    "가역 과정";
+
+
+  flowLeftText.textContent =
+    "ΔS생성 = 0";
+
+
+  flowArrow.textContent =
+    "↔";
+
+
+  flowRightTitle.innerHTML =
+    "비가역 과정";
+
+
+  flowRightText.textContent =
+    "ΔS생성 > 0";
+
+
+  reversibleText.innerHTML =
+    `
+    과정의 각 순간이 평형 상태에 매우 가까우며,
+    외부 조건을 아주 조금 변화시키면
+    과정의 방향을 반대로 진행시킬 수 있습니다.
+    `;
+
+
+  irreversibleText.innerHTML =
+    `
+    유한한 온도차, 마찰, 자유 팽창, 확산처럼
+    자연계의 실제 과정은 엔트로피를 생성하며,
+    단순한 조건 반전만으로 원래 상태를 복원할 수 없습니다.
+    `;
+
+}
+
+
+/*
+========================================================
+CANVAS RESIZE
+========================================================
+*/
+
+function resizeCanvas(){
+
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  const ratio =
+    window.devicePixelRatio ||
+    1;
+
+
+  canvas.width =
+    rect.width *
+    ratio;
+
+
+  canvas.height =
+    rect.height *
+    ratio;
+
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+
+  update();
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+/*
+========================================================
+PARTICLE
+========================================================
+*/
+
+function particle(
+  x,
+  y,
+  r,
+  color
+){
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    x,
+    y,
+    r,
+    0,
+    Math.PI *
+    2
+  );
+
+
+  ctx.fillStyle =
+    color;
+
+
+  ctx.fill();
+
+}
+
+
+/*
+========================================================
+ARROW
+========================================================
+*/
+
+function drawArrow(
+  x1,
+  y1,
+  x2,
+  y2,
+  color
+){
+
+
+  const angle =
+    Math.atan2(
+      y2 -
+      y1,
+      x2 -
+      x1
+    );
+
+
+  const head =
+    10;
+
+
+  ctx.strokeStyle =
+    color;
+
+
+  ctx.fillStyle =
+    color;
+
+
+  ctx.lineWidth =
+    4;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x1,
+    y1
+  );
+
+
+  ctx.lineTo(
+    x2,
+    y2
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    x2,
+    y2
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle -
+      Math.PI /
+      6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle -
+      Math.PI /
+      6
+    )
+
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle +
+      Math.PI /
+      6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle +
+      Math.PI /
+      6
+    )
+
+  );
+
+
+  ctx.closePath();
+
+
+  ctx.fill();
+
+}
+
+
+/*
+========================================================
+HEAT DRAW
+========================================================
+*/
+
+function drawHeat(
+  s
+){
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fafc";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const gap =
+    70;
+
+
+  const boxW =
+    (
+      width -
+      gap -
+      80
+    ) /
+    2;
+
+
+  const leftX =
+    30;
+
+
+  const rightX =
+    leftX +
+    boxW +
+    gap;
+
+
+  const top =
+    70;
+
+
+  const boxH =
+    height -
+    130;
+
+
+  /*
+  색상
+  */
+
+  const hotFraction =
+    (
+      s.TH -
+      s.TC0
+    ) /
+    (
+      s.TH0 -
+      s.TC0
+    );
+
+
+  const coldFraction =
+    (
+      s.TC -
+      s.TC0
+    ) /
+    (
+      s.TH0 -
+      s.TC0
+    );
+
+
+  ctx.fillStyle =
+    `rgba(
+      239,
+      68,
+      68,
+      ${0.18 + 0.30 * hotFraction}
+    )`;
+
+
+  ctx.fillRect(
+    leftX,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.fillStyle =
+    `rgba(
+      59,
+      130,
+      246,
+      ${0.42 - 0.22 * coldFraction}
+    )`;
+
+
+  ctx.fillRect(
+    rightX,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.strokeStyle =
+    "#475569";
+
+
+  ctx.lineWidth =
+    3;
+
+
+  ctx.strokeRect(
+    leftX,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.strokeRect(
+    rightX,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  /*
+  입자
+  */
+
+  const count =
+    28;
+
+
+  for(
+    let i =
+      0;
+
+    i <
+      count;
+
+    i++
+  ){
+
+
+    const fx =
+      (
+        (
+          i *
+          37
+        ) %
+        100
+      ) /
+      100;
+
+
+    const fy =
+      (
+        (
+          i *
+          63 +
+          s.progress *
+          400
+        ) %
+        100
+      ) /
+      100;
+
+
+    particle(
+
+      leftX +
+      13 +
+      fx *
+      (
+        boxW -
+        26
+      ),
+
+      top +
+      15 +
+      fy *
+      (
+        boxH -
+        30
+      ),
+
+      3.3,
+
+      "#dc2626"
+
+    );
+
+
+    particle(
+
+      rightX +
+      13 +
+      (
+        1 -
+        fx
+      ) *
+      (
+        boxW -
+        26
+      ),
+
+      top +
+      15 +
+      (
+        (
+          fy +
+          .33
+        ) %
+        1
+      ) *
+      (
+        boxH -
+        30
+      ),
+
+      3.3,
+
+      "#2563eb"
+
+    );
+
+  }
+
+
+  /*
+  제목
+  */
+
+  ctx.fillStyle =
+    "#991b1b";
+
+
+  ctx.font =
+    "bold 16px Arial";
+
+
+  ctx.fillText(
+    `고온 물체`,
+    leftX +
+    15,
+    38
+  );
+
+
+  ctx.fillStyle =
+    "#1e40af";
+
+
+  ctx.fillText(
+    `저온 물체`,
+    rightX +
+    15,
+    38
+  );
+
+
+  ctx.font =
+    "bold 18px Arial";
+
+
+  ctx.fillStyle =
+    "#991b1b";
+
+
+  ctx.fillText(
+    `${s.TH.toFixed(0)} K`,
+    leftX +
+    boxW /
+    2 -
+    28,
+    top +
+    30
+  );
+
+
+  ctx.fillStyle =
+    "#1e40af";
+
+
+  ctx.fillText(
+    `${s.TC.toFixed(0)} K`,
+    rightX +
+    boxW /
+    2 -
+    28,
+    top +
+    30
+  );
+
+
+  /*
+  열 흐름
+  */
+
+  if(
+    s.progress <
+    .98
+  ){
+
+
+    drawArrow(
+
+      leftX +
+      boxW +
+      10,
+
+      top +
+      boxH /
+      2,
+
+      rightX -
+      10,
+
+      top +
+      boxH /
+      2,
+
+      "#dc2626"
+
+    );
+
+
+    ctx.fillStyle =
+      "#b91c1c";
+
+
+    ctx.font =
+      "bold 14px Arial";
+
+
+    ctx.fillText(
+      "Q",
+      leftX +
+      boxW +
+      gap /
+      2 -
+      5,
+      top +
+      boxH /
+      2 -
+      15
+    );
+
+  }
+
+
+  else{
+
+
+    ctx.fillStyle =
+      "#059669";
+
+
+    ctx.font =
+      "bold 14px Arial";
+
+
+    ctx.fillText(
+      "열평형",
+      width /
+      2 -
+      22,
+      top +
+      boxH /
+      2
+    );
+
+  }
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    "빠른 분자 운동",
+    leftX +
+    15,
+    height -
+    25
+  );
+
+
+  ctx.fillText(
+    "느린 분자 운동",
+    rightX +
+    15,
+    height -
+    25
+  );
+
+}
+
+
+/*
+========================================================
+EXPANSION DRAW
+========================================================
+*/
+
+function drawExpansion(
+  s
+){
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fafc";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const left =
+    50;
+
+
+  const right =
+    width -
+    50;
+
+
+  const top =
+    70;
+
+
+  const bottom =
+    height -
+    60;
+
+
+  const chamberW =
+    right -
+    left;
+
+
+  /*
+  전체 상자
+  */
+
+  ctx.fillStyle =
+    "#eff6ff";
+
+
+  ctx.fillRect(
+    left,
+    top,
+    chamberW,
+    bottom -
+    top
+  );
+
+
+  ctx.strokeStyle =
+    "#475569";
+
+
+  ctx.lineWidth =
+    4;
+
+
+  ctx.strokeRect(
+    left,
+    top,
+    chamberW,
+    bottom -
+    top
+  );
+
+
+  /*
+  초기 칸막이 위치
+  */
+
+  const initialFraction =
+    1 /
+    s.ratio;
+
+
+  const partitionX =
+    left +
+    chamberW *
+    initialFraction;
+
+
+  /*
+  칸막이
+  */
+
+  const partitionOpacity =
+    Math.max(
+      0,
+      1 -
+      s.progress *
+      3
+    );
+
+
+  if(
+    partitionOpacity >
+    0
+  ){
+
+
+    ctx.strokeStyle =
+      `rgba(
+        71,
+        85,
+        105,
+        ${partitionOpacity}
+      )`;
+
+
+    ctx.lineWidth =
+      6;
+
+
+    ctx.beginPath();
+
+
+    ctx.moveTo(
+      partitionX,
+      top
+    );
+
+
+    ctx.lineTo(
+      partitionX,
+      bottom
+    );
+
+
+    ctx.stroke();
+
+  }
+
+
+  /*
+  입자가 이용할 수 있는 최대 x
+  */
+
+  const accessibleFraction =
+    initialFraction +
+    (
+      1 -
+      initialFraction
+    ) *
+    s.progress;
+
+
+  const particleRight =
+    left +
+    chamberW *
+    accessibleFraction;
+
+
+  const count =
+    38;
+
+
+  for(
+    let i =
+      0;
+
+    i <
+      count;
+
+    i++
+  ){
+
+
+    const fx =
+      (
+        (
+          i *
+          47 +
+          s.progress *
+          97
+        ) %
+        100
+      ) /
+      100;
+
+
+    const fy =
+      (
+        (
+          i *
+          61 +
+          s.progress *
+          310
+        ) %
+        100
+      ) /
+      100;
+
+
+    particle(
+
+      left +
+      12 +
+      fx *
+      (
+        particleRight -
+        left -
+        24
+      ),
+
+      top +
+      15 +
+      fy *
+      (
+        bottom -
+        top -
+        30
+      ),
+
+      3.5,
+
+      "#2563eb"
+
+    );
+
+  }
+
+
+  /*
+  labels
+  */
+
+  ctx.fillStyle =
+    "#334155";
+
+
+  ctx.font =
+    "bold 14px Arial";
+
+
+  ctx.fillText(
+    `초기 V₁ = ${s.V1.toFixed(0)} L`,
+    55,
+    40
+  );
+
+
+  ctx.fillText(
+    `최종 V₂ = ${s.V2.toFixed(0)} L`,
+    width -
+    170,
+    40
+  );
+
+
+  if(
+    s.progress <
+    .05
+  ){
+
+
+    ctx.fillStyle =
+      "#64748b";
+
+
+    ctx.fillText(
+      "진공",
+      partitionX +
+      25,
+      top +
+      35
+    );
+
+  }
+
+
+  if(
+    s.progress >
+    .05
+  ){
+
+
+    ctx.fillStyle =
+      "#7c3aed";
+
+
+    ctx.font =
+      "bold 14px Arial";
+
+
+    ctx.fillText(
+      "입자가 이용할 수 있는 미시적 상태의 수 증가",
+      width /
+      2 -
+      135,
+      height -
+      25
+    );
+
+  }
+
+}
+
+
+/*
+========================================================
+COMPARE DRAW
+========================================================
+*/
+
+function drawCompare(
+  s
+){
+
+
+  const width =
+    canvas.clientWidth;
+
+
+  const height =
+    canvas.clientHeight;
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fafc";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const margin =
+    30;
+
+
+  const gap =
+    28;
+
+
+  const boxW =
+    (
+      width -
+      margin *
+      2 -
+      gap
+    ) /
+    2;
+
+
+  const top =
+    65;
+
+
+  const boxH =
+    height -
+    115;
+
+
+  const left1 =
+    margin;
+
+
+  const left2 =
+    margin +
+    boxW +
+    gap;
+
+
+  /*
+  REVERSIBLE
+  */
+
+  ctx.fillStyle =
+    "#ecfdf5";
+
+
+  ctx.fillRect(
+    left1,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.strokeStyle =
+    "#059669";
+
+
+  ctx.lineWidth =
+    3;
+
+
+  ctx.strokeRect(
+    left1,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  /*
+  IRREVERSIBLE
+  */
+
+  ctx.fillStyle =
+    "#fff7ed";
+
+
+  ctx.fillRect(
+    left2,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.strokeStyle =
+    "#ea580c";
+
+
+  ctx.strokeRect(
+    left2,
+    top,
+    boxW,
+    boxH
+  );
+
+
+  ctx.font =
+    "bold 16px Arial";
+
+
+  ctx.fillStyle =
+    "#047857";
+
+
+  ctx.fillText(
+    "가역 과정",
+    left1 +
+    18,
+    38
+  );
+
+
+  ctx.fillStyle =
+    "#c2410c";
+
+
+  ctx.fillText(
+    "비가역 과정",
+    left2 +
+    18,
+    38
+  );
+
+
+  /*
+  reversible reservoirs
+  */
+
+  const revY =
+    top +
+    boxH /
+    2;
+
+
+  const reversibleDifference =
+    35;
+
+
+  const smallDelta =
+    Math.max(
+      2,
+      reversibleDifference *
+      (
+        1 -
+        s.progress
+      )
+    );
+
+
+  ctx.fillStyle =
+    "#dc2626";
+
+
+  ctx.font =
+    "bold 14px Arial";
+
+
+  ctx.fillText(
+    `T + ${smallDelta.toFixed(0)} K`,
+    left1 +
+    20,
+    revY -
+    55
+  );
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  ctx.fillText(
+    "T",
+    left1 +
+    boxW -
+    50,
+    revY -
+    55
+  );
+
+
+  drawArrow(
+
+    left1 +
+    80,
+    revY,
+
+    left1 +
+    boxW -
+    80,
+    revY,
+
+    "#059669"
+
+  );
+
+
+  ctx.fillStyle =
+    "#047857";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    "아주 작은 온도차",
+    left1 +
+    boxW /
+    2 -
+    45,
+    revY +
+    30
+  );
+
+
+  ctx.fillText(
+    "ΔS생성 → 0",
+    left1 +
+    boxW /
+    2 -
+    34,
+    revY +
+    55
+  );
+
+
+  /*
+  irreversible
+  */
+
+  ctx.fillStyle =
+    "#dc2626";
+
+
+  ctx.font =
+    "bold 14px Arial";
+
+
+  ctx.fillText(
+    `${s.TH.toFixed(0)} K`,
+    left2 +
+    25,
+    revY -
+    55
+  );
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  ctx.fillText(
+    `${s.TC.toFixed(0)} K`,
+    left2 +
+    boxW -
+    72,
+    revY -
+    55
+  );
+
+
+  drawArrow(
+
+    left2 +
+    75,
+    revY,
+
+    left2 +
+    boxW -
+    75,
+    revY,
+
+    "#dc2626"
+
+  );
+
+
+  ctx.fillStyle =
+    "#c2410c";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    "유한한 온도차",
+    left2 +
+    boxW /
+    2 -
+    42,
+    revY +
+    30
+  );
+
+
+  ctx.fillText(
+
+    `ΔS생성 = ${s.irreversibleS.toFixed(2)} J/K`,
+
+    left2 +
+    boxW /
+    2 -
+    62,
+
+    revY +
+    55
+
+  );
+
+}
+
+
+/*
+========================================================
+DRAW
+========================================================
+*/
+
+function draw(){
+
+
+  if(
+    mode ===
+    "heat"
+  ){
+
+
+    drawHeat(
+      heatState(
+        Number(
+          progressSlider.value
+        ) /
+        100
+      )
+    );
+
+  }
+
+
+  if(
+    mode ===
+    "expansion"
+  ){
+
+
+    drawExpansion(
+      expansionState(
+        Number(
+          progressSlider.value
+        ) /
+        100
+      )
+    );
+
+  }
+
+
+  if(
+    mode ===
+    "compare"
+  ){
+
+
+    drawCompare(
+      compareState(
+        Number(
+          progressSlider.value
+        ) /
+        100
+      )
+    );
+
+  }
+
+}
+
+
+/*
+========================================================
+UPDATE
+========================================================
+*/
+
+function update(){
+
+
+  const progress =
+    Number(
+      progressSlider.value
+    ) /
+    100;
+
+
+  hotValue.textContent =
+    `${Number(
+      hotTemp.value
+    ).toFixed(0)} K`;
+
+
+  coldValue.textContent =
+    `${Number(
+      coldTemp.value
+    ).toFixed(0)} K`;
+
+
+  volumeValue.textContent =
+    Number(
+      volumeRatio.value
+    ).toFixed(1);
+
+
+  progressValue.textContent =
+    `${(
+      progress *
+      100
+    ).toFixed(0)} %`;
+
+
+  if(
+    progress ===
+    0
+  ){
+
+
+    status.textContent =
+      "초기 상태";
+
+  }
+
+
+  else if(
+    progress >=
+    1
+  ){
+
+
+    status.textContent =
+      "과정 완료";
+
+  }
+
+
+  else{
+
+
+    status.textContent =
+      "과정 진행 중";
+
+  }
+
+
+  if(
+    mode ===
+    "heat"
+  ){
+
+
+    const s =
+      heatState(
+        progress
+      );
+
+
+    updateHeatText(
+      s
+    );
+
+
+    drawHeat(
+      s
+    );
+
+  }
+
+
+  if(
+    mode ===
+    "expansion"
+  ){
+
+
+    const s =
+      expansionState(
+        progress
+      );
+
+
+    updateExpansionText(
+      s
+    );
+
+
+    drawExpansion(
+      s
+    );
+
+  }
+
+
+  if(
+    mode ===
+    "compare"
+  ){
+
+
+    const s =
+      compareState(
+        progress
+      );
+
+
+    updateCompareText(
+      s
+    );
+
+
+    drawCompare(
+      s
+    );
+
+  }
+
+}
+
+
+/*
+========================================================
+ANIMATION
+========================================================
+*/
+
+function animate(
+  timestamp
+){
+
+
+  if(
+    !running
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    paused
+  ){
+
+
+    lastTimestamp =
+      timestamp;
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+
+    return;
+
+  }
+
+
+  if(
+    lastTimestamp ===
+    null
+  ){
+
+
+    lastTimestamp =
+      timestamp;
+
+  }
+
+
+  const dt =
+    (
+      timestamp -
+      lastTimestamp
+    ) /
+    1000;
+
+
+  lastTimestamp =
+    timestamp;
+
+
+  let value =
+    Number(
+      progressSlider.value
+    );
+
+
+  value +=
+    dt *
+    18;
+
+
+  if(
+    value >=
+    100
+  ){
+
+
+    value =
+      100;
+
+
+    progressSlider.value =
+      value;
+
+
+    update();
+
+
+    running =
+      false;
+
+
+    status.textContent =
+      "과정 완료";
+
+
+    return;
+
+  }
+
+
+  progressSlider.value =
+    value;
+
+
+  update();
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
+}
+
+
+/*
+========================================================
+EVENT
+========================================================
+*/
+
+heatMode.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "heat"
+    )
+);
+
+
+expansionMode.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "expansion"
+    )
+);
+
+
+compareMode.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "compare"
+    )
+);
+
+
+[
+  hotTemp,
+  coldTemp,
+  volumeRatio
+].forEach(
+  input => {
+
+
+    input.addEventListener(
+      "input",
+      () => {
+
+
+        if(
+          Number(
+            coldTemp.value
+          ) >=
+          Number(
+            hotTemp.value
+          )
+        ){
+
+
+          coldTemp.value =
+            Number(
+              hotTemp.value
+            ) -
+            10;
+
+        }
+
+
+        progressSlider.value =
+          0;
+
+
+        running =
+          false;
+
+
+        update();
+
+      }
+    );
+
+  }
+);
+
+
+progressSlider.addEventListener(
+  "input",
+  () => {
+
+
+    running =
+      false;
+
+
+    if(
+      animationId
+    ){
+
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    update();
+
+  }
+);
+
+
+startButton.addEventListener(
+  "click",
+  () => {
+
+
+    if(
+      Number(
+        progressSlider.value
+      ) >=
+      100
+    ){
+
+
+      progressSlider.value =
+        0;
+
+    }
+
+
+    running =
+      true;
+
+
+    paused =
+      false;
+
+
+    lastTimestamp =
+      null;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    if(
+      animationId
+    ){
+
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+);
+
+
+pauseButton.addEventListener(
+  "click",
+  () => {
+
+
+    if(
+      !running
+    ){
+
+      return;
+
+    }
+
+
+    paused =
+      !paused;
+
+
+    pauseButton.textContent =
+
+      paused
+
+      ?
+
+      "▶ 계속"
+
+      :
+
+      "Ⅱ 일시정지";
+
+
+    lastTimestamp =
+      null;
+
+  }
+);
+
+
+resetButton.addEventListener(
+  "click",
+  () => {
+
+
+    running =
+      false;
+
+
+    paused =
+      false;
+
+
+    if(
+      animationId
+    ){
+
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    progressSlider.value =
+      0;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    update();
+
+  }
+);
+
+
+/*
+========================================================
+INIT
+========================================================
+*/
+
+resizeCanvas();
+
+setMode(
+  "heat"
+);
+
+</script>
+
+</body>
+</html>
