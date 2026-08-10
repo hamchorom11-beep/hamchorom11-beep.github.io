@@ -7,6 +7,7 @@
 <title>열역학 제1법칙 시뮬레이션 | 온라인 물리학 탐구실</title>
 
 <style>
+
 :root{
   --bg:#f5f7fb;
   --panel:#ffffff;
@@ -72,9 +73,7 @@ a{
 }
 
 
-/* ================================
-   HEADER
-================================ */
+/* HEADER */
 
 header{
   position:sticky;
@@ -107,7 +106,6 @@ header{
 
 .title-box span{
   color:var(--subtext);
-
   font-size:.84rem;
 }
 
@@ -129,9 +127,7 @@ header{
 }
 
 
-/* ================================
-   INTRO
-================================ */
+/* INTRO */
 
 .intro{
   padding:38px 0 24px;
@@ -164,16 +160,13 @@ header{
   border-radius:12px;
 
   background:#eff6ff;
-
   color:#1e3a8a;
 
   font-weight:700;
 }
 
 
-/* ================================
-   MAIN
-================================ */
+/* MAIN */
 
 .main-grid{
   display:grid;
@@ -207,9 +200,7 @@ header{
 }
 
 
-/* ================================
-   CONTROLS
-================================ */
+/* CONTROLS */
 
 .control{
   margin-bottom:21px;
@@ -217,7 +208,6 @@ header{
 
 .control-head{
   display:flex;
-
   justify-content:space-between;
 
   gap:10px;
@@ -225,7 +215,6 @@ header{
   margin-bottom:7px;
 
   font-size:.94rem;
-
   font-weight:700;
 }
 
@@ -239,7 +228,6 @@ select{
   padding:11px;
 
   border:1px solid var(--border);
-
   border-radius:10px;
 
   background:white;
@@ -269,11 +257,9 @@ input[type="range"]{
   padding:10px;
 
   border:1px solid var(--border);
-
   border-radius:10px;
 
   background:#f8fafc;
-
   color:#475569;
 
   cursor:pointer;
@@ -281,7 +267,6 @@ input[type="range"]{
 
 .direction-button.active{
   background:var(--primary);
-
   color:white;
 
   border-color:var(--primary);
@@ -305,7 +290,6 @@ button{
   padding:12px 13px;
 
   cursor:pointer;
-
   font-weight:700;
 }
 
@@ -355,9 +339,7 @@ button{
 }
 
 
-/* ================================
-   VISUAL
-================================ */
+/* VISUAL */
 
 .simulation-panel{
   padding:18px;
@@ -386,11 +368,9 @@ button{
   border-radius:999px;
 
   background:#eef2ff;
-
   color:#3730a3;
 
   font-size:.86rem;
-
   font-weight:700;
 }
 
@@ -421,7 +401,6 @@ button{
   background:#f8fafc;
 
   font-size:.9rem;
-
   font-weight:700;
 }
 
@@ -435,17 +414,16 @@ button{
 }
 
 .graph-note{
-  padding:8px 14px 12px;
+  padding:9px 14px 12px;
 
   color:var(--subtext);
 
   font-size:.78rem;
+  line-height:1.6;
 }
 
 
-/* ================================
-   STATE
-================================ */
+/* STATE */
 
 .state-grid{
   display:grid;
@@ -462,7 +440,6 @@ button{
   padding:13px;
 
   border:1px solid var(--border);
-
   border-radius:12px;
 
   background:#f8fafc;
@@ -485,9 +462,7 @@ button{
 }
 
 
-/* ================================
-   FIRST LAW
-================================ */
+/* FIRST LAW */
 
 .first-law{
   margin-top:22px;
@@ -515,7 +490,6 @@ button{
     serif;
 
   font-size:1.45rem;
-
   font-weight:700;
 }
 
@@ -550,7 +524,6 @@ button{
   padding:16px;
 
   border:1px solid var(--border);
-
   border-radius:13px;
 
   background:white;
@@ -591,9 +564,7 @@ button{
 }
 
 
-/* ================================
-   FLOW
-================================ */
+/* FLOW */
 
 .flow{
   margin-top:20px;
@@ -650,9 +621,7 @@ button{
 }
 
 
-/* ================================
-   EXAMPLE
-================================ */
+/* EXAMPLE */
 
 .example-box{
   margin-top:22px;
@@ -683,9 +652,7 @@ button{
 }
 
 
-/* ================================
-   LEARNING
-================================ */
+/* LEARNING */
 
 .learning{
   display:grid;
@@ -784,7 +751,6 @@ th{
   font-size:.9rem;
 }
 
-
 footer{
   padding:40px 0;
 
@@ -796,6 +762,8 @@ footer{
 }
 
 
+/* RESPONSIVE */
+
 @media(max-width:1050px){
 
   .main-grid{
@@ -803,7 +771,6 @@ footer{
   }
 
 }
-
 
 @media(max-width:850px){
 
@@ -816,7 +783,6 @@ footer{
   }
 
 }
-
 
 @media(max-width:650px){
 
@@ -868,7 +834,6 @@ footer{
 
   </div>
 
-
   <a
     class="home-button"
     href="../index.html"
@@ -893,12 +858,10 @@ footer{
     🌡️ 열역학 제1법칙 시뮬레이션
   </h1>
 
-
   <p>
     이상기체의 등온, 등압, 등적, 단열 과정을 직접 변화시키며
     압력-부피 관계와 열, 일, 내부에너지 변화 사이의 관계를 탐구합니다.
   </p>
-
 
   <div class="question">
 
@@ -930,7 +893,6 @@ footer{
     <div class="control-head">
       <span>과정</span>
     </div>
-
 
     <select id="process">
 
@@ -973,7 +935,6 @@ footer{
 
     </div>
 
-
     <input
       id="changeSlider"
       type="range"
@@ -1004,7 +965,6 @@ footer{
 
     </div>
 
-
     <input
       id="progress"
       type="range"
@@ -1027,7 +987,6 @@ footer{
       팽창
     </button>
 
-
     <button
       id="compressionButton"
       class="direction-button"
@@ -1048,14 +1007,12 @@ footer{
       ▶ 자동 진행
     </button>
 
-
     <button
       id="pauseButton"
       class="pause"
     >
       Ⅱ 일시정지
     </button>
-
 
     <button
       id="resetButton"
@@ -1070,8 +1027,7 @@ footer{
   <div
     id="processInfo"
     class="process-info"
-  >
-  </div>
+  ></div>
 
 </aside>
 
@@ -1110,15 +1066,17 @@ footer{
         압력-부피(P-V) 그래프
       </div>
 
-
       <canvas id="pvCanvas"></canvas>
-
 
       <div class="graph-note">
 
         회색 점선:
-        초기 상태를 지나는
-        T = 300 K 등온선
+        시작 상태 A의 등온선
+
+        ·
+
+        주황 점선:
+        최종 상태 B의 등온선
 
         ·
 
@@ -1138,7 +1096,6 @@ footer{
       <div class="visual-title">
         실린더-피스톤
       </div>
-
 
       <canvas id="pistonCanvas"></canvas>
 
@@ -1166,7 +1123,6 @@ footer{
     </div>
 
 
-
     <div class="state-card">
 
       <span>
@@ -1180,7 +1136,6 @@ footer{
     </div>
 
 
-
     <div class="state-card">
 
       <span>
@@ -1192,7 +1147,6 @@ footer{
       </strong>
 
     </div>
-
 
 
     <div class="state-card">
@@ -1223,9 +1177,7 @@ footer{
 
 
     <div class="law-equation">
-
       Q = ΔU + W
-
     </div>
 
 
@@ -1388,8 +1340,7 @@ footer{
   <div
     id="exampleBox"
     class="example-box"
-  >
-  </div>
+  ></div>
 
 
 </section>
@@ -1402,7 +1353,6 @@ footer{
 <!-- LEARNING -->
 
 <section class="learning">
-
 
 
 <article class="panel">
@@ -1420,25 +1370,15 @@ footer{
 
 <tr>
 
-  <th>
-    과정
-  </th>
+  <th>과정</th>
 
-  <th>
-    일정한 조건
-  </th>
+  <th>일정한 조건</th>
 
-  <th>
-    ΔU
-  </th>
+  <th>ΔU</th>
 
-  <th>
-    W
-  </th>
+  <th>W</th>
 
-  <th>
-    Q
-  </th>
+  <th>Q</th>
 
 </tr>
 
@@ -1450,103 +1390,60 @@ footer{
 
 <tr>
 
-  <td>
-    등온
-  </td>
+  <td>등온</td>
 
-  <td>
-    T 일정
-  </td>
+  <td>T 일정</td>
 
-  <td>
-    0
-  </td>
+  <td>0</td>
 
-  <td>
-    ≠ 0
-  </td>
+  <td>≠ 0</td>
 
-  <td>
-    Q = W
-  </td>
+  <td>Q = W</td>
 
 </tr>
 
 
-
 <tr>
 
-  <td>
-    등압
-  </td>
+  <td>등압</td>
 
-  <td>
-    P 일정
-  </td>
+  <td>P 일정</td>
 
-  <td>
-    ≠ 0
-  </td>
+  <td>≠ 0</td>
 
-  <td>
-    PΔV
-  </td>
+  <td>PΔV</td>
 
-  <td>
-    Q = ΔU + W
-  </td>
+  <td>Q = ΔU + W</td>
 
 </tr>
 
 
-
 <tr>
 
-  <td>
-    등적
-  </td>
+  <td>등적</td>
 
-  <td>
-    V 일정
-  </td>
+  <td>V 일정</td>
 
-  <td>
-    ≠ 0
-  </td>
+  <td>≠ 0</td>
 
-  <td>
-    0
-  </td>
+  <td>0</td>
 
-  <td>
-    Q = ΔU
-  </td>
+  <td>Q = ΔU</td>
 
 </tr>
 
 
-
 <tr>
 
-  <td>
-    단열
-  </td>
+  <td>단열</td>
 
-  <td>
-    Q = 0
-  </td>
+  <td>Q = 0</td>
 
-  <td>
-    ≠ 0
-  </td>
+  <td>≠ 0</td>
 
-  <td>
-    ≠ 0
-  </td>
+  <td>≠ 0</td>
 
-  <td>
-    ΔU = −W
-  </td>
+  <td>ΔU = −W</td>
 
 </tr>
 
@@ -1560,9 +1457,7 @@ footer{
 
 
 <div class="equation">
-
   Q = ΔU + W
-
 </div>
 
 
@@ -1596,7 +1491,7 @@ footer{
 <div class="warning">
 
   P-V 그래프에서 과정 곡선 아래의 넓이는
-  기체가 외부에 한 일 W와 대응합니다.
+  기체가 외부에 한 일의 크기와 대응합니다.
 
   팽창 과정에서는 W가 양수,
   압축 과정에서는 W가 음수입니다.
@@ -1605,7 +1500,6 @@ footer{
 
 
 </article>
-
 
 
 
@@ -1623,37 +1517,32 @@ footer{
 
 등온 팽창을 선택하세요.
 
-온도가 일정한 상태에서
-기체가 외부에 일을 하는데도
-내부에너지가 변하지 않는 이유를
-Q = ΔU + W를 이용하여 설명하세요.
+시작 상태와 종점의 온도가 같기 때문에
+두 등온선이 하나로 겹치는 것을 확인하세요.
 
 </li>
-
 
 
 <li>
 
-등압 팽창을 진행하면서
-P-V 그래프 아래의 음영 넓이가
-증가하는 모습을 관찰하세요.
+등압 팽창을 선택하세요.
 
-이 넓이는 어떤 물리량에 해당하나요?
+시작 상태 A의 등온선과
+종점 B의 등온선의 위치를 비교하고,
+팽창 후 온도가 높아지는 이유를 설명하세요.
 
 </li>
-
 
 
 <li>
 
-등적 과정을 선택하세요.
+등적 가열을 선택하세요.
 
-P-V 그래프의 과정이 수직선으로 나타나고
-W = 0이 되는 이유를
-부피 변화와 연결하여 설명하세요.
+피스톤이 움직이지 않지만
+종점 등온선이 시작 등온선보다 위쪽에 나타나는 이유를
+압력과 온도의 관계를 이용하여 설명하세요.
 
 </li>
-
 
 
 <li>
@@ -1661,11 +1550,10 @@ W = 0이 되는 이유를
 같은 최종 부피까지
 등온 팽창과 단열 팽창을 진행하세요.
 
-단열 과정에서 압력과 온도가
-더 크게 감소하는 이유를 설명하세요.
+단열 과정의 종점 등온선이
+시작점 등온선보다 아래쪽에 나타나는 이유를 설명하세요.
 
 </li>
-
 
 
 <li>
@@ -1683,7 +1571,6 @@ Q = ΔU + W
 에 대입하여 관계가 성립하는지 확인하세요.
 
 </li>
-
 
 
 <li>
@@ -1753,7 +1640,6 @@ const gamma =
   3;
 
 
-
 /*
 초기 상태
 
@@ -1779,7 +1665,6 @@ const P1 =
   R *
   T1 /
   V1;
-
 
 
 /*
@@ -1872,7 +1757,6 @@ const status =
   );
 
 
-
 const pvCanvas =
   document.getElementById(
     "pvCanvas"
@@ -1885,7 +1769,6 @@ const pvCtx =
   );
 
 
-
 const pistonCanvas =
   document.getElementById(
     "pistonCanvas"
@@ -1896,7 +1779,6 @@ const pistonCtx =
   pistonCanvas.getContext(
     "2d"
   );
-
 
 
 /*
@@ -1923,7 +1805,6 @@ let animationId =
 
 let lastTimestamp =
   null;
-
 
 
 /*
@@ -1993,7 +1874,6 @@ const info = {
 };
 
 
-
 /*
 ========================================================
 조작부 설정
@@ -2005,7 +1885,6 @@ function configureControl(){
 
   const type =
     processSelect.value;
-
 
 
   if(
@@ -2039,6 +1918,7 @@ function configureControl(){
         500;
 
     }
+
     else{
 
       changeSlider.value =
@@ -2077,6 +1957,7 @@ function configureControl(){
         18;
 
     }
+
     else{
 
       changeSlider.value =
@@ -2087,7 +1968,6 @@ function configureControl(){
   }
 
 
-
   progressSlider.value =
     0;
 
@@ -2095,7 +1975,6 @@ function configureControl(){
   update();
 
 }
-
 
 
 /*
@@ -2109,7 +1988,6 @@ function getTarget(){
 
   const type =
     processSelect.value;
-
 
 
   if(
@@ -2133,7 +2011,6 @@ function getTarget(){
   }
 
 
-
   return{
 
     V2:
@@ -2147,7 +2024,6 @@ function getTarget(){
 }
 
 
-
 /*
 ========================================================
 열역학 계산
@@ -2157,10 +2033,10 @@ function getTarget(){
 Q = ΔU + W
 
 W > 0
-: 기체가 외부에 일을 함
+기체가 외부에 일을 함
 
 W < 0
-: 외부가 기체에 일을 함
+기체가 외부로부터 일을 받음
 ========================================================
 */
 
@@ -2175,7 +2051,6 @@ function calculateAtProgress(
 
   const target =
     getTarget();
-
 
 
   let V;
@@ -2230,20 +2105,6 @@ function calculateAtProgress(
       V;
 
 
-    /*
-    기체가 외부에 한 일
-
-    W = nRT ln(V/V1)
-
-    팽창:
-    V > V1
-    W > 0
-
-    압축:
-    V < V1
-    W < 0
-    */
-
     W =
       n *
       R *
@@ -2254,18 +2115,9 @@ function calculateAtProgress(
       );
 
 
-    /*
-    등온 이상기체
-    ΔU = 0
-    */
-
     dU =
       0;
 
-
-    /*
-    Q = ΔU + W
-    */
 
     Q =
       dU +
@@ -2314,12 +2166,6 @@ function calculateAtProgress(
       T1;
 
 
-    /*
-    기체가 외부에 한 일
-
-    W = P ΔV
-    */
-
     W =
       P *
       (
@@ -2328,19 +2174,11 @@ function calculateAtProgress(
       );
 
 
-    /*
-    내부에너지 변화
-    */
-
     dU =
       n *
       Cv *
       dT;
 
-
-    /*
-    열역학 제1법칙
-    */
 
     Q =
       dU +
@@ -2381,10 +2219,6 @@ function calculateAtProgress(
       T /
       V;
 
-
-    /*
-    ΔV = 0
-    */
 
     W =
       0;
@@ -2455,28 +2289,14 @@ function calculateAtProgress(
       );
 
 
-    /*
-    단열
-    Q = 0
-    */
-
     Q =
       0;
 
-
-    /*
-    Q = ΔU + W
-
-    0 = ΔU + W
-
-    W = -ΔU
-    */
 
     W =
       -dU;
 
   }
-
 
 
   return{
@@ -2502,10 +2322,9 @@ function calculateAtProgress(
 }
 
 
-
 /*
 ========================================================
-현재 상태 계산
+현재 상태
 ========================================================
 */
 
@@ -2526,7 +2345,6 @@ function calculate(){
 }
 
 
-
 /*
 ========================================================
 부호 표시
@@ -2541,7 +2359,6 @@ function signInfo(
 
   const tolerance =
     .05;
-
 
 
   if(
@@ -2565,7 +2382,6 @@ function signInfo(
   }
 
 
-
   if(
     value >
     0
@@ -2585,7 +2401,6 @@ function signInfo(
   }
 
 
-
   return{
 
     text:
@@ -2599,10 +2414,9 @@ function signInfo(
 }
 
 
-
 /*
 ========================================================
-텍스트
+TEXT UPDATE
 ========================================================
 */
 
@@ -2621,10 +2435,8 @@ function updateText(
     ];
 
 
-
   processInfo.innerHTML =
     `
-
     <strong>
       ${data.title}
     </strong>
@@ -2632,14 +2444,11 @@ function updateText(
     <p>
       ${data.description}
     </p>
-
     `;
-
 
 
   exampleBox.innerHTML =
     `
-
     <strong>
       🔎 ${data.title}의 실제 사례
     </strong>
@@ -2647,9 +2456,7 @@ function updateText(
     <p>
       ${data.example}
     </p>
-
     `;
-
 
 
   if(
@@ -2665,7 +2472,6 @@ function updateText(
 
   }
 
-
   else{
 
 
@@ -2677,12 +2483,10 @@ function updateText(
   }
 
 
-
   progressValue.textContent =
     `${Number(
       progressSlider.value
     ).toFixed(0)} %`;
-
 
 
   document.getElementById(
@@ -2694,7 +2498,6 @@ function updateText(
     ).toFixed(2)} L`;
 
 
-
   document.getElementById(
     "pressureValue"
   ).textContent =
@@ -2704,12 +2507,10 @@ function updateText(
     ).toFixed(1)} kPa`;
 
 
-
   document.getElementById(
     "temperatureValue"
   ).textContent =
     `${state.T.toFixed(1)} K`;
-
 
 
   if(
@@ -2751,12 +2552,10 @@ function updateText(
   }
 
 
-
   document.getElementById(
     "heatValue"
   ).textContent =
     `${state.Q.toFixed(1)} J`;
-
 
 
   document.getElementById(
@@ -2765,12 +2564,10 @@ function updateText(
     `${state.W.toFixed(1)} J`;
 
 
-
   document.getElementById(
     "internalValue"
   ).textContent =
     `${state.dU.toFixed(1)} J`;
-
 
 
   const qSign =
@@ -2794,7 +2591,6 @@ function updateText(
     );
 
 
-
   const heatSign =
     document.getElementById(
       "heatSign"
@@ -2807,7 +2603,6 @@ function updateText(
 
   heatSign.className =
     `energy-sign ${qSign.className}`;
-
 
 
   const workSign =
@@ -2824,7 +2619,6 @@ function updateText(
     `energy-sign ${wSign.className}`;
 
 
-
   const internalSign =
     document.getElementById(
       "internalSign"
@@ -2839,9 +2633,8 @@ function updateText(
     `energy-sign ${uSign.className}`;
 
 
-
   /*
-  열의 방향
+  열
   */
 
   document.getElementById(
@@ -2869,9 +2662,8 @@ function updateText(
     "열교환 없음";
 
 
-
   /*
-  일의 방향
+  일
   */
 
   document.getElementById(
@@ -2897,7 +2689,6 @@ function updateText(
     :
 
     "일 없음";
-
 
 
   /*
@@ -2929,7 +2720,6 @@ function updateText(
     "내부에너지 일정";
 
 }
-
 
 
 /*
@@ -2975,7 +2765,6 @@ function resizeCanvas(
 }
 
 
-
 function resizeAll(){
 
 
@@ -2996,12 +2785,10 @@ function resizeAll(){
 }
 
 
-
 window.addEventListener(
   "resize",
   resizeAll
 );
-
 
 
 /*
@@ -3027,7 +2814,6 @@ function drawPV(
     pvCanvas.clientHeight;
 
 
-
   ctx.clearRect(
     0,
     0,
@@ -3048,7 +2834,6 @@ function drawPV(
   );
 
 
-
   const margin = {
 
     left:60,
@@ -3060,7 +2845,6 @@ function drawPV(
     bottom:48
 
   };
-
 
 
   const plotW =
@@ -3077,7 +2861,9 @@ function drawPV(
 
 
   /*
-  전체 과정
+  ========================================
+  전체 열역학 과정
+  ========================================
   */
 
   const fullPoints =
@@ -3094,7 +2880,6 @@ function drawPV(
 
   let maxP =
     0;
-
 
 
   for(
@@ -3125,7 +2910,6 @@ function drawPV(
       1000;
 
 
-
     fullPoints.push({
 
       v:
@@ -3135,7 +2919,6 @@ function drawPV(
         pK
 
     });
-
 
 
     minV =
@@ -3163,7 +2946,34 @@ function drawPV(
 
 
   /*
-  항상 300 K 등온선 표시
+  ========================================
+  시작 상태 A와 최종 상태 B
+  ========================================
+  */
+
+  const initialState =
+    calculateAtProgress(
+      0
+    );
+
+
+  const finalState =
+    calculateAtProgress(
+      1
+    );
+
+
+  const initialTemperature =
+    initialState.T;
+
+
+  const finalTemperature =
+    finalState.T;
+
+
+
+  /*
+  V축 범위
   */
 
   minV =
@@ -3181,47 +2991,66 @@ function drawPV(
 
 
 
-  for(
-    let i =
-      0;
+  /*
+  시작 등온선과 종점 등온선을
+  모두 포함하도록 P 최대값 결정
+  */
 
-    i <=
-      100;
-
-    i++
-  ){
-
-
-    const vL =
-      minV +
-      (
-        maxV -
-        minV
-      ) *
-      i /
-      100;
+  const temperaturesForScale =
+    [
+      initialTemperature,
+      finalTemperature
+    ];
 
 
-    const V =
-      vL /
-      1000;
+  temperaturesForScale.forEach(
+    temp => {
 
 
-    const P =
-      n *
-      R *
-      T1 /
-      V /
-      1000;
+      for(
+        let i =
+          0;
+
+        i <=
+          100;
+
+        i++
+      ){
 
 
-    maxP =
-      Math.max(
-        maxP,
-        P
-      );
+        const vL =
+          minV +
+          (
+            maxV -
+            minV
+          ) *
+          i /
+          100;
 
-  }
+
+        const V =
+          vL /
+          1000;
+
+
+        const P =
+          n *
+          R *
+          temp /
+          V /
+          1000;
+
+
+        maxP =
+          Math.max(
+            maxP,
+            P
+          );
+
+      }
+
+    }
+  );
 
 
 
@@ -3253,6 +3082,10 @@ function drawPV(
     1.12;
 
 
+
+  /*
+  좌표 변환
+  */
 
   function sx(
     v
@@ -3304,7 +3137,9 @@ function drawPV(
 
 
   /*
+  ========================================
   GRID
+  ========================================
   */
 
   ctx.strokeStyle =
@@ -3323,10 +3158,8 @@ function drawPV(
     "#64748b";
 
 
-
   const grid =
     5;
-
 
 
   for(
@@ -3352,7 +3185,6 @@ function drawPV(
       plotH *
       i /
       grid;
-
 
 
     ctx.beginPath();
@@ -3405,13 +3237,11 @@ function drawPV(
       grid;
 
 
-
     const pp =
       maxP -
       maxP *
       i /
       grid;
-
 
 
     ctx.fillText(
@@ -3435,7 +3265,9 @@ function drawPV(
 
 
   /*
+  ========================================
   AXES
+  ========================================
   */
 
   ctx.strokeStyle =
@@ -3444,7 +3276,6 @@ function drawPV(
 
   ctx.lineWidth =
     1.5;
-
 
 
   ctx.beginPath();
@@ -3474,14 +3305,12 @@ function drawPV(
   ctx.stroke();
 
 
-
   ctx.fillStyle =
     "#334155";
 
 
   ctx.font =
     "12px Arial";
-
 
 
   ctx.fillText(
@@ -3502,167 +3331,232 @@ function drawPV(
 
 
   /*
-  ================================
-  300 K 등온선
-  ================================
+  ========================================
+  등온선 그리기 함수
+  ========================================
   */
 
-  ctx.save();
-
-
-  ctx.beginPath();
-
-
-  let started =
-    false;
-
-
-
-  for(
-    let i =
-      0;
-
-    i <=
-      180;
-
-    i++
+  function drawIsotherm(
+    temperature,
+    color,
+    dash,
+    label,
+    labelY
   ){
 
 
-    const vL =
-      minV +
-      (
-        maxV -
-        minV
-      ) *
-      i /
-      180;
+    ctx.save();
 
 
-    if(
-      vL <=
-      0
-    ){
-
-      continue;
-
-    }
+    ctx.beginPath();
 
 
-
-    const V =
-      vL /
-      1000;
+    let started =
+      false;
 
 
-    const P =
-      n *
-      R *
-      T1 /
-      V /
-      1000;
+    for(
+      let i =
+        0;
 
+      i <=
+        220;
 
-
-    if(
-      P >
-      maxP
-    ){
-
-      continue;
-
-    }
-
-
-
-    if(
-      !started
+      i++
     ){
 
 
-      ctx.moveTo(
-        sx(
-          vL
-        ),
-        sy(
-          P
-        )
-      );
+      const vL =
+        minV +
+        (
+          maxV -
+          minV
+        ) *
+        i /
+        220;
 
 
-      started =
-        true;
+      if(
+        vL <=
+        0
+      ){
+
+        continue;
+
+      }
+
+
+      const V =
+        vL /
+        1000;
+
+
+      const P =
+        n *
+        R *
+        temperature /
+        V /
+        1000;
+
+
+      if(
+        P >
+        maxP
+      ){
+
+        continue;
+
+      }
+
+
+      if(
+        !started
+      ){
+
+
+        ctx.moveTo(
+          sx(
+            vL
+          ),
+          sy(
+            P
+          )
+        );
+
+
+        started =
+          true;
+
+      }
+
+
+      else{
+
+
+        ctx.lineTo(
+          sx(
+            vL
+          ),
+          sy(
+            P
+          )
+        );
+
+      }
 
     }
 
 
-    else{
+    ctx.strokeStyle =
+      color;
 
 
-      ctx.lineTo(
-        sx(
-          vL
-        ),
-        sy(
-          P
-        )
-      );
+    ctx.lineWidth =
+      2;
 
-    }
+
+    ctx.setLineDash(
+      dash
+    );
+
+
+    ctx.stroke();
+
+
+    ctx.setLineDash(
+      []
+    );
+
+
+    ctx.fillStyle =
+      color;
+
+
+    ctx.font =
+      "bold 11px Arial";
+
+
+    ctx.fillText(
+      label,
+      margin.left +
+      12,
+      labelY
+    );
+
+
+    ctx.restore();
 
   }
 
 
 
-  ctx.strokeStyle =
-    "#64748b";
+  /*
+  ========================================
+  시작 상태 A의 등온선
+  ========================================
+  */
 
+  drawIsotherm(
 
-  ctx.lineWidth =
-    2;
+    initialTemperature,
 
+    "#64748b",
 
-  ctx.setLineDash(
-    [7,6]
-  );
+    [7,6],
 
+    `시작 등온선  T₁ = ${initialTemperature.toFixed(0)} K`,
 
-  ctx.stroke();
-
-
-  ctx.setLineDash(
-    []
-  );
-
-
-
-  ctx.fillStyle =
-    "#475569";
-
-
-  ctx.font =
-    "bold 11px Arial";
-
-
-  ctx.fillText(
-    "T = 300 K 등온선",
-    margin.left +
-    12,
     margin.top +
     16
+
   );
-
-
-  ctx.restore();
 
 
 
   /*
-  전체 선택 과정
+  ========================================
+  종점 상태 B의 등온선
+
+  등온 과정에서는
+  T1 = T2이므로 중복 표시하지 않음
+  ========================================
+  */
+
+  if(
+    Math.abs(
+      finalTemperature -
+      initialTemperature
+    ) >
+    .5
+  ){
+
+
+    drawIsotherm(
+
+      finalTemperature,
+
+      "#d97706",
+
+      [4,5],
+
+      `종점 등온선  T₂ = ${finalTemperature.toFixed(0)} K`,
+
+      margin.top +
+      34
+
+    );
+
+  }
+
+
+
+  /*
+  ========================================
+  선택한 열역학 과정 전체 경로
+  ========================================
   */
 
   ctx.beginPath();
-
 
 
   fullPoints.forEach(
@@ -3708,7 +3602,6 @@ function drawPV(
   );
 
 
-
   ctx.strokeStyle =
     "#cbd5e1";
 
@@ -3722,7 +3615,9 @@ function drawPV(
 
 
   /*
-  현재까지 진행된 과정
+  ========================================
+  현재까지 진행한 지점
+  ========================================
   */
 
   const completed =
@@ -3738,7 +3633,6 @@ function drawPV(
     );
 
 
-
   const completedPoints =
     fullPoints.slice(
       0,
@@ -3749,9 +3643,9 @@ function drawPV(
 
 
   /*
-  ================================
+  ========================================
   P-V 그래프 아래 넓이
-  ================================
+  ========================================
   */
 
   if(
@@ -3773,7 +3667,6 @@ function drawPV(
       ];
 
 
-
     if(
       Math.abs(
         last.v -
@@ -3789,7 +3682,6 @@ function drawPV(
       ctx.beginPath();
 
 
-
       ctx.moveTo(
         sx(
           first.v
@@ -3800,7 +3692,6 @@ function drawPV(
       );
 
 
-
       ctx.lineTo(
         sx(
           first.v
@@ -3809,7 +3700,6 @@ function drawPV(
           first.p
         )
       );
-
 
 
       completedPoints.forEach(
@@ -3829,7 +3719,6 @@ function drawPV(
       );
 
 
-
       ctx.lineTo(
         sx(
           last.v
@@ -3840,9 +3729,7 @@ function drawPV(
       );
 
 
-
       ctx.closePath();
-
 
 
       ctx.fillStyle =
@@ -3861,7 +3748,9 @@ function drawPV(
 
 
   /*
-  현재까지의 파란 경로
+  ========================================
+  현재까지 진행된 파란 경로
+  ========================================
   */
 
   if(
@@ -3871,7 +3760,6 @@ function drawPV(
 
 
     ctx.beginPath();
-
 
 
     completedPoints.forEach(
@@ -3917,7 +3805,6 @@ function drawPV(
     );
 
 
-
     ctx.strokeStyle =
       "#2563eb";
 
@@ -3933,14 +3820,15 @@ function drawPV(
 
 
   /*
-  초기 상태 A
+  ========================================
+  시작 상태 A
+  ========================================
   */
 
   const initial =
     fullPoints[
       0
     ];
-
 
 
   ctx.beginPath();
@@ -3967,7 +3855,6 @@ function drawPV(
   ctx.fill();
 
 
-
   ctx.fillStyle =
     "#047857";
 
@@ -3991,7 +3878,91 @@ function drawPV(
 
 
   /*
+  ========================================
+  최종 상태 B
+  처음부터 미리 표시
+  ========================================
+  */
+
+  const finalV =
+    finalState.V *
+    1000;
+
+
+  const finalP =
+    finalState.P /
+    1000;
+
+
+  if(
+    state.progress <
+    .99
+  ){
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+      sx(
+        finalV
+      ),
+      sy(
+        finalP
+      ),
+      7,
+      0,
+      Math.PI *
+      2
+    );
+
+
+    ctx.fillStyle =
+      "#ffffff";
+
+
+    ctx.fill();
+
+
+    ctx.strokeStyle =
+      "#d97706";
+
+
+    ctx.lineWidth =
+      2.5;
+
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+      "#b45309";
+
+
+    ctx.font =
+      "bold 12px Arial";
+
+
+    ctx.fillText(
+      "B",
+      sx(
+        finalV
+      ) +
+      9,
+      sy(
+        finalP
+      ) -
+      8
+    );
+
+  }
+
+
+
+  /*
+  ========================================
   현재 상태
+  ========================================
   */
 
   const currentV =
@@ -4002,7 +3973,6 @@ function drawPV(
   const currentP =
     state.P /
     1000;
-
 
 
   ctx.beginPath();
@@ -4029,9 +3999,12 @@ function drawPV(
   ctx.fill();
 
 
-
   ctx.fillStyle =
     "#991b1b";
+
+
+  ctx.font =
+    "bold 12px Arial";
 
 
   ctx.fillText(
@@ -4062,7 +4035,9 @@ function drawPV(
 
 
   /*
-  면적 표시
+  ========================================
+  넓이 설명
+  ========================================
   */
 
   if(
@@ -4082,7 +4057,7 @@ function drawPV(
 
 
     ctx.fillText(
-      "아래 넓이 = 기체가 한 일 |W|",
+      "P-V 아래 넓이 ↔ 기체가 한 일 W",
       margin.left +
       12,
       height -
@@ -4092,7 +4067,6 @@ function drawPV(
   }
 
 }
-
 
 
 /*
@@ -4124,7 +4098,6 @@ function drawArrow(
     9;
 
 
-
   ctx.strokeStyle =
     color;
 
@@ -4135,7 +4108,6 @@ function drawArrow(
 
   ctx.lineWidth =
     3;
-
 
 
   ctx.beginPath();
@@ -4156,7 +4128,6 @@ function drawArrow(
   ctx.stroke();
 
 
-
   ctx.beginPath();
 
 
@@ -4166,7 +4137,6 @@ function drawArrow(
   );
 
 
-
   ctx.lineTo(
 
     x2 -
@@ -4192,7 +4162,6 @@ function drawArrow(
   );
 
 
-
   ctx.lineTo(
 
     x2 -
@@ -4216,7 +4185,6 @@ function drawArrow(
     )
 
   );
-
 
 
   ctx.closePath();
@@ -4225,7 +4193,6 @@ function drawArrow(
   ctx.fill();
 
 }
-
 
 
 /*
@@ -4251,14 +4218,12 @@ function drawPiston(
     pistonCanvas.clientHeight;
 
 
-
   ctx.clearRect(
     0,
     0,
     width,
     height
   );
-
 
 
   ctx.fillStyle =
@@ -4271,7 +4236,6 @@ function drawPiston(
     width,
     height
   );
-
 
 
   const cylinderLeft =
@@ -4294,11 +4258,9 @@ function drawPiston(
     .22;
 
 
-
   const V_L =
     state.V *
     1000;
-
 
 
   let fraction =
@@ -4309,7 +4271,6 @@ function drawPiston(
     15;
 
 
-
   fraction =
     Math.max(
       0,
@@ -4318,7 +4279,6 @@ function drawPiston(
         fraction
       )
     );
-
 
 
   const pistonY =
@@ -4336,9 +4296,8 @@ function drawPiston(
     );
 
 
-
   /*
-  기체 온도 색
+  온도에 따른 기체 색
   */
 
   const tempFraction =
@@ -4357,7 +4316,6 @@ function drawPiston(
     );
 
 
-
   const red =
     Math.round(
       230 +
@@ -4374,10 +4332,8 @@ function drawPiston(
     );
 
 
-
   ctx.fillStyle =
     `rgba(${red},190,${blue},0.45)`;
-
 
 
   ctx.fillRect(
@@ -4392,7 +4348,6 @@ function drawPiston(
   );
 
 
-
   /*
   실린더
   */
@@ -4403,7 +4358,6 @@ function drawPiston(
 
   ctx.lineWidth =
     4;
-
 
 
   ctx.beginPath();
@@ -4436,7 +4390,6 @@ function drawPiston(
   ctx.stroke();
 
 
-
   /*
   피스톤
   */
@@ -4456,7 +4409,6 @@ function drawPiston(
   );
 
 
-
   ctx.fillStyle =
     "#64748b";
 
@@ -4472,7 +4424,6 @@ function drawPiston(
   );
 
 
-
   /*
   기체 입자
   */
@@ -4483,7 +4434,6 @@ function drawPiston(
 
   ctx.fillStyle =
     "#2563eb";
-
 
 
   for(
@@ -4508,7 +4458,6 @@ function drawPiston(
       100;
 
 
-
     const fy =
       (
         (
@@ -4525,7 +4474,6 @@ function drawPiston(
       100;
 
 
-
     const x =
       cylinderLeft +
       12 +
@@ -4537,7 +4485,6 @@ function drawPiston(
         cylinderLeft -
         24
       );
-
 
 
     const y =
@@ -4553,7 +4500,6 @@ function drawPiston(
         pistonY -
         38
       );
-
 
 
     ctx.beginPath();
@@ -4574,7 +4520,6 @@ function drawPiston(
   }
 
 
-
   /*
   상태값
   */
@@ -4587,13 +4532,11 @@ function drawPiston(
     "bold 13px Arial";
 
 
-
   ctx.fillText(
     `V = ${V_L.toFixed(1)} L`,
     15,
     25
   );
-
 
 
   ctx.fillText(
@@ -4603,7 +4546,6 @@ function drawPiston(
   );
 
 
-
   ctx.fillText(
     `T = ${state.T.toFixed(0)} K`,
     15,
@@ -4611,17 +4553,16 @@ function drawPiston(
   );
 
 
-
   /*
-  ================================
+  ========================================
   일 표시
 
-  W > 0:
-  기체가 외부에 일
+  W > 0
+  기체 → 외부
 
-  W < 0:
-  외부가 기체에 일
-  ================================
+  W < 0
+  외부 → 기체
+  ========================================
   */
 
   if(
@@ -4631,10 +4572,6 @@ function drawPiston(
     .5
   ){
 
-
-    /*
-    팽창
-    */
 
     if(
       state.W >
@@ -4656,7 +4593,6 @@ function drawPiston(
       );
 
 
-
       ctx.fillStyle =
         "#1d4ed8";
 
@@ -4671,10 +4607,6 @@ function drawPiston(
 
     }
 
-
-    /*
-    압축
-    */
 
     else{
 
@@ -4691,7 +4623,6 @@ function drawPiston(
         15,
         "#2563eb"
       );
-
 
 
       ctx.fillStyle =
@@ -4711,11 +4642,10 @@ function drawPiston(
   }
 
 
-
   /*
-  ================================
+  ========================================
   열 표시
-  ================================
+  ========================================
   */
 
   if(
@@ -4730,11 +4660,6 @@ function drawPiston(
       cylinderBottom -
       50;
 
-
-
-    /*
-    열 흡수
-    */
 
     if(
       state.Q >
@@ -4753,7 +4678,6 @@ function drawPiston(
       );
 
 
-
       ctx.fillStyle =
         "#b91c1c";
 
@@ -4768,10 +4692,6 @@ function drawPiston(
     }
 
 
-    /*
-    열 방출
-    */
-
     else{
 
 
@@ -4784,7 +4704,6 @@ function drawPiston(
         y,
         "#dc2626"
       );
-
 
 
       ctx.fillStyle =
@@ -4801,7 +4720,6 @@ function drawPiston(
     }
 
   }
-
 
 
   /*
@@ -4835,7 +4753,6 @@ function drawPiston(
 }
 
 
-
 /*
 ========================================================
 DRAW
@@ -4859,7 +4776,6 @@ function draw(){
   );
 
 }
-
 
 
 /*
@@ -4888,7 +4804,6 @@ function update(){
   drawPiston(
     state
   );
-
 
 
   if(
@@ -4926,7 +4841,6 @@ function update(){
 }
 
 
-
 /*
 ========================================================
 ANIMATION
@@ -4945,7 +4859,6 @@ function animate(
     return;
 
   }
-
 
 
   if(
@@ -4968,7 +4881,6 @@ function animate(
   }
 
 
-
   if(
     lastTimestamp ===
     null
@@ -4981,7 +4893,6 @@ function animate(
   }
 
 
-
   const dt =
     (
       timestamp -
@@ -4990,10 +4901,8 @@ function animate(
     1000;
 
 
-
   lastTimestamp =
     timestamp;
-
 
 
   let value =
@@ -5002,11 +4911,9 @@ function animate(
     );
 
 
-
   value +=
     dt *
     22;
-
 
 
   if(
@@ -5039,13 +4946,11 @@ function animate(
   }
 
 
-
   progressSlider.value =
     value;
 
 
   update();
-
 
 
   animationId =
@@ -5054,7 +4959,6 @@ function animate(
     );
 
 }
-
 
 
 /*
@@ -5069,12 +4973,10 @@ processSelect.addEventListener(
 );
 
 
-
 changeSlider.addEventListener(
   "input",
   update
 );
-
 
 
 progressSlider.addEventListener(
@@ -5104,7 +5006,6 @@ progressSlider.addEventListener(
 );
 
 
-
 expansionButton.addEventListener(
   "click",
   () => {
@@ -5128,7 +5029,6 @@ expansionButton.addEventListener(
 
   }
 );
-
 
 
 compressionButton.addEventListener(
@@ -5156,7 +5056,6 @@ compressionButton.addEventListener(
 );
 
 
-
 startButton.addEventListener(
   "click",
   () => {
@@ -5176,7 +5075,6 @@ startButton.addEventListener(
     }
 
 
-
     running =
       true;
 
@@ -5189,14 +5087,12 @@ startButton.addEventListener(
       null;
 
 
-
     pauseButton.textContent =
       "Ⅱ 일시정지";
 
 
     status.textContent =
       "과정 진행 중";
-
 
 
     if(
@@ -5211,7 +5107,6 @@ startButton.addEventListener(
     }
 
 
-
     animationId =
       requestAnimationFrame(
         animate
@@ -5219,7 +5114,6 @@ startButton.addEventListener(
 
   }
 );
-
 
 
 pauseButton.addEventListener(
@@ -5236,10 +5130,8 @@ pauseButton.addEventListener(
     }
 
 
-
     paused =
       !paused;
-
 
 
     pauseButton.textContent =
@@ -5255,7 +5147,6 @@ pauseButton.addEventListener(
       "Ⅱ 일시정지";
 
 
-
     status.textContent =
 
       paused
@@ -5269,13 +5160,11 @@ pauseButton.addEventListener(
       "과정 진행 중";
 
 
-
     lastTimestamp =
       null;
 
   }
 );
-
 
 
 resetButton.addEventListener(
@@ -5291,7 +5180,6 @@ resetButton.addEventListener(
       false;
 
 
-
     if(
       animationId
     ){
@@ -5304,10 +5192,8 @@ resetButton.addEventListener(
     }
 
 
-
     progressSlider.value =
       0;
-
 
 
     pauseButton.textContent =
@@ -5318,7 +5204,6 @@ resetButton.addEventListener(
 
   }
 );
-
 
 
 /*
