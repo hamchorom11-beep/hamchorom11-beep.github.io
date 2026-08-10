@@ -1,0 +1,3918 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+도플러 효과 시뮬레이션 | 온라인 물리학 탐구실
+</title>
+
+
+<style>
+
+:root{
+
+  --panel:#ffffff;
+
+  --primary:#1e3a8a;
+  --primary2:#2563eb;
+
+  --text:#1f2937;
+  --subtext:#64748b;
+
+  --border:#e2e8f0;
+
+  --source:#dc2626;
+  --observer:#2563eb;
+
+  --wave:#7c3aed;
+  --green:#059669;
+  --orange:#ea580c;
+
+  --shadow:
+    0 8px 24px
+    rgba(15,23,42,.08);
+
+  --radius:18px;
+
+}
+
+
+*{
+  box-sizing:border-box;
+}
+
+
+html{
+  scroll-behavior:smooth;
+}
+
+
+body{
+
+  margin:0;
+
+  font-family:
+    "Pretendard",
+    "Noto Sans KR",
+    "Apple SD Gothic Neo",
+    Arial,
+    sans-serif;
+
+  background:
+    linear-gradient(
+      180deg,
+      #edf4ff 0%,
+      #f8fbff 25%,
+      #f5f7fb 100%
+    );
+
+  color:var(--text);
+
+}
+
+
+button,
+input{
+  font:inherit;
+}
+
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+
+.container{
+
+  width:min(
+    94%,
+    1420px
+  );
+
+  margin:0 auto;
+
+}
+
+
+/* ========================================
+HEADER
+======================================== */
+
+header{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:100;
+
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      .92
+    );
+
+  backdrop-filter:
+    blur(10px);
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+}
+
+
+.topbar{
+
+  min-height:68px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:18px;
+
+}
+
+
+.title-box strong{
+
+  display:block;
+
+  color:var(--primary);
+
+  font-size:1.1rem;
+
+}
+
+
+.title-box span{
+
+  color:var(--subtext);
+
+  font-size:.84rem;
+
+}
+
+
+.home-button{
+
+  padding:10px 15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:10px;
+
+  background:white;
+
+  color:var(--primary);
+
+  font-weight:700;
+
+}
+
+
+/* ========================================
+INTRO
+======================================== */
+
+.intro{
+
+  padding:38px 0 24px;
+
+}
+
+
+.intro h1{
+
+  margin:0 0 8px;
+
+  color:#0f172a;
+
+  font-size:
+    clamp(
+      1.8rem,
+      4vw,
+      2.7rem
+    );
+
+  letter-spacing:-.03em;
+
+}
+
+
+.intro p{
+
+  margin:0;
+
+  color:var(--subtext);
+
+  line-height:1.7;
+
+}
+
+
+.question{
+
+  margin-top:18px;
+
+  padding:16px 18px;
+
+  border-left:
+    5px solid
+    var(--primary2);
+
+  border-radius:12px;
+
+  background:#eff6ff;
+
+  color:#1e3a8a;
+
+  font-weight:700;
+
+  line-height:1.6;
+
+}
+
+
+/* ========================================
+MODE
+======================================== */
+
+.mode-tabs{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap:10px;
+
+  margin-bottom:22px;
+
+}
+
+
+.mode-button{
+
+  padding:13px 10px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:white;
+
+  color:#475569;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.mode-button.active{
+
+  background:var(--primary);
+
+  color:white;
+
+  border-color:var(--primary);
+
+}
+
+
+/* ========================================
+MAIN
+======================================== */
+
+.main-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    minmax(
+      285px,
+      340px
+    )
+    minmax(
+      0,
+      1fr
+    );
+
+  gap:22px;
+
+  align-items:start;
+
+}
+
+
+.panel{
+
+  padding:20px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:
+    var(--radius);
+
+  background:white;
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+
+.panel h2{
+
+  margin:0 0 18px;
+
+  color:#0f172a;
+
+  font-size:1.15rem;
+
+}
+
+
+/* ========================================
+CONTROLS
+======================================== */
+
+.control{
+
+  margin-bottom:21px;
+
+}
+
+
+.control-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:7px;
+
+  font-size:.92rem;
+
+  font-weight:700;
+
+}
+
+
+.control-value{
+
+  color:var(--primary2);
+
+}
+
+
+input[type="range"]{
+
+  width:100%;
+
+  accent-color:var(--primary2);
+
+  cursor:pointer;
+
+}
+
+
+.scale-labels{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-top:3px;
+
+  color:#94a3b8;
+
+  font-size:.69rem;
+
+}
+
+
+.buttons{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:20px;
+
+}
+
+
+button{
+
+  border:none;
+
+  border-radius:11px;
+
+  padding:12px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+}
+
+
+.start{
+
+  background:var(--primary2);
+
+  color:white;
+
+}
+
+
+.pause{
+
+  background:#e0e7ff;
+
+  color:#3730a3;
+
+}
+
+
+.reset{
+
+  background:#f1f5f9;
+
+  color:#334155;
+
+}
+
+
+.info-box{
+
+  margin-top:18px;
+
+  padding:14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  color:var(--subtext);
+
+  font-size:.87rem;
+
+  line-height:1.6;
+
+}
+
+
+.info-box strong{
+
+  display:block;
+
+  margin-bottom:5px;
+
+  color:var(--primary);
+
+}
+
+
+.sign-box{
+
+  margin-top:14px;
+
+  padding:12px;
+
+  border-radius:11px;
+
+  background:#fff7ed;
+
+  color:#9a3412;
+
+  font-size:.82rem;
+
+  line-height:1.6;
+
+}
+
+
+/* ========================================
+SIMULATION
+======================================== */
+
+.toolbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-bottom:14px;
+
+}
+
+
+.toolbar h2{
+  margin:0;
+}
+
+
+.status{
+
+  padding:6px 10px;
+
+  border-radius:999px;
+
+  background:#eef2ff;
+
+  color:#3730a3;
+
+  font-size:.85rem;
+
+  font-weight:700;
+
+}
+
+
+.visual-box{
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:14px;
+
+  background:white;
+
+}
+
+
+.visual-title{
+
+  padding:11px 14px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  background:#f8fafc;
+
+  font-size:.9rem;
+
+  font-weight:700;
+
+}
+
+
+#dopplerCanvas{
+
+  display:block;
+
+  width:100%;
+
+  height:500px;
+
+}
+
+
+.canvas-note{
+
+  padding:10px 14px 13px;
+
+  color:var(--subtext);
+
+  font-size:.8rem;
+
+  line-height:1.55;
+
+}
+
+
+/* ========================================
+VALUES
+======================================== */
+
+.value-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      6,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap:9px;
+
+  margin-top:18px;
+
+}
+
+
+.value-card{
+
+  padding:12px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:11px;
+
+  background:#f8fafc;
+
+}
+
+
+.value-card span{
+
+  display:block;
+
+  margin-bottom:4px;
+
+  color:var(--subtext);
+
+  font-size:.75rem;
+
+}
+
+
+.value-card strong{
+
+  font-size:1rem;
+
+}
+
+
+.source-text{
+  color:var(--source);
+}
+
+
+.observer-text{
+  color:var(--observer);
+}
+
+
+.result-text{
+  color:var(--green);
+}
+
+
+.wave-text{
+  color:var(--wave);
+}
+
+
+/* ========================================
+EQUATIONS
+======================================== */
+
+.equation-section{
+
+  margin-top:23px;
+
+  padding-top:20px;
+
+  border-top:
+    1px solid
+    var(--border);
+
+}
+
+
+.main-equation{
+
+  padding:17px;
+
+  border-radius:13px;
+
+  background:#f5f3ff;
+
+  color:#5b21b6;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.3rem;
+
+  font-weight:700;
+
+}
+
+
+.calculation-box{
+
+  margin-top:12px;
+
+  padding:15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+  line-height:1.8;
+
+}
+
+
+.calculation-box strong{
+
+  color:#0f172a;
+
+}
+
+
+.relation-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+
+.relation-card{
+
+  padding:14px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+}
+
+
+.relation-card span{
+
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--subtext);
+
+  font-size:.76rem;
+
+}
+
+
+.relation-card strong{
+
+  font-size:.95rem;
+
+}
+
+
+/* ========================================
+COMPARE
+======================================== */
+
+.compare-section{
+
+  margin-top:22px;
+
+}
+
+
+.compare-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:12px;
+
+}
+
+
+.compare-card{
+
+  padding:15px;
+
+  border:
+    1px solid
+    var(--border);
+
+  border-radius:12px;
+
+}
+
+
+.approach-card{
+  background:#ecfdf5;
+}
+
+
+.recede-card{
+  background:#fff7ed;
+}
+
+
+.compare-card strong{
+
+  display:block;
+
+  margin-bottom:7px;
+
+}
+
+
+/* ========================================
+LEARNING
+======================================== */
+
+.learning{
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:22px;
+
+  margin-top:28px;
+
+}
+
+
+.learning p,
+.learning li{
+
+  line-height:1.65;
+
+}
+
+
+.learning li{
+  margin-bottom:10px;
+}
+
+
+.learning-equation{
+
+  margin:12px 0;
+
+  padding:14px;
+
+  border-radius:11px;
+
+  background:#f8fafc;
+
+  text-align:center;
+
+  font-family:
+    "Times New Roman",
+    serif;
+
+  font-size:1.08rem;
+
+  font-weight:700;
+
+}
+
+
+.tip{
+
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#ecfdf5;
+
+  color:#065f46;
+
+  line-height:1.6;
+
+}
+
+
+.warning{
+
+  margin-top:15px;
+
+  padding:14px 15px;
+
+  border-radius:11px;
+
+  background:#fff7ed;
+
+  color:#9a3412;
+
+  line-height:1.6;
+
+}
+
+
+/* ========================================
+TABLE
+======================================== */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+
+table{
+
+  width:100%;
+
+  margin-top:14px;
+
+  border-collapse:collapse;
+
+  font-size:.87rem;
+
+}
+
+
+th,
+td{
+
+  padding:10px;
+
+  border-bottom:
+    1px solid
+    var(--border);
+
+  text-align:center;
+
+}
+
+
+th{
+  background:#f8fafc;
+}
+
+
+/* ========================================
+FOOTER
+======================================== */
+
+footer{
+
+  padding:40px 0;
+
+  color:var(--subtext);
+
+  text-align:center;
+
+  font-size:.85rem;
+
+}
+
+
+/* ========================================
+RESPONSIVE
+======================================== */
+
+@media(max-width:1100px){
+
+  .value-grid{
+    grid-template-columns:
+      repeat(3,1fr);
+  }
+
+}
+
+
+@media(max-width:1000px){
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:800px){
+
+  .learning{
+    grid-template-columns:1fr;
+  }
+
+  .relation-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+
+@media(max-width:650px){
+
+  .mode-tabs{
+    grid-template-columns:1fr;
+  }
+
+  .value-grid{
+    grid-template-columns:
+      1fr 1fr;
+  }
+
+  .compare-grid{
+    grid-template-columns:1fr;
+  }
+
+  #dopplerCanvas{
+    height:420px;
+  }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+
+<header>
+
+<div class="container topbar">
+
+  <div class="title-box">
+
+    <strong>
+      온라인 물리학 탐구실
+    </strong>
+
+    <span>
+      Ⅲ. 탄성파와 소리
+    </span>
+
+  </div>
+
+
+  <a
+    class="home-button"
+    href="../index.html"
+  >
+    ← 메인으로
+  </a>
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- ========================================
+INTRO
+======================================== -->
+
+<section class="intro">
+
+
+  <h1>
+    🔊 도플러 효과 시뮬레이션
+  </h1>
+
+
+  <p>
+
+    음원과 관찰자의 운동을 변화시키며
+    파면의 간격과 관찰되는 진동수의 변화를 관찰하고
+    도플러 효과의 원리를 탐구합니다.
+
+  </p>
+
+
+  <div class="question">
+
+    탐구 질문 :
+    음원이 움직이는 경우와 관찰자가 움직이는 경우에는
+    관찰되는 진동수가 왜 달라지며,
+    두 경우의 물리적 원리는 어떻게 다를까?
+
+  </div>
+
+
+</section>
+
+
+
+<!-- ========================================
+MODES
+======================================== -->
+
+<div class="mode-tabs">
+
+
+  <button
+    id="sourceModeButton"
+    class="mode-button active"
+  >
+    ① 음원 이동
+  </button>
+
+
+  <button
+    id="observerModeButton"
+    class="mode-button"
+  >
+    ② 관찰자 이동
+  </button>
+
+
+  <button
+    id="bothModeButton"
+    class="mode-button"
+  >
+    ③ 음원·관찰자 모두 이동
+  </button>
+
+
+</div>
+
+
+
+<section class="main-grid">
+
+
+<!-- ========================================
+CONTROL
+======================================== -->
+
+<aside class="panel">
+
+
+  <h2>
+    도플러 효과 조건
+  </h2>
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        음원의 진동수 f
+      </span>
+
+      <span
+        id="frequencyValue"
+        class="control-value"
+      >
+        500 Hz
+      </span>
+
+    </div>
+
+
+    <input
+      id="frequency"
+      type="range"
+      min="200"
+      max="1000"
+      value="500"
+      step="10"
+    >
+
+  </div>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        소리의 속력 v
+      </span>
+
+      <span
+        id="soundSpeedValue"
+        class="control-value"
+      >
+        340 m/s
+      </span>
+
+    </div>
+
+
+    <input
+      id="soundSpeed"
+      type="range"
+      min="300"
+      max="380"
+      value="340"
+      step="1"
+    >
+
+  </div>
+
+
+
+  <div
+    id="sourceSpeedControl"
+    class="control"
+  >
+
+    <div class="control-head">
+
+      <span>
+        음원 속도 vₛ
+      </span>
+
+      <span
+        id="sourceSpeedValue"
+        class="control-value"
+      >
+        +60 m/s
+      </span>
+
+    </div>
+
+
+    <input
+      id="sourceSpeed"
+      type="range"
+      min="-120"
+      max="120"
+      value="60"
+      step="5"
+    >
+
+
+    <div class="scale-labels">
+
+      <span>
+        ← −
+      </span>
+
+      <span>
+        0
+      </span>
+
+      <span>
+        + →
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+  <div
+    id="observerSpeedControl"
+    class="control"
+    style="display:none;"
+  >
+
+    <div class="control-head">
+
+      <span>
+        관찰자 속도 vₒ
+      </span>
+
+      <span
+        id="observerSpeedValue"
+        class="control-value"
+      >
+        0 m/s
+      </span>
+
+    </div>
+
+
+    <input
+      id="observerSpeed"
+      type="range"
+      min="-120"
+      max="120"
+      value="0"
+      step="5"
+    >
+
+
+    <div class="scale-labels">
+
+      <span>
+        ← −
+      </span>
+
+      <span>
+        0
+      </span>
+
+      <span>
+        + →
+      </span>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="control">
+
+    <div class="control-head">
+
+      <span>
+        시간
+      </span>
+
+      <span
+        id="timeValue"
+        class="control-value"
+      >
+        0.00 s
+      </span>
+
+    </div>
+
+
+    <input
+      id="timeSlider"
+      type="range"
+      min="0"
+      max="100"
+      value="0"
+      step=".1"
+    >
+
+  </div>
+
+
+
+  <div class="buttons">
+
+
+    <button
+      id="startButton"
+      class="start"
+    >
+      ▶ 시작
+    </button>
+
+
+    <button
+      id="pauseButton"
+      class="pause"
+    >
+      Ⅱ 일시정지
+    </button>
+
+
+    <button
+      id="resetButton"
+      class="reset"
+    >
+      ↺ 초기화
+    </button>
+
+
+  </div>
+
+
+
+  <div
+    id="infoBox"
+    class="info-box"
+  >
+
+    <strong>
+      음원이 움직이는 경우
+    </strong>
+
+    음원이 관찰자 쪽으로 움직이면
+    앞쪽에서 파면 사이의 간격이 좁아집니다.
+    따라서 관찰자는 원래 진동수보다 높은 진동수를 관찰합니다.
+
+  </div>
+
+
+  <div class="sign-box">
+
+    <strong>
+      부호 기준
+    </strong><br>
+
+    화면의 오른쪽 방향을 +로 정합니다.<br>
+    음원은 관찰자의 왼쪽에 있으므로
+    vₛ &gt; 0이면 관찰자에게 접근하고,
+    vₒ &lt; 0이면 관찰자가 음원에게 접근합니다.
+
+  </div>
+
+
+</aside>
+
+
+
+<!-- ========================================
+SIMULATION
+======================================== -->
+
+<section class="panel">
+
+
+  <div class="toolbar">
+
+    <h2>
+      파면과 도플러 효과
+    </h2>
+
+    <span
+      id="status"
+      class="status"
+    >
+      음원 접근
+    </span>
+
+  </div>
+
+
+
+  <div class="visual-box">
+
+
+    <div class="visual-title">
+      음원이 방출한 파면의 전파
+    </div>
+
+
+    <canvas
+      id="dopplerCanvas"
+    ></canvas>
+
+
+    <div class="canvas-note">
+
+      각 원은 음원이 서로 다른 시각에 방출한 파면입니다.
+      파면은 방출된 이후 음원의 움직임과 관계없이
+      매질을 기준으로 소리의 속력 v로 퍼져 나갑니다.
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- VALUES -->
+
+  <div class="value-grid">
+
+
+    <div class="value-card">
+
+      <span>
+        음원 진동수 f
+      </span>
+
+      <strong
+        id="liveSourceFrequency"
+        class="source-text"
+      >
+        500 Hz
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        관찰 진동수 f′
+      </span>
+
+      <strong
+        id="liveObservedFrequency"
+        class="result-text"
+      >
+        -
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        음원 속도 vₛ
+      </span>
+
+      <strong
+        id="liveSourceSpeed"
+        class="source-text"
+      >
+        +60 m/s
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        관찰자 속도 vₒ
+      </span>
+
+      <strong
+        id="liveObserverSpeed"
+        class="observer-text"
+      >
+        0 m/s
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        앞쪽 파장 λ′
+      </span>
+
+      <strong
+        id="liveFrontWavelength"
+        class="wave-text"
+      >
+        -
+      </strong>
+
+    </div>
+
+
+    <div class="value-card">
+
+      <span>
+        원래 파장 λ
+      </span>
+
+      <strong id="liveWavelength">
+        -
+      </strong>
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- EQUATION -->
+
+  <div class="equation-section">
+
+
+    <h2>
+      도플러 효과 계산
+    </h2>
+
+
+    <div class="main-equation">
+
+      f′ = f
+      (v − vₒ)
+      /
+      (v − vₛ)
+
+    </div>
+
+
+    <div
+      id="calculationBox"
+      class="calculation-box"
+    >
+    </div>
+
+
+
+    <div class="relation-grid">
+
+
+      <div class="relation-card">
+
+        <span>
+          음원이 정지한 경우
+        </span>
+
+        <strong>
+          λ = v / f
+        </strong>
+
+      </div>
+
+
+      <div class="relation-card">
+
+        <span>
+          음원이 오른쪽으로 이동
+        </span>
+
+        <strong>
+          λ앞 = (v − vₛ) / f
+        </strong>
+
+      </div>
+
+
+      <div class="relation-card">
+
+        <span>
+          관찰자가 움직이는 경우
+        </span>
+
+        <strong>
+          파장 자체는 변하지 않음
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- COMPARISON -->
+
+  <div class="compare-section">
+
+
+    <h2>
+      접근과 멀어짐
+    </h2>
+
+
+    <div class="compare-grid">
+
+
+      <div class="compare-card approach-card">
+
+        <strong>
+          서로 접근
+        </strong>
+
+        파면을 더 자주 만나므로
+
+        <br>
+
+        <b>
+          f′ &gt; f
+        </b>
+
+      </div>
+
+
+      <div class="compare-card recede-card">
+
+        <strong>
+          서로 멀어짐
+        </strong>
+
+        파면을 더 드물게 만나므로
+
+        <br>
+
+        <b>
+          f′ &lt; f
+        </b>
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</section>
+
+
+</section>
+
+
+
+<!-- ========================================
+LEARNING
+======================================== -->
+
+<section class="learning">
+
+
+<article class="panel">
+
+
+<h2>
+  도플러 효과의 원리
+</h2>
+
+
+<p>
+
+음원과 관찰자 사이에 상대적인 운동이 있을 때
+관찰자가 측정하는 파동의 진동수가 달라지는 현상을
+<strong>도플러 효과</strong>라고 합니다.
+
+</p>
+
+
+<h2 style="margin-top:25px;">
+  ① 음원이 움직이는 경우
+</h2>
+
+
+<p>
+
+음원이 관찰자 쪽으로 이동하면서 소리를 방출하면
+각 파면은 서로 다른 위치에서 만들어집니다.
+
+따라서 음원 앞쪽에서는 파면 간격이 좁아집니다.
+
+</p>
+
+
+<div class="learning-equation">
+
+λ앞 = (v − vₛ) / f
+
+</div>
+
+
+<p>
+
+관찰자가 정지해 있다면
+
+</p>
+
+
+<div class="learning-equation">
+
+f′ = fv / (v − vₛ)
+
+</div>
+
+
+<div class="tip">
+
+음원의 운동은
+<strong>매질 속에 만들어지는 파장의 크기를 변화</strong>시킵니다.
+
+음원 뒤쪽에서는 반대로 파면 사이의 간격이 넓어집니다.
+
+</div>
+
+
+
+<h2 style="margin-top:25px;">
+  ② 관찰자가 움직이는 경우
+</h2>
+
+
+<p>
+
+음원이 정지하고 관찰자만 움직인다면
+매질 속에 이미 형성되어 있는 파면의 간격은 변하지 않습니다.
+
+</p>
+
+
+<div class="learning-equation">
+
+λ = v / f
+
+</div>
+
+
+<p>
+
+하지만 관찰자가 파면을 향해 움직이면
+단위 시간 동안 더 많은 파면을 만나므로
+관찰 진동수가 증가합니다.
+
+</p>
+
+
+<div class="learning-equation">
+
+f′ = f(v − vₒ)/v
+
+</div>
+
+
+<div class="warning">
+
+음원이 움직이는 경우와 관찰자가 움직이는 경우 모두
+관찰 진동수가 달라지지만 원인은 서로 다릅니다.
+
+음원의 운동은 <strong>파장 자체를 변화</strong>시키고,
+관찰자의 운동은 <strong>파면을 만나는 속도</strong>를 변화시킵니다.
+
+</div>
+
+
+</article>
+
+
+
+<article class="panel">
+
+
+<h2>
+  탐구 활동
+</h2>
+
+
+<ol>
+
+
+<li>
+
+① 음원 이동 모드에서
+음원을 오른쪽으로 움직이세요.
+음원의 앞쪽과 뒤쪽 파면 간격을 비교하세요.
+
+</li>
+
+
+<li>
+
+음원 속도 vₛ를 증가시키면서
+앞쪽 파장 λ′가 어떻게 변하는지 확인하세요.
+
+</li>
+
+
+<li>
+
+음원이 관찰자에게 접근할 때
+관찰 진동수 f′와 원래 진동수 f를 비교하세요.
+
+</li>
+
+
+<li>
+
+음원의 속도를 음수로 바꾸어
+관찰자로부터 멀어지게 해 보세요.
+파장과 관찰 진동수는 어떻게 변하나요?
+
+</li>
+
+
+<li>
+
+② 관찰자 이동 모드로 바꾸세요.
+음원이 정지해 있을 때 파면 사이의 간격을 관찰하세요.
+
+</li>
+
+
+<li>
+
+관찰자를 왼쪽으로 이동시켜
+음원 쪽으로 접근하게 하세요.
+파장은 그대로인데 관찰 진동수가 증가하는지 확인하세요.
+
+</li>
+
+
+<li>
+
+관찰자를 오른쪽으로 이동시켜
+음원으로부터 멀어지게 하세요.
+관찰 진동수는 어떻게 변하나요?
+
+</li>
+
+
+<li>
+
+③ 음원·관찰자 모두 이동 모드에서
+음원과 관찰자의 속도를 다양하게 조절하여
+관찰 진동수의 변화를 예상한 뒤 확인하세요.
+
+</li>
+
+
+<li>
+
+음원과 관찰자가 같은 속도로 오른쪽으로 움직이는 경우에도
+소리를 전달하는 매질을 기준으로 생각하면
+왜 일반적인 '상대속도만의 문제'와 다르게 해석해야 하는지 생각해 보세요.
+
+</li>
+
+
+</ol>
+
+
+</article>
+
+
+</section>
+
+
+</main>
+
+
+
+<footer>
+
+<div class="container">
+
+온라인 물리학 탐구실 ·
+2022 개정 교육과정 「역학과 에너지」
+
+</div>
+
+</footer>
+
+
+
+<script>
+
+/* ========================================
+DOM
+======================================== */
+
+const sourceModeButton =
+  document.getElementById(
+    "sourceModeButton"
+  );
+
+const observerModeButton =
+  document.getElementById(
+    "observerModeButton"
+  );
+
+const bothModeButton =
+  document.getElementById(
+    "bothModeButton"
+  );
+
+
+const frequencySlider =
+  document.getElementById(
+    "frequency"
+  );
+
+const soundSpeedSlider =
+  document.getElementById(
+    "soundSpeed"
+  );
+
+const sourceSpeedSlider =
+  document.getElementById(
+    "sourceSpeed"
+  );
+
+const observerSpeedSlider =
+  document.getElementById(
+    "observerSpeed"
+  );
+
+const timeSlider =
+  document.getElementById(
+    "timeSlider"
+  );
+
+
+const sourceSpeedControl =
+  document.getElementById(
+    "sourceSpeedControl"
+  );
+
+const observerSpeedControl =
+  document.getElementById(
+    "observerSpeedControl"
+  );
+
+
+const frequencyValue =
+  document.getElementById(
+    "frequencyValue"
+  );
+
+const soundSpeedValue =
+  document.getElementById(
+    "soundSpeedValue"
+  );
+
+const sourceSpeedValue =
+  document.getElementById(
+    "sourceSpeedValue"
+  );
+
+const observerSpeedValue =
+  document.getElementById(
+    "observerSpeedValue"
+  );
+
+const timeValue =
+  document.getElementById(
+    "timeValue"
+  );
+
+
+const startButton =
+  document.getElementById(
+    "startButton"
+  );
+
+const pauseButton =
+  document.getElementById(
+    "pauseButton"
+  );
+
+const resetButton =
+  document.getElementById(
+    "resetButton"
+  );
+
+
+const infoBox =
+  document.getElementById(
+    "infoBox"
+  );
+
+const status =
+  document.getElementById(
+    "status"
+  );
+
+
+const calculationBox =
+  document.getElementById(
+    "calculationBox"
+  );
+
+
+const canvas =
+  document.getElementById(
+    "dopplerCanvas"
+  );
+
+const ctx =
+  canvas.getContext(
+    "2d"
+  );
+
+
+/* ========================================
+STATE
+======================================== */
+
+let mode =
+  "source";
+
+let running =
+  false;
+
+let paused =
+  false;
+
+let elapsedTime =
+  0;
+
+let lastTimestamp =
+  null;
+
+let animationId =
+  null;
+
+
+/*
+파면 기록
+
+각 요소:
+{
+  emissionTime,
+  sourceX
+}
+*/
+
+let wavefronts =
+  [];
+
+
+/* ========================================
+PARAMETERS
+======================================== */
+
+function getParameters(){
+
+  const f =
+    Number(
+      frequencySlider.value
+    );
+
+  const c =
+    Number(
+      soundSpeedSlider.value
+    );
+
+  let vs =
+    Number(
+      sourceSpeedSlider.value
+    );
+
+  let vo =
+    Number(
+      observerSpeedSlider.value
+    );
+
+
+  if(
+    mode ===
+    "source"
+  ){
+
+    vo =
+      0;
+
+  }
+
+
+  if(
+    mode ===
+    "observer"
+  ){
+
+    vs =
+      0;
+
+  }
+
+
+  /*
+  음속을 넘지 않도록
+  */
+
+  vs =
+    Math.max(
+      -0.8*c,
+      Math.min(
+        0.8*c,
+        vs
+      )
+    );
+
+
+  vo =
+    Math.max(
+      -0.8*c,
+      Math.min(
+        0.8*c,
+        vo
+      )
+    );
+
+
+  const lambda =
+    c /
+    f;
+
+
+  /*
+  source is LEFT of observer,
+  waves considered toward +x direction
+
+  f' = f(c - vo)/(c - vs)
+  */
+
+  const observedFrequency =
+    f *
+    (
+      c -
+      vo
+    ) /
+    (
+      c -
+      vs
+    );
+
+
+  /*
+  wavelength in front of moving source
+  */
+
+  const frontWavelength =
+    (
+      c -
+      vs
+    ) /
+    f;
+
+
+  /*
+  wavelength behind source
+  */
+
+  const backWavelength =
+    (
+      c +
+      vs
+    ) /
+    f;
+
+
+  return{
+
+    f,
+    c,
+
+    vs,
+    vo,
+
+    lambda,
+
+    frontWavelength,
+    backWavelength,
+
+    observedFrequency
+
+  };
+
+}
+
+
+/* ========================================
+HELPER
+======================================== */
+
+function signedValue(
+  value,
+  digits=0
+){
+
+  if(
+    Math.abs(
+      value
+    ) <
+    .0001
+  ){
+
+    return (
+      0
+    ).toFixed(
+      digits
+    );
+
+  }
+
+
+  return (
+    value >
+    0
+    ?
+    "+"
+    :
+    ""
+  ) +
+  value.toFixed(
+    digits
+  );
+
+}
+
+
+/* ========================================
+MODE
+======================================== */
+
+function setMode(
+  newMode
+){
+
+  mode =
+    newMode;
+
+
+  [
+    sourceModeButton,
+    observerModeButton,
+    bothModeButton
+  ].forEach(
+    button =>
+      button.classList.remove(
+        "active"
+      )
+  );
+
+
+  if(
+    mode ===
+    "source"
+  ){
+
+    sourceModeButton.classList.add(
+      "active"
+    );
+
+
+    sourceSpeedControl.style.display =
+      "block";
+
+
+    observerSpeedControl.style.display =
+      "none";
+
+
+    observerSpeedSlider.value =
+      0;
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        음원이 움직이는 경우
+      </strong>
+
+      음원이 관찰자 쪽으로 움직이면
+      앞쪽 파면 사이의 간격이 좁아집니다.
+      음원의 운동은 매질 속에 만들어지는
+      <b>파장 자체를 변화</b>시킵니다.
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "observer"
+  ){
+
+    observerModeButton.classList.add(
+      "active"
+    );
+
+
+    sourceSpeedControl.style.display =
+      "none";
+
+
+    observerSpeedControl.style.display =
+      "block";
+
+
+    sourceSpeedSlider.value =
+      0;
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        관찰자가 움직이는 경우
+      </strong>
+
+      음원이 정지해 있으므로
+      매질 속의 파장은 변하지 않습니다.
+      관찰자의 운동에 따라
+      파면을 만나는 속도가 달라져
+      관찰 진동수가 변합니다.
+      `;
+
+  }
+
+
+  if(
+    mode ===
+    "both"
+  ){
+
+    bothModeButton.classList.add(
+      "active"
+    );
+
+
+    sourceSpeedControl.style.display =
+      "block";
+
+
+    observerSpeedControl.style.display =
+      "block";
+
+
+    infoBox.innerHTML =
+      `
+      <strong>
+        음원과 관찰자가 모두 움직이는 경우
+      </strong>
+
+      음원의 운동은 파장을 변화시키고,
+      관찰자의 운동은 파면을 만나는 속도를 변화시킵니다.
+      두 효과를 함께 고려해야 합니다.
+      `;
+
+  }
+
+
+  resetSimulation();
+
+}
+
+
+/* ========================================
+TEXT
+======================================== */
+
+function updateText(){
+
+  const p =
+    getParameters();
+
+
+  frequencyValue.textContent =
+    `${p.f.toFixed(0)} Hz`;
+
+
+  soundSpeedValue.textContent =
+    `${p.c.toFixed(0)} m/s`;
+
+
+  sourceSpeedValue.textContent =
+    `${signedValue(
+      p.vs
+    )} m/s`;
+
+
+  observerSpeedValue.textContent =
+    `${signedValue(
+      p.vo
+    )} m/s`;
+
+
+  timeValue.textContent =
+    `${elapsedTime.toFixed(2)} s`;
+
+
+  document.getElementById(
+    "liveSourceFrequency"
+  ).textContent =
+    `${p.f.toFixed(0)} Hz`;
+
+
+  document.getElementById(
+    "liveObservedFrequency"
+  ).textContent =
+    `${p.observedFrequency.toFixed(1)} Hz`;
+
+
+  document.getElementById(
+    "liveSourceSpeed"
+  ).textContent =
+    `${signedValue(
+      p.vs
+    )} m/s`;
+
+
+  document.getElementById(
+    "liveObserverSpeed"
+  ).textContent =
+    `${signedValue(
+      p.vo
+    )} m/s`;
+
+
+  document.getElementById(
+    "liveFrontWavelength"
+  ).textContent =
+    `${p.frontWavelength.toFixed(3)} m`;
+
+
+  document.getElementById(
+    "liveWavelength"
+  ).textContent =
+    `${p.lambda.toFixed(3)} m`;
+
+
+  calculationBox.innerHTML =
+    `
+    <strong>
+      현재 조건
+    </strong>
+
+    <br>
+
+    f′ =
+    ${p.f.toFixed(0)}
+    ×
+    (
+    ${p.c.toFixed(0)}
+    −
+    (${p.vo.toFixed(0)})
+    )
+    /
+    (
+    ${p.c.toFixed(0)}
+    −
+    (${p.vs.toFixed(0)})
+    )
+
+    <br>
+
+    <strong>
+      f′ = ${p.observedFrequency.toFixed(1)} Hz
+    </strong>
+    `;
+
+
+  /*
+  status
+  */
+
+  if(
+    p.observedFrequency >
+    p.f *
+    1.005
+  ){
+
+    status.textContent =
+      "관찰 진동수 증가";
+
+  }
+
+  else if(
+    p.observedFrequency <
+    p.f *
+    .995
+  ){
+
+    status.textContent =
+      "관찰 진동수 감소";
+
+  }
+
+  else{
+
+    status.textContent =
+      "관찰 진동수 동일";
+
+  }
+
+}
+
+
+/* ========================================
+CANVAS
+======================================== */
+
+function resizeCanvas(){
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+
+  const ratio =
+    window.devicePixelRatio ||
+    1;
+
+
+  canvas.width =
+    rect.width *
+    ratio;
+
+
+  canvas.height =
+    rect.height *
+    ratio;
+
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+
+  draw();
+
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+/* ========================================
+ARROW
+======================================== */
+
+function drawArrow(
+  x1,
+  y1,
+  x2,
+  y2,
+  color,
+  label
+){
+
+  const angle =
+    Math.atan2(
+      y2-y1,
+      x2-x1
+    );
+
+
+  const head =
+    9;
+
+
+  ctx.strokeStyle =
+    color;
+
+  ctx.fillStyle =
+    color;
+
+  ctx.lineWidth =
+    3;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    x1,
+    y1
+  );
+
+  ctx.lineTo(
+    x2,
+    y2
+  );
+
+  ctx.stroke();
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    x2,
+    y2
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle-
+      Math.PI/6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle-
+      Math.PI/6
+    )
+
+  );
+
+
+  ctx.lineTo(
+
+    x2 -
+    head *
+    Math.cos(
+      angle+
+      Math.PI/6
+    ),
+
+    y2 -
+    head *
+    Math.sin(
+      angle+
+      Math.PI/6
+    )
+
+  );
+
+
+  ctx.closePath();
+
+  ctx.fill();
+
+
+  if(
+    label
+  ){
+
+    ctx.font =
+      "bold 12px Arial";
+
+
+    ctx.fillText(
+      label,
+      (
+        x1+x2
+      )/2 -
+      20,
+      (
+        y1+y2
+      )/2 -
+      12
+    );
+
+  }
+
+}
+
+
+/* ========================================
+POSITIONS
+======================================== */
+
+function getPositions(){
+
+  const p =
+    getParameters();
+
+
+  /*
+  시각화용 속도 축척.
+
+  실제 값은 계산식에 그대로 사용하고,
+  화면상의 움직임만 보기 좋게 축소.
+  */
+
+  const pixelVelocityScale =
+    .55;
+
+
+  const sourceInitialX =
+    canvas.clientWidth *
+    .28;
+
+
+  const observerInitialX =
+    canvas.clientWidth *
+    .76;
+
+
+  let sourceX =
+    sourceInitialX +
+    p.vs *
+    elapsedTime *
+    pixelVelocityScale;
+
+
+  let observerX =
+    observerInitialX +
+    p.vo *
+    elapsedTime *
+    pixelVelocityScale;
+
+
+  return{
+
+    sourceX,
+    observerX,
+
+    sourceInitialX,
+    observerInitialX,
+
+    pixelVelocityScale
+
+  };
+
+}
+
+
+/* ========================================
+WAVEFRONTS
+======================================== */
+
+function buildWavefronts(){
+
+  const p =
+    getParameters();
+
+  const positions =
+    getPositions();
+
+
+  /*
+  실제 f=500 Hz의 모든 파면을 그리면
+  지나치게 많으므로 일정 수의 대표 파면만 사용.
+
+  시각적 방출 간격은 진동수에 따라 변화.
+  */
+
+  const visualEmissionInterval =
+    Math.max(
+      .10,
+      Math.min(
+        .28,
+        100 /
+        p.f
+      )
+    );
+
+
+  const maxAge =
+    3.2;
+
+
+  const list =
+    [];
+
+
+  const count =
+    Math.ceil(
+      maxAge /
+      visualEmissionInterval
+    );
+
+
+  for(
+    let i=0;
+    i<count;
+    i++
+  ){
+
+    const emissionTime =
+      elapsedTime -
+      i *
+      visualEmissionInterval;
+
+
+    if(
+      emissionTime <
+      0
+    ){
+
+      continue;
+
+    }
+
+
+    /*
+    그 파면이 만들어졌던 시각의 음원 위치
+    */
+
+    const emissionSourceX =
+      positions.sourceInitialX +
+      p.vs *
+      emissionTime *
+      positions.pixelVelocityScale;
+
+
+    const age =
+      elapsedTime -
+      emissionTime;
+
+
+    /*
+    음속 역시 화면용 축척
+    */
+
+    const visualSoundSpeed =
+      150;
+
+
+    const radius =
+      age *
+      visualSoundSpeed;
+
+
+    list.push({
+
+      emissionSourceX,
+      radius,
+      age
+
+    });
+
+  }
+
+
+  return list;
+
+}
+
+
+/* ========================================
+DRAW
+======================================== */
+
+function draw(){
+
+  const width =
+    canvas.clientWidth;
+
+  const height =
+    canvas.clientHeight;
+
+
+  const p =
+    getParameters();
+
+
+  const pos =
+    getPositions();
+
+
+  ctx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.fillStyle =
+    "#f8fbff";
+
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const centerY =
+    height *
+    .54;
+
+
+  /*
+  기준선
+  */
+
+  ctx.strokeStyle =
+    "#cbd5e1";
+
+  ctx.lineWidth =
+    1.5;
+
+
+  ctx.beginPath();
+
+  ctx.moveTo(
+    30,
+    centerY
+  );
+
+  ctx.lineTo(
+    width-30,
+    centerY
+  );
+
+  ctx.stroke();
+
+
+  /*
+  wavefronts
+  */
+
+  const wavefrontList =
+    buildWavefronts();
+
+
+  ctx.save();
+
+
+  ctx.beginPath();
+
+  ctx.rect(
+    0,
+    80,
+    width,
+    height-145
+  );
+
+  ctx.clip();
+
+
+  wavefrontList
+    .slice()
+    .reverse()
+    .forEach(
+      (
+        wave,
+        index
+      ) => {
+
+
+        const alpha =
+          Math.max(
+            .10,
+            .62-
+            wave.age*
+            .13
+          );
+
+
+        ctx.strokeStyle =
+          `rgba(
+            124,
+            58,
+            237,
+            ${alpha}
+          )`;
+
+
+        ctx.lineWidth =
+          index % 3 ===
+          0
+          ?
+          2
+          :
+          1.3;
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+          wave.emissionSourceX,
+          centerY,
+          wave.radius,
+          0,
+          Math.PI*2
+        );
+
+
+        ctx.stroke();
+
+      }
+    );
+
+
+  ctx.restore();
+
+
+  /*
+  front/back labels
+  */
+
+  if(
+    mode !==
+    "observer"
+  ){
+
+    ctx.fillStyle =
+      "#7c3aed";
+
+
+    ctx.font =
+      "bold 12px Arial";
+
+
+    ctx.fillText(
+      "뒤쪽: 파면 간격 증가",
+      25,
+      115
+    );
+
+
+    ctx.fillText(
+      "앞쪽: 파면 간격 감소",
+      width-155,
+      115
+    );
+
+  }
+
+
+  /*
+  sound direction
+  */
+
+  drawArrow(
+    width*.42,
+    65,
+    width*.62,
+    65,
+    "#7c3aed",
+    "소리 진행"
+  );
+
+
+  /*
+  SOURCE
+  */
+
+  const sourceX =
+    pos.sourceX;
+
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    sourceX,
+    centerY,
+    20,
+    0,
+    Math.PI*2
+  );
+
+
+  ctx.fillStyle =
+    "#dc2626";
+
+
+  ctx.fill();
+
+
+  ctx.strokeStyle =
+    "#991b1b";
+
+
+  ctx.lineWidth =
+    2;
+
+
+  ctx.stroke();
+
+
+  ctx.fillStyle =
+    "#ffffff";
+
+
+  ctx.font =
+    "bold 15px Arial";
+
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.fillText(
+    "S",
+    sourceX,
+    centerY+5
+  );
+
+
+  ctx.textAlign =
+    "start";
+
+
+  ctx.fillStyle =
+    "#991b1b";
+
+
+  ctx.font =
+    "bold 13px Arial";
+
+
+  ctx.fillText(
+    "음원",
+    sourceX-15,
+    centerY+48
+  );
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    `${signedValue(
+      p.vs
+    )} m/s`,
+    sourceX-25,
+    centerY+67
+  );
+
+
+  /*
+  source velocity arrow
+  */
+
+  if(
+    Math.abs(
+      p.vs
+    ) >
+    1
+  ){
+
+    const direction =
+      Math.sign(
+        p.vs
+      );
+
+
+    drawArrow(
+      sourceX,
+      centerY-35,
+      sourceX+
+      direction*
+      65,
+      centerY-35,
+      "#dc2626",
+      "vₛ"
+    );
+
+  }
+
+
+  /*
+  OBSERVER
+  */
+
+  const observerX =
+    pos.observerX;
+
+
+  /*
+  observer head
+  */
+
+  ctx.beginPath();
+
+
+  ctx.arc(
+    observerX,
+    centerY-15,
+    14,
+    0,
+    Math.PI*2
+  );
+
+
+  ctx.fillStyle =
+    "#2563eb";
+
+
+  ctx.fill();
+
+
+  /*
+  body
+  */
+
+  ctx.strokeStyle =
+    "#2563eb";
+
+
+  ctx.lineWidth =
+    5;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    observerX,
+    centerY
+  );
+
+
+  ctx.lineTo(
+    observerX,
+    centerY+48
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.lineWidth =
+    3;
+
+
+  ctx.beginPath();
+
+
+  ctx.moveTo(
+    observerX,
+    centerY+15
+  );
+
+
+  ctx.lineTo(
+    observerX-20,
+    centerY+32
+  );
+
+
+  ctx.moveTo(
+    observerX,
+    centerY+15
+  );
+
+
+  ctx.lineTo(
+    observerX+20,
+    centerY+32
+  );
+
+
+  ctx.stroke();
+
+
+  ctx.fillStyle =
+    "#1e40af";
+
+
+  ctx.font =
+    "bold 13px Arial";
+
+
+  ctx.fillText(
+    "관찰자",
+    observerX-22,
+    centerY+75
+  );
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.fillText(
+    `${signedValue(
+      p.vo
+    )} m/s`,
+    observerX-27,
+    centerY+94
+  );
+
+
+  /*
+  observer velocity
+  */
+
+  if(
+    Math.abs(
+      p.vo
+    ) >
+    1
+  ){
+
+    const direction =
+      Math.sign(
+        p.vo
+      );
+
+
+    drawArrow(
+      observerX,
+      centerY-52,
+      observerX+
+      direction*
+      65,
+      centerY-52,
+      "#2563eb",
+      "vₒ"
+    );
+
+  }
+
+
+  /*
+  frequencies
+  */
+
+  ctx.fillStyle =
+    "#334155";
+
+
+  ctx.font =
+    "bold 14px Arial";
+
+
+  ctx.fillText(
+    `음원: ${p.f.toFixed(0)} Hz`,
+    25,
+    height-50
+  );
+
+
+  ctx.fillStyle =
+    p.observedFrequency >
+    p.f
+    ?
+    "#059669"
+    :
+    p.observedFrequency <
+    p.f
+    ?
+    "#ea580c"
+    :
+    "#334155";
+
+
+  ctx.fillText(
+    `관찰: ${p.observedFrequency.toFixed(1)} Hz`,
+    width-145,
+    height-50
+  );
+
+
+  /*
+  relationship message
+  */
+
+  let relationText =
+    "";
+
+
+  if(
+    p.observedFrequency >
+    p.f*
+    1.005
+  ){
+
+    relationText =
+      "더 높은 진동수";
+
+  }
+
+  else if(
+    p.observedFrequency <
+    p.f*
+    .995
+  ){
+
+    relationText =
+      "더 낮은 진동수";
+
+  }
+
+  else{
+
+    relationText =
+      "같은 진동수";
+
+  }
+
+
+  ctx.fillStyle =
+    "#64748b";
+
+
+  ctx.font =
+    "12px Arial";
+
+
+  ctx.textAlign =
+    "center";
+
+
+  ctx.fillText(
+    `관찰자는 음원의 진동수보다 ${relationText}를 관찰`,
+    width/2,
+    height-18
+  );
+
+
+  ctx.textAlign =
+    "start";
+
+}
+
+
+/* ========================================
+UPDATE
+======================================== */
+
+function update(){
+
+  updateText();
+
+  draw();
+
+
+  const duration =
+    4;
+
+
+  if(
+    running
+  ){
+
+    timeSlider.value =
+      (
+        elapsedTime %
+        duration
+      )/
+      duration*
+      100;
+
+  }
+
+}
+
+
+/* ========================================
+ANIMATION
+======================================== */
+
+function animate(
+  timestamp
+){
+
+  if(
+    !running
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    paused
+  ){
+
+    lastTimestamp =
+      timestamp;
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+
+    return;
+
+  }
+
+
+  if(
+    lastTimestamp ===
+    null
+  ){
+
+    lastTimestamp =
+      timestamp;
+
+  }
+
+
+  const dt =
+    (
+      timestamp-
+      lastTimestamp
+    )/
+    1000;
+
+
+  lastTimestamp =
+    timestamp;
+
+
+  elapsedTime +=
+    dt;
+
+
+  /*
+  화면 밖으로 나가기 전에
+  주기적으로 초기 상태에서 반복
+  */
+
+  if(
+    elapsedTime >=
+    4
+  ){
+
+    elapsedTime =
+      0;
+
+  }
+
+
+  update();
+
+
+  animationId =
+    requestAnimationFrame(
+      animate
+    );
+
+}
+
+
+/* ========================================
+RESET
+======================================== */
+
+function resetSimulation(){
+
+  running =
+    false;
+
+  paused =
+    false;
+
+  elapsedTime =
+    0;
+
+  lastTimestamp =
+    null;
+
+  timeSlider.value =
+    0;
+
+
+  if(
+    animationId
+  ){
+
+    cancelAnimationFrame(
+      animationId
+    );
+
+  }
+
+
+  pauseButton.textContent =
+    "Ⅱ 일시정지";
+
+
+  update();
+
+}
+
+
+/* ========================================
+MODE EVENTS
+======================================== */
+
+sourceModeButton.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "source"
+    )
+);
+
+
+observerModeButton.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "observer"
+    )
+);
+
+
+bothModeButton.addEventListener(
+  "click",
+  () =>
+    setMode(
+      "both"
+    )
+);
+
+
+/* ========================================
+CONTROL EVENTS
+======================================== */
+
+[
+  frequencySlider,
+  soundSpeedSlider,
+  sourceSpeedSlider,
+  observerSpeedSlider
+].forEach(
+  input => {
+
+
+    input.addEventListener(
+      "input",
+      () => {
+
+        resetSimulation();
+
+      }
+    );
+
+  }
+);
+
+
+/* ========================================
+TIME
+======================================== */
+
+timeSlider.addEventListener(
+  "input",
+  () => {
+
+
+    running =
+      false;
+
+    paused =
+      false;
+
+
+    if(
+      animationId
+    ){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    elapsedTime =
+      Number(
+        timeSlider.value
+      )/
+      100*
+      4;
+
+
+    update();
+
+  }
+);
+
+
+/* ========================================
+START
+======================================== */
+
+startButton.addEventListener(
+  "click",
+  () => {
+
+
+    running =
+      true;
+
+    paused =
+      false;
+
+    lastTimestamp =
+      null;
+
+
+    pauseButton.textContent =
+      "Ⅱ 일시정지";
+
+
+    if(
+      animationId
+    ){
+
+      cancelAnimationFrame(
+        animationId
+      );
+
+    }
+
+
+    animationId =
+      requestAnimationFrame(
+        animate
+      );
+
+  }
+);
+
+
+/* ========================================
+PAUSE
+======================================== */
+
+pauseButton.addEventListener(
+  "click",
+  () => {
+
+
+    if(
+      !running
+    ){
+
+      return;
+
+    }
+
+
+    paused =
+      !paused;
+
+
+    pauseButton.textContent =
+      paused
+      ?
+      "▶ 계속"
+      :
+      "Ⅱ 일시정지";
+
+
+    lastTimestamp =
+      null;
+
+
+    update();
+
+  }
+);
+
+
+/* ========================================
+RESET BUTTON
+======================================== */
+
+resetButton.addEventListener(
+  "click",
+  resetSimulation
+);
+
+
+/* ========================================
+INIT
+======================================== */
+
+resizeCanvas();
+
+setMode(
+  "source"
+);
+
+</script>
+
+
+</body>
+
+</html>
